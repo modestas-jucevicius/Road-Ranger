@@ -32,10 +32,9 @@ namespace Road_rangerVS
                 Recognize(imagePath);
         }
 
-        static async Task Recognize(string imagePath)
+        // Analizuoja nuotrauką, esančią vietoje imagePath, ir parodo rezultatą konsolėje
+        private async Task Recognize(string imagePath)
         {
-            Console.WriteLine("Full Path: {0}", imagePath);
-
             Recognizer recognizer = new OpenALPRRecognizer();
             string result = await recognizer.Recognize(imagePath);
 
