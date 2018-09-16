@@ -58,12 +58,12 @@ namespace Road_rangerVS
         private void BrowseButtonClick(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image files | *.png; *.jpg"; // file types, that will be allowed to upload
-            dialog.Multiselect = false; // allow/deny user to upload more than one file at a time
-            if (dialog.ShowDialog() == DialogResult.OK) // if user clicked OK
+            dialog.Filter = "Image files | *.png; *.jpg"; // failo tipai, kurie bus naudojami
+            dialog.Multiselect = false; // true - galima pridėti daugiau negu viena failą, false - galima pridėti tik 1 failą
+            if (dialog.ShowDialog() == DialogResult.OK) // jei vartotojas paspaudžia OK
             {
-                String path = dialog.FileName; // get name of file
-                filePath.Text = path;
+                String path = dialog.FileName; // gauna failo vardą
+                filePath.Text = path;           // laukui filePath priskiriama path reikšmė
             }
         }
 
