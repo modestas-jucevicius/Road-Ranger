@@ -1,1 +1,5 @@
-.vs/
+.vs/bin/obj/
+.vs/Road-rangerVS/v15/Server/sqlite3/storage.ide-wal
+.vs/Road-rangerVS/v15/Server/sqlite3/storage.ide-shm
+.vs/Road-rangerVS/v15/Server/sqlite3/storage.ide
+.vs/Road-rangerVS/v15/Server/sqlite3/db.lock
