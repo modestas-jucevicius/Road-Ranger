@@ -1,0 +1,1559 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenAlprApi</name>
+    </assembly>
+    <members>
+        <member name="T:OpenAlprApi.Api.IDefaultApi">
+            <summary>
+            Represents a collection of functions to interact with the API endpoints
+            </summary>
+        </member>
+        <member name="T:OpenAlprApi.Client.IApiAccessor">
+            <summary>
+            Represents configuration aspects required to interact with the API endpoints.
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Client.IApiAccessor.GetBasePath">
+            <summary>
+            Gets the base path of the API client.
+            </summary>
+            <value>The base path</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.IApiAccessor.Configuration">
+            <summary>
+            Gets or sets the configuration object
+            </summary>
+            <value>An instance of the Configuration</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.IApiAccessor.ExceptionFactory">
+            <summary>
+            Provides a factory method hook for the creation of exceptions.
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeBytes(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeBytesWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>ApiResponse of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeFile(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeFileWithHttpInfo(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>ApiResponse of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeUrl(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeUrlWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>ApiResponse of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeBytesAsync(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeBytesAsyncWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of ApiResponse (InlineResponse200)</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeFileAsync(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeFileAsyncWithHttpInfo(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of ApiResponse (InlineResponse200)</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeUrlAsync(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.IDefaultApi.RecognizeUrlAsyncWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            
+            </summary>
+            <remarks>
+            Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </remarks>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of ApiResponse (InlineResponse200)</returns>
+        </member>
+        <member name="T:OpenAlprApi.Api.DefaultApi">
+            <summary>
+            Represents a collection of functions to interact with the API endpoints
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Api.DefaultApi"/> class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.#ctor(OpenAlprApi.Client.Configuration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Api.DefaultApi"/> class
+            using Configuration object
+            </summary>
+            <param name="configuration">An instance of Configuration</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.GetBasePath">
+            <summary>
+            Gets the base path of the API client.
+            </summary>
+            <value>The base path</value>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.SetBasePath(System.String)">
+            <summary>
+            Sets the base path of the API client.
+            </summary>
+            <value>The base path</value>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.DefaultHeader">
+            <summary>
+            Gets the default header.
+            </summary>
+            <returns>Dictionary of HTTP header</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.AddDefaultHeader(System.String,System.String)">
+            <summary>
+            Add default header.
+            </summary>
+            <param name="key">Header field name.</param>
+            <param name="value">Header field value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeBytes(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeBytesWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>ApiResponse of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeBytesAsync(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeBytesAsyncWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as base64 encoded bytes. 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageBytes">The image file that you wish to analyze encoded in base64 </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of ApiResponse (InlineResponse200)</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeFile(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeFileWithHttpInfo(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>ApiResponse of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeFileAsync(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeFileAsyncWithHttpInfo(System.IO.Stream,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a file using a form data POST 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="image">The image file that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of ApiResponse (InlineResponse200)</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeUrl(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeUrlWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>ApiResponse of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeUrlAsync(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of InlineResponse200</returns>
+        </member>
+        <member name="M:OpenAlprApi.Api.DefaultApi.RecognizeUrlAsyncWithHttpInfo(System.String,System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+             Send an image for OpenALPR to analyze and provide metadata back The image is sent as a URL.  The OpenALPR service will download the image  and process it 
+            </summary>
+            <exception cref="T:OpenAlprApi.Client.ApiException">Thrown when fails to make API call</exception>
+            <param name="imageUrl">A URL to an image that you wish to analyze </param>
+            <param name="secretKey">The secret key used to authenticate your account.  You can view your  secret key by visiting  https://cloud.openalpr.com/ </param>
+            <param name="country">Defines the training data used by OpenALPR.  \"us\" analyzes  North-American style plates.  \"eu\" analyzes European-style plates.  This field is required if using the \"plate\" task  You may use multiple datasets by using commas between the country  codes.  For example, 'au,auwide' would analyze using both the  Australian plate styles.  A full list of supported country codes  can be found here https://github.com/openalpr/openalpr/tree/master/runtime_data/config </param>
+            <param name="recognizeVehicle">If set to 1, the vehicle will also be recognized in the image This requires an additional credit per request  (optional, default to 0)</param>
+            <param name="state">Corresponds to a US state or EU country code used by OpenALPR pattern  recognition.  For example, using \"md\" matches US plates against the  Maryland plate patterns.  Using \"fr\" matches European plates against  the French plate patterns.  (optional, default to )</param>
+            <param name="returnImage">If set to 1, the image you uploaded will be encoded in base64 and  sent back along with the response  (optional, default to 0)</param>
+            <param name="topn">The number of results you would like to be returned for plate  candidates and vehicle classifications  (optional, default to 10)</param>
+            <param name="prewarp">Prewarp configuration is used to calibrate the analyses for the  angle of a particular camera.  More information is available here http://doc.openalpr.com/accuracy_improvements.html#calibration  (optional, default to )</param>
+            <returns>Task of ApiResponse (InlineResponse200)</returns>
+        </member>
+        <member name="P:OpenAlprApi.Api.DefaultApi.Configuration">
+            <summary>
+            Gets or sets the configuration object
+            </summary>
+            <value>An instance of the Configuration</value>
+        </member>
+        <member name="P:OpenAlprApi.Api.DefaultApi.ExceptionFactory">
+            <summary>
+            Provides a factory method hook for the creation of exceptions.
+            </summary>
+        </member>
+        <member name="T:OpenAlprApi.Client.ApiClient">
+            <summary>
+            API client is mainly responsible for making the HTTP call to the API backend.
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Client.ApiClient"/> class
+            with default configuration and base path (https://api.openalpr.com/v2).
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.#ctor(OpenAlprApi.Client.Configuration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Client.ApiClient"/> class
+            with default base path (https://api.openalpr.com/v2).
+            </summary>
+            <param name="config">An instance of Configuration.</param>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Client.ApiClient"/> class
+            with default configuration.
+            </summary>
+            <param name="basePath">The base path.</param>
+        </member>
+        <member name="F:OpenAlprApi.Client.ApiClient.Default">
+            <summary>
+            Gets or sets the default API client for making HTTP calls.
+            </summary>
+            <value>The default API client.</value>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.CallApi(System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.String},System.Object,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,RestSharp.FileParameter},System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Makes the HTTP request (Sync).
+            </summary>
+            <param name="path">URL path.</param>
+            <param name="method">HTTP method.</param>
+            <param name="queryParams">Query parameters.</param>
+            <param name="postBody">HTTP body (POST request).</param>
+            <param name="headerParams">Header parameters.</param>
+            <param name="formParams">Form parameters.</param>
+            <param name="fileParams">File parameters.</param>
+            <param name="pathParams">Path parameters.</param>
+            <param name="contentType">Content Type of the request</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.CallApiAsync(System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.String},System.Object,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,RestSharp.FileParameter},System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Makes the asynchronous HTTP request.
+            </summary>
+            <param name="path">URL path.</param>
+            <param name="method">HTTP method.</param>
+            <param name="queryParams">Query parameters.</param>
+            <param name="postBody">HTTP body (POST request).</param>
+            <param name="headerParams">Header parameters.</param>
+            <param name="formParams">Form parameters.</param>
+            <param name="fileParams">File parameters.</param>
+            <param name="pathParams">Path parameters.</param>
+            <param name="contentType">Content type.</param>
+            <returns>The Task instance.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.EscapeString(System.String)">
+            <summary>
+            Escape string (url-encoded).
+            </summary>
+            <param name="str">String to be escaped.</param>
+            <returns>Escaped string.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.ParameterToFile(System.String,System.IO.Stream)">
+            <summary>
+            Create FileParameter based on Stream.
+            </summary>
+            <param name="name">Parameter name.</param>
+            <param name="stream">Input stream.</param>
+            <returns>FileParameter.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.ParameterToString(System.Object)">
+            <summary>
+            If parameter is DateTime, output in a formatted string (default ISO 8601), customizable with Configuration.DateTime.
+            If parameter is a list, join the list with ",".
+            Otherwise just return the string.
+            </summary>
+            <param name="obj">The parameter (header, path, query, form).</param>
+            <returns>Formatted string.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.Deserialize(RestSharp.IRestResponse,System.Type)">
+            <summary>
+            Deserialize the JSON string into a proper object.
+            </summary>
+            <param name="response">The HTTP response.</param>
+            <param name="type">Object type.</param>
+            <returns>Object representation of the JSON string.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.Serialize(System.Object)">
+            <summary>
+            Serialize an input (model) into JSON string
+            </summary>
+            <param name="obj">Object.</param>
+            <returns>JSON string.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.SelectHeaderContentType(System.String[])">
+            <summary>
+            Select the Content-Type header's value from the given content-type array:
+            if JSON exists in the given array, use it;
+            otherwise use the first one defined in 'consumes'
+            </summary>
+            <param name="contentTypes">The Content-Type array to select from.</param>
+            <returns>The Content-Type header to use.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.SelectHeaderAccept(System.String[])">
+            <summary>
+            Select the Accept header's value from the given accepts array:
+            if JSON exists in the given array, use it;
+            otherwise use all of them (joining into a string)
+            </summary>
+            <param name="accepts">The accepts array to select from.</param>
+            <returns>The Accept header to use.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.Base64Encode(System.String)">
+            <summary>
+            Encode string in base64 format.
+            </summary>
+            <param name="text">String to be encoded.</param>
+            <returns>Encoded string.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.ConvertType(System.Object,System.Type)">
+            <summary>
+            Dynamically cast the object into target type.
+            Ref: http://stackoverflow.com/questions/4925718/c-dynamic-runtime-cast
+            </summary>
+            <param name="source">Object to be casted</param>
+            <param name="dest">Target type</param>
+            <returns>Casted object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.ReadAsBytes(System.IO.Stream)">
+            <summary>
+            Convert stream to byte array
+            Credit/Ref: http://stackoverflow.com/a/221941/677735
+            </summary>
+            <param name="input">Input stream to be converted</param>
+            <returns>Byte array</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.UrlEncode(System.String)">
+            <summary>
+            URL encode a string
+            Credit/Ref: https://github.com/restsharp/RestSharp/blob/master/RestSharp/Extensions/StringExtensions.cs#L50
+            </summary>
+            <param name="input">String to be URL encoded</param>
+            <returns>Byte array</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiClient.SanitizeFilename(System.String)">
+            <summary>
+            Sanitize filename by removing the path
+            </summary>
+            <param name="filename">Filename</param>
+            <returns>Filename</returns>
+        </member>
+        <member name="P:OpenAlprApi.Client.ApiClient.Configuration">
+            <summary>
+            Gets or sets the Configuration.
+            </summary>
+            <value>An instance of the Configuration.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.ApiClient.RestClient">
+            <summary>
+            Gets or sets the RestClient.
+            </summary>
+            <value>An instance of the RestClient</value>
+        </member>
+        <member name="T:OpenAlprApi.Client.ApiException">
+            <summary>
+            API Exception
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Client.ApiException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiException.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Client.ApiException"/> class.
+            </summary>
+            <param name="errorCode">HTTP status code.</param>
+            <param name="message">Error message.</param>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiException.#ctor(System.Int32,System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Client.ApiException"/> class.
+            </summary>
+            <param name="errorCode">HTTP status code.</param>
+            <param name="message">Error message.</param>
+            <param name="errorContent">Error content.</param>
+        </member>
+        <member name="P:OpenAlprApi.Client.ApiException.ErrorCode">
+            <summary>
+            Gets or sets the error code (HTTP status code)
+            </summary>
+            <value>The error code (HTTP status code).</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.ApiException.ErrorContent">
+            <summary>
+            Gets or sets the error content (body json object)
+            </summary>
+            <value>The error content (Http response body).</value>
+        </member>
+        <member name="T:OpenAlprApi.Client.ApiResponse`1">
+            <summary>
+            API Response
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Client.ApiResponse`1.#ctor(System.Int32,System.Collections.Generic.IDictionary{System.String,System.String},`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Client.ApiResponse`1"/> class.
+            </summary>
+            <param name="statusCode">HTTP status code.</param>
+            <param name="headers">HTTP headers.</param>
+            <param name="data">Data (parsed HTTP body)</param>
+        </member>
+        <member name="P:OpenAlprApi.Client.ApiResponse`1.StatusCode">
+            <summary>
+            Gets or sets the status code (HTTP status code)
+            </summary>
+            <value>The status code.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.ApiResponse`1.Headers">
+            <summary>
+            Gets or sets the HTTP headers
+            </summary>
+            <value>HTTP headers</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.ApiResponse`1.Data">
+            <summary>
+            Gets or sets the data (parsed HTTP body)
+            </summary>
+            <value>The data.</value>
+        </member>
+        <member name="T:OpenAlprApi.Client.Configuration">
+            <summary>
+            Represents a set of configuration settings
+            </summary>
+        </member>
+        <member name="F:OpenAlprApi.Client.Configuration.Version">
+            <summary>
+            Version of the package.
+            </summary>
+            <value>Version of the package.</value>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.#ctor(OpenAlprApi.Client.ApiClient,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the Configuration class with different settings
+            </summary>
+            <param name="apiClient">Api client</param>
+            <param name="defaultHeader">Dictionary of default HTTP header</param>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+            <param name="accessToken">accessToken</param>
+            <param name="apiKey">Dictionary of API key</param>
+            <param name="apiKeyPrefix">Dictionary of API key prefix</param>
+            <param name="tempFolderPath">Temp folder path</param>
+            <param name="dateTimeFormat">DateTime format string</param>
+            <param name="timeout">HTTP connection timeout (in milliseconds)</param>
+            <param name="userAgent">HTTP user agent</param>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.#ctor(OpenAlprApi.Client.ApiClient)">
+            <summary>
+            Initializes a new instance of the Configuration class.
+            </summary>
+            <param name="apiClient">Api client.</param>
+        </member>
+        <member name="F:OpenAlprApi.Client.Configuration.Default">
+            <summary>
+            Gets or sets the default Configuration.
+            </summary>
+            <value>Configuration.</value>
+        </member>
+        <member name="F:OpenAlprApi.Client.Configuration.DefaultExceptionFactory">
+            <summary>
+            Default creation of exceptions for a given method name and response object
+            </summary>
+        </member>
+        <member name="F:OpenAlprApi.Client.Configuration.ApiClient">
+            <summary>
+            Gets or sets the default API client for making HTTP calls.
+            </summary>
+            <value>The API client.</value>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.setApiClientUsingDefault(OpenAlprApi.Client.ApiClient)">
+            <summary>
+            Set the ApiClient using Default or ApiClient instance.
+            </summary>
+            <param name="apiClient">An instance of ApiClient.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.AddDefaultHeader(System.String,System.String)">
+            <summary>
+            Add default header.
+            </summary>
+            <param name="key">Header field name.</param>
+            <param name="value">Header field value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.AddApiKey(System.String,System.String)">
+            <summary>
+            Add Api Key Header.
+            </summary>
+            <param name="key">Api Key name.</param>
+            <param name="value">Api Key value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.AddApiKeyPrefix(System.String,System.String)">
+            <summary>
+            Sets the API key prefix.
+            </summary>
+            <param name="key">Api Key name.</param>
+            <param name="value">Api Key value.</param>
+        </member>
+        <member name="F:OpenAlprApi.Client.Configuration.ApiKey">
+            <summary>
+            Gets or sets the API key based on the authentication name.
+            </summary>
+            <value>The API key.</value>
+        </member>
+        <member name="F:OpenAlprApi.Client.Configuration.ApiKeyPrefix">
+            <summary>
+            Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
+            </summary>
+            <value>The prefix of the API key.</value>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.GetApiKeyWithPrefix(System.String)">
+            <summary>
+            Get the API key with prefix.
+            </summary>
+            <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
+            <returns>API key with prefix.</returns>
+        </member>
+        <member name="M:OpenAlprApi.Client.Configuration.ToDebugReport">
+            <summary>
+            Returns a string with essential information for debugging.
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.Timeout">
+            <summary>
+            Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
+            </summary>
+            <value>Timeout.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.DefaultHeader">
+            <summary>
+            Gets or sets the default header.
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.UserAgent">
+            <summary>
+            Gets or sets the HTTP user agent.
+            </summary>
+            <value>Http user agent.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.Username">
+            <summary>
+            Gets or sets the username (HTTP basic authentication).
+            </summary>
+            <value>The username.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.Password">
+            <summary>
+            Gets or sets the password (HTTP basic authentication).
+            </summary>
+            <value>The password.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.AccessToken">
+            <summary>
+            Gets or sets the access token for OAuth2 authentication.
+            </summary>
+            <value>The access token.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.TempFolderPath">
+            <summary>
+            Gets or sets the temporary folder path to store the files downloaded from the server.
+            </summary>
+            <value>Folder path.</value>
+        </member>
+        <member name="P:OpenAlprApi.Client.Configuration.DateTimeFormat">
+            <summary>
+            Gets or sets the the date time format used when serializing in the ApiClient
+            By default, it's set to ISO 8601 - "o", for others see:
+            https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx
+            and https://msdn.microsoft.com/en-us/library/8kb3ddd4(v=vs.110).aspx
+            No validation is done to ensure that the string you're providing is valid
+            </summary>
+            <value>The DateTimeFormat string</value>
+        </member>
+        <member name="T:OpenAlprApi.Client.ExceptionFactory">
+            <summary>
+            A delegate to ExceptionFactory method
+            </summary>
+            <param name="methodName">Method name</param>
+            <param name="response">Response</param>
+            <returns>Exceptions</returns>    
+        </member>
+        <member name="T:OpenAlprApi.Model.Coordinate">
+            <summary>
+            Coordinate
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.Coordinate.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.Coordinate"/> class.
+            </summary>
+            <param name="X">X.</param>
+            <param name="Y">Y.</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.Coordinate.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.Coordinate.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.Coordinate.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.Coordinate.Equals(OpenAlprApi.Model.Coordinate)">
+            <summary>
+            Returns true if Coordinate instances are equal
+            </summary>
+            <param name="other">Instance of Coordinate to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.Coordinate.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.Coordinate.X">
+            <summary>
+            Gets or Sets X
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.Coordinate.Y">
+            <summary>
+            Gets or Sets Y
+            </summary>
+        </member>
+        <member name="T:OpenAlprApi.Model.InlineResponse200">
+            <summary>
+            InlineResponse200
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200.#ctor(OpenAlprApi.Model.InlineResponse200ProcessingTime,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Collections.Generic.List{OpenAlprApi.Model.PlateDetails},System.Collections.Generic.List{OpenAlprApi.Model.RegionOfInterest},System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{OpenAlprApi.Model.InlineResponse200.DataTypeEnum})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.InlineResponse200"/> class.
+            </summary>
+            <param name="ProcessingTime">ProcessingTime.</param>
+            <param name="ImgWidth">Width of the uploaded image in pixels.</param>
+            <param name="ImgHeight">Height of the input image in pixels.</param>
+            <param name="CreditCost">The number of API credits that were used to process this image.</param>
+            <param name="CreditsMonthlyUsed">The number of API credits used this month.</param>
+            <param name="CreditsMonthlyTotal">The maximum number of API credits available this month according to your plan.</param>
+            <param name="Results">Results.</param>
+            <param name="RegionsOfInterest">Describes the areas analyzed in the input image.</param>
+            <param name="EpochTime">Epoch time that the image was processed in milliseconds.</param>
+            <param name="Version">API format version.</param>
+            <param name="DataType">Specifies the type of data in this response.</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200.Equals(OpenAlprApi.Model.InlineResponse200)">
+            <summary>
+            Returns true if InlineResponse200 instances are equal
+            </summary>
+            <param name="other">Instance of InlineResponse200 to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.DataType">
+            <summary>
+            Specifies the type of data in this response
+            </summary>
+            <value>Specifies the type of data in this response</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.ProcessingTime">
+            <summary>
+            Gets or Sets ProcessingTime
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.ImgWidth">
+            <summary>
+            Width of the uploaded image in pixels
+            </summary>
+            <value>Width of the uploaded image in pixels</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.ImgHeight">
+            <summary>
+            Height of the input image in pixels
+            </summary>
+            <value>Height of the input image in pixels</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.CreditCost">
+            <summary>
+            The number of API credits that were used to process this image
+            </summary>
+            <value>The number of API credits that were used to process this image</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.CreditsMonthlyUsed">
+            <summary>
+            The number of API credits used this month
+            </summary>
+            <value>The number of API credits used this month</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.CreditsMonthlyTotal">
+            <summary>
+            The maximum number of API credits available this month according to your plan
+            </summary>
+            <value>The maximum number of API credits available this month according to your plan</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.Results">
+            <summary>
+            Gets or Sets Results
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.RegionsOfInterest">
+            <summary>
+            Describes the areas analyzed in the input image
+            </summary>
+            <value>Describes the areas analyzed in the input image</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.EpochTime">
+            <summary>
+            Epoch time that the image was processed in milliseconds
+            </summary>
+            <value>Epoch time that the image was processed in milliseconds</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200.Version">
+            <summary>
+            API format version
+            </summary>
+            <value>API format version</value>
+        </member>
+        <member name="T:OpenAlprApi.Model.InlineResponse200.DataTypeEnum">
+            <summary>
+            Specifies the type of data in this response
+            </summary>
+            <value>Specifies the type of data in this response</value>
+        </member>
+        <member name="F:OpenAlprApi.Model.InlineResponse200.DataTypeEnum.Alprresults">
+            <summary>
+            Enum Alprresults for "alpr_results"
+            </summary>
+        </member>
+        <member name="F:OpenAlprApi.Model.InlineResponse200.DataTypeEnum.Alprgroup">
+            <summary>
+            Enum Alprgroup for "alpr_group"
+            </summary>
+        </member>
+        <member name="F:OpenAlprApi.Model.InlineResponse200.DataTypeEnum.Heartbeat">
+            <summary>
+            Enum Heartbeat for "heartbeat"
+            </summary>
+        </member>
+        <member name="T:OpenAlprApi.Model.InlineResponse200ProcessingTime">
+            <summary>
+            InlineResponse200ProcessingTime
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200ProcessingTime.#ctor(System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.InlineResponse200ProcessingTime"/> class.
+            </summary>
+            <param name="Total">Time spent processing all tasks (in milliseconds).</param>
+            <param name="Plates">Time spent performing license plate recognition (in milliseconds).</param>
+            <param name="Vehicles">Time spent performing vehicle recognition (in milliseconds).</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200ProcessingTime.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200ProcessingTime.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200ProcessingTime.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200ProcessingTime.Equals(OpenAlprApi.Model.InlineResponse200ProcessingTime)">
+            <summary>
+            Returns true if InlineResponse200ProcessingTime instances are equal
+            </summary>
+            <param name="other">Instance of InlineResponse200ProcessingTime to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse200ProcessingTime.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200ProcessingTime.Total">
+            <summary>
+            Time spent processing all tasks (in milliseconds)
+            </summary>
+            <value>Time spent processing all tasks (in milliseconds)</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200ProcessingTime.Plates">
+            <summary>
+            Time spent performing license plate recognition (in milliseconds)
+            </summary>
+            <value>Time spent performing license plate recognition (in milliseconds)</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse200ProcessingTime.Vehicles">
+            <summary>
+            Time spent performing vehicle recognition (in milliseconds)
+            </summary>
+            <value>Time spent performing vehicle recognition (in milliseconds)</value>
+        </member>
+        <member name="T:OpenAlprApi.Model.InlineResponse400">
+            <summary>
+            InlineResponse400
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse400.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.InlineResponse400"/> class.
+            </summary>
+            <param name="Error">Text error message describing the invalid input.</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse400.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse400.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse400.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse400.Equals(OpenAlprApi.Model.InlineResponse400)">
+            <summary>
+            Returns true if InlineResponse400 instances are equal
+            </summary>
+            <param name="other">Instance of InlineResponse400 to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.InlineResponse400.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.InlineResponse400.Error">
+            <summary>
+            Text error message describing the invalid input
+            </summary>
+            <value>Text error message describing the invalid input</value>
+        </member>
+        <member name="T:OpenAlprApi.Model.PlateCandidate">
+            <summary>
+            PlateCandidate
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateCandidate.#ctor(System.String,System.Nullable{System.Decimal},System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.PlateCandidate"/> class.
+            </summary>
+            <param name="Plate">Plate number.</param>
+            <param name="Confidence">Confidence percentage that the plate number is correct.</param>
+            <param name="MatchesTemplate">Indicates whether the plate matched a regional text pattern.</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateCandidate.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateCandidate.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateCandidate.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateCandidate.Equals(OpenAlprApi.Model.PlateCandidate)">
+            <summary>
+            Returns true if PlateCandidate instances are equal
+            </summary>
+            <param name="other">Instance of PlateCandidate to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateCandidate.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateCandidate.Plate">
+            <summary>
+            Plate number
+            </summary>
+            <value>Plate number</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateCandidate.Confidence">
+            <summary>
+            Confidence percentage that the plate number is correct
+            </summary>
+            <value>Confidence percentage that the plate number is correct</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateCandidate.MatchesTemplate">
+            <summary>
+            Indicates whether the plate matched a regional text pattern
+            </summary>
+            <value>Indicates whether the plate matched a regional text pattern</value>
+        </member>
+        <member name="T:OpenAlprApi.Model.PlateDetails">
+            <summary>
+            PlateDetails
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateDetails.#ctor(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Nullable{System.Decimal},System.Collections.Generic.List{OpenAlprApi.Model.Coordinate},System.Collections.Generic.List{OpenAlprApi.Model.PlateCandidate},OpenAlprApi.Model.RegionOfInterest,OpenAlprApi.Model.VehicleDetails)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.PlateDetails"/> class.
+            </summary>
+            <param name="Plate">Best plate number for this plate.</param>
+            <param name="MatchesTemplate">Indicates whether the plate matched a regional text pattern.</param>
+            <param name="RequestedTopn">The max number of results requested.</param>
+            <param name="ProcessingTimeMs">Number of milliseconds to process the license plate.</param>
+            <param name="Confidence">Confidence percentage that the plate number is correct.</param>
+            <param name="Region">Specified or detected region (e.g., tx for Texas).</param>
+            <param name="RegionConfidence">Confidence percentage that the plate region is correct.</param>
+            <param name="Coordinates">The X/Y coordinates of the license plate in the image Four coordinates are provided that form a polygon starting from the top-left and moving clockwise ending in the bottom left .</param>
+            <param name="Candidates">All the top N candidates that could be the correct plate number.</param>
+            <param name="VehicleRegion">VehicleRegion.</param>
+            <param name="Vehicle">Vehicle.</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateDetails.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateDetails.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateDetails.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateDetails.Equals(OpenAlprApi.Model.PlateDetails)">
+            <summary>
+            Returns true if PlateDetails instances are equal
+            </summary>
+            <param name="other">Instance of PlateDetails to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.PlateDetails.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.Plate">
+            <summary>
+            Best plate number for this plate
+            </summary>
+            <value>Best plate number for this plate</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.MatchesTemplate">
+            <summary>
+            Indicates whether the plate matched a regional text pattern
+            </summary>
+            <value>Indicates whether the plate matched a regional text pattern</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.RequestedTopn">
+            <summary>
+            The max number of results requested
+            </summary>
+            <value>The max number of results requested</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.ProcessingTimeMs">
+            <summary>
+            Number of milliseconds to process the license plate
+            </summary>
+            <value>Number of milliseconds to process the license plate</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.Confidence">
+            <summary>
+            Confidence percentage that the plate number is correct
+            </summary>
+            <value>Confidence percentage that the plate number is correct</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.Region">
+            <summary>
+            Specified or detected region (e.g., tx for Texas)
+            </summary>
+            <value>Specified or detected region (e.g., tx for Texas)</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.RegionConfidence">
+            <summary>
+            Confidence percentage that the plate region is correct
+            </summary>
+            <value>Confidence percentage that the plate region is correct</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.Coordinates">
+            <summary>
+            The X/Y coordinates of the license plate in the image Four coordinates are provided that form a polygon starting from the top-left and moving clockwise ending in the bottom left 
+            </summary>
+            <value>The X/Y coordinates of the license plate in the image Four coordinates are provided that form a polygon starting from the top-left and moving clockwise ending in the bottom left </value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.Candidates">
+            <summary>
+            All the top N candidates that could be the correct plate number
+            </summary>
+            <value>All the top N candidates that could be the correct plate number</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.VehicleRegion">
+            <summary>
+            Gets or Sets VehicleRegion
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.PlateDetails.Vehicle">
+            <summary>
+            Gets or Sets Vehicle
+            </summary>
+        </member>
+        <member name="T:OpenAlprApi.Model.RegionOfInterest">
+            <summary>
+            RegionOfInterest
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.RegionOfInterest.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.RegionOfInterest"/> class.
+            </summary>
+            <param name="X">X.</param>
+            <param name="Y">Y.</param>
+            <param name="Width">Width.</param>
+            <param name="Height">Height.</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.RegionOfInterest.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.RegionOfInterest.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.RegionOfInterest.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.RegionOfInterest.Equals(OpenAlprApi.Model.RegionOfInterest)">
+            <summary>
+            Returns true if RegionOfInterest instances are equal
+            </summary>
+            <param name="other">Instance of RegionOfInterest to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.RegionOfInterest.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.RegionOfInterest.X">
+            <summary>
+            Gets or Sets X
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.RegionOfInterest.Y">
+            <summary>
+            Gets or Sets Y
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.RegionOfInterest.Width">
+            <summary>
+            Gets or Sets Width
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.RegionOfInterest.Height">
+            <summary>
+            Gets or Sets Height
+            </summary>
+        </member>
+        <member name="T:OpenAlprApi.Model.VehicleCandidate">
+            <summary>
+            VehicleCandidate
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleCandidate.#ctor(System.String,System.Nullable{System.Decimal})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.VehicleCandidate"/> class.
+            </summary>
+            <param name="Name">name of value.</param>
+            <param name="Confidence">confidence of value (percent).</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleCandidate.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleCandidate.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleCandidate.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleCandidate.Equals(OpenAlprApi.Model.VehicleCandidate)">
+            <summary>
+            Returns true if VehicleCandidate instances are equal
+            </summary>
+            <param name="other">Instance of VehicleCandidate to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleCandidate.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.VehicleCandidate.Name">
+            <summary>
+            name of value
+            </summary>
+            <value>name of value</value>
+        </member>
+        <member name="P:OpenAlprApi.Model.VehicleCandidate.Confidence">
+            <summary>
+            confidence of value (percent)
+            </summary>
+            <value>confidence of value (percent)</value>
+        </member>
+        <member name="T:OpenAlprApi.Model.VehicleDetails">
+            <summary>
+            VehicleDetails
+            </summary>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleDetails.#ctor(System.Collections.Generic.List{OpenAlprApi.Model.VehicleCandidate},System.Collections.Generic.List{OpenAlprApi.Model.VehicleCandidate},System.Collections.Generic.List{OpenAlprApi.Model.VehicleCandidate},System.Collections.Generic.List{OpenAlprApi.Model.VehicleCandidate})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenAlprApi.Model.VehicleDetails"/> class.
+            </summary>
+            <param name="Color">Color.</param>
+            <param name="Make">Make.</param>
+            <param name="MakeModel">MakeModel.</param>
+            <param name="BodyType">BodyType.</param>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleDetails.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleDetails.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleDetails.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleDetails.Equals(OpenAlprApi.Model.VehicleDetails)">
+            <summary>
+            Returns true if VehicleDetails instances are equal
+            </summary>
+            <param name="other">Instance of VehicleDetails to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:OpenAlprApi.Model.VehicleDetails.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="P:OpenAlprApi.Model.VehicleDetails.Color">
+            <summary>
+            Gets or Sets Color
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.VehicleDetails.Make">
+            <summary>
+            Gets or Sets Make
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.VehicleDetails.MakeModel">
+            <summary>
+            Gets or Sets MakeModel
+            </summary>
+        </member>
+        <member name="P:OpenAlprApi.Model.VehicleDetails.BodyType">
+            <summary>
+            Gets or Sets BodyType
+            </summary>
+        </member>
+    </members>
+</doc>
