@@ -9,11 +9,11 @@ namespace Road_rangerVS.OutsideAPI
 {
 	class EPolicijaAPI
 	{
-		private static readonly HttpClient client = new HttpClient();
-		private static readonly string URL = "https://www.epolicija.lt/itpr_paieska/transportas_lt.php";
-		private static EPolicijaAPI instance;
+		private static readonly HttpClient client = new HttpClient(); // HTTP servisas
+		private static readonly string URL = "https://www.epolicija.lt/itpr_paieska/transportas_lt.php"; // ePolicijos URl
+		private static EPolicijaAPI instance; // sio API serviso instance jei yra
 
-		public static EPolicijaAPI getInstance()
+		public static EPolicijaAPI getInstance() // jei jau yra toks objektas ji grazina, jei ne sukuria
 		{
 			if (instance != null)
 			{
@@ -26,9 +26,9 @@ namespace Road_rangerVS.OutsideAPI
 			}
 		}
 
-		private EPolicijaAPI() { }
+		private EPolicijaAPI() { } // padaro, kad nebutu galima sukurt objekto, ne per methoda
 
-		public async Task<Boolean> IsCarStolen(string licenseNumbers) {
+		public async Task<Boolean> IsCarStolen(string licenseNumbers) { // siuncia uzklausa ePolicijai pagal duotus numerius ir grazina ar vogta
 			var body = new Dictionary<string, string>
 			{
 				{ "knr", "" },
@@ -45,7 +45,7 @@ namespace Road_rangerVS.OutsideAPI
 			return parsePhpIfStolen(responseString);
 		}
 
-		private Boolean parsePhpIfStolen(string phpString) {
+		private Boolean parsePhpIfStolen(string phpString) { // pagal grazinta php suranda ar vogta ar ne
 			if (phpString.Contains("IEŠKOMA (-AS) NĖRA"))
 			{
 				return false;
