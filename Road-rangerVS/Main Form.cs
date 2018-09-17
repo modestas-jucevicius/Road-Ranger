@@ -26,10 +26,14 @@ namespace Road_rangerVS
         private void UploadButtonClick(object sender, EventArgs e)
         {
             string imagePath = filePath.Text;
-            if (!File.Exists(imagePath))
-                MessageBox.Show("Wrong Image Path!");
-            else
-                Recognize(imagePath);
+			if (!File.Exists(imagePath))
+			{
+				MessageBox.Show("Wrong Image Path!");
+			}
+			else
+			{
+				Recognize(imagePath);
+			}
         }
 
         // Analizuoja nuotrauką, esančią vietoje imagePath, ir parodo rezultatą konsolėje
@@ -39,20 +43,24 @@ namespace Road_rangerVS
             string result = await recognizer.Recognize(imagePath);
 
             Parser parser = new OpenALPRParser();
-            if (!parser.IsError(result))
-            {
-                List<ParsedCar> cars = parser.Parse(result);
+			if (!parser.IsError(result))
+			{
+				List<ParsedCar> cars = parser.Parse(result);
 
-                foreach (ParsedCar car in cars)
-                {
-                    car.Display();
-                }
+				foreach (ParsedCar car in cars)
+				{
+					await car.Display();
+				}
 
-                if (cars.Count() == 0)
-                    MessageBox.Show("Wrong Image!");
-            }
-            else
-                MessageBox.Show("Wrong Image!");
+				if (cars.Count() == 0)
+				{
+					MessageBox.Show("Wrong Image!");
+				}
+			}
+			else
+			{
+				MessageBox.Show("Wrong Image!");
+			}
         }
 
         private void BrowseButtonClick(object sender, EventArgs e)
@@ -71,5 +79,5 @@ namespace Road_rangerVS
         {
 
         }
-    }
+	}
 }
