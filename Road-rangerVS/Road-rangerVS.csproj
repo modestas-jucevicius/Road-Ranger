@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
     <Compile Include="Recognition\Recognizer.cs" />
     <Compile Include="Main Form.cs">
       <SubType>Form</SubType>

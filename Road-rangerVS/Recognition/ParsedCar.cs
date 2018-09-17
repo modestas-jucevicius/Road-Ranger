@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Road_rangerVS.OutsideAPI;
 
 namespace Road_rangerVS
 {
@@ -26,9 +27,26 @@ namespace Road_rangerVS
         }
 
         // Išspausdina visus objekto duomenis konsolėje
-        public void Display()
+        public async Task Display()
         {
             Console.WriteLine("registrationNumber: {0}, color: {1}, makeModel: {2}, model: {3}, type: {4}, year: {5}", registrationNumber, color, makeModel, model, type, year);
-        }
+			EPolicijaAPI ePolicijaAPI = EPolicijaAPI.getInstance();
+			try
+			{
+				if (await ePolicijaAPI.IsCarStolen(registrationNumber))
+				{
+					Console.WriteLine("Car is Stolen");
+				}
+				else
+				{
+					Console.WriteLine("Car is not Stolen");
+				}
+			}
+			catch (LicenceNumberParseException e)
+			{
+				Console.WriteLine(e);
+			}
+
+		}
     }
 }
