@@ -16,6 +16,9 @@ namespace Road_rangerVS
 		public Form1()
 		{
 			InitializeComponent();
+            browseImage.Visible = false;
+            upload.Visible = false;
+            returnButton.Visible = false;
 		}
 
 		private void label1_Click(object sender, EventArgs e)
@@ -79,5 +82,27 @@ namespace Road_rangerVS
         {
 
         }
-	}
+
+        private void imageRecognition_Click(object sender, EventArgs e)
+        {
+            browseImage.Visible = true;
+            upload.Visible = true;              //Atidaro nuotraukos įkėlimo meniu skiltį
+            returnButton.Visible = true;
+            videoButton.Visible = false;
+
+        }
+
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            browseImage.Visible = false;
+            upload.Visible = false;
+            returnButton.Visible = false;  //Grįžta į meniu; paslepia iššokusius mygtukus
+            videoButton.Visible = true;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();      //Uždaro programą
+        }
+    }
 }

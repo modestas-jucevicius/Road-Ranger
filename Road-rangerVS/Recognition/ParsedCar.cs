@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Road_rangerVS.OutsideAPI;
+using System.Windows.Forms;
 
 namespace Road_rangerVS
 {
@@ -35,12 +36,17 @@ namespace Road_rangerVS
 			{
 				if (await ePolicijaAPI.IsCarStolen(registrationNumber)) // tikrina masina vogta ar ne
 				{
-					Console.WriteLine("Car is Stolen");
-				}
+                    if (MessageBox.Show("Car is stolen, report?", "Report",
+                       MessageBoxButtons.YesNo) == DialogResult.Yes)  //Atidaro langą su pranešimo galimybe
+                    {
+                        System.Diagnostics.Process.Start("https://www.epolicija.lt/report-anonymous");
+                        //Nukreipia į pranešimo policijai puslapį
+                    }
+                }
 				else
 				{
-					Console.WriteLine("Car is not Stolen");
-				}
+                    MessageBox.Show("Car is not stolen!"); //atidaro langą ir parodo, kad mašina nėra vogta
+                }
 			}
 			catch (LicenceNumberParseException e) //jei negali patikrinti pagal duotus duomenis meta exceptiona
 			{
