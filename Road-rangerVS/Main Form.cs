@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace Road_rangerVS
 	{
         private FilterInfoCollection VideoCaptureDevices;
         private VideoCaptureDevice FinalVideo;
+        private string path = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\Pictures\\";     // ~/bin/Debug/Pictures/
 		public Form1()
 		{
 			InitializeComponent();
@@ -85,7 +87,7 @@ namespace Road_rangerVS
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainFormLoading(object sender, EventArgs e)
         {
             VideoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
@@ -97,30 +99,35 @@ namespace Road_rangerVS
             comboBox1.SelectedIndex = 0;
             FinalVideo = new VideoCaptureDevice();
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        
+        private void SelectCamera(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CameraClick(object sender, EventArgs e)
         {
             if (FinalVideo.IsRunning == true) FinalVideo.Stop();
 
             FinalVideo = new VideoCaptureDevice(VideoCaptureDevices[comboBox1.SelectedIndex].MonikerString);
-            FinalVideo.NewFrame += FinalVideo_NewFrame;
+            FinalVideo.NewFrame += GetNewFrame;
             FinalVideo.Start();
         }
 
-        private void FinalVideo_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void GetNewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             Bitmap video = (Bitmap)eventArgs.Frame.Clone();
-            pictureBox2.Image = video;
+            pictureBox.Image = video;
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainFormClosing(object sender, FormClosingEventArgs e)
         {
             if (FinalVideo.IsRunning == true) FinalVideo.Stop();
+        }
+
+        private void CaptureCLick(object sender, EventArgs eventArgs)
+        {
+            pictureBox.Image.Save(path + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
         }
     }
 }
