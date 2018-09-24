@@ -87,47 +87,45 @@ namespace Road_rangerVS
 
         }
 
-        private void MainFormLoading(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            VideoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            VideoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice); //Surandame visas kameras sistemoje
 
             foreach (FilterInfo VideoCaptureDevice in VideoCaptureDevices)
             {
-                comboBox1.Items.Add(VideoCaptureDevice.Name);
+                comboBox1.Items.Add(VideoCaptureDevice.Name);   //comboBox'e pateikiame visas rastas kameras sistemoje
             }
 
-            comboBox1.SelectedIndex = 0;
-            FinalVideo = new VideoCaptureDevice();
+            comboBox1.SelectedIndex = 0;                        // By default pasirinktas bus pirmas objektas comboBox'e
+            FinalVideo = new VideoCaptureDevice();              // Sukuriame VideoCaptureDevice instance'ą
         }
-        
-        private void SelectCamera(object sender, EventArgs e)
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void CameraClick(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (FinalVideo.IsRunning == true) FinalVideo.Stop();
-
-            FinalVideo = new VideoCaptureDevice(VideoCaptureDevices[comboBox1.SelectedIndex].MonikerString);
-            FinalVideo.NewFrame += GetNewFrame;
-            FinalVideo.Start();
+            if (FinalVideo.IsRunning == true) FinalVideo.Stop(); //Jei kamera įjungta, tai paspaudus mygtuką "Camera" ją išjungiame
+            else                                                 //Kitu atveju, kamerą paleidžiame         
+            {
+                FinalVideo = new VideoCaptureDevice(VideoCaptureDevices[comboBox1.SelectedIndex].MonikerString);
+                FinalVideo.NewFrame += FinalVideo_NewFrame; 
+                FinalVideo.Start();
+            }
+            
         }
 
-        private void GetNewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void FinalVideo_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            Bitmap video = (Bitmap)eventArgs.Frame.Clone();
-            pictureBox.Image = video;
+            Bitmap video = (Bitmap)eventArgs.Frame.Clone();     //Sukuriame kadro bitmap'ą
+            pictureBox2.Image = video;                          //Ir jį ištransliuojame picturBox2 elemente
         }
 
-        private void MainFormClosing(object sender, FormClosingEventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (FinalVideo.IsRunning == true) FinalVideo.Stop();
-        }
-
-        private void CaptureCLick(object sender, EventArgs eventArgs)
-        {
-            pictureBox.Image.Save(path + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
+            if (FinalVideo.IsRunning == true) FinalVideo.Stop(); //Išjungus programą išsijungs ir kamera.
         }
     }
 }
