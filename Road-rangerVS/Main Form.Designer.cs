@@ -1,4 +1,6 @@
-﻿namespace Road_rangerVS
+﻿using System;
+
+namespace Road_rangerVS
 {
 	partial class Form1
 	{
@@ -142,9 +144,9 @@
 
 		}
 
-		#endregion
+        #endregion
 
-		private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button upload;
         private System.Windows.Forms.Button browseImage;
         private System.Windows.Forms.Label filePath;

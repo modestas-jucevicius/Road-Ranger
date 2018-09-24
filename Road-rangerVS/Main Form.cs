@@ -87,7 +87,7 @@ namespace Road_rangerVS
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainFormLoading(object sender, EventArgs e)
         {
             VideoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice); //Surandame visas kameras sistemoje
 
@@ -100,12 +100,12 @@ namespace Road_rangerVS
             FinalVideo = new VideoCaptureDevice();              // Sukuriame VideoCaptureDevice instance'ą
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SelectCamera(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CameraClick(object sender, EventArgs e)
         {
             if (FinalVideo.IsRunning == true) FinalVideo.Stop(); //Jei kamera įjungta, tai paspaudus mygtuką "Camera" ją išjungiame
             else                                                 //Kitu atveju, kamerą paleidžiame         
@@ -117,13 +117,20 @@ namespace Road_rangerVS
             
         }
 
+
+        private void CaptureCLick(object sender, EventArgs e)
+        {
+            pictureBox.Image.Save(path + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
+
+        }
+
         private void FinalVideo_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             Bitmap video = (Bitmap)eventArgs.Frame.Clone();     //Sukuriame kadro bitmap'ą
-            pictureBox2.Image = video;                          //Ir jį ištransliuojame picturBox2 elemente
+            pictureBox.Image = video;                          //Ir jį ištransliuojame picturBox elemente
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainFormClosing(object sender, FormClosingEventArgs e)
         {
             if (FinalVideo.IsRunning == true) FinalVideo.Stop(); //Išjungus programą išsijungs ir kamera.
         }
