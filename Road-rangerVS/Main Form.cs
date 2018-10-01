@@ -23,7 +23,8 @@ namespace Road_rangerVS
 		public Form1()
 		{
 			InitializeComponent();
-		}
+           ReportForm reportForm = new ReportForm();
+        }
 
 		private void label1_Click(object sender, EventArgs e)
 		{
@@ -133,6 +134,17 @@ namespace Road_rangerVS
         private void MainFormClosing(object sender, FormClosingEventArgs e)
         {
             if (FinalVideo.IsRunning == true) FinalVideo.Stop(); //Išjungus programą išsijungs ir kamera.
+        }
+
+        private void reportButton_Click(object sender, EventArgs e)
+        {
+            ReportForm reportForm = new ReportForm();
+            reportForm.ShowDialog();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
