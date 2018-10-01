@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -9,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using AForge.Video;
 using AForge.Video.DirectShow;
+using Microsoft.Scripting.Hosting;
 
 namespace Road_rangerVS
 {
@@ -133,6 +134,33 @@ namespace Road_rangerVS
         private void MainFormClosing(object sender, FormClosingEventArgs e)
         {
             if (FinalVideo.IsRunning == true) FinalVideo.Stop(); //Išjungus programą išsijungs ir kamera.
+        }
+
+        private void callPythonCode_Click(object sender, EventArgs e)
+        {
+            string projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            string cmd = projectPath + @"\python_car_recognition\deep_learning_object_detection.py";
+            string args = @"";
+
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = @"C:\Python27\python.exe";     // Nustatomas python.exe failas kompiuteryje
+            start.Arguments = string.Format("\"{0}\" \"{1}\"", cmd, args);
+            start.UseShellExecute = false;                  // Nustatoma, kad nenaudotų OS shell
+            start.CreateNoWindow = true;                    // Nustatoma, kad nereikia naujo lango
+            start.RedirectStandardOutput = true;            // Kažkoks output'as, sugeneruotas iš python kodo, turi būti gražintas atgal į C sharp (šią) aplikaciją
+            start.RedirectStandardError = true;             // Kažkokia klaida (Error, Exception) output'e turi būti grąžinta į C sharp (šią) aplikaciją
+            Console.WriteLine("[APP INFO] Python code executed...");
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string stderr = process.StandardError.ReadToEnd();  // Skaito Exception'us iš python kodo
+                    string result = reader.ReadToEnd();                 // Skaito rezultatą iš StdOut (pvz: print("test"))
+                    Console.WriteLine(result);
+                }
+            }
+            Console.WriteLine("[APP INFO] Python code finished the job...");
+
         }
     }
 }

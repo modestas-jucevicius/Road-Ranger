@@ -1,9 +1,11 @@
 import numpy as np
 import cv2
+import os
 
-args = {'image': 'images/currentFrame.jpg',
-        'prototxt': 'MobileNetSSD_deploy.prototxt.txt',
-        'model': 'MobileNetSSD_deploy.caffemodel',
+path = os.path.dirname(os.path.abspath(__file__))
+args = {'image': path + '\images\example.jpg',
+        'prototxt': path + '\MobileNetSSD_deploy.prototxt.txt',
+        'model': path + '\MobileNetSSD_deploy.caffemodel',
         'confidence': 0.85}
 # initialize the list of class labels MobileNet SSD was trained to
 # detect, then generate a set of bounding box colors for each class
@@ -50,5 +52,9 @@ for i in np.arange(0, detections.shape[2]):
         (startX, startY, endX, endY) = box.astype("int")
         crop_img = image[startY:endY, startX:endX]
         # save cropped image
-        cv2.imwrite(croppedImageName, crop_img)
+        cv2.imwrite("C:\\Users\\Aurimas\\Desktop\RoadRanger\\python_car_recognition\\" + croppedImageName, crop_img)
+		
+        print("[INFO] " +  croppedImageName + " is saved...")
+		
+print("[INFO] computation ended...")
 # REIKIA ISSAUGOTI IR UZFIKSUOTU AUTOMOBILIU SKAICIU FRAME'e

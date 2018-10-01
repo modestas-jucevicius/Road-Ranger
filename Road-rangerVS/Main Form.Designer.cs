@@ -38,6 +38,7 @@ namespace Road_rangerVS
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.callPythonCode = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,11 +122,22 @@ namespace Road_rangerVS
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.CaptureCLick);
             // 
+            // callPythonCode
+            // 
+            this.callPythonCode.Location = new System.Drawing.Point(763, 336);
+            this.callPythonCode.Name = "callPythonCode";
+            this.callPythonCode.Size = new System.Drawing.Size(208, 23);
+            this.callPythonCode.TabIndex = 9;
+            this.callPythonCode.Text = "Call Python Code";
+            this.callPythonCode.UseVisualStyleBackColor = true;
+            this.callPythonCode.Click += new System.EventHandler(this.callPythonCode_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 725);
+            this.Controls.Add(this.callPythonCode);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
@@ -154,6 +166,7 @@ namespace Road_rangerVS
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button callPythonCode;
     }
 }
 
