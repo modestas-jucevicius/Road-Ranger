@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Road_rangerVS.OutsideAPI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,35 +8,41 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS.Data
 {
-    class FileSystem : IData
+    class FileSystem<T> : IData<T>
     {
         private static string path = System.Environment.CurrentDirectory + "/Data.txt";
+
+        public List<T> FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public T FindOne()
+        {
+            throw new NotImplementedException();
+        }
+
         //Sukuriamo failo location: RoadRanger/bin/Debug/Data.txt
 
-        public void putData(ParsedCar parsedCar, bool state)
+        public void Put(T obj)
         {
-            if (state)
-            {
-                string stolen = parsedCar.getID() + ". STOLEN" + DateTime.UtcNow.ToString()
-                + " " + parsedCar.registrationNumber + " " + parsedCar.makeModel + " "
-                + parsedCar.model + Environment.NewLine; 
-                File.AppendAllText(path,stolen);
-            }
-            else
-            {
-                string notStolen = parsedCar.getID() +". NOT STOLEN " + DateTime.UtcNow.ToString()
-                    +  " " + parsedCar.registrationNumber + " " + parsedCar.makeModel + " "
-                + parsedCar.model + Environment.NewLine;
-                File.AppendAllText(path, notStolen);
-            }
+            string stolen = obj.ToString(); // convert obj -> JSON format
+            Console.WriteLine(stolen);
+            File.AppendAllText(path, stolen);
         }
-       /* public void closeFile()
+
+        public void PutList(T obj)
         {
-            file.Close();
+            throw new NotImplementedException();
+        }
+
+        /* public void closeFile()
+        {
+           file.Close();
         }
         public void openFile()
         {
-            file = new StreamWriter("C://Users//pjach//Documents//Road-Ranger//Road-rangerVS//Data.txt");
+           file = new StreamWriter("C://Users//pjach//Documents//Road-Ranger//Road-rangerVS//Data.txt");
         }
         */
     }

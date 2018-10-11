@@ -41,19 +41,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\AForge.NET Framework-2.2.5\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Dynamic, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Dynamic.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Scripting, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Scripting.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Scripting.Metadata, Version=1.2.0.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.Scripting.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicLanguageRuntime.1.2.1\lib\net45\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -78,33 +65,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Epolicija\CarStatus.cs" />
-    <Compile Include="Epolicija\EPolicijaAPI.cs" />
-    <Compile Include="Epolicija\EPolicijaAPIRequester.cs" />
-    <Compile Include="Validation\LicensePlateValidator.cs" />
-    <Compile Include="Validation\TextValidator.cs" />
-    <Compile Include="Image Recognition\Recognizer.cs" />
-=======
     <Compile Include="Data\FileSystem.cs" />
     <Compile Include="Data\IData.cs" />
+    <Compile Include="OutsideAPI\CarStatus.cs" />
+    <Compile Include="OutsideAPI\CarStatusRequester.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
+    <Compile Include="OutsideAPI\EPolicijaAPIRequester.cs" />
     <Compile Include="Recognition\Recognizer.cs" />
->>>>>>> InitialFileSystem
     <Compile Include="Main Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main Form.designer.cs">
       <DependentUpon>Main Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Image Recognition\OpenALPRParser.cs" />
-    <Compile Include="Image Recognition\OpenALPRRecognizer.cs" />
-    <Compile Include="Image Recognition\ParsedCar.cs" />
+    <Compile Include="Recognition\OpenALPRParser.cs" />
+    <Compile Include="Recognition\OpenALPRRecognizer.cs" />
+    <Compile Include="Recognition\ParsedCar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-    <Compile Include="Image Recognition\Parser.cs" />
-=======
     <Compile Include="Recognition\Parser.cs" />
     <Compile Include="ReportForm.cs">
       <SubType>Form</SubType>
@@ -112,7 +90,6 @@
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
->>>>>>> InitialFileSystem
     <EmbeddedResource Include="Main Form.resx">
       <DependentUpon>Main Form.cs</DependentUpon>
     </EmbeddedResource>

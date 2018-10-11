@@ -7,8 +7,8 @@ using System.Net.Http;
 
 namespace Road_rangerVS.OutsideAPI
 {
-	class EPolicijaAPI
-	{
+	class EPolicijaAPI : CarStatusRequester
+    {
 		private static readonly HttpClient client = new HttpClient(); // HTTP servisas
 		private static readonly string URL = "https://www.epolicija.lt/itpr_paieska/transportas_lt.php"; // ePolicijos URl
 		private static EPolicijaAPI instance; // sio API serviso instance jei yra
@@ -28,13 +28,13 @@ namespace Road_rangerVS.OutsideAPI
 
 		private EPolicijaAPI() { } // padaro, kad nebutu galima sukurt objekto, ne per methoda
 
-		public async Task<CarStatus> IsCarStolen(string licenseNumbers) { // siuncia uzklausa ePolicijai pagal duotus numerius ir grazina ar vogta
+		public async Task<CarStatus> AskCarStatus(string licensePlate) { // siuncia uzklausa ePolicijai pagal duotus numerius ir grazina ar vogta
 			var body = new Dictionary<string, string>
 			{
 				{ "knr", "" },
 				{ "opt", "1" },
 				{ "varnr", "" },
-				{ "vnr", licenseNumbers }
+				{ "vnr", licensePlate }
 			};
 
 			var content = new FormUrlEncodedContent(body);
@@ -54,8 +54,9 @@ namespace Road_rangerVS.OutsideAPI
             {
                 return CarStatus.STOLEN;
             }
-            else if (phpString.Contains("IEŠKOMAS.")) {
-                return CarStatus.STOLEN_LICENSE_PLATE;
+            else if (phpString.Contains("IEŠKOMAS."))
+            {
+                return CarStatus.STOLEN_PLATE;
             }
             else
             {

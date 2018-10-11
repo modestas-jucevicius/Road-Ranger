@@ -38,12 +38,8 @@ namespace Road_rangerVS
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-<<<<<<< HEAD
-            this.callPythonCode = new System.Windows.Forms.Button();
-=======
             this.reportButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
->>>>>>> InitialFileSystem
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,17 +131,6 @@ namespace Road_rangerVS
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.CaptureCLick);
             // 
-<<<<<<< HEAD
-            // callPythonCode
-            // 
-            this.callPythonCode.Location = new System.Drawing.Point(763, 336);
-            this.callPythonCode.Name = "callPythonCode";
-            this.callPythonCode.Size = new System.Drawing.Size(208, 23);
-            this.callPythonCode.TabIndex = 9;
-            this.callPythonCode.Text = "Call Python Code";
-            this.callPythonCode.UseVisualStyleBackColor = true;
-            this.callPythonCode.Click += new System.EventHandler(this.callPythonCode_Click);
-=======
             // reportButton
             // 
             this.reportButton.Location = new System.Drawing.Point(1144, 400);
@@ -165,20 +150,14 @@ namespace Road_rangerVS
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
->>>>>>> InitialFileSystem
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(1110, 725);
-            this.Controls.Add(this.callPythonCode);
-=======
             this.ClientSize = new System.Drawing.Size(1665, 1050);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.reportButton);
->>>>>>> InitialFileSystem
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
@@ -208,12 +187,8 @@ namespace Road_rangerVS
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button2;
-<<<<<<< HEAD
-        private System.Windows.Forms.Button callPythonCode;
-=======
         private System.Windows.Forms.Button reportButton;
         private System.Windows.Forms.Button exitButton;
->>>>>>> InitialFileSystem
     }
 }
 

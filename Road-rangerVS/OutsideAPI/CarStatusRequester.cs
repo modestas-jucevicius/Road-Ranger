@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS.OutsideAPI
 {
-    interface TextValidator
+    interface CarStatusRequester
     {
-        bool isValid(string text);
+        Task<CarStatus> AskCarStatus(string licensePlate);
     }
 }

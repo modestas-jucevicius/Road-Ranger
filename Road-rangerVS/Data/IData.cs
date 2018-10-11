@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS
 {
-    interface IData
+    interface IData<T>
     {
-        void putData(ParsedCar parsedCar, bool state);
+        void Put(T obj);
+        void PutList(T obj);
+        List<T> FindAll(); // gauti visas eilutes + naudoti default parametrus
+        T FindOne(); // gauti tik viena - pirmaja teisinga eilute
+        
     }
 }
