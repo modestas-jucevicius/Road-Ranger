@@ -13,21 +13,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video;
 using AForge.Video.DirectShow;
+<<<<<<< HEAD
 using Microsoft.Scripting.Hosting;
 using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Validation;
+=======
+using Road_rangerVS.Data;
+>>>>>>> InitialFileSystem
 
 namespace Road_rangerVS
 {
 	public partial class Form1 : Form
 	{
+        FileSystem file;
         private FilterInfoCollection VideoCaptureDevices;
         private VideoCaptureDevice FinalVideo;
         private string path = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\Pictures\\";     // ~/bin/Debug/Pictures/
 		public Form1()
 		{
 			InitializeComponent();
-		}
+            file = new FileSystem();
+           ReportForm reportForm = new ReportForm();
+        }
 
 		private void label1_Click(object sender, EventArgs e)
 		{
@@ -60,6 +67,7 @@ namespace Road_rangerVS
 
                 foreach (ParsedCar car in cars)
 				{
+<<<<<<< HEAD
                     LicensePlateValidator licensePlateValidator = new LicensePlateValidator();
                     if (licensePlateValidator.isValid(car.licensePlate))
                     {
@@ -70,6 +78,10 @@ namespace Road_rangerVS
                         Console.WriteLine(car.licensePlate + " is not valid license.");
                     }
                 }
+=======
+					await car.Display(this.file);
+				}
+>>>>>>> InitialFileSystem
 
 				if (cars.Count() == 0)
 				{
@@ -181,6 +193,7 @@ namespace Road_rangerVS
             if (FinalVideo.IsRunning == true) FinalVideo.Stop(); //Išjungus programą išsijungs ir kamera.
         }
 
+<<<<<<< HEAD
         private void callPythonCode_Click(object sender, EventArgs e)
         {
             string projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
@@ -206,6 +219,17 @@ namespace Road_rangerVS
             }
             Console.WriteLine("[APP INFO] Python code finished the job...");
 
+=======
+        private void reportButton_Click(object sender, EventArgs e)
+        {
+            ReportForm reportForm = new ReportForm();
+            reportForm.ShowDialog();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+>>>>>>> InitialFileSystem
         }
     }
 }
