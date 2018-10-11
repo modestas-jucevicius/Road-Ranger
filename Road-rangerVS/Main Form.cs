@@ -12,17 +12,20 @@ using System.Windows.Forms;
 
 using AForge.Video;
 using AForge.Video.DirectShow;
+using Road_rangerVS.Data;
 
 namespace Road_rangerVS
 {
 	public partial class Form1 : Form
 	{
+        FileSystem file;
         private FilterInfoCollection VideoCaptureDevices;
         private VideoCaptureDevice FinalVideo;
         private string path = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\Pictures\\";     // ~/bin/Debug/Pictures/
 		public Form1()
 		{
 			InitializeComponent();
+            file = new FileSystem();
            ReportForm reportForm = new ReportForm();
         }
 
@@ -57,7 +60,7 @@ namespace Road_rangerVS
 
 				foreach (ParsedCar car in cars)
 				{
-					await car.Display();
+					await car.Display(this.file);
 				}
 
 				if (cars.Count() == 0)
