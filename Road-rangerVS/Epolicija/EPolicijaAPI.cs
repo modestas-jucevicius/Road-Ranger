@@ -28,7 +28,7 @@ namespace Road_rangerVS.OutsideAPI
 
 		private EPolicijaAPI() { } // padaro, kad nebutu galima sukurt objekto, ne per methoda
 
-		public async Task<Boolean> IsCarStolen(string licenseNumbers) { // siuncia uzklausa ePolicijai pagal duotus numerius ir grazina ar vogta
+		public async Task<CarStatus> IsCarStolen(string licenseNumbers) { // siuncia uzklausa ePolicijai pagal duotus numerius ir grazina ar vogta
 			var body = new Dictionary<string, string>
 			{
 				{ "knr", "" },
@@ -45,20 +45,22 @@ namespace Road_rangerVS.OutsideAPI
 			return parsePhpIfStolen(responseString);
 		}
 
-		private Boolean parsePhpIfStolen(string phpString) { // pagal grazinta php suranda ar vogta ar ne
-			if (phpString.Contains("IEŠKOMA (-AS) NĖRA"))
-			{
-				return false;
-			}
-			else if (phpString.Contains("IEŠKOMA."))
-			{
-				return true;
-			}
-			else
-			{
-				throw new LicenceNumberParseException("Couldn't Parse If Stolen.");
-			}
-
+		private CarStatus parsePhpIfStolen(string phpString) { // pagal grazinta php suranda ar vogta ar ne
+            if (phpString.Contains("IEŠKOMA (-AS) NĖRA"))
+            {
+                return CarStatus.NOT_STOLEN;
+            }
+            else if (phpString.Contains("IEŠKOMA."))
+            {
+                return CarStatus.STOLEN;
+            }
+            else if (phpString.Contains("IEŠKOMAS.")) {
+                return CarStatus.STOLEN_LICENSE_PLATE;
+            }
+            else
+            {
+                throw new LicenceNumberParseException("Couldn't Parse If Stolen.");
+            }
 		}
 	}
 

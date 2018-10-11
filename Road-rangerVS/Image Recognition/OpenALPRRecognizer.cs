@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Road_rangerVS
@@ -31,6 +32,7 @@ namespace Road_rangerVS
             var buffer = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
             var byteArray = buffer.ToArray();   // buffer duomenis konvertuoja į byteArray masyvą
             var responseString = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);   // masyvo byteArray duomenis knovertuoja į string eilutę responseString
+        
 
             return responseString;
         }

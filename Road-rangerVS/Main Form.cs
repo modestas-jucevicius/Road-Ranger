@@ -8,11 +8,14 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Microsoft.Scripting.Hosting;
+using Road_rangerVS.OutsideAPI;
+using Road_rangerVS.Validation;
 
 namespace Road_rangerVS
 {
@@ -55,19 +58,27 @@ namespace Road_rangerVS
 			{
 				List<ParsedCar> cars = parser.Parse(result);
 
-				foreach (ParsedCar car in cars)
+                foreach (ParsedCar car in cars)
 				{
-					await car.Display();
-				}
+                    LicensePlateValidator licensePlateValidator = new LicensePlateValidator();
+                    if (licensePlateValidator.isValid(car.licensePlate))
+                    {
+                        Console.WriteLine(car.getCarStatus());
+                    }
+                    else
+                    {
+                        Console.WriteLine(car.licensePlate + " is not valid license.");
+                    }
+                }
 
 				if (cars.Count() == 0)
 				{
-					MessageBox.Show("Wrong Image!");
+					MessageBox.Show("There is no any car!");
 				}
 			}
 			else
 			{
-				MessageBox.Show("Wrong Image!");
+				MessageBox.Show("Something went wrong, try again!");
 			}
         }
 
@@ -112,17 +123,51 @@ namespace Road_rangerVS
             else                                                 //Kitu atveju, kamerą paleidžiame         
             {
                 FinalVideo = new VideoCaptureDevice(VideoCaptureDevices[comboBox1.SelectedIndex].MonikerString);
-                FinalVideo.NewFrame += FinalVideo_NewFrame; 
+                FinalVideo.NewFrame += FinalVideo_NewFrame;
+                try
+                {
+                    CaptureCLick(sender, e);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
                 FinalVideo.Start();
             }
             
         }
 
-
         private void CaptureCLick(object sender, EventArgs e)
         {
             pictureBox.Image.Save(path + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
 
+            /*
+            byte[] bytes = imageToByteArray(pictureBox.Image);
+            //Console.WriteLine(System.Text.Encoding.Default.GetString(bytes));
+
+            string someString = Encoding.ASCII.GetString(bytes);
+
+            byte[] bytes2 = Encoding.ASCII.GetBytes(someString);
+            string someString2 = Encoding.ASCII.GetString(bytes2);
+
+            Console.WriteLine(someString.Equals(someString2));
+            Console.WriteLine(someString2);
+            */
+        }
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
         }
 
         private void FinalVideo_NewFrame(object sender, NewFrameEventArgs eventArgs)

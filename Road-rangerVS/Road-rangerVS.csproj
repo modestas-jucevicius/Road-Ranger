@@ -78,20 +78,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
-    <Compile Include="Recognition\Recognizer.cs" />
+    <Compile Include="Epolicija\CarStatus.cs" />
+    <Compile Include="Epolicija\EPolicijaAPI.cs" />
+    <Compile Include="Epolicija\EPolicijaAPIRequester.cs" />
+    <Compile Include="Validation\LicensePlateValidator.cs" />
+    <Compile Include="Validation\TextValidator.cs" />
+    <Compile Include="Image Recognition\Recognizer.cs" />
     <Compile Include="Main Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Main Form.designer.cs">
       <DependentUpon>Main Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Recognition\OpenALPRParser.cs" />
-    <Compile Include="Recognition\OpenALPRRecognizer.cs" />
-    <Compile Include="Recognition\ParsedCar.cs" />
+    <Compile Include="Image Recognition\OpenALPRParser.cs" />
+    <Compile Include="Image Recognition\OpenALPRRecognizer.cs" />
+    <Compile Include="Image Recognition\ParsedCar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recognition\Parser.cs" />
+    <Compile Include="Image Recognition\Parser.cs" />
     <EmbeddedResource Include="Main Form.resx">
       <DependentUpon>Main Form.cs</DependentUpon>
     </EmbeddedResource>
