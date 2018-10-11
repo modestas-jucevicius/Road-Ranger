@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Road_rangerVS.OutsideAPI;
 
 namespace Road_rangerVS
@@ -35,12 +36,20 @@ namespace Road_rangerVS
 			{
 				if (await ePolicijaAPI.IsCarStolen(registrationNumber)) // tikrina masina vogta ar ne
 				{
-					Console.WriteLine("Car is Stolen");
-				}
+                    string row = "Car number is: " + registrationNumber +
+                        ".\n" + "The car IS STOLEN! Report?";
+                    DialogResult dialogResult  = MessageBox.Show(row,"Report", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        ReportForm reportForm = new ReportForm();
+                        reportForm.ShowDialog();
+                    }
+                }
 				else
 				{
-					Console.WriteLine("Car is not Stolen");
-				}
+                    string row = "Car number is: " + registrationNumber + ".\n" + "The car is NOT STOLEN!";
+                    MessageBox.Show(row,"Report");
+                }
 			}
 			catch (LicenceNumberParseException e) //jei negali patikrinti pagal duotus duomenis meta exceptiona
 			{
