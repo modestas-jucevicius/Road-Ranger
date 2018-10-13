@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS
 {
-    class OpenALPRRecognizer : Recognizer
+    class OpenALPRRecognizer : ICarRecognizer
     {
         private const string SECRET_KEY = "sk_c9dd80b203f110a25a3dcb5b";    // openalpr vartotojo privatus raktas
 

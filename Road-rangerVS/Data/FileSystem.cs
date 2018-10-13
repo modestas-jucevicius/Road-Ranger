@@ -1,4 +1,5 @@
-﻿using Road_rangerVS.OutsideAPI;
+﻿using Newtonsoft.Json;
+using Road_rangerVS.OutsideAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,30 +9,51 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS.Data
 {
-    class FileSystem<T> : IData<T>
+    public class FileSystem<T> : IData<T>
     {
-        private static string path = System.Environment.CurrentDirectory + "/Data.txt";
+        private string path;
 
-        public List<T> FindAll()
+        public FileSystem(int type)
         {
-            throw new NotImplementedException();
-        }
-
-        public T FindOne()
-        {
-            throw new NotImplementedException();
+            if (type == 0)
+            {
+                path = System.Environment.CurrentDirectory + "/Users.txt";
+            }
+            else if (type == 1)
+            {
+                path = System.Environment.CurrentDirectory + "/Cars.txt";
+            }
+            else
+                path = System.Environment.CurrentDirectory + "/Images.txt";
         }
 
         //Sukuriamo failo location: RoadRanger/bin/Debug/Data.txt
 
         public void Put(T obj)
         {
-            string stolen = obj.ToString(); // convert obj -> JSON format
+            string stolen = obj.ToString();
             Console.WriteLine(stolen);
+            string objSer = JsonConvert.SerializeObject(obj); // convert obj -> JSON format
+            Console.WriteLine("Obj: " + objSer);
             File.AppendAllText(path, stolen);
         }
 
-        public void PutList(T obj)
+        public void PutList(List<T> obj)
+        {
+
+        }
+
+        public bool Contains(T obj)
+        {
+            return false;
+        }
+
+        public List<T> FindAll()
+        {
+            return null;
+        }
+
+        public T FindOne()
         {
             throw new NotImplementedException();
         }

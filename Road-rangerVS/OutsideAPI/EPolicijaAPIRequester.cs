@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS.OutsideAPI
 {
-    class EPolicijaAPIRequester : CarStatusRequester
+    class EPolicijaAPIRequester : ICarStatusRequester
     {
         private static EPolicijaAPIRequester instance; 
 

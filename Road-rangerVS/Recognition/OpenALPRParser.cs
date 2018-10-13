@@ -5,18 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using Road_rangerVS.Recognition;
 
 namespace Road_rangerVS
 {
-    class OpenALPRParser : Parser
+    class OpenALPRParser : ICarParser
     {
         // Analizuoja duomenis data ir grąžina sąrašą sudarytą iš ParsedCar objektų
-        public List<ParsedCar> Parse(string data)
+        public List<Car> Parse(string data)
         {
             JObject o = JObject.Parse(data);    // konvertuoja string data į JObject'ą o
 
             JArray results = (JArray)o["results"];  // paima o objekte results lauke esančias reikšmes ir konvertuoja į JArray objektą
-            List<ParsedCar> cars = new List<ParsedCar>();
+            List<Car> cars = new List<Car>();
 
             foreach (JObject result in results)
             {
@@ -45,7 +46,7 @@ namespace Road_rangerVS
                 JObject modelObj = (JObject)models[0];
                 string model = (string)modelObj["name"];
 
-                cars.Add(new ParsedCar(plate, colorName, makeName, model, bodyType, year));
+                cars.Add(new Car(plate, colorName, makeName, model, bodyType, year));
             }
 
             return cars;

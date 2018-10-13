@@ -7,7 +7,7 @@ using System.Net.Http;
 
 namespace Road_rangerVS.OutsideAPI
 {
-	class EPolicijaAPI : CarStatusRequester
+	class EPolicijaAPI : ICarStatusRequester
     {
 		private static readonly HttpClient client = new HttpClient(); // HTTP servisas
 		private static readonly string URL = "https://www.epolicija.lt/itpr_paieska/transportas_lt.php"; // ePolicijos URl

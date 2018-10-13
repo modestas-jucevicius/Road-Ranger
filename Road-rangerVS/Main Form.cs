@@ -1,31 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Road_rangerVS.Data;
+using Road_rangerVS.OutsideAPI;
+using Road_rangerVS.Recognition;
 
 namespace Road_rangerVS
 {
 	public partial class Form1 : Form
 	{
-        FileSystem<ParsedCar> file;
+        FileSystem<Car> file;
         private FilterInfoCollection VideoCaptureDevices;
         private VideoCaptureDevice FinalVideo;
         private string path = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\Pictures\\";     // ~/bin/Debug/Pictures/
 		public Form1()
 		{
 			InitializeComponent();
-            file = new FileSystem<ParsedCar>();
+            file = new FileSystem<Car>(1);
            ReportForm reportForm = new ReportForm();
         }
 
@@ -50,18 +49,20 @@ namespace Road_rangerVS
         // Analizuoja nuotrauką, esančią vietoje imagePath, ir parodo rezultatą konsolėje
         private async Task Recognize(string imagePath)
         {
-            Recognizer recognizer = new OpenALPRRecognizer();
+            ICarRecognizer recognizer = new OpenALPRRecognizer();
             string result = await recognizer.Recognize(imagePath);
 
-            Parser parser = new OpenALPRParser();
-			if (!parser.IsError(result))
-			{
-				List<ParsedCar> cars = parser.Parse(result);
+            ICarParser parser = new OpenALPRParser();
 
-				foreach (ParsedCar car in cars)
+            ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+            if (!parser.IsError(result))
+			{
+				List<Car> cars = parser.Parse(result);
+
+				foreach (Car car in cars)
 				{
-					await car.SetStatus(this.file);
-				}
+                    car.status = await requester.AskCarStatus(car.licensePlate);
+                }
 
 				if (cars.Count() == 0)
 				{
