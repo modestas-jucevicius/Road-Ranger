@@ -58,6 +58,11 @@ namespace Road_rangerVS.Data
             throw new NotImplementedException();
         }
 
+        public T FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         /* public void closeFile()
         {
            file.Close();

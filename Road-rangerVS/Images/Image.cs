@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Road_rangerVS.Image
+namespace Road_rangerVS.Images
 {
-    class Image
+    public class Image
     {
         public int id { get; set; }
         public string licensePlate { get; set; }

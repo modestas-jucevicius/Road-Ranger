@@ -142,11 +142,24 @@
   <ItemGroup>
     <Compile Include="Data\FileSystem.cs" />
     <Compile Include="Data\IData.cs" />
-    <Compile Include="Image\Image.cs" />
+    <Compile Include="FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindForm.Designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryForm.Designer.cs">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Images\Image.cs" />
     <Compile Include="OutsideAPI\CarStatus.cs" />
     <Compile Include="OutsideAPI\ICarStatusRequester.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPIRequester.cs" />
+    <Compile Include="Recognition\CapturedCar.cs" />
     <Compile Include="Recognition\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
     <Compile Include="Main Form.cs">
@@ -166,9 +179,15 @@
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Search\CarFinder.cs" />
-    <Compile Include="Search\ICarFinder.cs" />
-    <Compile Include="User\User.cs" />
+    <Compile Include="Search\CapturedCarFinder.cs" />
+    <Compile Include="Search\ICapturedCarFinder.cs" />
+    <Compile Include="Users\User.cs" />
+    <EmbeddedResource Include="FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryForm.resx">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main Form.resx">
       <DependentUpon>Main Form.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,6 +11,7 @@ namespace Road_rangerVS.Recognition
     {
         static int instanceNr = 1;
         private int id;
+        public int userId { get; set; }
         public string licensePlate { get; set; }    // automobilio registracijos numeris
         public string colorName { get; set; }       // spalva
         public string makeName { get; set; }        // gamintojo pavadinimas

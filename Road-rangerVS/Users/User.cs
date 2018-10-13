@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Road_rangerVS.User
+namespace Road_rangerVS.Users
 {
     class User
     {
-        public string id { get; set; }
+        public int id { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string name { get; set; }

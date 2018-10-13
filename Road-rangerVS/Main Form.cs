@@ -12,6 +12,7 @@ using AForge.Video.DirectShow;
 using Road_rangerVS.Data;
 using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
+using Road_rangerVS.Search;
 
 namespace Road_rangerVS
 {
@@ -149,6 +150,17 @@ namespace Road_rangerVS
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void findYourCarButton_Click(object sender, EventArgs e)
+        {
+            FindForm reportForm = new FindForm();
+            reportForm.ShowDialog();
+        }
+
+        private void myHistory_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
