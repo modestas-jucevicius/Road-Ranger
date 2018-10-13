@@ -154,13 +154,14 @@ namespace Road_rangerVS
 
         private void findYourCarButton_Click(object sender, EventArgs e)
         {
-            FindForm reportForm = new FindForm();
-            reportForm.ShowDialog();
+            FindForm findForm = new FindForm();
+            findForm.ShowDialog();
         }
 
         private void myHistory_Click(object sender, EventArgs e)
         {
-
+            HistoryForm historyForm = new HistoryForm();
+            historyForm.ShowDialog();
         }
     }
 }
