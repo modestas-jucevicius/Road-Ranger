@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Road_rangerVS.OutsideAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,16 @@ namespace Road_rangerVS.Users
         public string username { get; set; }
         public string password { get; set; }
         public string name { get; set; }
+        private int score = 0;
+
+        public int getScore()
+        {
+            return score;
+        }
+    
+        public void increaseScore(int evaluation)
+        {
+            this.score += evaluation;
+        }
     }
 }

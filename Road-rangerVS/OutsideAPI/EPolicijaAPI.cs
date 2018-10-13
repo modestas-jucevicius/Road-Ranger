@@ -26,7 +26,7 @@ namespace Road_rangerVS.OutsideAPI
 			}
 		}
 
-		private EPolicijaAPI() { } // padaro, kad nebutu galima sukurt objekto, ne per methoda
+		private EPolicijaAPI() { } // padaro, kad nebutu galima sukurt objekto, ne per metoda
 
 		public async Task<CarStatus> AskCarStatus(string licensePlate) { // siuncia uzklausa ePolicijai pagal duotus numerius ir grazina ar vogta
 			var body = new Dictionary<string, string>
