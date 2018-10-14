@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS.Recognition
 {
-    class Car
+    public class Car
     {
         static int instanceNr = 1;
         private int id;

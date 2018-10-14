@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using AForge.Video;
 using AForge.Video.DirectShow;
+using Newtonsoft.Json;
 using Road_rangerVS.Data;
 using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
@@ -58,17 +59,24 @@ namespace Road_rangerVS
             ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
             if (!parser.IsError(result))
 			{
-				List<Car> cars = parser.Parse(result);
+                try
+                {
+                    List<Car> cars = parser.Parse(result);
 
-				foreach (Car car in cars)
-				{
-                    car.status = await requester.AskCarStatus(car.licensePlate);
+                    foreach (Car car in cars)
+                    {
+                        car.status = await requester.AskCarStatus(car.licensePlate);
+                    }
+
+                    if (cars.Count() == 0)
+                    {
+                        MessageBox.Show("Wrong Image!");
+                    }
                 }
-
-				if (cars.Count() == 0)
-				{
-					MessageBox.Show("Wrong Image!");
-				}
+                catch (JsonReaderException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 			}
 			else
 			{

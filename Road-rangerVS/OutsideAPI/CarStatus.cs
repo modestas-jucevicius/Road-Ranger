@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS.OutsideAPI
 {
-    enum CarStatus {
+    public enum CarStatus {
         NOT_STOLEN,
         STOLEN,
         STOLEN_PLATE,
