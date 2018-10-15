@@ -158,10 +158,12 @@
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Images\Image.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="OutsideAPI\CarStatus.cs" />
     <Compile Include="OutsideAPI\ICarStatusRequester.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPIRequester.cs" />
+    <Compile Include="Presenters\ReportPresenter.cs" />
     <Compile Include="Recognition\CapturedCar.cs" />
     <Compile Include="Recognition\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />

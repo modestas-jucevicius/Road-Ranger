@@ -9,14 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
 using System.Net;
+using Road_rangerVS.Presenters;
 
 namespace Road_rangerVS
 {
     public partial class ReportForm : Form
     {
-        public ReportForm()
+
+		private ReportPresenter presenter;
+
+		public ReportForm()
         {
             InitializeComponent();
+    presenter = new ReportPresenter();
+
         }
 
         private void ReportForm_Load(object sender, EventArgs e)
