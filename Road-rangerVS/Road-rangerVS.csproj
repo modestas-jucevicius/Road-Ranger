@@ -142,16 +142,18 @@
   <ItemGroup>
     <Compile Include="Data\FileSystem.cs" />
     <Compile Include="Data\IData.cs" />
+    <Compile Include="Models\HistoryModel.cs" />
+    <Compile Include="Presenters\HistoryPresenter.cs" />
     <Compile Include="FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FindForm.Designer.cs">
       <DependentUpon>FindForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HistoryForm.cs">
+    <Compile Include="Views\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HistoryForm.Designer.cs">
+    <Compile Include="Views\HistoryForm.Designer.cs">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Images\Image.cs" />
@@ -185,7 +187,7 @@
     <EmbeddedResource Include="FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HistoryForm.resx">
+    <EmbeddedResource Include="Views\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main Form.resx">
