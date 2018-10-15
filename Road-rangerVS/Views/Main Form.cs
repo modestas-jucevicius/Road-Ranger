@@ -20,7 +20,7 @@ namespace Road_rangerVS
 {
 	public partial class MainForm : Form
 	{
-		private static string PATH = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\Pictures\\";     // ~/bin/Debug/Pictures/
+		private readonly string PATH = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\Pictures\\";     // ~/bin/Debug/Pictures/
 		private MainPresenter presenter;
 
 		public MainForm()
