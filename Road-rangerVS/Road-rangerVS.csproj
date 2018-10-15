@@ -142,16 +142,19 @@
   <ItemGroup>
     <Compile Include="Data\FileSystem.cs" />
     <Compile Include="Data\IData.cs" />
-    <Compile Include="FindForm.cs">
+    <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Presenters\MainPresenter.cs" />
+    <Compile Include="Recognition\ParseException.cs" />
+    <Compile Include="Views\FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindForm.Designer.cs">
+    <Compile Include="Views\FindForm.Designer.cs">
       <DependentUpon>FindForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HistoryForm.cs">
+    <Compile Include="Views\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HistoryForm.Designer.cs">
+    <Compile Include="Views\HistoryForm.Designer.cs">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Images\Image.cs" />
@@ -164,10 +167,10 @@
     <Compile Include="Recognition\CapturedCar.cs" />
     <Compile Include="Recognition\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
-    <Compile Include="Main Form.cs">
+    <Compile Include="Views\Main Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main Form.designer.cs">
+    <Compile Include="Views\Main Form.designer.cs">
       <DependentUpon>Main Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Recognition\OpenALPRParser.cs" />
@@ -184,13 +187,13 @@
     <Compile Include="Search\CapturedCarFinder.cs" />
     <Compile Include="Search\ICapturedCarFinder.cs" />
     <Compile Include="Users\User.cs" />
-    <EmbeddedResource Include="FindForm.resx">
+    <EmbeddedResource Include="Views\FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HistoryForm.resx">
+    <EmbeddedResource Include="Views\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main Form.resx">
+    <EmbeddedResource Include="Views\Main Form.resx">
       <DependentUpon>Main Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
