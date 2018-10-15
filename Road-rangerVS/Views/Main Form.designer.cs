@@ -2,7 +2,7 @@
 
 namespace Road_rangerVS
 {
-	partial class Form1
+	partial class MainForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -64,7 +64,7 @@ namespace Road_rangerVS
             this.upload.TabIndex = 1;
             this.upload.Text = "Upload";
             this.upload.UseVisualStyleBackColor = true;
-            this.upload.Click += new System.EventHandler(this.UploadButtonClick);
+            this.upload.Click += new System.EventHandler(this.uploadButtonClick);
             // 
             // browseImage
             // 
@@ -74,7 +74,7 @@ namespace Road_rangerVS
             this.browseImage.TabIndex = 2;
             this.browseImage.Text = "Browse Image";
             this.browseImage.UseVisualStyleBackColor = true;
-            this.browseImage.Click += new System.EventHandler(this.BrowseButtonClick);
+            this.browseImage.Click += new System.EventHandler(this.browseButtonClick);
             // 
             // filePath
             // 
@@ -104,7 +104,7 @@ namespace Road_rangerVS
             this.button1.TabIndex = 6;
             this.button1.Text = "&Camera On/Off";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.CameraClick);
+            this.button1.Click += new System.EventHandler(this.cameraClick);
             // 
             // comboBox1
             // 
@@ -113,7 +113,7 @@ namespace Road_rangerVS
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(624, 21);
             this.comboBox1.TabIndex = 7;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.SelectCamera);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.selectCamera);
             // 
             // button2
             // 
@@ -123,7 +123,7 @@ namespace Road_rangerVS
             this.button2.TabIndex = 8;
             this.button2.Text = "Capture VIew";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.CaptureCLick);
+            this.button2.Click += new System.EventHandler(this.captureClick);
             // 
             // reportButton
             // 
@@ -187,7 +187,7 @@ namespace Road_rangerVS
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormClosing);
-            this.Load += new System.EventHandler(this.MainFormLoading);
+            this.Load += new System.EventHandler(this.mainFormLoading);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
