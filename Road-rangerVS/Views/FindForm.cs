@@ -9,25 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Road_rangerVS.Presenters;
 
 namespace Road_rangerVS
 {
     public partial class FindForm : Form
     {
+		private readonly FindPresenter presenter = new FindPresenter();
         public FindForm()
         {
             InitializeComponent();
         }
 
         private void search_Click(object sender, EventArgs e)
-        {
-            string licensePlate = inputText.Text;
-
-            ICapturedCarFinder finder = new CapturedCarFinder();
-            List<CapturedCar> cars = finder.FindByPlate(licensePlate);
-            Console.WriteLine(cars.ToString());
-
-            result.Text = cars.ToString();
+        {   
+			List<CapturedCar> cars = presenter.findByPlate(inputText.Text);
+			Console.WriteLine(cars.ToString());
+			result.Text = cars.ToString();
         }
     }
 }
