@@ -15,8 +15,13 @@ namespace Road_rangerVS
         public List<Car> Parse(string data)
         {
             JObject o = JObject.Parse(data);    // konvertuoja string data į JObject'ą o
+			JToken errorValue;
+			if (o.TryGetValue("error_code", out errorValue))
+			{
+				throw new ParseException("Error Parsing Image");
+			}
 
-            JArray results = (JArray)o["results"];  // paima o objekte results lauke esančias reikšmes ir konvertuoja į JArray objektą
+			JArray results = (JArray)o["results"];  // paima o objekte results lauke esančias reikšmes ir konvertuoja į JArray objektą
             List<Car> cars = new List<Car>();
 
             foreach (JObject result in results)
@@ -50,22 +55,6 @@ namespace Road_rangerVS
             }
 
             return cars;
-        }
-
-        // Tikrina, ar yra klaidos laukų (error_code) string'e data
-        // Jei yra - grąžina true
-        // Jei nėra - grąžina false
-        public bool IsError(string data)
-        {
-            JObject o = JObject.Parse(data);
-            JToken value;
-            // mėgina gauti objekte o esančiame lauke error_code reikšmes:
-            // jei yra laukas error_code - grąžina true ir error_code lauke esančios reikšmės priskiriamos kintamajam value 
-            // jei nėra lauko error_code - grąžina false
-            if (o.TryGetValue("error_code", out value))
-                return true;
-            else
-                return false;
         }
     }
 }
