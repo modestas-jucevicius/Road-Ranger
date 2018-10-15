@@ -155,10 +155,12 @@
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Images\Image.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="OutsideAPI\CarStatus.cs" />
     <Compile Include="OutsideAPI\ICarStatusRequester.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPIRequester.cs" />
+    <Compile Include="Presenters\ReportPresenter.cs" />
     <Compile Include="Recognition\CapturedCar.cs" />
     <Compile Include="Recognition\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
@@ -173,10 +175,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recognition\ICarParser.cs" />
-    <Compile Include="ReportForm.cs">
+    <Compile Include="Views\ReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportForm.Designer.cs">
+    <Compile Include="Views\ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Search\CapturedCarFinder.cs" />
@@ -200,7 +202,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReportForm.resx">
+    <EmbeddedResource Include="Views\ReportForm.resx">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
