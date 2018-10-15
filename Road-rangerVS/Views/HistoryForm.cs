@@ -11,22 +11,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Road_rangerVS.Presenters;
 
-
 namespace Road_rangerVS
 {
     public partial class HistoryForm : Form
     {
-		private HistoryPresenter presenter;
-        public HistoryForm()
-        {
-            InitializeComponent();
-			presenter = new HistoryPresenter();
-        }
+    private HistoryPresenter presenter;
+    public HistoryForm()
+    {
+        InitializeComponent();
+        presenter = new HistoryPresenter();
+    }
 
         private void history_Click(object sender, EventArgs e)
         {
-			List<CapturedCar> cars = this.presenter.getCars(0);
-			Console.WriteLine(cars.ToString());
+            int userId = 0;
+
+            ICapturedCarFinder finder = new CapturedCarFinder();
+            List<CapturedCar> cars = finder.FindByUserId(userId);
+            Console.WriteLine(cars.ToString());
 
             result.Text = cars.ToString();
         }
