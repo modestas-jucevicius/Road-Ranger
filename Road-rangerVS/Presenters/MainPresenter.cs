@@ -39,10 +39,12 @@ namespace Road_rangerVS.Presenters
 
 			foreach (Car car in cars)
 			{
+
 				car.status = await requester.AskCarStatus(car.licensePlate);
-				Console.WriteLine(car.licensePlate);
+                model.file.Put(car);
+                Console.WriteLine(car.licensePlate + Environment.NewLine);
 			}
-		}
+        }
 
 		public List<string> loadDevices()
 		{

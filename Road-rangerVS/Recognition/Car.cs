@@ -25,7 +25,17 @@ namespace Road_rangerVS.Recognition
             this.id = instanceNr;
             instanceNr++;
         }
-
+        public Car(String[] fields)
+        {
+            userId = Int32.Parse(fields[0]);
+            licensePlate = fields[1];
+            colorName = fields[2];
+            makeName = fields[3];
+            model = fields[4];
+            bodyType = fields[5];
+            year = fields[6];
+            status = (CarStatus)Enum.Parse(typeof(CarStatus), fields[7]);
+        }
         public Car(Car car) : this()
         {
             this.licensePlate = car.licensePlate;
@@ -49,6 +59,13 @@ namespace Road_rangerVS.Recognition
         public int getId()
         {
             return id;
+        }
+        override public string ToString()
+        {
+            string line = userId + "," + licensePlate + "," + colorName +
+                 "," + makeName + "," + model + "," + bodyType + "," + year + 
+                 "," + status + Environment.NewLine;
+            return line;
         }
     }
 }
