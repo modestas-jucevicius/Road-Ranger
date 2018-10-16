@@ -19,8 +19,10 @@ namespace Road_rangerVS.Users
         {
             return score;
         }
-    
-        public void increaseScore(int evaluation)
+        
+
+
+        public void IncreaseScore(int evaluation)
         {
             this.score += evaluation;
         }

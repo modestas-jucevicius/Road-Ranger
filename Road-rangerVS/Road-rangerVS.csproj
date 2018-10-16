@@ -179,6 +179,7 @@
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Score\Score.cs" />
     <Compile Include="Score\Evaluation.cs" />
     <Compile Include="Search\CapturedCarFinder.cs" />
     <Compile Include="Search\ICapturedCarFinder.cs" />

@@ -41,7 +41,7 @@ namespace Road_rangerVS.Score
 
         public static int IncreaseScore(User user, Car car)     //Padidina vartotojo bendrą įvertinimą
         {
-            user.increaseScore(Evaluate(car));
+            user.IncreaseScore(Evaluate(car));
             return 1;
         }
     }
