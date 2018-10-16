@@ -10,7 +10,6 @@ namespace Road_rangerVS
     interface ICarParser
     {
         List<Car> Parse(string result);
-        bool IsError(string data);
     }
 }
 

@@ -9,15 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Road_rangerVS.Presenters;
 
 namespace Road_rangerVS
 {
     public partial class HistoryForm : Form
     {
-        public HistoryForm()
-        {
-            InitializeComponent();
-        }
+    private HistoryPresenter presenter;
+    public HistoryForm()
+    {
+        InitializeComponent();
+        presenter = new HistoryPresenter();
+    }
 
         private void history_Click(object sender, EventArgs e)
         {

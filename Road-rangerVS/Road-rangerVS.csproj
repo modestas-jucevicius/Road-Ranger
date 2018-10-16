@@ -142,30 +142,37 @@
   <ItemGroup>
     <Compile Include="Data\FileSystem.cs" />
     <Compile Include="Data\IData.cs" />
-    <Compile Include="FindForm.cs">
+    <Compile Include="Models\HistoryModel.cs" />
+    <Compile Include="Models\MainModel.cs" />
+    <Compile Include="Presenters\HistoryPresenter.cs" />
+    <Compile Include="Presenters\MainPresenter.cs" />
+    <Compile Include="Recognition\ParseException.cs" />
+    <Compile Include="Views\FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindForm.Designer.cs">
+    <Compile Include="Views\FindForm.Designer.cs">
       <DependentUpon>FindForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HistoryForm.cs">
+    <Compile Include="Views\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HistoryForm.Designer.cs">
+    <Compile Include="Views\HistoryForm.Designer.cs">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Images\Image.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="OutsideAPI\CarStatus.cs" />
     <Compile Include="OutsideAPI\ICarStatusRequester.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
     <Compile Include="OutsideAPI\EPolicijaAPIRequester.cs" />
+    <Compile Include="Presenters\ReportPresenter.cs" />
     <Compile Include="Recognition\CapturedCar.cs" />
     <Compile Include="Recognition\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
-    <Compile Include="Main Form.cs">
+    <Compile Include="Views\Main Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main Form.designer.cs">
+    <Compile Include="Views\Main Form.designer.cs">
       <DependentUpon>Main Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Recognition\OpenALPRParser.cs" />
@@ -173,10 +180,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recognition\ICarParser.cs" />
-    <Compile Include="ReportForm.cs">
+    <Compile Include="Views\ReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportForm.Designer.cs">
+    <Compile Include="Views\ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Score\Score.cs" />
@@ -184,13 +191,13 @@
     <Compile Include="Search\CapturedCarFinder.cs" />
     <Compile Include="Search\ICapturedCarFinder.cs" />
     <Compile Include="Users\User.cs" />
-    <EmbeddedResource Include="FindForm.resx">
+    <EmbeddedResource Include="Views\FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HistoryForm.resx">
+    <EmbeddedResource Include="Views\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main Form.resx">
+    <EmbeddedResource Include="Views\Main Form.resx">
       <DependentUpon>Main Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -202,7 +209,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReportForm.resx">
+    <EmbeddedResource Include="Views\ReportForm.resx">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
