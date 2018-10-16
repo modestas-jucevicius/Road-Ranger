@@ -28,6 +28,10 @@ namespace Road_rangerVS.Data
             {
                 path = System.Environment.CurrentDirectory + "/Cars.txt";
             }
+            else if (type == 2)
+            {
+                path = System.Environment.CurrentDirectory + "/Scoreboard.txt";
+            }
             else
                 path = System.Environment.CurrentDirectory + "/Images.txt";
         }
