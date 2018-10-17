@@ -42,7 +42,6 @@ namespace Road_rangerVS
             this.exitButton = new System.Windows.Forms.Button();
             this.findYourCarButton = new System.Windows.Forms.Button();
             this.myHistory = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,19 +167,11 @@ namespace Road_rangerVS
             this.myHistory.UseVisualStyleBackColor = true;
             this.myHistory.Click += new System.EventHandler(this.myHistory_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(0, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 750);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.myHistory);
             this.Controls.Add(this.findYourCarButton);
             this.Controls.Add(this.exitButton);
@@ -217,7 +208,6 @@ namespace Road_rangerVS
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button findYourCarButton;
         private System.Windows.Forms.Button myHistory;
-        private System.Windows.Forms.Button button3;
     }
 }
 
