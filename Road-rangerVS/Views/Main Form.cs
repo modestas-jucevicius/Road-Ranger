@@ -16,6 +16,8 @@ using Road_rangerVS.Presenters;
 using AForge.Video;
 using AForge.Video.DirectShow;
 
+using Road_rangerVS.Images;
+
 namespace Road_rangerVS
 {
 	public partial class MainForm : Form

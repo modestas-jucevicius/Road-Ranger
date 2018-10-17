@@ -9,14 +9,14 @@ namespace Road_rangerVS.Search
 {
     class CapturedCarFinder : ICapturedCarFinder
     {
-        private FileSystem<User> userFileSystem = new FileSystem<User>(0);
-        private FileSystem<Car> carFileSystem = new FileSystem<Car>(1);
-        private FileSystem<Image> imageFileSystem = new FileSystem<Image>(2);
+        private IUserData userData = new UserFileSystem();
+        private ICarData carData = new CarFileSystem();
+        private IImageData imageData = new ImageFileSystem();
 
         public List<CapturedCar> FindByPlate(string licensePlate)
         {
-            List<Car> cars = carFileSystem.FindAll();
-            List<Image> images = imageFileSystem.FindAll();
+            List<Car> cars = carData.FindAll();
+            List<Image> images = imageData.FindAll();
 
             List<CapturedCar> capturedCars = new List<CapturedCar>();
             if (cars != null)
@@ -25,15 +25,20 @@ namespace Road_rangerVS.Search
                 {
                     if (car.licensePlate.Equals(licensePlate))
                     {
+                        System.Console.WriteLine(licensePlate);
                         if (images != null)
                         {
                             foreach (Image image in images)
                             {
-                                if (image.licensePlate.Equals(licensePlate))
+                                if (image.carId.Equals(car.id))
                                 {
                                     capturedCars.Add(new CapturedCar(car, image));
                                 }
                             }
+                        }
+                        else
+                        {
+                            capturedCars.Add(new CapturedCar(car, null));
                         }
                     }
                 }
@@ -46,9 +51,9 @@ namespace Road_rangerVS.Search
         {
             int userId = 0;
 
-            User user = userFileSystem.FindById(userId);
-            List<Car> cars = carFileSystem.FindAll();
-            List<Image> images = imageFileSystem.FindAll();
+            User user = userData.FindById(userId);
+            List<Car> cars = carData.FindAll();
+            List<Image> images = imageData.FindAll();
 
             List<CapturedCar> capturedCars = new List<CapturedCar>();
 
@@ -58,12 +63,12 @@ namespace Road_rangerVS.Search
                 {
                     if (car.userId.Equals(user.id))
                     {
-                        string licensePlate = car.licensePlate;
+                        int carId = car.id;
                         if (images != null)
                         {
                             foreach (Image image in images)
                             {
-                                if (image.licensePlate.Equals(licensePlate))
+                                if (image.carId.Equals(carId))
                                 {
                                     capturedCars.Add(new CapturedCar(car, image));
                                 }

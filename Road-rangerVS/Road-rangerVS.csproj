@@ -140,8 +140,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\FileSystem.cs" />
-    <Compile Include="Data\IData.cs" />
+    <Compile Include="Data\CarFileSystem.cs" />
+    <Compile Include="Data\FileSystemIndexer.cs" />
+    <Compile Include="Data\ICarData.cs" />
+    <Compile Include="Data\IImageData.cs" />
+    <Compile Include="Data\ImageFileSystem.cs" />
+    <Compile Include="Data\IUserData.cs" />
+    <Compile Include="Data\PrimitiveFileSystem.cs" />
+    <Compile Include="Data\UserFileSystem.cs" />
     <Compile Include="Models\FindModel.cs" />
     <Compile Include="Models\HistoryModel.cs" />
     <Compile Include="Models\MainModel.cs" />

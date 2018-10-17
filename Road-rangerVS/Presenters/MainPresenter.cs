@@ -11,6 +11,7 @@ using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using Road_rangerVS.Images;
 
 namespace Road_rangerVS.Presenters
 {
@@ -37,16 +38,31 @@ namespace Road_rangerVS.Presenters
 				throw new ParseException("No cars found");
 			}
 
-			foreach (Car car in cars)
-			{
+            Bitmap bitmap = new Bitmap(imagePath);
 
-				car.status = await requester.AskCarStatus(car.licensePlate);
-                model.file.Put(car);
+            bool isSaved = false;
+            long timestamp = 0;
+            string path = "";
+            foreach (Car car in cars)
+			{
+                if (!isSaved)
+                {
+                    timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                    path = System.Environment.CurrentDirectory + "/Images/" + car.id.ToString() + ".jpg";
+                    bitmap.Save(path);
+
+                    isSaved = true;
+                }
+                Images.Image image = new Images.Image(car.id, timestamp, path);
+                model.imageData.Put(image);
+
+                car.status = await requester.AskCarStatus(car.licensePlate);
+                model.carData.Put(car);
                 Console.WriteLine(car.licensePlate + Environment.NewLine);
 			}
         }
 
-		public List<string> loadDevices()
+        public List<string> loadDevices()
 		{
 			List<string> deviceNames = new List<string>();
 			this.model.videoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice); //Surandame visas kameras sistemoje

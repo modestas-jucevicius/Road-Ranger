@@ -128,7 +128,7 @@ namespace Road_rangerVS
             // reportButton
             // 
             this.reportButton.Location = new System.Drawing.Point(763, 260);
-            this.reportButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reportButton.Margin = new System.Windows.Forms.Padding(2);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(208, 23);
             this.reportButton.TabIndex = 9;
@@ -139,7 +139,7 @@ namespace Road_rangerVS
             // exitButton
             // 
             this.exitButton.Location = new System.Drawing.Point(763, 321);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(2);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(208, 23);
             this.exitButton.TabIndex = 10;
@@ -167,11 +167,11 @@ namespace Road_rangerVS
             this.myHistory.UseVisualStyleBackColor = true;
             this.myHistory.Click += new System.EventHandler(this.myHistory_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 567);
+            this.ClientSize = new System.Drawing.Size(1064, 750);
             this.Controls.Add(this.myHistory);
             this.Controls.Add(this.findYourCarButton);
             this.Controls.Add(this.exitButton);
@@ -184,7 +184,7 @@ namespace Road_rangerVS
             this.Controls.Add(this.browseImage);
             this.Controls.Add(this.upload);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormClosing);
             this.Load += new System.EventHandler(this.mainFormLoading);
