@@ -7,18 +7,21 @@ using Road_rangerVS.Data;
 using Road_rangerVS.Recognition;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using Road_rangerVS.Images;
 
 namespace Road_rangerVS.Models
 {
 	class MainModel
 	{
-		public FileSystem<Car> file { get; set; }
+		public ICarData carData { get; set; }
+        public IImageData imageData { get; set; }
 		public FilterInfoCollection videoCaptureDevices { get; set; }
 		public VideoCaptureDevice finalVideo { get; set; }
 
 		public MainModel()
 		{
-			file = new FileSystem<Car>(1);
-		}
+            carData = new CarFileSystem();
+            imageData = new ImageFileSystem();
+        }
 	}
 }

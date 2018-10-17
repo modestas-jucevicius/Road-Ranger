@@ -17,8 +17,7 @@ namespace Road_rangerVS.Users
       
         override public string ToString()
         {
-            string line = id + "," + username + "," + name + Environment.NewLine;
-            return line;
+            return id + "," + username + "," + name + Environment.NewLine;
         }
       
         public User(String[] fields)

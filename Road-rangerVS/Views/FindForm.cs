@@ -24,8 +24,14 @@ namespace Road_rangerVS
         private void search_Click(object sender, EventArgs e)
         {   
 			List<CapturedCar> cars = presenter.findByPlate(inputText.Text);
-			Console.WriteLine(cars.ToString());
-			result.Text = cars.ToString();
+            string text = "";
+            foreach (CapturedCar car in cars)
+            {
+                Console.WriteLine(car.ToString());
+                text += car.ToString();
+            }
+			
+			result.Text = text;
         }
     }
 }
