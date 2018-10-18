@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Road_rangerVS.Presenters;
 using System.IO;
+using Road_rangerVS.OutsideAPI;
+using Road_rangerVS.Validation;
 
 namespace Road_rangerVS
 {
@@ -34,19 +36,29 @@ namespace Road_rangerVS
         }
         private void search_Click(object sender, EventArgs e)
         {
-            this.listView.Items.Clear();
-            cars = presenter.findByPlate(inputText.Text);
-            foreach (CapturedCar car in cars)
+            TextValidator validator = new LicensePlateValidator();
+            if (validator.isValid(inputText.Text))
             {
-                TimeSpan time = TimeSpan.FromMilliseconds(car.image.timestamp * 1000);
-                DateTime dateTime = new DateTime(1970, 1, 1) + time;
-                //long beginTicks = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
-                //DateTime dateTime = new DateTime(beginTicks + car.image.timestamp, DateTimeKind.Utc);
+                this.listView.Items.Clear();
+                cars = presenter.findByPlate(inputText.Text);
+                foreach (CapturedCar car in cars)
+                {
+                    TimeSpan time = TimeSpan.FromMilliseconds(car.image.timestamp * 1000);
+                    DateTime dateTime = new DateTime(1970, 1, 1) + time;
+                    //long beginTicks = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks;
+                    //DateTime dateTime = new DateTime(beginTicks + car.image.timestamp, DateTimeKind.Utc);
 
-                string[] row = { car.car.id.ToString(), car.car.licensePlate, car.car.status.ToString(), dateTime.ToLocalTime().ToString()};
-                var listViewItem = new ListViewItem(row);
-                this.listView.Items.Add(listViewItem);
+                    string[] row = { car.car.id.ToString(), car.car.licensePlate, car.car.status.ToString(), dateTime.ToLocalTime().ToString() };
+                    var listViewItem = new ListViewItem(row);
+                    this.listView.Items.Add(listViewItem);
+                }
             }
+            else
+            {
+                MessageBox.Show("Car license plate is not valid! License plate should be AAA000 or AA000 format.");
+            }
+
+            
         }
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)

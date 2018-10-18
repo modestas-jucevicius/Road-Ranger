@@ -1,4 +1,6 @@
-﻿namespace Road_rangerVS
+﻿using System;
+
+namespace Road_rangerVS
 {
     partial class FindForm
     {
@@ -32,13 +34,14 @@
             this.inputText = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.listView = new System.Windows.Forms.ListView();
+            this.licensePlate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // search
             // 
             this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.search.Location = new System.Drawing.Point(996, 11);
+            this.search.Location = new System.Drawing.Point(996, 34);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(75, 23);
             this.search.TabIndex = 0;
@@ -49,7 +52,7 @@
             // inputText
             // 
             this.inputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.inputText.Location = new System.Drawing.Point(721, 12);
+            this.inputText.Location = new System.Drawing.Point(721, 35);
             this.inputText.Name = "inputText";
             this.inputText.Size = new System.Drawing.Size(269, 22);
             this.inputText.TabIndex = 1;
@@ -66,18 +69,28 @@
             // listView
             // 
             this.listView.FullRowSelect = true;
-            this.listView.Location = new System.Drawing.Point(721, 51);
+            this.listView.Location = new System.Drawing.Point(721, 73);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(350, 449);
+            this.listView.Size = new System.Drawing.Size(350, 427);
             this.listView.TabIndex = 3;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            // 
+            // licensePlate
+            // 
+            this.licensePlate.AutoSize = true;
+            this.licensePlate.Location = new System.Drawing.Point(722, 13);
+            this.licensePlate.Name = "licensePlate";
+            this.licensePlate.Size = new System.Drawing.Size(73, 13);
+            this.licensePlate.TabIndex = 4;
+            this.licensePlate.Text = "License plate:";
             // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1083, 512);
+            this.Controls.Add(this.licensePlate);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.inputText);
@@ -96,5 +109,6 @@
         private System.Windows.Forms.TextBox inputText;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.Label licensePlate;
     }
 }

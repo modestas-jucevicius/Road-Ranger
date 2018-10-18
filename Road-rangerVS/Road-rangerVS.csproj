@@ -155,6 +155,8 @@
     <Compile Include="Presenters\HistoryPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Recognition\ParseException.cs" />
+    <Compile Include="Validation\LicensePlateValidator.cs" />
+    <Compile Include="Validation\TextValidator.cs" />
     <Compile Include="Views\FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
