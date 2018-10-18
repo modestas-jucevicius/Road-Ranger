@@ -12,7 +12,7 @@ namespace Road_rangerVS.Validation
     {
         public bool isValid(string plate)
         {
-            Regex regex = new Regex(@"[A-Z]{2,3}\d{3}");
+            Regex regex = new Regex(@"^[A-Z]{2,3}\d{3}$");
             Match match = regex.Match(plate);
             return match.Success;
         }

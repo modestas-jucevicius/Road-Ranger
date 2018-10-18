@@ -47,7 +47,7 @@ namespace Road_rangerVS
             this.search.TabIndex = 0;
             this.search.Text = "Search";
             this.search.UseVisualStyleBackColor = true;
-            this.search.Click += new System.EventHandler(this.search_Click);
+            this.search.Click += new System.EventHandler(this.SearchClick);
             // 
             // inputText
             // 
@@ -74,7 +74,7 @@ namespace Road_rangerVS
             this.listView.Size = new System.Drawing.Size(350, 427);
             this.listView.TabIndex = 3;
             this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.ListViewSelectedIndexChanged);
             // 
             // licensePlate
             // 
