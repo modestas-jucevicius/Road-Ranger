@@ -41,7 +41,7 @@ namespace Road_rangerVS
             this.reportButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.findYourCarButton = new System.Windows.Forms.Button();
-            this.myHistory = new System.Windows.Forms.Button();
+            this.myGallery = new System.Windows.Forms.Button();
             this.cameraTopText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +55,6 @@ namespace Road_rangerVS
             this.title.Size = new System.Drawing.Size(162, 29);
             this.title.TabIndex = 0;
             this.title.Text = "Road Ranger";
-            this.title.Click += new System.EventHandler(this.label1_Click);
             // 
             // upload
             // 
@@ -66,7 +65,7 @@ namespace Road_rangerVS
             this.upload.TabIndex = 1;
             this.upload.Text = "Upload";
             this.upload.UseVisualStyleBackColor = true;
-            this.upload.Click += new System.EventHandler(this.uploadButtonClick);
+            this.upload.Click += new System.EventHandler(this.UploadButtonClick);
             // 
             // browseImage
             // 
@@ -77,7 +76,7 @@ namespace Road_rangerVS
             this.browseImage.TabIndex = 2;
             this.browseImage.Text = "Browse Image";
             this.browseImage.UseVisualStyleBackColor = true;
-            this.browseImage.Click += new System.EventHandler(this.browseButtonClick);
+            this.browseImage.Click += new System.EventHandler(this.BrowseButtonClick);
             // 
             // filePath
             // 
@@ -87,7 +86,6 @@ namespace Road_rangerVS
             this.filePath.Size = new System.Drawing.Size(16, 13);
             this.filePath.TabIndex = 3;
             this.filePath.Text = "...";
-            this.filePath.Click += new System.EventHandler(this.label2_Click);
             // 
             // pictureBox
             // 
@@ -107,7 +105,7 @@ namespace Road_rangerVS
             this.button1.TabIndex = 6;
             this.button1.Text = "&Camera On/Off";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.cameraClick);
+            this.button1.Click += new System.EventHandler(this.CameraClick);
             // 
             // comboBox1
             // 
@@ -116,7 +114,7 @@ namespace Road_rangerVS
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(782, 21);
             this.comboBox1.TabIndex = 7;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.selectCamera);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.SelectCamera);
             // 
             // button2
             // 
@@ -126,7 +124,7 @@ namespace Road_rangerVS
             this.button2.TabIndex = 8;
             this.button2.Text = "Capture VIew";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.captureClick);
+            this.button2.Click += new System.EventHandler(this.CaptureClick);
             // 
             // reportButton
             // 
@@ -138,7 +136,7 @@ namespace Road_rangerVS
             this.reportButton.TabIndex = 9;
             this.reportButton.Text = "Report";
             this.reportButton.UseVisualStyleBackColor = true;
-            this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
+            this.reportButton.Click += new System.EventHandler(this.ReportButtonClick);
             // 
             // exitButton
             // 
@@ -150,7 +148,7 @@ namespace Road_rangerVS
             this.exitButton.TabIndex = 10;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.Click += new System.EventHandler(this.ExitButtonClick);
             // 
             // findYourCarButton
             // 
@@ -159,20 +157,20 @@ namespace Road_rangerVS
             this.findYourCarButton.Name = "findYourCarButton";
             this.findYourCarButton.Size = new System.Drawing.Size(250, 35);
             this.findYourCarButton.TabIndex = 11;
-            this.findYourCarButton.Text = "Find Your Car";
+            this.findYourCarButton.Text = "Find Car";
             this.findYourCarButton.UseVisualStyleBackColor = true;
-            this.findYourCarButton.Click += new System.EventHandler(this.findYourCarButton_Click);
+            this.findYourCarButton.Click += new System.EventHandler(this.FindYourCarButtonClick);
             // 
-            // myHistory
+            // myGallery
             // 
-            this.myHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.myHistory.Location = new System.Drawing.Point(825, 319);
-            this.myHistory.Name = "myHistory";
-            this.myHistory.Size = new System.Drawing.Size(250, 35);
-            this.myHistory.TabIndex = 12;
-            this.myHistory.Text = "My History";
-            this.myHistory.UseVisualStyleBackColor = true;
-            this.myHistory.Click += new System.EventHandler(this.myHistory_Click);
+            this.myGallery.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.myGallery.Location = new System.Drawing.Point(825, 319);
+            this.myGallery.Name = "myGallery";
+            this.myGallery.Size = new System.Drawing.Size(250, 35);
+            this.myGallery.TabIndex = 12;
+            this.myGallery.Text = "My Gallery";
+            this.myGallery.UseVisualStyleBackColor = true;
+            this.myGallery.Click += new System.EventHandler(this.MyGalleryClick);
             // 
             // cameraTopText
             // 
@@ -189,7 +187,7 @@ namespace Road_rangerVS
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1083, 621);
             this.Controls.Add(this.cameraTopText);
-            this.Controls.Add(this.myHistory);
+            this.Controls.Add(this.myGallery);
             this.Controls.Add(this.findYourCarButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.reportButton);
@@ -204,7 +202,7 @@ namespace Road_rangerVS
             this.Name = "MainForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormClosing);
-            this.Load += new System.EventHandler(this.mainFormLoading);
+            this.Load += new System.EventHandler(this.MainFormLoading);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -224,7 +222,7 @@ namespace Road_rangerVS
         private System.Windows.Forms.Button reportButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button findYourCarButton;
-        private System.Windows.Forms.Button myHistory;
+        private System.Windows.Forms.Button myGallery;
         private System.Windows.Forms.Label cameraTopText;
     }
 }

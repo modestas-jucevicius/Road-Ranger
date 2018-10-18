@@ -11,5 +11,6 @@ namespace Road_rangerVS.Data
         List<Image> FindAll(); // gauti visas eilutes
         Image FindById(int id);
         Image Update(int id, Image obj);
+        bool Remove(int id);
     }
 }

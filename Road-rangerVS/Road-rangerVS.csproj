@@ -149,10 +149,10 @@
     <Compile Include="Data\PrimitiveFileSystem.cs" />
     <Compile Include="Data\UserFileSystem.cs" />
     <Compile Include="Models\FindModel.cs" />
-    <Compile Include="Models\HistoryModel.cs" />
+    <Compile Include="Models\GalleryModel.cs" />
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Presenters\FindPresenter.cs" />
-    <Compile Include="Presenters\HistoryPresenter.cs" />
+    <Compile Include="Presenters\GalleryPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Recognition\ParseException.cs" />
     <Compile Include="Validation\LicensePlateValidator.cs" />
@@ -163,11 +163,11 @@
     <Compile Include="Views\FindForm.Designer.cs">
       <DependentUpon>FindForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\HistoryForm.cs">
+    <Compile Include="Views\GalleryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\HistoryForm.Designer.cs">
-      <DependentUpon>HistoryForm.cs</DependentUpon>
+    <Compile Include="Views\GalleryForm.Designer.cs">
+      <DependentUpon>GalleryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Images\Image.cs" />
     <Compile Include="Models\ReportModel.cs" />
@@ -179,6 +179,7 @@
     <Compile Include="Recognition\CapturedCar.cs" />
     <Compile Include="Recognition\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
+    <Compile Include="Views\IGalleryView.cs" />
     <Compile Include="Views\ISearchView.cs" />
     <Compile Include="Views\Main Form.cs">
       <SubType>Form</SubType>
@@ -205,8 +206,8 @@
     <EmbeddedResource Include="Views\FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\HistoryForm.resx">
-      <DependentUpon>HistoryForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\GalleryForm.resx">
+      <DependentUpon>GalleryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Main Form.resx">
       <DependentUpon>Main Form.cs</DependentUpon>

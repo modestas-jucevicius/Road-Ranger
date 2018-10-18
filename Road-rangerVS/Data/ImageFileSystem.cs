@@ -69,5 +69,10 @@ namespace Road_rangerVS.Data
         {
             throw new NotImplementedException();
         }
+
+        public bool Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
