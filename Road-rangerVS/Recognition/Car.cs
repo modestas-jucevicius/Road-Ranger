@@ -30,12 +30,15 @@ namespace Road_rangerVS.Recognition
         }
         public Car(Car car)
         {
+            this.id = car.id;
+            this.userId = car.userId;
             this.licensePlate = car.licensePlate;
             this.colorName = car.colorName;
             this.makeName = car.makeName;
             this.model = car.model;
             this.bodyType = car.bodyType;
             this.year = car.year;
+            this.status = car.status;
         }
 
         public Car(string licensePlate, string colorName, string makeName, string model, string bodyType, string year)
@@ -50,10 +53,9 @@ namespace Road_rangerVS.Recognition
 
         override public string ToString()
         {
-            string line = id + "," + userId + "," + licensePlate + "," + colorName +
-                 "," + makeName + "," + model + "," + bodyType + "," + year + 
+            return id + "," + userId + "," + licensePlate + "," + colorName +
+                 "," + makeName + "," + model + "," + bodyType + "," + year +
                  "," + status + Environment.NewLine;
-            return line;
         }
     }
 }
