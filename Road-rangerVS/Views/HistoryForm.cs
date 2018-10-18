@@ -24,13 +24,21 @@ namespace Road_rangerVS
 
         private void history_Click(object sender, EventArgs e)
         {
-            int userId = 0;
+            int userId = 1;
 
             ICapturedCarFinder finder = new CapturedCarFinder();
             List<CapturedCar> cars = finder.FindByUserId(userId);
-            Console.WriteLine(cars.ToString());
+            if (cars.Count == 0)
+            {
+                MessageBox.Show(@"Your gallery is empty.", "My Gallery", MessageBoxButtons.OK);
+            }
+            StringBuilder builder = new StringBuilder();
+            foreach (CapturedCar car in cars)
+            {
+                builder.Append(car.ToString());
+            }
 
-            result.Text = cars.ToString();
+            result.Text = builder.ToString();
         }
     }
 }

@@ -155,6 +155,8 @@
     <Compile Include="Presenters\HistoryPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Recognition\ParseException.cs" />
+    <Compile Include="Validation\LicensePlateValidator.cs" />
+    <Compile Include="Validation\TextValidator.cs" />
     <Compile Include="Views\FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +179,7 @@
     <Compile Include="Recognition\CapturedCar.cs" />
     <Compile Include="Recognition\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
+    <Compile Include="Views\ISearchView.cs" />
     <Compile Include="Views\Main Form.cs">
       <SubType>Form</SubType>
     </Compile>

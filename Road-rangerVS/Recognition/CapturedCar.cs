@@ -2,19 +2,17 @@
 
 namespace Road_rangerVS.Recognition
 {
-    class CapturedCar
+    public class CapturedCar : Car
     {
-        public Car car { get; set; }
         public Image image { get; set; }
-        public CapturedCar(Car car, Image image)
+        public CapturedCar(Car car, Image image) : base(car)
         {
-            this.car = car;
             this.image = image;
         }
 
         override public string ToString()
         {
-            return car.ToString();
+            return base.ToString() + " " + image.ToString();
         }
     }
 }

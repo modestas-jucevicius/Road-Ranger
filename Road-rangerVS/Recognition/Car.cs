@@ -1,16 +1,11 @@
-﻿using Road_rangerVS.Data;
+﻿
 using Road_rangerVS.OutsideAPI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Road_rangerVS.Recognition
 {
-    class Car
+    public class Car
     {
-        //static int instanceId = -1;
         public int id { get; set; }
         public int userId { get; set; }
         public string licensePlate { get; set; }    // automobilio registracijos numeris
@@ -23,6 +18,7 @@ namespace Road_rangerVS.Recognition
 
         public Car(String[] fields)
         {
+            id = Int32.Parse(fields[0]);
             userId = Int32.Parse(fields[1]);
             licensePlate = fields[2];
             colorName = fields[3];

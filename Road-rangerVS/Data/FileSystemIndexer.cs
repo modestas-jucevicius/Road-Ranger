@@ -11,7 +11,7 @@ namespace Road_rangerVS.Data
         private static PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         public int GetLastId(string path)
         {
-            int lastId = 0;
+            int lastId = -1;
             List<String> strings = primitiveFileSystem.GetLines(path);
             string[] fields = null;
             foreach (string line in strings)
