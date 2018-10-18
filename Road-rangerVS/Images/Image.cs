@@ -19,10 +19,10 @@ namespace Road_rangerVS.Images
 
         public Image(String[] fields)
         {
-            id = Int32.Parse(fields[1]);
-            carId = Int32.Parse(fields[2]);
-            timestamp = long.Parse(fields[3]);
-            path = fields[4];
+            id = Int32.Parse(fields[0]);
+            carId = Int32.Parse(fields[1]);
+            timestamp = long.Parse(fields[2]);
+            path = fields[3];
         }
         override public string ToString()
         {

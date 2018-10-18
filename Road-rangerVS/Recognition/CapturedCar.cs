@@ -14,7 +14,7 @@ namespace Road_rangerVS.Recognition
 
         override public string ToString()
         {
-            return car.ToString();
+            return car.ToString() + " " + image.ToString();
         }
     }
 }

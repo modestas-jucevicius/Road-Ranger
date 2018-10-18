@@ -23,6 +23,7 @@ namespace Road_rangerVS.Recognition
 
         public Car(String[] fields)
         {
+            id = Int32.Parse(fields[0]);
             userId = Int32.Parse(fields[1]);
             licensePlate = fields[2];
             colorName = fields[3];

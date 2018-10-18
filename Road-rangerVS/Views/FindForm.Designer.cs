@@ -30,12 +30,15 @@
         {
             this.search = new System.Windows.Forms.Button();
             this.inputText = new System.Windows.Forms.TextBox();
-            this.result = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.listView = new System.Windows.Forms.ListView();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(291, 29);
+            this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.search.Location = new System.Drawing.Point(996, 11);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(75, 23);
             this.search.TabIndex = 0;
@@ -45,30 +48,43 @@
             // 
             // inputText
             // 
-            this.inputText.Location = new System.Drawing.Point(12, 29);
+            this.inputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.inputText.Location = new System.Drawing.Point(721, 12);
             this.inputText.Name = "inputText";
-            this.inputText.Size = new System.Drawing.Size(273, 20);
+            this.inputText.Size = new System.Drawing.Size(269, 22);
             this.inputText.TabIndex = 1;
             // 
-            // result
+            // pictureBox
             // 
-            this.result.AutoSize = true;
-            this.result.Location = new System.Drawing.Point(12, 87);
-            this.result.Name = "result";
-            this.result.Size = new System.Drawing.Size(16, 13);
-            this.result.TabIndex = 2;
-            this.result.Text = "...";
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pictureBox.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(703, 488);
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
+            // 
+            // listView
+            // 
+            this.listView.FullRowSelect = true;
+            this.listView.Location = new System.Drawing.Point(721, 51);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(350, 449);
+            this.listView.TabIndex = 3;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             // 
             // FindForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 319);
-            this.Controls.Add(this.result);
+            this.ClientSize = new System.Drawing.Size(1083, 512);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.listView);
             this.Controls.Add(this.inputText);
             this.Controls.Add(this.search);
             this.Name = "FindForm";
             this.Text = "FindForm";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,6 +94,7 @@
 
         private System.Windows.Forms.Button search;
         private System.Windows.Forms.TextBox inputText;
-        private System.Windows.Forms.Label result;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.ListView listView;
     }
 }

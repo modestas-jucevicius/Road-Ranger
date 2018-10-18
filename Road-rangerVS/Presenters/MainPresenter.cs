@@ -45,6 +45,9 @@ namespace Road_rangerVS.Presenters
             string path = "";
             foreach (Car car in cars)
 			{
+                car.status = await requester.AskCarStatus(car.licensePlate);
+                model.carData.Put(car);
+                Console.WriteLine(car.licensePlate + Environment.NewLine);
                 if (!isSaved)
                 {
                     timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -53,12 +56,10 @@ namespace Road_rangerVS.Presenters
 
                     isSaved = true;
                 }
-                Images.Image image = new Images.Image(car.id, timestamp, path);
-                model.imageData.Put(image);
 
-                car.status = await requester.AskCarStatus(car.licensePlate);
-                model.carData.Put(car);
-                Console.WriteLine(car.licensePlate + Environment.NewLine);
+                Images.Image image = new Images.Image(car.id, timestamp, path);
+                Console.WriteLine(image.ToString());
+                model.imageData.Put(image);
 			}
         }
 
