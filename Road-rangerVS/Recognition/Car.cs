@@ -57,5 +57,10 @@ namespace Road_rangerVS.Recognition
                  "," + makeName + "," + model + "," + bodyType + "," + year +
                  "," + status + Environment.NewLine;
         }
+        public string toReport()
+        {
+            string toReport = "Numeris: " + licensePlate + " , Busena: " + status + ", data: " + DateTime.Today;
+            return toReport;
+        }
     }
 }

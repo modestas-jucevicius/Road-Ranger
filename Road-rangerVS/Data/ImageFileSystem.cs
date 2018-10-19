@@ -64,15 +64,23 @@ namespace Road_rangerVS.Data
                 this.Put(obj);
             }
         }
-
-        public Image Update(int id, Image obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            string strID = id.ToString();
+            string strOldText;
+            string fileData = "";
+            bool found = false;
+            StreamReader sr = File.OpenText(path);
+            while ((strOldText = sr.ReadLine()) != null)
+            {
+                if (String.Equals(strOldText[0], strID)) { found = true; }
+                else { fileData += strOldText + Environment.NewLine; }
+            }
+            sr.Close();
+            File.WriteAllText(path, fileData);
+            String imagePath = System.Environment.CurrentDirectory + "/Images/" + id + ".jpg";
+            if (File.Exists(imagePath)) { File.Delete(imagePath); }
+            return found;
         }
     }
 }

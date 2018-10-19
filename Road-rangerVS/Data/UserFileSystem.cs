@@ -64,9 +64,25 @@ namespace Road_rangerVS.Data
             }
         }
 
-        public User Update(int id, User obj)
+        public bool Update(int id, User obj)
         {
-            throw new NotImplementedException();
+            string strID = id.ToString();
+            string strOldText;
+            string fileData = "";
+            bool found = false;
+            StreamReader sr = File.OpenText(path);
+            while ((strOldText = sr.ReadLine()) != null)
+            {
+                if (String.Equals(strOldText[0], strID))
+                {
+                    found = true;
+                    fileData += obj.ToString() + Environment.NewLine;
+                }
+                else { fileData += strOldText + Environment.NewLine; }
+            }
+            sr.Close();
+            File.WriteAllText(path, fileData);
+            return found;
         }
     }
 }

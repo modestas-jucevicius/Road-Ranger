@@ -10,7 +10,7 @@ namespace Road_rangerVS
 {
     class OpenALPRRecognizer : ICarRecognizer
     {
-        private const string SECRET_KEY = "sk_c9dd80b203f110a25a3dcb5b";    // openalpr vartotojo privatus raktas
+        private const string SECRET_KEY = "sk_f2ff09a93e3a0f82996a55c8";    // openalpr vartotojo privatus raktas
 
         private static HttpClient client = new HttpClient();
 

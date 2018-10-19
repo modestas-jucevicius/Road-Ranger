@@ -26,6 +26,7 @@ namespace Road_rangerVS.Presenters
 			ICarRecognizer recognizer = new OpenALPRRecognizer();
 			ICarParser parser = new OpenALPRParser();
 			ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+            ReportModel report = new ReportModel();
 
 			string result = await recognizer.Recognize(imagePath);
 			List<Car> cars = parser.Parse(result);
@@ -42,6 +43,10 @@ namespace Road_rangerVS.Presenters
             foreach (Car car in cars)
 			{
                 car.status = await requester.AskCarStatus(car.licensePlate);
+                if(car.status == CarStatus.STOLEN || car.status == CarStatus.STOLEN_PLATE)
+                {
+                    report.sendMail("mappuab@gmail.com", "Vagyste", car.toReport());
+                }
                 model.carData.Put(car);
                 //Console.WriteLine(car.licensePlate + Environment.NewLine);
                 if (!isSaved)
