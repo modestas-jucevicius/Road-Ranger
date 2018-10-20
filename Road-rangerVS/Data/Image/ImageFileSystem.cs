@@ -10,9 +10,9 @@ namespace Road_rangerVS.Data
 {
     class ImageFileSystem : IImageData
     {
-        private string path = System.Environment.CurrentDirectory + "/Storage/Images.txt";
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
+        private string path = System.Environment.CurrentDirectory + @"\Storage\Images.txt";
         public List<Image> FindAll()
         {
             List<Image> list = new List<Image>();
@@ -23,7 +23,7 @@ namespace Road_rangerVS.Data
             foreach (string line in strings)
             {
                 fields = line.Split(',');
-                list.Add(new Image(fields));
+                list.Add(GetImageFromStringArray(fields));
             }
             return list;
         }
@@ -47,14 +47,14 @@ namespace Road_rangerVS.Data
             if (rado == false) { return default(Image); }
             else
             {
-                return new Image(fields);
+                return GetImageFromStringArray(fields);
             }
         }
 
         public void Put(Image obj)
         {
-            obj.id = indexer.GetLastId(path) + 1;
-            File.AppendAllText(path, obj.ToString());
+            obj.Id = indexer.GetLastId(path) + 1;
+            File.AppendAllText(path, ImageToCSVFormat(obj));
         }
 
         public void PutList(List<Image> objects)
@@ -64,15 +64,41 @@ namespace Road_rangerVS.Data
                 this.Put(obj);
             }
         }
-
-        public Image Update(int id, Image obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            Image image = this.FindById(id);
+            string strID = id.ToString();
+            string strOldText;
+            string fileData = "";
+            bool found = false;
+            StreamReader sr = File.OpenText(path);
+            while ((strOldText = sr.ReadLine()) != null)
+            {
+                if (strID.Equals(strOldText[0].ToString()))
+                {
+                    found = true;
+                }
+                else
+                {
+                    fileData += strOldText + Environment.NewLine;
+                }
+            }
+            sr.Close();
+            File.WriteAllText(path, fileData);
+            //File.Delete(image.path);
+            return found;
+        }
+
+        private string ImageToCSVFormat(Image image)
+        {
+            return image.Id + "," + image.CarId + "," + image.Timestamp +
+                "," + image.Path + Environment.NewLine;
+        }
+
+        private Image GetImageFromStringArray(String[] array)
+        {
+            return new Image(Int32.Parse(array[0]), Int32.Parse(array[1]),
+                        long.Parse(array[2]), array[3]);
         }
     }
 }

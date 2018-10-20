@@ -7,12 +7,14 @@ using System;
 using Road_rangerVS.Views;
 using System.Linq;
 using Road_rangerVS.OutsideAPI;
+using System.IO;
 
 namespace Road_rangerVS.Presenters
 {
 	class GalleryPresenter
 	{
-		private readonly GalleryModel model = new GalleryModel();
+		private readonly GalleryModel galleryModel = new GalleryModel();
+        private readonly ReportModel reportModel = new ReportModel();
         List<CapturedCar> cars = new List<CapturedCar>();
         int userId;
 
@@ -22,7 +24,7 @@ namespace Road_rangerVS.Presenters
         }
 
         public List<CapturedCar> GetCarByUserId() {
-			return this.model.GetFinder().FindByUserId(userId);
+			return this.galleryModel.GetFinder().FindByUserId(userId);
 		}
 
         public void ShowGallery(IGalleryView view)
@@ -32,10 +34,10 @@ namespace Road_rangerVS.Presenters
 
             foreach (CapturedCar car in cars)
             {
-                TimeSpan time = TimeSpan.FromMilliseconds(car.image.timestamp * 1000);
+                TimeSpan time = TimeSpan.FromMilliseconds(car.Image.Timestamp * 1000);
                 DateTime dateTime = new DateTime(1970, 1, 1) + time;
 
-                string[] row = { car.id.ToString(), car.licensePlate, car.status.ToString(), dateTime.ToLocalTime().ToString() };
+                string[] row = { car.Id.ToString(), car.LicensePlate, car.Status.ToString(), dateTime.ToLocalTime().ToString() };
                 var listViewItem = new ListViewItem(row);
                 view.car = listViewItem;
             }
@@ -51,14 +53,14 @@ namespace Road_rangerVS.Presenters
 
         public void SelectByIndex(IGalleryView view, int id)
         {
-            CapturedCar car = cars.FirstOrDefault(x => x.id == id);
-            view.image = new System.Drawing.Bitmap(car.image.path);
+            CapturedCar car = cars.FirstOrDefault(x => x.Id == id);
+            view.image = new System.Drawing.Bitmap(car.Image.Path);
             EnableReport(view, car);
-        }
+            }
 
         private void EnableReport(IGalleryView view, CapturedCar car)
         {
-            if (car.status.Equals(CarStatus.STOLEN))
+            if (car.Status.Equals(CarStatus.STOLEN))
                 view.enableReport = true;
             else
                 view.enableReport = false;
@@ -66,10 +68,16 @@ namespace Road_rangerVS.Presenters
 
         public void RemoveByIndex(IGalleryView view, int id)
         {
-            CapturedCar car = cars.FirstOrDefault(x => x.id == id);
-            this.model.RemoveCarById(car.id);
-            this.model.RemoveImageById(car.image.id);
+            CapturedCar car = cars.FirstOrDefault(x => x.Id == id);
+            this.galleryModel.RemoveCarById(car.Id);
+            this.galleryModel.RemoveImageById(car.Image.Id);
             this.ShowGallery(view);
+        }
+
+        public void ReportByIndex(IGalleryView view, int id)
+        {
+            CapturedCar car = cars.FirstOrDefault(x => x.Id == id);
+            reportModel.SendGeneratedMail(car);
         }
     }
 }

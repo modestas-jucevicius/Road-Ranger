@@ -140,14 +140,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\CarFileSystem.cs" />
-    <Compile Include="Data\FileSystemIndexer.cs" />
-    <Compile Include="Data\ICarData.cs" />
-    <Compile Include="Data\IImageData.cs" />
-    <Compile Include="Data\ImageFileSystem.cs" />
-    <Compile Include="Data\IUserData.cs" />
-    <Compile Include="Data\PrimitiveFileSystem.cs" />
-    <Compile Include="Data\UserFileSystem.cs" />
+    <Compile Include="Data\Car\CarFileSystem.cs" />
+    <Compile Include="Data\Common\FileSystemIndexer.cs" />
+    <Compile Include="Data\Car\ICarData.cs" />
+    <Compile Include="Data\Image\IImageData.cs" />
+    <Compile Include="Data\Image\ImageFileSystem.cs" />
+    <Compile Include="Data\User\IUserData.cs" />
+    <Compile Include="Data\Common\PrimitiveFileSystem.cs" />
+    <Compile Include="Data\User\UserFileSystem.cs" />
     <Compile Include="Models\FindModel.cs" />
     <Compile Include="Models\GalleryModel.cs" />
     <Compile Include="Models\MainModel.cs" />
@@ -155,6 +155,9 @@
     <Compile Include="Presenters\GalleryPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Recognition\ParseException.cs" />
+    <Compile Include="Report\IReportSender.cs" />
+    <Compile Include="Report\MailReportMessageGenerator.cs" />
+    <Compile Include="Report\MailReportSender.cs" />
     <Compile Include="Validation\LicensePlateValidator.cs" />
     <Compile Include="Validation\TextValidator.cs" />
     <Compile Include="Views\FindForm.cs">
@@ -171,13 +174,13 @@
     </Compile>
     <Compile Include="Images\Image.cs" />
     <Compile Include="Models\ReportModel.cs" />
-    <Compile Include="OutsideAPI\CarStatus.cs" />
-    <Compile Include="OutsideAPI\ICarStatusRequester.cs" />
-    <Compile Include="OutsideAPI\EPolicijaAPI.cs" />
-    <Compile Include="OutsideAPI\EPolicijaAPIRequester.cs" />
+    <Compile Include="Cars\CarStatus.cs" />
+    <Compile Include="EPolicija\ICarStatusRequester.cs" />
+    <Compile Include="EPolicija\EPolicijaAPI.cs" />
+    <Compile Include="EPolicija\EPolicijaAPIRequester.cs" />
     <Compile Include="Presenters\ReportPresenter.cs" />
-    <Compile Include="Recognition\CapturedCar.cs" />
-    <Compile Include="Recognition\Car.cs" />
+    <Compile Include="Cars\CapturedCar.cs" />
+    <Compile Include="Cars\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
     <Compile Include="Views\IGalleryView.cs" />
     <Compile Include="Views\ISearchView.cs" />

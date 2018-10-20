@@ -1,34 +1,28 @@
-﻿using Road_rangerVS.OutsideAPI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Road_rangerVS.Users
 {
     class User
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
         private int score = 0;
-      
-        override public string ToString()
+
+        public User(string username, string password, string name)
         {
-            return id + "," + username + "," + name + Environment.NewLine;
+            this.Username = username;
+            this.Password = password;
+            this.Name = name;
+        }
+
+        public User(int id, string username, string password, string name, int score) : this(username, password, name)
+        {
+            this.Id = id;
+            this.score = score;
         }
       
-        public User(String[] fields)
-        {
-            id = Int32.Parse(fields[0]);
-            username = fields[1];
-            password = fields[2];
-            name = fields[3];
-        }
-      
-        public int getScore()
+        public int GetScore()
         {
             return score;
         }

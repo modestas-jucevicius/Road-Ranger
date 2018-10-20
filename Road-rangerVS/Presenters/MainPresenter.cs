@@ -8,6 +8,7 @@ using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using Road_rangerVS.Report;
 
 namespace Road_rangerVS.Presenters
 {
@@ -26,6 +27,7 @@ namespace Road_rangerVS.Presenters
 			ICarRecognizer recognizer = new OpenALPRRecognizer();
 			ICarParser parser = new OpenALPRParser();
 			ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+            ReportModel report = new ReportModel();
 
 			string result = await recognizer.Recognize(imagePath);
 			List<Car> cars = parser.Parse(result);
@@ -41,20 +43,23 @@ namespace Road_rangerVS.Presenters
             string path = "";
             foreach (Car car in cars)
 			{
-                car.status = await requester.AskCarStatus(car.licensePlate);
+                car.Status = await requester.AskCarStatus(car.LicensePlate);
+                if(car.Status == CarStatus.STOLEN || car.Status == CarStatus.STOLEN_PLATE)
+                {
+                    //report.SendMail("mappuab@gmail.com", "Vagyste", car.toReport());
+                    new MailReportSender().SendGeneretedMail(car);
+                }
                 model.carData.Put(car);
-                //Console.WriteLine(car.licensePlate + Environment.NewLine);
                 if (!isSaved)
                 {
                     timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                    path = System.Environment.CurrentDirectory + "/Images/" + car.id.ToString() + ".jpg";
+                    path = System.Environment.CurrentDirectory + @"\Images\" + car.Id.ToString() + ".jpg";
                     bitmap.Save(path);
 
                     isSaved = true;
                 }
 
-                Images.Image image = new Images.Image(car.id, timestamp, path);
-                //Console.WriteLine(image.ToString());
+                Images.Image image = new Images.Image(car.Id, timestamp, path);
                 model.imageData.Put(image);
 			}
         }

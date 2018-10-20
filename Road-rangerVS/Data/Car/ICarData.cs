@@ -13,7 +13,7 @@ namespace Road_rangerVS.Data
         void PutList(List<Car> obj);
         List<Car> FindAll(); // gauti visas eilutes
         Car FindById(int id);
-        Car Update(int id, Car obj);
+        bool Update(int id, Car obj);
         bool Remove(int id);
     }
 }

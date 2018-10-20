@@ -10,9 +10,9 @@ namespace Road_rangerVS.Data
 {
     class UserFileSystem : IUserData
     {
-        private string path = System.Environment.CurrentDirectory + "/Storage/Users.txt";
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
+        private string path = System.Environment.CurrentDirectory + @"\Storage\Users.txt";
         public List<User> FindAll()
         {
             List<User> list = new List<User>();
@@ -22,7 +22,7 @@ namespace Road_rangerVS.Data
             foreach (string line in strings)
             {
                 fields = line.Split(',');
-                list.Add(new User(fields));
+                list.Add(GetUserFromStringArray(fields));
             }
             return list;
         }
@@ -46,13 +46,13 @@ namespace Road_rangerVS.Data
             if (rado == false) { return default(User); }
             else
             {
-                return new User(fields);
+                return GetUserFromStringArray(fields);
             }
         }
 
         public void Put(User obj)
         {
-            obj.id = indexer.GetLastId(path) + 1;
+            obj.Id = indexer.GetLastId(path) + 1;
             File.AppendAllText(path, obj.ToString());
         }
 
@@ -64,9 +64,35 @@ namespace Road_rangerVS.Data
             }
         }
 
-        public User Update(int id, User obj)
+        public bool Update(int id, User obj)
         {
-            throw new NotImplementedException();
+            string strID = id.ToString();
+            string strOldText;
+            string fileData = "";
+            bool found = false;
+            StreamReader sr = File.OpenText(path);
+            while ((strOldText = sr.ReadLine()) != null)
+            {
+                if (String.Equals(strOldText[0], strID))
+                {
+                    found = true;
+                    fileData += obj.ToString() + Environment.NewLine;
+                }
+                else { fileData += strOldText + Environment.NewLine; }
+            }
+            sr.Close();
+            File.WriteAllText(path, fileData);
+            return found;
+        }
+
+        private string UserToCSVFormat(User user)
+        {
+            return user.Id + "," + user.Username + "," + user.Name + "," + user.GetScore() + Environment.NewLine;
+        }
+
+        private User GetUserFromStringArray(String[] array)
+        {
+            return new User(Int32.Parse(array[0]), array[1], array[2], array[3], Int32.Parse(array[4]));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Road_rangerVS.Models
 	{
 		private readonly ICapturedCarFinder finder = new CapturedCarFinder();
 
-		public List<CapturedCar> findByPlate(string licencePlate)
+		public List<CapturedCar> FindByPlate(string licencePlate)
 		{
 			return finder.FindByPlate(licencePlate);
 		}

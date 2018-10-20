@@ -10,7 +10,6 @@ namespace Road_rangerVS.Data
         {
             List<String> stringLines = new List<string>();
             String line;
-            Console.WriteLine(path);
             if (File.Exists(path))
             {
                 StreamReader stream = new StreamReader(path);
@@ -24,7 +23,7 @@ namespace Road_rangerVS.Data
             }
             else
             {
-                throw new FileException("File Is Empty.");
+                throw new FileException("File doesn't exist.");
             }
         }
     }
