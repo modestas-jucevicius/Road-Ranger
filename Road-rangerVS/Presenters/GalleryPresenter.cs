@@ -23,7 +23,8 @@ namespace Road_rangerVS.Presenters
             this.userId = userId;
         }
 
-        public List<CapturedCar> GetCarByUserId() {
+        public List<CapturedCar> GetCarByUserId()
+        {
 			return this.galleryModel.GetFinder().FindByUserId(userId);
 		}
 
@@ -39,7 +40,7 @@ namespace Road_rangerVS.Presenters
 
                 string[] row = { car.Id.ToString(), car.LicensePlate, car.Status.ToString(), dateTime.ToLocalTime().ToString() };
                 var listViewItem = new ListViewItem(row);
-                view.car = listViewItem;
+                view.Car = listViewItem;
             }
         }
 
@@ -54,16 +55,16 @@ namespace Road_rangerVS.Presenters
         public void SelectByIndex(IGalleryView view, int id)
         {
             CapturedCar car = cars.FirstOrDefault(x => x.Id == id);
-            view.image = new System.Drawing.Bitmap(car.Image.Path);
+            view.Image = new System.Drawing.Bitmap(car.Image.Path);
             EnableReport(view, car);
-            }
+        }
 
         private void EnableReport(IGalleryView view, CapturedCar car)
         {
             if (car.Status.Equals(CarStatus.STOLEN))
-                view.enableReport = true;
+                view.EnableReport = true;
             else
-                view.enableReport = false;
+                view.EnableReport = false;
         }
 
         public void RemoveByIndex(IGalleryView view, int id)

@@ -8,28 +8,56 @@ using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
 using AForge.Video;
 using AForge.Video.DirectShow;
-using Road_rangerVS.Report;
+using Road_rangerVS.Views;
+using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace Road_rangerVS.Presenters
 {
-	class MainPresenter
-	{
-		private MainModel model;
+    class MainPresenter
+    {
+        private MainModel model;
+        private ReportModel report;
+        private ICarRecognizer recognizer = new OpenALPRRecognizer();
+        private ICarParser parser = new OpenALPRParser();
+        private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
 
-		public MainPresenter()
+        public MainPresenter()
+        {
+            model = new MainModel();
+            report = new ReportModel();
+        }
+
+        // Transliuoja naują kadrą į view.Frame
+        public void NewFrame(IMainView view, NewFrameEventArgs eventArgs)
+        {
+            Bitmap video = (Bitmap)eventArgs.Frame.Clone(); //Sukuriame kadro bitmap'ą
+            view.Frame = video;                             //Ir jį ištransliuojame view.Frame elemente
+        }
+
+        // Išsaugo view.Frame vaizdą vietoje path
+        public void SaveFrameImage(IMainView view, string path)
+        {
+            view.Frame.Save(path + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
+        }
+
+        // Ieško automobilio nuotraukos kompiuterio aplankaluose
+        public void Browse(IMainView view)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files | *.png; *.jpg"; // failo tipai, kurie bus naudojami
+            dialog.Multiselect = false; // true - galima pridėti daugiau negu viena failą, false - galima pridėti tik 1 failą
+            if (dialog.ShowDialog() == DialogResult.OK) // jei vartotojas paspaudžia OK
+            {
+                String path = dialog.FileName; // gauna failo vardą
+                view.Path = path;           // laukui filePath priskiriama path reikšmė
+            }
+        }
+
+        // Analizuoja nuotrauką, esančią vietoje imagePath, ir parodo rezultatą konsolėje
+        public async Task GetCarInfo(string imagePath)
 		{
-			model = new MainModel();
-		}
-
-		// Analizuoja nuotrauką, esančią vietoje imagePath, ir parodo rezultatą konsolėje
-		public async Task getCarInfo(string imagePath)
-		{
-			ICarRecognizer recognizer = new OpenALPRRecognizer();
-			ICarParser parser = new OpenALPRParser();
-			ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
-            ReportModel report = new ReportModel();
-
-			string result = await recognizer.Recognize(imagePath);
+            string result = await recognizer.Recognize(imagePath);
 			List<Car> cars = parser.Parse(result);
 			if (cars.Count() == 0)
 			{
@@ -44,27 +72,28 @@ namespace Road_rangerVS.Presenters
             foreach (Car car in cars)
 			{
                 car.Status = await requester.AskCarStatus(car.LicensePlate);
-                if(car.Status == CarStatus.STOLEN || car.Status == CarStatus.STOLEN_PLATE)
-                {
-                    //report.SendMail("mappuab@gmail.com", "Vagyste", car.toReport());
-                    new MailReportSender().SendGeneretedMail(car);
-                }
-                model.carData.Put(car);
-                if (!isSaved)
-                {
-                    timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                    path = System.Environment.CurrentDirectory + @"\Images\" + car.Id.ToString() + ".jpg";
-                    bitmap.Save(path);
-
-                    isSaved = true;
-                }
-
-                Images.Image image = new Images.Image(car.Id, timestamp, path);
-                model.imageData.Put(image);
-			}
+                SaveData(car, isSaved, timestamp, path, bitmap);
+            }
         }
 
-        public List<string> loadDevices()
+        // Išsaugo automobilio (car) duomenis ir užfiksuotą jos nuotrauką
+        private void SaveData(Car car, bool isSaved, long timestamp, string path, Bitmap bitmap)
+        {
+            model.carData.Put(car);
+            if (!isSaved)
+            {
+                timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                path = Environment.CurrentDirectory + @"\Images\" + car.Id.ToString() + ".jpg";
+                bitmap.Save(path);
+
+                isSaved = true;
+            }
+
+            Images.Image image = new Images.Image(car.Id, timestamp, path);
+            model.imageData.Put(image);
+        }
+
+        public List<string> LoadDevices()
 		{
 			List<string> deviceNames = new List<string>();
 			this.model.videoCaptureDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice); //Surandame visas kameras sistemoje
@@ -92,7 +121,7 @@ namespace Road_rangerVS.Presenters
 			}
 		}
 
-		public void closeForm() //Išjungus programą išsijungs ir kamera.
+		public void CloseForm() //Išjungus programą išsijungs ir kamera.
 		{
 			if (this.model.finalVideo.IsRunning == true)
 			{

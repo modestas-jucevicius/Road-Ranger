@@ -9,10 +9,5 @@ namespace Road_rangerVS.Recognition
         {
             this.Image = image;
         }
-
-        override public string ToString()
-        {
-            return base.ToString() + " " + Image.ToString();
-        }
     }
 }

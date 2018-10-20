@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace Road_rangerVS.Views
 {
-    interface IGalleryView
+    public interface IGalleryView
     {
-        Bitmap image { get; set; }
-        ListViewItem car { get; set; }
-        bool enableReport { get; set; }
+        Bitmap Image { get; set; }
+        ListViewItem Car { get; set; }
+        bool EnableReport { get; set; }
     }
 }

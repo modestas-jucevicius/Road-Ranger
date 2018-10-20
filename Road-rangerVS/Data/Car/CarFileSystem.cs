@@ -23,7 +23,6 @@ namespace Road_rangerVS.Data
             foreach (string line in strings)
             {
                 fields = line.Split(',');
-                Console.WriteLine(line);
                 Car car = GetCarFromStringArray(fields);
                 list.Add(car);
             }
@@ -129,7 +128,6 @@ namespace Road_rangerVS.Data
             return new Car(Int32.Parse(array[0]), Int32.Parse(array[1]), array[2],
                 array[3], array[4], array[5],
                 array[6], array[7], (CarStatus)Enum.Parse(typeof(CarStatus), array[8]));
-        }
-            
+        } 
     }
 }
