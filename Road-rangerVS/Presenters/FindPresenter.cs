@@ -25,12 +25,12 @@ namespace Road_rangerVS.Presenters
         public void SelectByIndex(ISearchView view, int id)
         {
             CapturedCar car = cars.FirstOrDefault(x => x.Id == id);
-            view.image = new System.Drawing.Bitmap(car.Image.Path);
+            view.Image = new System.Drawing.Bitmap(car.Image.Path);
         }
 
         public void Search(ISearchView view)
         {
-            cars = this.FindByPlate(view.licensePlate);
+            cars = this.FindByPlate(view.LicensePlate);
             foreach (CapturedCar car in cars)
             {
                 TimeSpan time = TimeSpan.FromMilliseconds(car.Image.Timestamp * 1000);
@@ -38,7 +38,7 @@ namespace Road_rangerVS.Presenters
 
                 string[] row = { car.Id.ToString(), car.LicensePlate, car.Status.ToString(), dateTime.ToLocalTime().ToString() };
                 var listViewItem = new ListViewItem(row);
-                view.foundCar = listViewItem;
+                view.FoundCar = listViewItem;
             }
         }
 	}

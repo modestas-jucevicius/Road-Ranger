@@ -11,7 +11,7 @@ namespace Road_rangerVS.Data
     {
         void Put(Car obj);
         void PutList(List<Car> obj);
-        List<Car> FindAll(); // gauti visas eilutes
+        List<Car> FindAll();
         Car FindById(int id);
         bool Update(int id, Car obj);
         bool Remove(int id);

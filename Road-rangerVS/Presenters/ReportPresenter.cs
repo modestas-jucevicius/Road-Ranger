@@ -12,9 +12,9 @@ namespace Road_rangerVS.Presenters
 			model = new ReportModel();
 		}
 
-		public void sendMail(string recipient, string subject, string body)
+		public void SendMail(IReportView view)
 		{
-			this.model.SendMail(recipient, subject, body);
+			this.model.SendMail(view.Subject, view.Message);
 		}
 	}
 }

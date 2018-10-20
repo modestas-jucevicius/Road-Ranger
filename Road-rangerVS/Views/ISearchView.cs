@@ -11,8 +11,8 @@ namespace Road_rangerVS.Views
 {
     public interface ISearchView
     {
-        string licensePlate { get; set; }
-        Bitmap image { get; set; }
-        ListViewItem foundCar { get; set; }
+        string LicensePlate { get; set; }
+        Bitmap Image { get; set; }
+        ListViewItem FoundCar { get; set; }
     }
 }

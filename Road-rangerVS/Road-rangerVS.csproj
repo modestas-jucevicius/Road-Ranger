@@ -153,6 +153,7 @@
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Presenters\FindPresenter.cs" />
     <Compile Include="Presenters\GalleryPresenter.cs" />
+    <Compile Include="Views\IReportView.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Recognition\ParseException.cs" />
     <Compile Include="Report\IReportSender.cs" />
@@ -160,18 +161,6 @@
     <Compile Include="Report\MailReportSender.cs" />
     <Compile Include="Validation\LicensePlateValidator.cs" />
     <Compile Include="Validation\TextValidator.cs" />
-    <Compile Include="Views\FindForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\FindForm.Designer.cs">
-      <DependentUpon>FindForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GalleryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\GalleryForm.Designer.cs">
-      <DependentUpon>GalleryForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Images\Image.cs" />
     <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Cars\CarStatus.cs" />
@@ -183,11 +172,12 @@
     <Compile Include="Cars\Car.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
     <Compile Include="Views\IGalleryView.cs" />
+    <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\ISearchView.cs" />
-    <Compile Include="Views\Main Form.cs">
+    <Compile Include="Main Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Main Form.designer.cs">
+    <Compile Include="Main Form.designer.cs">
       <DependentUpon>Main Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Recognition\OpenALPRParser.cs" />
@@ -195,24 +185,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recognition\ICarParser.cs" />
-    <Compile Include="Views\ReportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ReportForm.Designer.cs">
-      <DependentUpon>ReportForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Score\Score.cs" />
     <Compile Include="Score\Evaluation.cs" />
     <Compile Include="Search\CapturedCarFinder.cs" />
     <Compile Include="Search\ICapturedCarFinder.cs" />
     <Compile Include="Users\User.cs" />
-    <EmbeddedResource Include="Views\FindForm.resx">
-      <DependentUpon>FindForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\GalleryForm.resx">
-      <DependentUpon>GalleryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Main Form.resx">
+    <EmbeddedResource Include="Main Form.resx">
       <DependentUpon>Main Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -224,9 +202,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\ReportForm.resx">
-      <DependentUpon>ReportForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

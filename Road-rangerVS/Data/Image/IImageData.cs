@@ -8,7 +8,7 @@ namespace Road_rangerVS.Data
     {
         void Put(Image obj);
         void PutList(List<Image> obj);
-        List<Image> FindAll(); // gauti visas eilutes
+        List<Image> FindAll();
         Image FindById(int id);
         bool Remove(int id);
     }
