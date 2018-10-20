@@ -14,7 +14,7 @@ namespace Road_rangerVS.Presenters
 
 		public void sendMail(string recipient, string subject, string body)
 		{
-			this.model.sendMail(recipient, subject, body);
+			this.model.SendMail(recipient, subject, body);
 		}
 	}
 }

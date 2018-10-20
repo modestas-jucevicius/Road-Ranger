@@ -38,9 +38,10 @@
             // reportButton
             // 
             this.reportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.reportButton.Location = new System.Drawing.Point(946, 477);
+            this.reportButton.Location = new System.Drawing.Point(1261, 587);
+            this.reportButton.Margin = new System.Windows.Forms.Padding(4);
             this.reportButton.Name = "reportButton";
-            this.reportButton.Size = new System.Drawing.Size(125, 23);
+            this.reportButton.Size = new System.Drawing.Size(167, 28);
             this.reportButton.TabIndex = 4;
             this.reportButton.Text = "Report";
             this.reportButton.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@
             // removeButton
             // 
             this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.removeButton.Location = new System.Drawing.Point(815, 477);
+            this.removeButton.Location = new System.Drawing.Point(1087, 587);
+            this.removeButton.Margin = new System.Windows.Forms.Padding(4);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(125, 23);
+            this.removeButton.Size = new System.Drawing.Size(167, 28);
             this.removeButton.TabIndex = 5;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -60,32 +62,35 @@
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox.Location = new System.Drawing.Point(12, 8);
+            this.pictureBox.Location = new System.Drawing.Point(16, 10);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(703, 488);
+            this.pictureBox.Size = new System.Drawing.Size(937, 601);
             this.pictureBox.TabIndex = 6;
             this.pictureBox.TabStop = false;
             // 
             // listView
             // 
             this.listView.FullRowSelect = true;
-            this.listView.Location = new System.Drawing.Point(721, 8);
+            this.listView.Location = new System.Drawing.Point(961, 10);
+            this.listView.Margin = new System.Windows.Forms.Padding(4);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(350, 463);
+            this.listView.Size = new System.Drawing.Size(465, 569);
             this.listView.TabIndex = 7;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.ListViewSelectedIndexChanged);
             // 
-            // HistoryForm
+            // GalleryForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 512);
+            this.ClientSize = new System.Drawing.Size(1444, 630);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.reportButton);
-            this.Name = "HistoryForm";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "GalleryForm";
             this.Text = "HistoryForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);

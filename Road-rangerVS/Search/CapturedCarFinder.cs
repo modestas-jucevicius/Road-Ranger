@@ -21,9 +21,9 @@ namespace Road_rangerVS.Search
             IEnumerable<CapturedCar> capturedCars = new List<CapturedCar>();
 
             capturedCars = from car in cars
-                           join image in images on car.id equals image.carId
-                           where car.licensePlate.Equals(licensePlate)
-                           orderby image.timestamp descending
+                           join image in images on car.Id equals image.CarId
+                           where car.LicensePlate.Equals(licensePlate)
+                           orderby image.Timestamp descending
                            select new CapturedCar(car, image);
             
             return capturedCars.ToList();
@@ -35,9 +35,9 @@ namespace Road_rangerVS.Search
             List<Image> images = imageData.FindAll();
 
             IEnumerable<CapturedCar> capturedCars = from car in cars
-                                                    join image in images on car.id equals image.carId
-                                                    where car.userId == id
-                                                    orderby image.timestamp descending
+                                                    join image in images on car.Id equals image.CarId
+                                                    where car.UserId == id
+                                                    orderby image.Timestamp descending
                                                     select new CapturedCar(car, image);
 
             return capturedCars.ToList();

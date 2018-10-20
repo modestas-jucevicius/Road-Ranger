@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Road_rangerVS.OutsideAPI;
 
 namespace Road_rangerVS.Score
 {
@@ -17,22 +18,22 @@ namespace Road_rangerVS.Score
 
         public static int Evaluate(Car car)                     // Įvertinti automobilį taškais
         {
-            if (car.status.ToString() == "NOT_STOLEN")
+            if (car.Status.Equals(CarStatus.NOT_STOLEN))
             {
                 return notStolenScore;
             }
 
-            if (car.status.ToString() == "STOLEN")
+            if (car.Status.Equals(CarStatus.STOLEN))
             {
                 return stolenScore;
             }
 
-            if (car.status.ToString() == "STOLEN_PLATE")
+            if (car.Status.Equals(CarStatus.STOLEN_PLATE))
             {
                 return stolenPlateScore;
             }
 
-            if (car.status.ToString() == "UNKNOWN")
+            if (car.Status.Equals(CarStatus.UNKNOWN))
             {
                 return unknownScore;
             }

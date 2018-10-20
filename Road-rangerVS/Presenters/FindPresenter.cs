@@ -13,30 +13,30 @@ namespace Road_rangerVS.Presenters
 		private readonly FindModel model = new FindModel();
         private List<CapturedCar> cars = new List<CapturedCar>();
 
-        private List<CapturedCar> findByPlate(string licencePlate)
+        private List<CapturedCar> FindByPlate(string licencePlate)
 		{
-			return this.model.findByPlate(licencePlate);
+			return this.model.FindByPlate(licencePlate);
 		}
-        public CapturedCar findOneById(int id)
+        public CapturedCar FindOneById(int id)
         {
-            return cars.FirstOrDefault(x => x.id == id);
+            return cars.FirstOrDefault(x => x.Id == id);
         }
 
         public void SelectByIndex(ISearchView view, int id)
         {
-            CapturedCar car = cars.FirstOrDefault(x => x.id == id);
-            view.image = new System.Drawing.Bitmap(car.image.path);
+            CapturedCar car = cars.FirstOrDefault(x => x.Id == id);
+            view.image = new System.Drawing.Bitmap(car.Image.Path);
         }
 
         public void Search(ISearchView view)
         {
-            cars = findByPlate(view.licensePlate);
+            cars = this.FindByPlate(view.licensePlate);
             foreach (CapturedCar car in cars)
             {
-                TimeSpan time = TimeSpan.FromMilliseconds(car.image.timestamp * 1000);
+                TimeSpan time = TimeSpan.FromMilliseconds(car.Image.Timestamp * 1000);
                 DateTime dateTime = new DateTime(1970, 1, 1) + time;
 
-                string[] row = { car.id.ToString(), car.licensePlate, car.status.ToString(), dateTime.ToLocalTime().ToString() };
+                string[] row = { car.Id.ToString(), car.LicensePlate, car.Status.ToString(), dateTime.ToLocalTime().ToString() };
                 var listViewItem = new ListViewItem(row);
                 view.foundCar = listViewItem;
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using Road_rangerVS.Presenters;
 using Road_rangerVS.Views;
@@ -97,6 +98,16 @@ namespace Road_rangerVS
             DialogResult result = MessageBox.Show("Are you sure you want to report car?", "Report message", MessageBoxButtons.YesNo);
             if (result.Equals(DialogResult.Yes))
             {
+                this.presenter.ReportByIndex(this, id);
+            }
+        }
+
+        private void ShowRemoveMessage(int id)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to remove car?", "Remove message", MessageBoxButtons.YesNo);
+            if (result.Equals(DialogResult.Yes))
+            {
+                this.listView.Items.Clear();
                 this.presenter.RemoveByIndex(this, id);
             }
         }
@@ -106,12 +117,13 @@ namespace Road_rangerVS
             try
             {
                 int id = Int32.Parse(listView.SelectedItems[0].SubItems[0].Text);
-                this.presenter.RemoveByIndex(this, id);
+                this.ShowRemoveMessage(id);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
+
     }
 }

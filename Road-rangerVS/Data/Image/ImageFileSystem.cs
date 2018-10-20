@@ -4,30 +4,31 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Road_rangerVS.Users;
+using Road_rangerVS.Images;
 
 namespace Road_rangerVS.Data
 {
-    class UserFileSystem : IUserData
+    class ImageFileSystem : IImageData
     {
-        private string path = System.Environment.CurrentDirectory + "/Storage/Users.txt";
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
-        public List<User> FindAll()
+        private string path = System.Environment.CurrentDirectory + @"\Storage\Images.txt";
+        public List<Image> FindAll()
         {
-            List<User> list = new List<User>();
+            List<Image> list = new List<Image>();
             List<String> strings = primitiveFileSystem.GetLines(path);
 
             string[] fields = null;
+                
             foreach (string line in strings)
             {
                 fields = line.Split(',');
-                list.Add(new User(fields));
+                list.Add(GetImageFromStringArray(fields));
             }
             return list;
         }
 
-        public User FindById(int id)
+        public Image FindById(int id)
         {
             List<String> strings = primitiveFileSystem.GetLines(path);
 
@@ -43,29 +44,29 @@ namespace Road_rangerVS.Data
                     break;
                 }
             }
-            if (rado == false) { return default(User); }
+            if (rado == false) { return default(Image); }
             else
             {
-                return new User(fields);
+                return GetImageFromStringArray(fields);
             }
         }
 
-        public void Put(User obj)
+        public void Put(Image obj)
         {
-            obj.id = indexer.GetLastId(path) + 1;
-            File.AppendAllText(path, obj.ToString());
+            obj.Id = indexer.GetLastId(path) + 1;
+            File.AppendAllText(path, ImageToCSVFormat(obj));
         }
 
-        public void PutList(List<User> objects)
+        public void PutList(List<Image> objects)
         {
-            foreach (User obj in objects)
+            foreach (Image obj in objects)
             {
-                Put(obj);
+                this.Put(obj);
             }
         }
-
-        public bool Update(int id, User obj)
+        public bool Remove(int id)
         {
+            Image image = this.FindById(id);
             string strID = id.ToString();
             string strOldText;
             string fileData = "";
@@ -73,16 +74,31 @@ namespace Road_rangerVS.Data
             StreamReader sr = File.OpenText(path);
             while ((strOldText = sr.ReadLine()) != null)
             {
-                if (String.Equals(strOldText[0], strID))
+                if (strID.Equals(strOldText[0].ToString()))
                 {
                     found = true;
-                    fileData += obj.ToString() + Environment.NewLine;
                 }
-                else { fileData += strOldText + Environment.NewLine; }
+                else
+                {
+                    fileData += strOldText + Environment.NewLine;
+                }
             }
             sr.Close();
             File.WriteAllText(path, fileData);
+            //File.Delete(image.path);
             return found;
+        }
+
+        private string ImageToCSVFormat(Image image)
+        {
+            return image.Id + "," + image.CarId + "," + image.Timestamp +
+                "," + image.Path + Environment.NewLine;
+        }
+
+        private Image GetImageFromStringArray(String[] array)
+        {
+            return new Image(Int32.Parse(array[0]), Int32.Parse(array[1]),
+                        long.Parse(array[2]), array[3]);
         }
     }
 }

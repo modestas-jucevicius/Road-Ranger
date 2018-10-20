@@ -21,23 +21,12 @@ namespace Road_rangerVS
 		public ReportForm()
         {
             InitializeComponent();
-    presenter = new ReportPresenter();
-
+            presenter = new ReportPresenter();
         }
 
-        private void ReportForm_Load(object sender, EventArgs e)
+        private void SendButtonClick(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sendButton_Click(object sender, EventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(subjectText.Text) || string.IsNullOrWhiteSpace(addressBox.Text) ||
+            if(string.IsNullOrWhiteSpace(subjectText.Text) ||
                 string.IsNullOrWhiteSpace(textEmail.Text))
             {
                 MessageBox.Show("Missing fields!", "Mistake");
@@ -47,7 +36,6 @@ namespace Road_rangerVS
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com"); //Nurodom, iš kur siųsim laiškus
                 mail.From = new MailAddress("mappuab@gmail.com");//Mūsų gmail laikinas, iš kurio siunčia
-                mail.To.Add(addressBox.Text); //adresas iš textbox
                 mail.Subject = subjectText.Text; //Tema
                 mail.Body = textEmail.Text; //Tekstas
 

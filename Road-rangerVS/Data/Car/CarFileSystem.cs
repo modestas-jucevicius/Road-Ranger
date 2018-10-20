@@ -4,25 +4,27 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
 
 namespace Road_rangerVS.Data
 {
     class CarFileSystem : ICarData
     {
-        private PrimitiveFileSystem PrimitiveFileSystem = new PrimitiveFileSystem();
+        private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
-        private string path = System.Environment.CurrentDirectory + "/Storage/Cars.txt";
+        private string path = System.Environment.CurrentDirectory + @"\Storage\Cars.txt";
         public List<Car> FindAll()
         {
             List<Car> list = new List<Car>();
-            List<String> strings = PrimitiveFileSystem.GetLines(path);
+            List<String> strings = primitiveFileSystem.GetLines(path);
             string[] fields = null;
-               
+
             foreach (string line in strings)
             {
                 fields = line.Split(',');
-                Car car = new Car(fields);
+                Console.WriteLine(line);
+                Car car = GetCarFromStringArray(fields);
                 list.Add(car);
             }
             return list;
@@ -30,7 +32,7 @@ namespace Road_rangerVS.Data
 
         public Car FindById(int id)
         {
-            List<String> strings = PrimitiveFileSystem.GetLines(path);
+            List<String> strings = primitiveFileSystem.GetLines(path);
 
             string[] fields = null;
             bool rado = false;
@@ -50,14 +52,14 @@ namespace Road_rangerVS.Data
             }
             else
             {
-                return new Car(fields);
+                return GetCarFromStringArray(fields);
             }
         }
 
         public void Put(Car obj)
         {
-            obj.id = indexer.GetLastId(path) + 1;
-            File.AppendAllText(path, obj.ToString());
+            obj.Id = indexer.GetLastId(path) + 1;
+            File.AppendAllText(path, CarToCSVFormat(obj));
         }
 
         public void PutList(List<Car> objects)
@@ -77,12 +79,15 @@ namespace Road_rangerVS.Data
             StreamReader sr = File.OpenText(path);
             while ((strOldText = sr.ReadLine()) != null)
             {
-                if (String.Equals(strOldText[0], strID))
+                if (strID.Equals(strOldText[0].ToString()))
                 {
                     found = true;
-                    fileData += obj.ToString() + Environment.NewLine;
+                    fileData += CarToCSVFormat(obj) + Environment.NewLine;
                 }
-                else { fileData += strOldText + Environment.NewLine; }
+                else
+                {
+                    fileData += strOldText + Environment.NewLine;
+                }
             }
             sr.Close();
             File.WriteAllText(path, fileData);
@@ -98,12 +103,33 @@ namespace Road_rangerVS.Data
             StreamReader sr = File.OpenText(path);
             while ((strOldText = sr.ReadLine()) != null)
             {
-                if (String.Equals(strOldText[0], strID)) { found = true; }
-                else{ fileData += strOldText + Environment.NewLine;}
+                if (strID.Equals(strOldText[0].ToString()))
+                {
+                    found = true;
+                }
+                else
+                {
+                    fileData += strOldText + Environment.NewLine;
+                }
             }
             sr.Close();
             File.WriteAllText(path, fileData);
             return found;
         }
+
+        private string CarToCSVFormat(Car car)
+        {
+            return car.Id + "," + car.UserId + "," + car.LicensePlate + "," + car.ColorName +
+                 "," + car.MakeName + "," + car.Model + "," + car.BodyType + "," + car.Year +
+                 "," + car.Status + Environment.NewLine;
+        }
+
+        private Car GetCarFromStringArray(string[] array)
+        {
+            return new Car(Int32.Parse(array[0]), Int32.Parse(array[1]), array[2],
+                array[3], array[4], array[5],
+                array[6], array[7], (CarStatus)Enum.Parse(typeof(CarStatus), array[8]));
+        }
+            
     }
 }
