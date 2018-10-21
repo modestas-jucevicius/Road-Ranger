@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Road_rangerVS.Users;
 
 namespace Road_rangerVS.Data
@@ -12,7 +9,7 @@ namespace Road_rangerVS.Data
     {
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
-        private string path = System.Environment.CurrentDirectory + @"\Storage\Users.txt";
+        private string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Users.txt";
         public List<User> FindAll()
         {
             List<User> list = new List<User>();

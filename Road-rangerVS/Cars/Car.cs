@@ -15,6 +15,7 @@ namespace Road_rangerVS.Recognition
         public string BodyType { get; set; }        // tipas
         public string Year { get; set; }            // pagaminimo metai
         public CarStatus Status { get; set; }
+        public bool IsReported {get; set;}
 
         public Car(Car car)
         {
@@ -27,6 +28,7 @@ namespace Road_rangerVS.Recognition
             this.BodyType = car.BodyType;
             this.Year = car.Year;
             this.Status = car.Status;
+            this.IsReported = car.IsReported;
         }
 
         public Car(string licensePlate, string colorName, string makeName, 
@@ -41,12 +43,13 @@ namespace Road_rangerVS.Recognition
         }
 
         public Car(int id, int userId, string licensePlate, string colorName, 
-            string makeName, string model, string bodyType, string year, CarStatus status) 
+            string makeName, string model, string bodyType, string year, bool isReported, CarStatus status) 
             : this(licensePlate, colorName, makeName, model, bodyType, year)
         {
             this.Id = id;
             this.UserId = userId;
             this.Status = status;
+            this.IsReported = isReported;
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Road_rangerVS
 {
 	public partial class MainForm : Form, IMainView, IReportView, ISearchView, IGalleryView
     {
-		private readonly string PATH = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + @"\Pictures\";     // ~/bin/Debug/Pictures/
 		private MainPresenter mainPresenter;
         private ReportPresenter reportPresenter;
         private FindPresenter findPresenter;
@@ -200,7 +199,8 @@ namespace Road_rangerVS
 
 		private void CaptureClick(object sender, EventArgs e)
         {
-            this.mainPresenter.SaveFrameImage(this, PATH);
+
+            this.mainPresenter.SaveFrameImage(this);
         }
 
         private void MainFormClosing(object sender, FormClosingEventArgs e)

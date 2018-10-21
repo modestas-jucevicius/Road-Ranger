@@ -11,6 +11,7 @@ using AForge.Video.DirectShow;
 using Road_rangerVS.Views;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace Road_rangerVS.Presenters
 {
@@ -18,9 +19,11 @@ namespace Road_rangerVS.Presenters
     {
         private MainModel model;
         private ReportModel report;
-        private ICarRecognizer recognizer = new OpenALPRRecognizer();
+        private OpenALPRRecognizer recognizer = new OpenALPRRecognizer();
         private ICarParser parser = new OpenALPRParser();
         private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+        private readonly string picturePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Pictures\";     // ~\Pictures\
+
 
         public MainPresenter()
         {
@@ -29,16 +32,68 @@ namespace Road_rangerVS.Presenters
         }
 
         // Transliuoja naują kadrą į view.Frame
-        public void NewFrame(IMainView view, NewFrameEventArgs eventArgs)
+        public async void NewFrame(IMainView view, NewFrameEventArgs eventArgs)
         {
             Bitmap video = (Bitmap)eventArgs.Frame.Clone(); //Sukuriame kadro bitmap'ą
             view.Frame = video;                             //Ir jį ištransliuojame view.Frame elemente
+            Bitmap frameCopy = (Bitmap)eventArgs.Frame.Clone(); //Reikalinga, nes neleidziama naudot to paties bitmap'o keliuose threaduose
+            //Atpazistame automobilius
+            if(FrameRecognition.isRunning == false)
+            {
+                Byte[] imageBytes = ImageToByte(frameCopy);
+                string result = await FrameRecognition.Recognition(imageBytes);
+                FrameRecognition.isRunning = false;
+                List<Car> cars = parser.Parse(result);
+                if (cars.Count == 0)
+                {
+                    return;
+                }
+
+                bool isSaved = false;
+                long timestamp = 0;
+                string path = "";
+                foreach (Car car in cars)
+                {
+                    car.Status = await requester.AskCarStatus(car.LicensePlate);
+                    ShowReportMessage(car);
+                    SaveData(car, ref isSaved, ref timestamp, ref path, ref video);
+                }
+            }
+        }
+
+        private void ShowReportMessage(Car car)
+        {
+            String message = "";
+            if (car.Status.Equals(CarStatus.STOLEN) || car.Status.Equals(CarStatus.STOLEN_PLATE))
+            {
+                if (car.Status == CarStatus.STOLEN)
+                {
+                    message = "You found a stolen car with license plate: " + car.LicensePlate + "! Are you sure you want to report about it?";
+                }
+                else if (car.Status == CarStatus.STOLEN_PLATE)
+                {
+                    message = "You found a stolen license plate: " + car.LicensePlate + "! Are you sure you want to report about it?";
+                }
+
+                DialogResult foundResult = System.Windows.Forms.MessageBox.Show(message, "Found car message", MessageBoxButtons.YesNo);
+                if (foundResult.Equals(DialogResult.Yes))
+                {
+                    car.IsReported = true;
+                    report.SendGeneratedMail(car);
+                }
+            }
+            else
+            {
+                message = "You found a not stolen car with license plate: " + car.LicensePlate + "!";
+                MessageBox.Show(message, "Found car message");
+            }
         }
 
         // Išsaugo view.Frame vaizdą vietoje path
-        public void SaveFrameImage(IMainView view, string path)
+        public void SaveFrameImage(IMainView view)
         {
-            view.Frame.Save(path + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
+            Image image = view.Frame;
+            image.Save(picturePath + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
         }
 
         // Ieško automobilio nuotraukos kompiuterio aplankaluose
@@ -72,18 +127,19 @@ namespace Road_rangerVS.Presenters
             foreach (Car car in cars)
 			{
                 car.Status = await requester.AskCarStatus(car.LicensePlate);
-                SaveData(car, isSaved, timestamp, path, bitmap);
+                ShowReportMessage(car);
+                SaveData(car, ref isSaved, ref timestamp, ref path, ref bitmap);
             }
         }
 
         // Išsaugo automobilio (car) duomenis ir užfiksuotą jos nuotrauką
-        private void SaveData(Car car, bool isSaved, long timestamp, string path, Bitmap bitmap)
+        private void SaveData(Car car, ref bool isSaved, ref long timestamp, ref string path, ref Bitmap bitmap)
         {
             model.carData.Put(car);
             if (!isSaved)
             {
                 timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                path = Environment.CurrentDirectory + @"\Images\" + car.Id.ToString() + ".jpg";
+                path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" + car.Id.ToString() + ".jpg";
                 bitmap.Save(path);
 
                 isSaved = true;
@@ -128,5 +184,14 @@ namespace Road_rangerVS.Presenters
 				this.model.finalVideo.Stop();
 			}
 		}
-	}
+
+        public static byte[] ImageToByte(Image img)
+        {
+            using (var stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
+    }
 }

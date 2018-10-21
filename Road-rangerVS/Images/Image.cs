@@ -21,6 +21,5 @@ namespace Road_rangerVS.Images
         {
             this.Id = id;
         }
-
     }
 }
