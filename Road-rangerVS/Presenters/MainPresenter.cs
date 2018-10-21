@@ -12,23 +12,39 @@ using Road_rangerVS.Views;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.IO;
+using Road_rangerVS.Users;
+using Road_rangerVS.Data;
+using Road_rangerVS.Score;
 
 namespace Road_rangerVS.Presenters
 {
     class MainPresenter
     {
+        private UserFileSystem userFileSystem = new UserFileSystem();
         private MainModel model;
         private ReportModel report;
         private OpenALPRRecognizer recognizer = new OpenALPRRecognizer();
+        public Label scoreLabel;
         private ICarParser parser = new OpenALPRParser();
         private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
         private readonly string picturePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Pictures\";     // ~\Pictures\
+        public User loggedInUser = new User(0, "username", "password", "name", 0);
 
-
-        public MainPresenter()
+        public MainPresenter(Label scoreLabel)
         {
             model = new MainModel();
             report = new ReportModel();
+            User user = userFileSystem.FindById(loggedInUser.id);
+            if(user != null)
+            {
+                loggedInUser.score = user.score;
+                scoreLabel.Text = "Score: " + loggedInUser.score.ToString();
+            }
+            else
+            {
+                userFileSystem.Put(loggedInUser);
+            }
+            this.scoreLabel = scoreLabel;
         }
 
         // Transliuoja naują kadrą į view.Frame
@@ -55,6 +71,9 @@ namespace Road_rangerVS.Presenters
                 foreach (Car car in cars)
                 {
                     car.Status = await requester.AskCarStatus(car.LicensePlate);
+                    loggedInUser.IncreaseScore(Evaluation.Evaluate(car));
+                    scoreLabel.Text = "Score: " + loggedInUser.score.ToString();
+                    userFileSystem.Update(loggedInUser.id, loggedInUser);
                     ShowReportMessage(car);
                     SaveData(car, ref isSaved, ref timestamp, ref path, ref video);
                 }
@@ -127,6 +146,9 @@ namespace Road_rangerVS.Presenters
             foreach (Car car in cars)
 			{
                 car.Status = await requester.AskCarStatus(car.LicensePlate);
+                loggedInUser.IncreaseScore(Evaluation.Evaluate(car));
+                scoreLabel.Text = "Score: " + loggedInUser.score.ToString();
+                userFileSystem.Update(loggedInUser.id, loggedInUser);
                 ShowReportMessage(car);
                 SaveData(car, ref isSaved, ref timestamp, ref path, ref bitmap);
             }
@@ -139,7 +161,7 @@ namespace Road_rangerVS.Presenters
             if (!isSaved)
             {
                 timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" + car.Id.ToString() + ".jpg";
+                path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Images\" + car.Id.ToString() + ".jpg";
                 bitmap.Save(path);
 
                 isSaved = true;

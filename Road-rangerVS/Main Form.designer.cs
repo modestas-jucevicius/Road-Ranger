@@ -42,6 +42,7 @@ namespace Road_rangerVS
             this.cameraTopText = new System.Windows.Forms.Label();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
+            this.scoreLabel = new System.Windows.Forms.Label();
             this.tabReport = new System.Windows.Forms.TabPage();
             this.subjectText = new System.Windows.Forms.TextBox();
             this.subjectLabel = new System.Windows.Forms.Label();
@@ -192,6 +193,7 @@ namespace Road_rangerVS
             // 
             // tabMain
             // 
+            this.tabMain.Controls.Add(this.scoreLabel);
             this.tabMain.Controls.Add(this.cameraTopText);
             this.tabMain.Controls.Add(this.pictureBox);
             this.tabMain.Controls.Add(this.comboBox1);
@@ -208,6 +210,17 @@ namespace Road_rangerVS
             this.tabMain.TabIndex = 0;
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
+            // 
+            // scoreLabel
+            // 
+            this.scoreLabel.AutoSize = true;
+            this.scoreLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold);
+            this.scoreLabel.Location = new System.Drawing.Point(818, 339);
+            this.scoreLabel.Name = "scoreLabel";
+            this.scoreLabel.Size = new System.Drawing.Size(124, 32);
+            this.scoreLabel.TabIndex = 50;
+            this.scoreLabel.Text = "Score: 0";
+            this.scoreLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // tabReport
             // 
@@ -510,6 +523,7 @@ namespace Road_rangerVS
         private System.Windows.Forms.ColumnHeader columnFind3;
         private System.Windows.Forms.ColumnHeader columnFind4;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Label scoreLabel;
     }
 }
 

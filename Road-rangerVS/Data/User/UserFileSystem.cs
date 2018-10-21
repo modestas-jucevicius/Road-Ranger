@@ -30,14 +30,17 @@ namespace Road_rangerVS.Data
 
             string[] fields = null;
             bool rado = false;
-            foreach (string line in strings)
-            {
-                fields = line.Split(',');
-                int ID = Int32.Parse(fields[0]);
-                if (ID == id)
+            if (strings.Count != 0)
+            { 
+                foreach (string line in strings)
                 {
-                    rado = true;
-                    break;
+                    fields = line.Split(',');
+                    int ID = Int32.Parse(fields[0]);
+                    if (ID == id)
+                    {
+                        rado = true;
+                        break;
+                    }
                 }
             }
             if (rado == false) { return default(User); }
@@ -49,8 +52,8 @@ namespace Road_rangerVS.Data
 
         public void Put(User obj)
         {
-            obj.Id = indexer.GetLastId(path) + 1;
-            File.AppendAllText(path, obj.ToString());
+            obj.id = indexer.GetLastId(path) + 1;
+            File.AppendAllText(path, obj.ToString() + Environment.NewLine);
         }
 
         public void PutList(List<User> objects)
@@ -84,7 +87,7 @@ namespace Road_rangerVS.Data
 
         private string UserToCSVFormat(User user)
         {
-            return user.Id + "," + user.Username + "," + user.Name + "," + user.GetScore() + Environment.NewLine;
+            return user.id + "," + user.username + "," + user.name + "," + user.score + Environment.NewLine;
         }
 
         private User GetUserFromStringArray(String[] array)
