@@ -34,8 +34,8 @@ namespace Road_rangerVS.Presenters
         {
             Bitmap video = (Bitmap)eventArgs.Frame.Clone(); //Sukuriame kadro bitmap'ą
             view.Frame = video;                             //Ir jį ištransliuojame view.Frame elemente
-            Bitmap frameCopy = (Bitmap)eventArgs.Frame.Clone();
-            
+            Bitmap frameCopy = (Bitmap)eventArgs.Frame.Clone(); //Reikalinga, nes neleidziama naudot to paties bitmap'o keliuose threaduose
+            //Atpazistame automobilius
             if(FrameRecognition.isRunning == false)
             {
                 Byte[] imageBytes = ImageToByte(frameCopy);
@@ -44,7 +44,6 @@ namespace Road_rangerVS.Presenters
                 List<Car> cars = parser.Parse(result);
                 if (cars.Count == 0)
                 {
-                    Console.WriteLine("Auto nerasta");
                     return;
                 }
 
