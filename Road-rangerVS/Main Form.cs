@@ -220,8 +220,8 @@ namespace Road_rangerVS
 
         private void SearchClick(object sender, EventArgs e)
         {
-            TextValidator validator = new LicensePlateValidator();
-            if (validator.isValid(inputText.Text))
+            ITextValidator validator = new LicensePlateValidator();
+            if (validator.IsValid(inputText.Text))
             {
                 this.findListView.Items.Clear();
                 findPresenter.Search(this);

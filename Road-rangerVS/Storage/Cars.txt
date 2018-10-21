@@ -1,0 +1,1 @@
+0,0,051MRH,red,nissan,nissan_qashqai,sedan-compact,2010-2014,False,NOT_STOLEN
