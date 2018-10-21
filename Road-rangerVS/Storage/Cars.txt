@@ -44,3 +44,5 @@
 44,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
 45,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
 46,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+47,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+48,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
