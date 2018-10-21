@@ -22,6 +22,8 @@ namespace Road_rangerVS.Presenters
         private OpenALPRRecognizer recognizer = new OpenALPRRecognizer();
         private ICarParser parser = new OpenALPRParser();
         private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+        private readonly string picturePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Pictures\";     // ~\Pictures\
+
 
         public MainPresenter()
         {
@@ -53,25 +55,45 @@ namespace Road_rangerVS.Presenters
                 foreach (Car car in cars)
                 {
                     car.Status = await requester.AskCarStatus(car.LicensePlate);
-                    if(car.Status == CarStatus.STOLEN)
-                    {
-                        System.Windows.Forms.MessageBox.Show("You found a stolen car!");
-                        report.SendGeneratedMail(car);
-                    }
-                    if(car.Status == CarStatus.STOLEN_PLATE)
-                    {
-                        System.Windows.Forms.MessageBox.Show("You found a stolen number plate!");
-                        report.SendGeneratedMail(car);
-                    }
-                    SaveData(car, isSaved, timestamp, path, video);
+                    ShowReportMessage(car);
+                    SaveData(car, ref isSaved, ref timestamp, ref path, ref video);
                 }
             }
         }
 
-        // Išsaugo view.Frame vaizdą vietoje path
-        public void SaveFrameImage(IMainView view, string path)
+        private void ShowReportMessage(Car car)
         {
-            view.Frame.Save(path + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
+            String message = "";
+            if (car.Status.Equals(CarStatus.STOLEN) || car.Status.Equals(CarStatus.STOLEN_PLATE))
+            {
+                if (car.Status == CarStatus.STOLEN)
+                {
+                    message = "You found a stolen car with license plate: " + car.LicensePlate + "! Are you sure you want to report about it?";
+                }
+                else if (car.Status == CarStatus.STOLEN_PLATE)
+                {
+                    message = "You found a stolen license plate: " + car.LicensePlate + "! Are you sure you want to report about it?";
+                }
+
+                DialogResult foundResult = System.Windows.Forms.MessageBox.Show(message, "Found car message", MessageBoxButtons.YesNo);
+                if (foundResult.Equals(DialogResult.Yes))
+                {
+                    car.IsReported = true;
+                    report.SendGeneratedMail(car);
+                }
+            }
+            else
+            {
+                message = "You found a not stolen car with license plate: " + car.LicensePlate + "!";
+                MessageBox.Show(message, "Found car message");
+            }
+        }
+
+        // Išsaugo view.Frame vaizdą vietoje path
+        public void SaveFrameImage(IMainView view)
+        {
+            Image image = view.Frame;
+            image.Save(picturePath + "IMG" + DateTime.Now.ToString("hhmmss") + ".jpg", ImageFormat.Jpeg);
         }
 
         // Ieško automobilio nuotraukos kompiuterio aplankaluose
@@ -105,18 +127,19 @@ namespace Road_rangerVS.Presenters
             foreach (Car car in cars)
 			{
                 car.Status = await requester.AskCarStatus(car.LicensePlate);
-                SaveData(car, isSaved, timestamp, path, bitmap);
+                ShowReportMessage(car);
+                SaveData(car, ref isSaved, ref timestamp, ref path, ref bitmap);
             }
         }
 
         // Išsaugo automobilio (car) duomenis ir užfiksuotą jos nuotrauką
-        private void SaveData(Car car, bool isSaved, long timestamp, string path, Bitmap bitmap)
+        private void SaveData(Car car, ref bool isSaved, ref long timestamp, ref string path, ref Bitmap bitmap)
         {
             model.carData.Put(car);
             if (!isSaved)
             {
                 timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-                path = Environment.CurrentDirectory + @"\Images\" + car.Id.ToString() + ".jpg";
+                path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" + car.Id.ToString() + ".jpg";
                 bitmap.Save(path);
 
                 isSaved = true;

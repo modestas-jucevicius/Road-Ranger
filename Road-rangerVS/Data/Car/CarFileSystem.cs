@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
 
@@ -13,7 +10,7 @@ namespace Road_rangerVS.Data
     {
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
-        private string path = System.Environment.CurrentDirectory + @"\Storage\Cars.txt";
+        private string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Cars.txt";
         public List<Car> FindAll()
         {
             List<Car> list = new List<Car>();
@@ -119,7 +116,7 @@ namespace Road_rangerVS.Data
         private string CarToCSVFormat(Car car)
         {
             return car.Id + "," + car.UserId + "," + car.LicensePlate + "," + car.ColorName +
-                 "," + car.MakeName + "," + car.Model + "," + car.BodyType + "," + car.Year +
+                 "," + car.MakeName + "," + car.Model + "," + car.BodyType + "," + car.Year + "," + car.IsReported +
                  "," + car.Status + Environment.NewLine;
         }
 
@@ -127,7 +124,7 @@ namespace Road_rangerVS.Data
         {
             return new Car(Int32.Parse(array[0]), Int32.Parse(array[1]), array[2],
                 array[3], array[4], array[5],
-                array[6], array[7], (CarStatus)Enum.Parse(typeof(CarStatus), array[8]));
+                array[6], array[7], Convert.ToBoolean(array[8]), (CarStatus)Enum.Parse(typeof(CarStatus), array[9]));
         } 
     }
 }

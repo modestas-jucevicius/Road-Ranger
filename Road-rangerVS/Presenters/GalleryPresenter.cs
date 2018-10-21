@@ -7,7 +7,6 @@ using System;
 using Road_rangerVS.Views;
 using System.Linq;
 using Road_rangerVS.OutsideAPI;
-using System.IO;
 
 namespace Road_rangerVS.Presenters
 {
@@ -61,7 +60,7 @@ namespace Road_rangerVS.Presenters
 
         private void EnableReport(IGalleryView view, CapturedCar car)
         {
-            if (car.Status.Equals(CarStatus.STOLEN))
+            if (car.Status.Equals(CarStatus.STOLEN) && !car.IsReported)
                 view.EnableReport = true;
             else
                 view.EnableReport = false;
