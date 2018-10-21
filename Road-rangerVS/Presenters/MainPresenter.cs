@@ -11,6 +11,7 @@ using AForge.Video.DirectShow;
 using Road_rangerVS.Views;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace Road_rangerVS.Presenters
 {
@@ -18,7 +19,7 @@ namespace Road_rangerVS.Presenters
     {
         private MainModel model;
         private ReportModel report;
-        private ICarRecognizer recognizer = new OpenALPRRecognizer();
+        private OpenALPRRecognizer recognizer = new OpenALPRRecognizer();
         private ICarParser parser = new OpenALPRParser();
         private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
 
@@ -29,10 +30,33 @@ namespace Road_rangerVS.Presenters
         }
 
         // Transliuoja naują kadrą į view.Frame
-        public void NewFrame(IMainView view, NewFrameEventArgs eventArgs)
+        public async void NewFrame(IMainView view, NewFrameEventArgs eventArgs)
         {
             Bitmap video = (Bitmap)eventArgs.Frame.Clone(); //Sukuriame kadro bitmap'ą
             view.Frame = video;                             //Ir jį ištransliuojame view.Frame elemente
+            Bitmap frameCopy = (Bitmap)eventArgs.Frame.Clone();
+            
+            if(FrameRecognition.isRunning == false)
+            {
+                Byte[] imageBytes = ImageToByte(frameCopy);
+                string result = await FrameRecognition.Recognition(imageBytes);
+                FrameRecognition.isRunning = false;
+                List<Car> cars = parser.Parse(result);
+                if (cars.Count == 0)
+                {
+                    Console.WriteLine("Auto nerasta");
+                    return;
+                }
+
+                bool isSaved = false;
+                long timestamp = 0;
+                string path = "";
+                foreach (Car car in cars)
+                {
+                    car.Status = await requester.AskCarStatus(car.LicensePlate);
+                    SaveData(car, isSaved, timestamp, path, video);
+                }
+            }
         }
 
         // Išsaugo view.Frame vaizdą vietoje path
@@ -128,5 +152,14 @@ namespace Road_rangerVS.Presenters
 				this.model.finalVideo.Stop();
 			}
 		}
-	}
+
+        public static byte[] ImageToByte(Image img)
+        {
+            using (var stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
+    }
 }

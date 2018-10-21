@@ -14,11 +14,9 @@ namespace Road_rangerVS
 
         private static HttpClient client = new HttpClient();
 
-        // Kreipiasi į openalpr API ir grąžina užklausos atsakymą JSON formate - string
-        public async Task<string> Recognize(string imagePath)
+        public async Task<String> Recognize(Byte[] image)
         {
-            Byte[] bytes = File.ReadAllBytes(imagePath);        // skaito failo esančio vietoje imagePath reikšmę į baitų masyvą bytes
-            string imagebase64 = Convert.ToBase64String(bytes); // konvertuoja baitų masyvą į base64 string'ą
+            string imagebase64 = Convert.ToBase64String(image); // konvertuoja baitų masyvą į base64 string'ą
 
             var content = new StringContent(imagebase64);   // sukuria StringContent objektą, kuris skirtas komunikuoti su API persiunčiant duomenis
 
@@ -33,6 +31,20 @@ namespace Road_rangerVS
             var responseString = Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);   // masyvo byteArray duomenis knovertuoja į string eilutę responseString
 
             return responseString;
+        }
+
+        // Kreipiasi į openalpr API ir grąžina užklausos atsakymą JSON formate - string
+        public async Task<string> Recognize(string imagePath)
+        {
+            Byte[] imageBytes = getBytesFromPath(imagePath);
+            string cars = await Recognize(imageBytes);
+            return cars;
+        }
+
+        private Byte[] getBytesFromPath(string imagePath)   // Konvertuoja imagePath i baitu masyva
+        {
+            Byte[] bytes = File.ReadAllBytes(imagePath);
+            return bytes;
         }
 
     }

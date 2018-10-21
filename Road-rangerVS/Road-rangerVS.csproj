@@ -153,6 +153,7 @@
     <Compile Include="Models\MainModel.cs" />
     <Compile Include="Presenters\FindPresenter.cs" />
     <Compile Include="Presenters\GalleryPresenter.cs" />
+    <Compile Include="Recognition\FrameRecognition.cs" />
     <Compile Include="Views\IReportView.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Recognition\ParseException.cs" />
