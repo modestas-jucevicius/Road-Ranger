@@ -53,6 +53,16 @@ namespace Road_rangerVS.Presenters
                 foreach (Car car in cars)
                 {
                     car.Status = await requester.AskCarStatus(car.LicensePlate);
+                    if(car.Status == CarStatus.STOLEN)
+                    {
+                        System.Windows.Forms.MessageBox.Show("You found a stolen car!");
+                        report.SendGeneratedMail(car);
+                    }
+                    if(car.Status == CarStatus.STOLEN_PLATE)
+                    {
+                        System.Windows.Forms.MessageBox.Show("You found a stolen number plate!");
+                        report.SendGeneratedMail(car);
+                    }
                     SaveData(car, isSaved, timestamp, path, video);
                 }
             }
