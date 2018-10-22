@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Road_rangerVS.OutsideAPI
 {
-    interface TextValidator
+    interface ITextValidator
     {
-        bool isValid(string text);
+        bool IsValid(string text);
     }
 }

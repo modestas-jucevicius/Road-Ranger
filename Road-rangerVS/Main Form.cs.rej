@@ -1,0 +1,15 @@
+diff a/Road-rangerVS/Main Form.cs b/Road-rangerVS/Main Form.cs	(rejected hunks)
+@@ -5,7 +5,13 @@
+ using Road_rangerVS.Recognition;
+ using Road_rangerVS.Presenters;
+ using AForge.Video;
++<<<<<<< HEAD
+ using Road_rangerVS.Views;
++=======
++using AForge.Video.DirectShow;
++using Newtonsoft.Json;
++using Road_rangerVS.Data;
++>>>>>>> origin/JUnitTest
+ using Road_rangerVS.OutsideAPI;
+ using Road_rangerVS.Validation;
+ 
