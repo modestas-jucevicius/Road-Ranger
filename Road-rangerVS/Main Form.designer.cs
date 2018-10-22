@@ -220,7 +220,7 @@ namespace Road_rangerVS
             this.scoreLabel.Size = new System.Drawing.Size(124, 32);
             this.scoreLabel.TabIndex = 50;
             this.scoreLabel.Text = "Score: 0";
-            this.scoreLabel.Click += new System.EventHandler(this.label1_Click);
+            this.scoreLabel.Click += new System.EventHandler(this.Label1_Click);
             // 
             // tabReport
             // 

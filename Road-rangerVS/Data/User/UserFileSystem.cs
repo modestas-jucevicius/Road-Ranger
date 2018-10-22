@@ -2,14 +2,30 @@
 using System.Collections.Generic;
 using System.IO;
 using Road_rangerVS.Users;
+using Road_rangerVS.Authorization;
 
 namespace Road_rangerVS.Data
 {
     class UserFileSystem : IUserData
     {
-        private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
+		private static UserFileSystem instance;
+		private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
-        private string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Users.txt";
+        private readonly string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Users.txt";
+		private UserFileSystem() { }
+
+		public static UserFileSystem GetInstance()
+		{
+			if (instance == null)
+			{
+				return instance = new UserFileSystem();
+			}
+			else
+			{
+				return instance;
+			}
+		}
+
         public List<User> FindAll()
         {
             List<User> list = new List<User>();
@@ -64,9 +80,9 @@ namespace Road_rangerVS.Data
             }
         }
 
-        public bool Update(int id, User obj)
+        public bool Update(User user)
         {
-            string strOldText;
+			string strOldText;
             string[] fields = null;
             string fileData = "";
             bool found = false;
@@ -75,10 +91,10 @@ namespace Road_rangerVS.Data
             {
                 fields = strOldText.Split(',');
                 int ID = Int32.Parse(fields[0]);
-                if (ID == id)
+                if (ID == user.id)
                 {
                     found = true;
-                    fileData += obj.ToString() + Environment.NewLine;
+                    fileData += user.ToString() + Environment.NewLine;
                 }
                 else { fileData += strOldText + Environment.NewLine; }
             }

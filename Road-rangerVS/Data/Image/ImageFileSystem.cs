@@ -9,7 +9,7 @@ namespace Road_rangerVS.Data
     {
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
-        private string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Images.txt";
+        private readonly string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Images.txt";
         public List<Image> FindAll()
         {
             List<Image> list = new List<Image>();
