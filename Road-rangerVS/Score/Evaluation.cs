@@ -9,7 +9,7 @@ using Road_rangerVS.OutsideAPI;
 
 namespace Road_rangerVS.Score
 {
-    static class Evaluation
+    public static class Evaluation
     {
         public static readonly int notStolenScore = 10;         // Taškai gaunami už nevogto automobilio atradimą
         public static readonly int stolenScore = 2500;          // Taškai gaunami už   vogto automobilio atradimą

@@ -6,7 +6,7 @@ using Road_rangerVS.Recognition;
 
 namespace Road_rangerVS.Data
 {
-    class CarFileSystem : ICarData
+    public class CarFileSystem : ICarData
     {
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();

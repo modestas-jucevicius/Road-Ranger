@@ -1,7 +1,7 @@
 ﻿
 namespace Road_rangerVS.Users
 {
-    class User
+    public class User
     {
         public int id { get; set; }
         public string username { get; set; }
