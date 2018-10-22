@@ -66,14 +66,16 @@ namespace Road_rangerVS.Data
 
         public bool Update(int id, User obj)
         {
-            string strID = id.ToString();
             string strOldText;
+            string[] fields = null;
             string fileData = "";
             bool found = false;
             StreamReader sr = File.OpenText(path);
             while ((strOldText = sr.ReadLine()) != null)
             {
-                if (String.Equals(strOldText[0], strID))
+                fields = strOldText.Split(',');
+                int ID = Int32.Parse(fields[0]);
+                if (ID == id)
                 {
                     found = true;
                     fileData += obj.ToString() + Environment.NewLine;

@@ -64,14 +64,16 @@ namespace Road_rangerVS.Data
         public bool Remove(int id)
         {
             Image image = this.FindById(id);
-            string strID = id.ToString();
             string strOldText;
+            string[] fields = null;
             string fileData = "";
             bool found = false;
             StreamReader sr = File.OpenText(path);
             while ((strOldText = sr.ReadLine()) != null)
             {
-                if (strID.Equals(strOldText[0].ToString()))
+                fields = strOldText.Split(',');
+                int ID = Int32.Parse(fields[0]);
+                if (ID == id)
                 {
                     found = true;
                 }
