@@ -8,6 +8,7 @@ using AForge.Video;
 using Road_rangerVS.Views;
 using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Validation;
+using Road_rangerVS.Users;
 
 namespace Road_rangerVS
 {
@@ -17,15 +18,15 @@ namespace Road_rangerVS
         private ReportPresenter reportPresenter;
         private FindPresenter findPresenter;
         private GalleryPresenter galleryPresenter;
-        private int userId = 0;
+        private int id = 0;
 
         public MainForm()
         {
             InitializeComponent();
-            mainPresenter = new MainPresenter();
+            mainPresenter = new MainPresenter(scoreLabel);
             reportPresenter = new ReportPresenter();
             findPresenter = new FindPresenter();
-            galleryPresenter = new GalleryPresenter(userId);
+            galleryPresenter = new GalleryPresenter(id);
             this.findListView.View = View.Details;
             this.galleryListView.View = View.Details;
         }
@@ -194,7 +195,8 @@ namespace Road_rangerVS
 
 		private void NewFrame(object sender, NewFrameEventArgs eventArgs)
 		{
-            this.mainPresenter.NewFrame(this, eventArgs);                        
+            this.mainPresenter.NewFrame(this, eventArgs);
+            
 		}
 
 		private void CaptureClick(object sender, EventArgs e)
@@ -307,6 +309,11 @@ namespace Road_rangerVS
         {
             this.galleryListView.Items.Clear();
             this.galleryPresenter.ShowGallery(this);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
