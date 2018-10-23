@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Road_rangerVS.Search
 {
-    class CapturedCarFinder : ICapturedCarFinder
+    public class CapturedCarFinder : ICapturedCarFinder
     {
         private readonly IUserData userData = UserFileSystem.GetInstance();
         private ICarData carData = new CarFileSystem();

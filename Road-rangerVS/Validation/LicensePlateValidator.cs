@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Road_rangerVS.Validation
 {
-    class LicensePlateValidator : ITextValidator
+    public class LicensePlateValidator : ITextValidator
     {
         public bool IsValid(string plate)
         {
