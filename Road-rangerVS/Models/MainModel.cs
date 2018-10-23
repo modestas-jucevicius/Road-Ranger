@@ -22,27 +22,27 @@ namespace Road_rangerVS.Models
 		public FilterInfoCollection VideoCaptureDevices { get; set; }
 		public VideoCaptureDevice FinalVideo { get; set; }
 		private readonly string PicturePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Pictures\";     // ~\Pictures\
-		private AuthorizationService AuthorizationService = AuthorizationService.getInstance();
+		private AuthorizationService AuthorizationService = AuthorizationService.GetInstance();
 		private UserFileSystem UserFileSystem = UserFileSystem.GetInstance();
 
 		public MainModel()
 		{
             CarData = new CarFileSystem();
             ImageData = new ImageFileSystem();
-			AuthorizationService.login();
+			AuthorizationService.Login();
         }
 
 		public int GetUserScore()
 		{
-			User currentUser = AuthorizationService.getCurrentUser();
-            AuthorizationService.syncCurrentUserToData();
+			User currentUser = AuthorizationService.GetCurrentUser();
+            AuthorizationService.SyncCurrentUserToData();
 			return currentUser.score;
 			
 		}
 
 		public void IncreaseUserScore(int gainedPoints)
 		{
-			User currentUser = AuthorizationService.getCurrentUser();
+			User currentUser = AuthorizationService.GetCurrentUser();
 			currentUser.IncreaseScore(gainedPoints);
 			UserFileSystem.Update(currentUser);
 		}
