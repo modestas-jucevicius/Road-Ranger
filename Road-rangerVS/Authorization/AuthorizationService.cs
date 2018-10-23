@@ -36,7 +36,7 @@ namespace Road_rangerVS.Authorization
 			 return currentUser = new User(0, "username", "password", "name", 0);
 		}
 
-		private void syncCurrentUserToData()
+		public void syncCurrentUserToData()
 		{
 			User savedUser = userFileSystem.FindById(this.currentUser.id);
 			if (savedUser != null)

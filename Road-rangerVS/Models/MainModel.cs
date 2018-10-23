@@ -35,6 +35,7 @@ namespace Road_rangerVS.Models
 		public int GetUserScore()
 		{
 			User currentUser = AuthorizationService.getCurrentUser();
+            AuthorizationService.syncCurrentUserToData();
 			return currentUser.score;
 			
 		}
