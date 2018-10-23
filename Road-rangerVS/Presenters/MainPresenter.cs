@@ -15,6 +15,7 @@ using System.IO;
 using Road_rangerVS.Users;
 using Road_rangerVS.Data;
 using Road_rangerVS.Score;
+using Road_rangerVS.Validation;
 
 namespace Road_rangerVS.Presenters
 {
@@ -26,6 +27,7 @@ namespace Road_rangerVS.Presenters
         public Label scoreLabel;
         private ICarParser parser = new OpenALPRParser();
         private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+        private ITextValidator validator = new LicensePlateValidator();
         private delegate void SetTextCallBack(string text);
 
         public MainPresenter(Label scoreLabel)
@@ -142,10 +144,17 @@ namespace Road_rangerVS.Presenters
 			string path = "";
 			foreach (Car car in cars)
 			{
-				car.Status = await requester.AskCarStatus(car.LicensePlate);
-				this.model.IncreaseUserScore(Evaluation.Evaluate(car));
-				ShowReportMessage(car);
-				model.SaveData(car, ref isSaved, ref timestamp, ref path, ref source);
+                if (validator.IsValid(car.LicensePlate))
+                {
+                    car.Status = await requester.AskCarStatus(car.LicensePlate);
+                    this.model.IncreaseUserScore(Evaluation.Evaluate(car));
+                    ShowReportMessage(car);
+                    model.SaveData(car, ref isSaved, ref timestamp, ref path, ref source);
+                }
+                else
+                {
+                    Console.WriteLine(car.LicensePlate);
+                }
 			}
             this.SetLabelText("Score: " + this.model.GetUserScore().ToString());
         }

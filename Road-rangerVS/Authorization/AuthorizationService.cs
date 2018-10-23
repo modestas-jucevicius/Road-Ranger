@@ -15,7 +15,7 @@ namespace Road_rangerVS.Authorization
 		private UserFileSystem userFileSystem = UserFileSystem.GetInstance();
 		private AuthorizationService() { }
 
-		public static AuthorizationService getInstance()
+		public static AuthorizationService GetInstance()
 		{
 			if (instance == null)
 			{
@@ -27,16 +27,16 @@ namespace Road_rangerVS.Authorization
 			}
 		}
 
-		public User getCurrentUser()
+		public User GetCurrentUser()
 		{
 			return this.currentUser;
 		}
 
-		public User login() {
+		public User Login() {
 			 return currentUser = new User(0, "username", "password", "name", 0);
 		}
 
-		public void syncCurrentUserToData()
+		public void SyncCurrentUserToData()
 		{
 			User savedUser = userFileSystem.FindById(this.currentUser.id);
 			if (savedUser != null)

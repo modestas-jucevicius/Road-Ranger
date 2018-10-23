@@ -168,7 +168,7 @@
     <Compile Include="Report\MailReportMessageGenerator.cs" />
     <Compile Include="Report\MailReportSender.cs" />
     <Compile Include="Validation\LicensePlateValidator.cs" />
-    <Compile Include="Validation\TextValidator.cs" />
+    <Compile Include="Validation\ITextValidator.cs" />
     <Compile Include="Images\Image.cs" />
     <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Cars\CarStatus.cs" />
