@@ -48,7 +48,7 @@ namespace RoadRangerTest
             UserFileSystem fileSystem = UserFileSystem.GetInstance();
             List<User> topUsers = highscores.SortedByScore(fileSystem.GetAll());
             User user = topUsers[4];
-            int position = highscores.getUsersPosition(topUsers, user);
+            int position = highscores.GetUsersPosition(topUsers, user);
             Assert.IsFalse(!(position == 5));
         }
     }

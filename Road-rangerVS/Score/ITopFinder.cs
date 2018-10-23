@@ -7,6 +7,6 @@ namespace Road_rangerVS.Score
     {
         List<User> Top10(List<User> users);
         List<User> SortedByScore(List<User> users);
-        int getUsersPosition(List<User> users, User user);
+        int GetUsersPosition(List<User> users, User user);
     }
 }

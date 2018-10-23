@@ -37,7 +37,7 @@ namespace Road_rangerVS.Score
             return sortedUsers.GetRange(0, 10);
         }
 
-        public int getUsersPosition(List<User> users, User user)
+        public int GetUsersPosition(List<User> users, User user)
         {
             return users.IndexOf(user) + 1;
         }
