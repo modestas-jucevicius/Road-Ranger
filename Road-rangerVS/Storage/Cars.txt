@@ -1,0 +1,3 @@
+0,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,True,STOLEN
+1,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,True,STOLEN
+2,0,051MRH,red,nissan,nissan_qashqai,sedan-compact,2010-2014,False,NOT_STOLEN
