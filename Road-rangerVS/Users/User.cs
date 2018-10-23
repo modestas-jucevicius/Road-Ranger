@@ -1,24 +1,26 @@
 ﻿
+using System;
+
 namespace Road_rangerVS.Users
 {
-    public class User
+    public class User : IComparable<User>
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
         public int score = 0;
 
         public User(string username, string password, string name)
         {
-            this.username = username;
-            this.password = password;
-            this.name = name;
+            this.Username = username;
+            this.Password = password;
+            this.Name = name;
         }
 
         public User(int id, string username, string password, string name, int score) : this(username, password, name)
         {
-            this.id = id;
+            this.Id = id;
             this.score = score;
         }
 
@@ -29,7 +31,12 @@ namespace Road_rangerVS.Users
 
         override public string ToString()
         {
-            return this.id + "," + this.username + "," + this.password + "," + this.name + "," + this.score;
+            return this.Id + "," + this.Username + "," + this.Password + "," + this.Name + "," + this.score;
+        }
+
+        public int CompareTo(User other)
+        {
+            return this.score.CompareTo(other.score);
         }
     }
 }

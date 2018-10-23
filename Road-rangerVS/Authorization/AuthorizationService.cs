@@ -38,7 +38,7 @@ namespace Road_rangerVS.Authorization
 
 		public void SyncCurrentUserToData()
 		{
-			User savedUser = userFileSystem.FindById(this.currentUser.id);
+			User savedUser = userFileSystem.FindById(this.currentUser.Id);
 			if (savedUser != null)
 			{
 				this.currentUser.score = savedUser.score;
