@@ -8,7 +8,7 @@ namespace Road_rangerVS.Data
     {
         void Put(User obj);
         void PutList(List<User> obj);
-        List<User> FindAll(); // gauti visas eilutes
+        List<User> GetAll(); // gauti visas eilutes
         User FindById(int id);
         bool Update(User obj);
     }

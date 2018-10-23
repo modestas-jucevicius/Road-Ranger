@@ -161,6 +161,8 @@
     <Compile Include="Presenters\FindPresenter.cs" />
     <Compile Include="Presenters\GalleryPresenter.cs" />
     <Compile Include="Recognition\FrameRecognition.cs" />
+    <Compile Include="Score\Highscores.cs" />
+    <Compile Include="Score\ITopFinder.cs" />
     <Compile Include="Views\IReportView.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Recognition\ParseException.cs" />

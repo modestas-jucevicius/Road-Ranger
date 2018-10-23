@@ -6,7 +6,7 @@ using Road_rangerVS.Authorization;
 
 namespace Road_rangerVS.Data
 {
-    class UserFileSystem : IUserData
+    public class UserFileSystem : IUserData
     {
 		private static UserFileSystem instance;
 		private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
@@ -26,11 +26,10 @@ namespace Road_rangerVS.Data
 			}
 		}
 
-        public List<User> FindAll()
+        public List<User> GetAll()
         {
             List<User> list = new List<User>();
             List<String> strings = primitiveFileSystem.GetLines(path);
-
             string[] fields = null;
             foreach (string line in strings)
             {
@@ -68,7 +67,7 @@ namespace Road_rangerVS.Data
 
         public void Put(User obj)
         {
-            obj.id = indexer.GetLastId(path) + 1;
+            obj.Id = indexer.GetLastId(path) + 1;
             File.AppendAllText(path, obj.ToString() + Environment.NewLine);
         }
 
@@ -91,7 +90,7 @@ namespace Road_rangerVS.Data
             {
                 fields = strOldText.Split(',');
                 int ID = Int32.Parse(fields[0]);
-                if (ID == user.id)
+                if (ID == user.Id)
                 {
                     found = true;
                     fileData += user.ToString() + Environment.NewLine;
@@ -105,7 +104,7 @@ namespace Road_rangerVS.Data
 
         private string UserToCSVFormat(User user)
         {
-            return user.id + "," + user.username + "," + user.name + "," + user.score + Environment.NewLine;
+            return user.Id + "," + user.Username + "," + user.Name + "," + user.score + Environment.NewLine;
         }
 
         private User GetUserFromStringArray(String[] array)
