@@ -10,7 +10,7 @@ namespace Road_rangerVS.Search
 {
     public class CapturedCarFinder : ICapturedCarFinder
     {
-        private IUserData userData = new UserFileSystem();
+        private readonly IUserData userData = UserFileSystem.GetInstance();
         private ICarData carData = new CarFileSystem();
         private IImageData imageData = new ImageFileSystem();
 

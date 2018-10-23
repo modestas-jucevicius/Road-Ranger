@@ -10,8 +10,7 @@ namespace Road_rangerVS
         public List<Car> Parse(string data)
         {
             JObject o = JObject.Parse(data);    // konvertuoja string data į JObject'ą o
-			JToken errorValue;
-			if (o.TryGetValue("error_code", out errorValue))
+			if (o.TryGetValue("error_code", out JToken errorValue))
 			{
 				throw new ParseException("Error Parsing Image");
 			}
@@ -24,7 +23,7 @@ namespace Road_rangerVS
                 cars.Add(ParseUnit(result));
             }
 
-            return cars;
+			return cars;
         }
 
         public Car ParseUnit(JObject result)

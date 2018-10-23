@@ -140,6 +140,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\AuthorizationService.cs" />
     <Compile Include="Data\Car\CarFileSystem.cs" />
     <Compile Include="Data\Common\FileSystemIndexer.cs" />
     <Compile Include="Data\Car\ICarData.cs" />
@@ -192,7 +193,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recognition\ICarParser.cs" />
-    <Compile Include="Score\Score.cs" />
     <Compile Include="Score\Evaluation.cs" />
     <Compile Include="Search\CapturedCarFinder.cs" />
     <Compile Include="Search\ICapturedCarFinder.cs" />
