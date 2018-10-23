@@ -26,6 +26,7 @@ namespace Road_rangerVS.Presenters
         public Label scoreLabel;
         private ICarParser parser = new OpenALPRParser();
         private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+        private delegate void SetTextCallBack(string text);
 
         public MainPresenter(Label scoreLabel)
         {
@@ -143,15 +144,15 @@ namespace Road_rangerVS.Presenters
 			{
 				car.Status = await requester.AskCarStatus(car.LicensePlate);
 				this.model.IncreaseUserScore(Evaluation.Evaluate(car));
-				scoreLabel.Text = "Score: " + this.model.GetUserScore().ToString();
 				ShowReportMessage(car);
 				model.SaveData(car, ref isSaved, ref timestamp, ref path, ref source);
 			}
-		}
+            this.SetLabelText("Score: " + this.model.GetUserScore().ToString());
+        }
 
-		private void ShowReportMessage(Car car)
-		{
-			string message;
+		private void ShowReportMessage(Car car)     //Istransliuoja zinute vartotojui                                                  
+        {                                           //pagal atrasto automobilio statusa
+            string message;
 			switch (car.Status)
 			{
 				case CarStatus.STOLEN:
@@ -179,7 +180,7 @@ namespace Road_rangerVS.Presenters
 			}
 		}
 
-		private byte[] ImageToByte(Image img)
+		private byte[] ImageToByte(Image img)           //Konvertuoja image to byte[]
 		{
 			using (var stream = new MemoryStream())
 			{
@@ -187,5 +188,18 @@ namespace Road_rangerVS.Presenters
 				return stream.ToArray();
 			}
 		}
+
+        private void SetLabelText(string text)
+        {
+            if (this.scoreLabel.InvokeRequired)         // Jei reikia prisikviesti scoreLabel
+            {                                           // Tai ji prisikvieciam ir vel vykdom ta pati metoda
+                SetTextCallBack d = new SetTextCallBack(SetLabelText);
+                this.scoreLabel.Invoke(d, text);
+            }
+            else
+            {
+                this.scoreLabel.Text = text;
+            }
+        }
 	}
 }
