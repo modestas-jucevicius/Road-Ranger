@@ -16,6 +16,7 @@ namespace Road_rangerVS.Recognition
             isRunning = true;
             string cars = await recognizer.Recognize(frame);
             System.Threading.Thread.Sleep(2000);
+			isRunning = false;
             return cars;
         }
     }

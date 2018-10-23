@@ -161,14 +161,7 @@ namespace Road_rangerVS
 			}
 			else
 			{
-				try
-				{
-					await mainPresenter.GetCarInfo(filePath.Text);
-				}
-				catch (ParseException exception)
-				{
-					MessageBox.Show(exception.Message);
-				}
+				await mainPresenter.GetCarInfo(filePath.Text);
 			}
         }
 
@@ -195,8 +188,7 @@ namespace Road_rangerVS
 
 		private void NewFrame(object sender, NewFrameEventArgs eventArgs)
 		{
-            this.mainPresenter.NewFrame(this, eventArgs);
-            
+			mainPresenter.NewFrame(this, eventArgs);
 		}
 
 		private void CaptureClick(object sender, EventArgs e)
@@ -311,7 +303,7 @@ namespace Road_rangerVS
             this.galleryPresenter.ShowGallery(this);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
 
         }
