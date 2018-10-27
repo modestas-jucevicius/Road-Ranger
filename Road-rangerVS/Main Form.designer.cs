@@ -30,7 +30,7 @@ namespace Road_rangerVS
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.title = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.upload = new System.Windows.Forms.Button();
             this.browseImage = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.Label();
@@ -68,6 +68,7 @@ namespace Road_rangerVS
             this.galleryPictureBox = new System.Windows.Forms.PictureBox();
             this.removeButton = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tab.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -76,22 +77,13 @@ namespace Road_rangerVS
             ((System.ComponentModel.ISupportInitialize)(this.findPictureBox)).BeginInit();
             this.tabMyGallery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.galleryPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // title
-            // 
-            this.title.AutoSize = true;
-            this.title.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.title.Location = new System.Drawing.Point(854, 25);
-            this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(162, 29);
-            this.title.TabIndex = 0;
-            this.title.Text = "Road Ranger";
             // 
             // upload
             // 
             this.upload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.upload.Location = new System.Drawing.Point(816, 149);
+            this.upload.Location = new System.Drawing.Point(804, 90);
             this.upload.Name = "upload";
             this.upload.Size = new System.Drawing.Size(250, 35);
             this.upload.TabIndex = 1;
@@ -102,7 +94,7 @@ namespace Road_rangerVS
             // browseImage
             // 
             this.browseImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.browseImage.Location = new System.Drawing.Point(816, 84);
+            this.browseImage.Location = new System.Drawing.Point(804, 25);
             this.browseImage.Name = "browseImage";
             this.browseImage.Size = new System.Drawing.Size(250, 35);
             this.browseImage.TabIndex = 2;
@@ -113,7 +105,7 @@ namespace Road_rangerVS
             // filePath
             // 
             this.filePath.AutoSize = true;
-            this.filePath.Location = new System.Drawing.Point(813, 122);
+            this.filePath.Location = new System.Drawing.Point(801, 63);
             this.filePath.Name = "filePath";
             this.filePath.Size = new System.Drawing.Size(16, 13);
             this.filePath.TabIndex = 3;
@@ -193,11 +185,11 @@ namespace Road_rangerVS
             // 
             // tabMain
             // 
+            this.tabMain.Controls.Add(this.pictureBox1);
             this.tabMain.Controls.Add(this.scoreLabel);
             this.tabMain.Controls.Add(this.cameraTopText);
             this.tabMain.Controls.Add(this.pictureBox);
             this.tabMain.Controls.Add(this.comboBox1);
-            this.tabMain.Controls.Add(this.title);
             this.tabMain.Controls.Add(this.upload);
             this.tabMain.Controls.Add(this.filePath);
             this.tabMain.Controls.Add(this.button1);
@@ -215,7 +207,7 @@ namespace Road_rangerVS
             // 
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold);
-            this.scoreLabel.Location = new System.Drawing.Point(818, 339);
+            this.scoreLabel.Location = new System.Drawing.Point(809, 357);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(124, 32);
             this.scoreLabel.TabIndex = 50;
@@ -458,6 +450,16 @@ namespace Road_rangerVS
             this.reportButton.UseVisualStyleBackColor = true;
             this.reportButton.Click += new System.EventHandler(this.ReportButtonClick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(815, 131);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(229, 223);
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,13 +482,12 @@ namespace Road_rangerVS
             ((System.ComponentModel.ISupportInitialize)(this.findPictureBox)).EndInit();
             this.tabMyGallery.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.galleryPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
 		}
 
         #endregion
-
-        private System.Windows.Forms.Label title;
         private System.Windows.Forms.Button upload;
         private System.Windows.Forms.Button browseImage;
         private System.Windows.Forms.Label filePath;
@@ -524,6 +525,7 @@ namespace Road_rangerVS
         private System.Windows.Forms.ColumnHeader columnFind4;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Label scoreLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

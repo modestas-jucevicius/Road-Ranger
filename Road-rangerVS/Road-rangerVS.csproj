@@ -228,5 +228,8 @@
   <ItemGroup>
     <Folder Include="Pictures\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logo\44674164_305491373609412_5608351415895326720_n.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
