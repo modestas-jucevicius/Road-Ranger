@@ -12,6 +12,7 @@ using System.Drawing.Imaging;
 using Road_rangerVS.Authorization;
 using System.IO;
 using Road_rangerVS.Users;
+using Road_rangerVS.Cars;
 
 namespace Road_rangerVS.Models
 {

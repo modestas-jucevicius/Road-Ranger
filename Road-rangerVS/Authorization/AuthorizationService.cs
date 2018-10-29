@@ -8,12 +8,14 @@ using Road_rangerVS.Data;
 
 namespace Road_rangerVS.Authorization
 {
-	class AuthorizationService
+	public class AuthorizationService
 	{
 		private static AuthorizationService instance;
-		private User currentUser;
-		private UserFileSystem userFileSystem = UserFileSystem.GetInstance();
-		private AuthorizationService() { }
+		private User CurrentUser { get; set; }
+		private UserFileSystem UserFileSystem { get; set; }
+		private AuthorizationService() {
+			UserFileSystem = UserFileSystem.GetInstance();
+		}
 
 		public static AuthorizationService GetInstance()
 		{
@@ -29,23 +31,23 @@ namespace Road_rangerVS.Authorization
 
 		public User GetCurrentUser()
 		{
-			return this.currentUser;
+			return this.CurrentUser;
 		}
 
 		public User Login() {
-			 return currentUser = new User(0, "username", "password", "name", 0);
+			 return CurrentUser = new User(0, "username", "password", "name", 0);
 		}
 
 		public void SyncCurrentUserToData()
 		{
-			User savedUser = userFileSystem.FindById(this.currentUser.Id);
+			User savedUser = UserFileSystem.FindById(this.CurrentUser.Id);
 			if (savedUser != null)
 			{
-				this.currentUser.score = savedUser.score;
+				this.CurrentUser.score = savedUser.score;
 			}
 			else
 			{
-				userFileSystem.Put(this.currentUser);
+				UserFileSystem.Put(this.CurrentUser);
 			}
 		}
 	}

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Road_rangerVS.OutsideAPI;
+using Road_rangerVS.Cars;
 
 namespace Road_rangerVS.Score
 {

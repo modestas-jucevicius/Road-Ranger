@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Road_rangerVS.Cars;
 
-namespace Road_rangerVS.OutsideAPI
+namespace Road_rangerVS.EPolicija
 {
     class EPolicijaAPIRequester : ICarStatusRequester
     {
@@ -22,7 +23,7 @@ namespace Road_rangerVS.OutsideAPI
 
         private EPolicijaAPIRequester() { }
 
-        private EPolicijaAPI ePolicijaAPI = EPolicijaAPI.getInstance(); // pasiema EPolicijosAPI objekta
+        private EPolicijaAPI ePolicijaAPI = EPolicijaAPI.GetInstance(); // pasiema EPolicijosAPI objekta
 
         public async Task<CarStatus> AskCarStatus(string licensePlate)
         {

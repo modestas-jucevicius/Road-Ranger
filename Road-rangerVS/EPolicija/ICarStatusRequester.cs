@@ -1,7 +1,8 @@
 ﻿
 using System.Threading.Tasks;
+using Road_rangerVS.Cars;
 
-namespace Road_rangerVS.OutsideAPI
+namespace Road_rangerVS.EPolicija
 {
     interface ICarStatusRequester
     {

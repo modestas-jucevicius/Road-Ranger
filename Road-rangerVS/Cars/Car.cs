@@ -2,7 +2,7 @@
 using Road_rangerVS.OutsideAPI;
 using System;
 
-namespace Road_rangerVS.Recognition
+namespace Road_rangerVS.Cars
 {
     public class Car
     {
