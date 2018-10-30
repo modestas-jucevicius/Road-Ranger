@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Road_rangerVS.Search;
 using Road_rangerVS.Recognition;
+using Road_rangerVS.Cars;
 
 namespace Road_rangerVS.Models
 {

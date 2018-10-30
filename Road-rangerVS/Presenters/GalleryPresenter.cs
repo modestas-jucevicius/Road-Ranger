@@ -7,6 +7,7 @@ using System;
 using Road_rangerVS.Views;
 using System.Linq;
 using Road_rangerVS.OutsideAPI;
+using Road_rangerVS.Cars;
 
 namespace Road_rangerVS.Presenters
 {
@@ -15,7 +16,7 @@ namespace Road_rangerVS.Presenters
 		private readonly GalleryModel galleryModel = new GalleryModel();
         private readonly ReportModel reportModel = new ReportModel();
         List<CapturedCar> cars = new List<CapturedCar>();
-        int userId;
+		readonly int userId;
 
         public GalleryPresenter(int userId)
         {

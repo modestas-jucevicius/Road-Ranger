@@ -1,6 +1,6 @@
 ﻿using Road_rangerVS.Images;
 
-namespace Road_rangerVS.Recognition
+namespace Road_rangerVS.Cars
 {
     public class CapturedCar : Car
     {

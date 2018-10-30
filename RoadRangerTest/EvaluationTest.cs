@@ -2,6 +2,7 @@
 using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
 using Road_rangerVS.Score;
+using Road_rangerVS.Cars;
 
 namespace RoadRangerTest
 {

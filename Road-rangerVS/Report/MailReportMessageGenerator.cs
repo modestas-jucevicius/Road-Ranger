@@ -1,5 +1,6 @@
 ﻿using Road_rangerVS.Recognition;
 using System;
+using Road_rangerVS.Cars;
 
 namespace Road_rangerVS.Report
 {

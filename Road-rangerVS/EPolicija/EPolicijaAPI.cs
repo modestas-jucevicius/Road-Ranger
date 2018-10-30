@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Road_rangerVS.Cars;
 
-namespace Road_rangerVS.OutsideAPI
+namespace Road_rangerVS.EPolicija
 {
-	class EPolicijaAPI : ICarStatusRequester
+	public class EPolicijaAPI : ICarStatusRequester
     {
 		private static readonly HttpClient client = new HttpClient(); // HTTP servisas
 		private static readonly string URL = "https://www.epolicija.lt/itpr_paieska/transportas_lt.php"; // ePolicijos URl
 		private static EPolicijaAPI instance; // sio API serviso instance jei yra
 
-		public static EPolicijaAPI getInstance() // jei jau yra toks objektas ji grazina, jei ne sukuria
+		public static EPolicijaAPI GetInstance() // jei jau yra toks objektas ji grazina, jei ne sukuria
 		{
 			if (instance != null)
 			{
@@ -40,10 +41,10 @@ namespace Road_rangerVS.OutsideAPI
 			var response = await client.PostAsync(URL, content);
 
 			var responseString = await response.Content.ReadAsStringAsync();
-			return parsePhpIfStolen(responseString);
+			return ParsePhpIfStolen(responseString);
 		}
 
-		private CarStatus parsePhpIfStolen(string phpString) { // pagal grazinta php suranda ar vogta ar ne
+		private CarStatus ParsePhpIfStolen(string phpString) { // pagal grazinta php suranda ar vogta ar ne
             if (phpString.Contains("IEŠKOMA (-AS) NĖRA"))
             {
                 return CarStatus.NOT_STOLEN;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Road_rangerVS.OutsideAPI;
 using Road_rangerVS.Recognition;
+using Road_rangerVS.Cars;
 
 namespace Road_rangerVS.Data
 {
@@ -10,7 +11,7 @@ namespace Road_rangerVS.Data
     {
         private PrimitiveFileSystem primitiveFileSystem = new PrimitiveFileSystem();
         private FileSystemIndexer indexer = new FileSystemIndexer();
-        private string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Cars.txt";
+        private readonly string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Storage\Cars.txt";
         public List<Car> FindAll()
         {
             List<Car> list = new List<Car>();
