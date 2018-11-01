@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Road_rangerVS.Data;
-using Road_rangerVS.Recognition;
-using AForge.Video;
 using System.Drawing;
 using AForge.Video.DirectShow;
 using System.Drawing.Imaging;
-using Road_rangerVS.Authorization;
 using System.IO;
-using Road_rangerVS.Users;
+using RoadRangerBackEnd.Data;
+using RoadRangerBackEnd.Authorization;
+using RoadRangerBackEnd.Users;
+using RoadRangerBackEnd.Cars;
 
 namespace Road_rangerVS.Models
 {
@@ -65,7 +60,7 @@ namespace Road_rangerVS.Models
 				isSaved = true;
 			}
 
-			Images.Image image = new Images.Image(car.Id, timestamp, path);
+            RoadRangerBackEnd.Images.Image image = new RoadRangerBackEnd.Images.Image(car.Id, timestamp, path);
 			ImageData.Put(image);
 		}
 	}

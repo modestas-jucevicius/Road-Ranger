@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Road_rangerVS.Images;
-using Road_rangerVS.Recognition;
-using Road_rangerVS.Search;
+using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Images;
+using RoadRangerBackEnd.Search;
 
 namespace RoadRangerTest
 {
@@ -20,9 +20,9 @@ namespace RoadRangerTest
             List<CapturedCar> expect = new List<CapturedCar>();
             int check = 0;
             Image imageTest1 = new Image(3, 7, 1540385152, "C:/Users/pjach/Documents/Road-Ranger/RoadRangerTest/Storage/Images/3.jpg");
-            Car carTest1 = new Car(7,1, "GHM497","blue","suzuki","suzuki_jimny","sedan-compact","2005-2009", false, Road_rangerVS.OutsideAPI.CarStatus.NOT_STOLEN);
+            Car carTest1 = new Car(7,1, "GHM497","blue","suzuki","suzuki_jimny","sedan-compact","2005-2009", false, CarStatus.NOT_STOLEN);
             Image imageTest2 = new Image(1, 4, 1540384597, "C:/Users/pjach/Documents/Road-Ranger/RoadRangerTest/Storage/Images/1.jpg");
-            Car carTest2 = new Car(4,1, "GHM497", "blue", "suzuki", "suzuki_jimny", "sedan-compact", "2005-2009", false, Road_rangerVS.OutsideAPI.CarStatus.NOT_STOLEN);
+            Car carTest2 = new Car(4,1, "GHM497", "blue", "suzuki", "suzuki_jimny", "sedan-compact", "2005-2009", false, CarStatus.NOT_STOLEN);
             expect.Add(new CapturedCar(carTest1, imageTest1));
             expect.Add(new CapturedCar(carTest2, imageTest2));
             testList = carFinder.FindByUserId(1);
@@ -59,9 +59,9 @@ namespace RoadRangerTest
             List<CapturedCar> expect = new List<CapturedCar>();
             int check = 0;
             Image imageTest1 = new Image(0, 0, 1540384526, "C:/Users/pjach/Documents/Road-Ranger/RoadRangerTest/Storage/Images/0.jpg");
-            Car carTest1 = new Car(0, 0, "EBO666", "silver-gray", "audi", "audi_a4", "sedan-standard", "2000-2004", false, Road_rangerVS.OutsideAPI.CarStatus.NOT_STOLEN);
+            Car carTest1 = new Car(0, 0, "EBO666", "silver-gray", "audi", "audi_a4", "sedan-standard", "2000-2004", false, CarStatus.NOT_STOLEN);
             Image imageTest2 = new Image(2, 2, 1540384625, "C:/Users/pjach/Documents/Road-Ranger/RoadRangerTest/Storage/Images/2.jpg");
-            Car carTest2 = new Car(2, 0, "EBO666", "silver-gray", "audi", "audi_a4", "sedan-standard", "2000-2004", false, Road_rangerVS.OutsideAPI.CarStatus.NOT_STOLEN);
+            Car carTest2 = new Car(2, 0, "EBO666", "silver-gray", "audi", "audi_a4", "sedan-standard", "2000-2004", false, CarStatus.NOT_STOLEN);
             expect.Add(new CapturedCar(carTest2, imageTest2));
             expect.Add(new CapturedCar(carTest1, imageTest1));
             testList = carFinder.FindByPlate("EBO666");

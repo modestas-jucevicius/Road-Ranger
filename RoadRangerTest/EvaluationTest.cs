@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Road_rangerVS.OutsideAPI;
-using Road_rangerVS.Recognition;
-using Road_rangerVS.Score;
+using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Score;
 
 namespace RoadRangerTest
 {

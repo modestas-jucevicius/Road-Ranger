@@ -2,13 +2,14 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Road_rangerVS.Recognition;
 using Road_rangerVS.Presenters;
 using AForge.Video;
 using Road_rangerVS.Views;
-using Road_rangerVS.OutsideAPI;
-using Road_rangerVS.Validation;
-using Road_rangerVS.Users;
+using System.Collections.Generic;
+using RoadRangerBackEnd.Validation;
+using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Statistic;
 
 namespace Road_rangerVS
 {
@@ -307,5 +308,20 @@ namespace Road_rangerVS
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ICapturedCarFinder finder = new CapturedCarFinder();
+            List<CapturedCar> cars = finder.FindAll();
+
+            CarDateStatistic statistic = new CarDateStatistic();
+            var list = statistic.Get(cars, CarStatus.STOLEN);
+
+            foreach (StatisticEntry car in list)
+            {
+                Console.WriteLine(car.Value + " " + car.Label);
+            }
+        }
+
     }
 }

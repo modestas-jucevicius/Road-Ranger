@@ -1,7 +1,6 @@
-﻿
+﻿using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Search;
 using System.Collections.Generic;
-using Road_rangerVS.Search;
-using Road_rangerVS.Recognition;
 
 namespace Road_rangerVS.Models
 {

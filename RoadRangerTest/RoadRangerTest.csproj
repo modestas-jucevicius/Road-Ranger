@@ -57,6 +57,7 @@
     <Compile Include="LicensePlateValidatorTest.cs" />
     <Compile Include="HighscoresTest.cs" />
     <Compile Include="CapturedCarFinderTest.cs" />
+    <Compile Include="StolenDatesStatisticTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -66,9 +67,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Road-rangerVS\Road-rangerVS.csproj">
-      <Project>{5315f753-3495-49ff-ac5f-ffc72ece038a}</Project>
-      <Name>Road-rangerVS</Name>
+    <ProjectReference Include="..\RoadRangerBackEnd\RoadRangerBackEnd.csproj">
+      <Project>{9c7b5a48-0244-47ec-884f-84de5033a1b4}</Project>
+      <Name>RoadRangerBackEnd</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
