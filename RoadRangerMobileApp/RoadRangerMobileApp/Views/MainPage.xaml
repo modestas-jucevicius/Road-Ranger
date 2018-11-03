@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RoadRangerMobileApp.Views"
+             x:Class="RoadRangerMobileApp.Views.MainPage">
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+        <Grid RowSpacing="5" ColumnSpacing="5" BackgroundColor="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Text="My Home" 
+                    x:Name="MyHomeButton"
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Clicked="MyHomeButton_Clicked"/>
+            
+            <Button Text="Map" 
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Clicked="MapButton_Clicked"/>
+
+            <Button Text="Upload Car" 
+                    Grid.Row="1" 
+                    Grid.Column="0" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Clicked="UploadCarButton_Clicked"/>
+
+            <Button Text="Camera" 
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Clicked="CameraButton_Clicked"/>
+
+            <Button Text="Stats"   
+                    Grid.Row="2" 
+                    Grid.Column="0" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Clicked="StatsButton_Clicked"/>
+
+            <Button Text="Report" 
+                    Grid.Row="2" 
+                    Grid.Column="1" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Clicked="ReportButton_Clicked"/>
+
+            <Button Text="Top Scores" 
+                    Grid.Row="3" 
+                    Grid.Column="0" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Clicked="TopButton_Clicked"/>
+
+            <Button Text="Shop" 
+                    Grid.Row="3" 
+                    Grid.Column="1" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Clicked="ShopButton_Clicked"/>
+
+        </Grid>
+
+    </StackLayout>
+
+</ContentPage>

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using RoadRangerMobileApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +10,6 @@ namespace RoadRangerMobileApp
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 
