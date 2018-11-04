@@ -4,9 +4,56 @@
              x:Class="RoadRangerMobileApp.Views.SearchPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Editor Text="Search..."/>
+            <Button Text="Search" />
+            <ListView x:Name="ItemsListView" 
+                ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image Source="" 
+                                       BackgroundColor="White"
+                                       WidthRequest="80"
+                                       HeightRequest="80"
+                                       Grid.Row="0" 
+                                       Grid.Column="0"/>
+                                <StackLayout Padding="10"
+                                        Grid.Row="0" 
+                                        Grid.Column="1" >
+                                    <Label  Text="{Binding LicensePlate, StringFormat='License plate: {0}'}" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="13" />
+                                    <Label  Text="{Binding Status, StringFormat='Status: {0}'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="10" />
+                                    <Label  Text="{Binding Date, StringFormat='Date: {0}'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="10" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

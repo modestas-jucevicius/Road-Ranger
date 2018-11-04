@@ -3,14 +3,17 @@ using RoadRangerBackEnd.Images;
 using System.Collections.Generic;
 using System.Linq;
 using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Data.Users;
+using RoadRangerBackEnd.Data.Cars;
+using RoadRangerBackEnd.Data.Images;
 
 namespace RoadRangerBackEnd.Search
 {
     public class CapturedCarFinder : ICapturedCarFinder
     {
-        private readonly IUserData userData = UserFileSystem.GetInstance();
-        private ICarData carData = new CarFileSystem();
-        private IImageData imageData = new ImageFileSystem();
+        private readonly IUserData userData = new UserMemoryData();//UserFileSystem.GetInstance();
+        private ICarData carData = new CarMemoryData();//new CarFileSystem();
+        private IImageData imageData = new ImageMemoryData();//new ImageFileSystem();
 
         public List<CapturedCar> FindByPlate(string licensePlate)
         {

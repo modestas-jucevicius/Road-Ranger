@@ -10,9 +10,9 @@ namespace RoadRangerMobileApp.Views
             InitializeComponent();
         }
 
-        private async void MyHomeButton_Clicked(object sender, System.EventArgs e)
+        private async void MyGalleryButton_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new MyHomePage()));
+            await Navigation.PushModalAsync(new NavigationPage(new MyGalleryPage()));
         }
 
         private async void MapButton_Clicked(object sender, System.EventArgs e)
@@ -20,9 +20,9 @@ namespace RoadRangerMobileApp.Views
             await Navigation.PushModalAsync(new NavigationPage(new MapPage()));
         }
 
-        private async void UploadCarButton_Clicked(object sender, System.EventArgs e)
+        private async void SearchButton_Clicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new UploadCarPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new SearchPage()));
         }
 
         private async void CameraButton_Clicked(object sender, System.EventArgs e)

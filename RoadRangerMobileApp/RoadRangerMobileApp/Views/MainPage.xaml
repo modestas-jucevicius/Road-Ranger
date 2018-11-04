@@ -16,15 +16,14 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button Text="My Home" 
-                    x:Name="MyHomeButton"
+            <Button Text="My Gallery" 
                     Grid.Row="0" 
                     Grid.Column="0" 
                     HorizontalOptions="FillAndExpand" 
                     VerticalOptions="FillAndExpand"
                     WidthRequest="100"
                     HeightRequest="100"
-                    Clicked="MyHomeButton_Clicked"/>
+                    Clicked="MyGalleryButton_Clicked"/>
             
             <Button Text="Map" 
                     Grid.Row="0" 
@@ -33,12 +32,12 @@
                     VerticalOptions="FillAndExpand"
                     Clicked="MapButton_Clicked"/>
 
-            <Button Text="Upload Car" 
+            <Button Text="Search" 
                     Grid.Row="1" 
                     Grid.Column="0" 
                     HorizontalOptions="FillAndExpand" 
                     VerticalOptions="FillAndExpand"
-                    Clicked="UploadCarButton_Clicked"/>
+                    Clicked="SearchButton_Clicked"/>
 
             <Button Text="Camera" 
                     Grid.Row="1" 
