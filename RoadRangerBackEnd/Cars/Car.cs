@@ -1,10 +1,6 @@
 ﻿using RoadRangerBackEnd.OutsideAPI;
 
-<<<<<<< HEAD:RoadRangerBackEnd/Cars/Car.cs
 namespace RoadRangerBackEnd.Cars
-=======
-namespace Road_rangerVS.Cars
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/Cars/Car.cs
 {
     public class Car
     {

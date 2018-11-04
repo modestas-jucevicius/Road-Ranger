@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-<<<<<<< HEAD:RoadRangerBackEnd/Data/Cars/CarFileSystem.cs
 using RoadRangerBackEnd.Cars;
-using RoadRangerBackEnd.OutsideAPI;
-using RoadRangerBackEnd.Recognition;
-=======
-using Road_rangerVS.OutsideAPI;
-using Road_rangerVS.Recognition;
-using Road_rangerVS.Cars;
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/Data/Car/CarFileSystem.cs
 
 namespace RoadRangerBackEnd.Data
 {

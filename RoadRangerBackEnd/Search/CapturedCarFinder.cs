@@ -2,14 +2,10 @@
 using RoadRangerBackEnd.Images;
 using System.Collections.Generic;
 using System.Linq;
-<<<<<<< HEAD:RoadRangerBackEnd/Search/CapturedCarFinder.cs
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Data.Users;
 using RoadRangerBackEnd.Data.Cars;
 using RoadRangerBackEnd.Data.Images;
-=======
-using Road_rangerVS.Cars;
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/Search/CapturedCarFinder.cs
 
 namespace RoadRangerBackEnd.Search
 {

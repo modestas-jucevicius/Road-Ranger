@@ -1,13 +1,8 @@
 ﻿using RoadRangerBackEnd.Cars;
 using System;
 using System.Threading.Tasks;
-using Road_rangerVS.Cars;
 
-<<<<<<< HEAD:RoadRangerBackEnd/EPolicija/EPolicijaAPIRequester.cs
 namespace RoadRangerBackEnd.OutsideAPI
-=======
-namespace Road_rangerVS.EPolicija
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/EPolicija/EPolicijaAPIRequester.cs
 {
     public class EPolicijaAPIRequester : ICarStatusRequester
     {

@@ -2,19 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http;
-<<<<<<< HEAD:RoadRangerBackEnd/EPolicija/EPolicijaAPI.cs
 using RoadRangerBackEnd.Cars;
 
 namespace RoadRangerBackEnd.OutsideAPI
 {
     public class EPolicijaAPI : ICarStatusRequester
-=======
-using Road_rangerVS.Cars;
-
-namespace Road_rangerVS.EPolicija
-{
-	public class EPolicijaAPI : ICarStatusRequester
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/EPolicija/EPolicijaAPI.cs
     {
 		private static readonly HttpClient client = new HttpClient(); // HTTP servisas
 		private static readonly string URL = "https://www.epolicija.lt/itpr_paieska/transportas_lt.php"; // ePolicijos URl
