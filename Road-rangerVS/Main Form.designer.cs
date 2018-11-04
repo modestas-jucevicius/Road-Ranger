@@ -42,6 +42,8 @@ namespace Road_rangerVS
             this.cameraTopText = new System.Windows.Forms.Label();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.tabReport = new System.Windows.Forms.TabPage();
             this.subjectText = new System.Windows.Forms.TextBox();
@@ -68,16 +70,15 @@ namespace Road_rangerVS
             this.galleryPictureBox = new System.Windows.Forms.PictureBox();
             this.removeButton = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tab.SuspendLayout();
             this.tabMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabReport.SuspendLayout();
             this.tabFindCar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findPictureBox)).BeginInit();
             this.tabMyGallery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.galleryPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // upload
@@ -185,6 +186,7 @@ namespace Road_rangerVS
             // 
             // tabMain
             // 
+            this.tabMain.Controls.Add(this.button3);
             this.tabMain.Controls.Add(this.pictureBox1);
             this.tabMain.Controls.Add(this.scoreLabel);
             this.tabMain.Controls.Add(this.cameraTopText);
@@ -202,6 +204,26 @@ namespace Road_rangerVS
             this.tabMain.TabIndex = 0;
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(950, 514);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 52;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(815, 131);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(229, 223);
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
             // 
             // scoreLabel
             // 
@@ -450,16 +472,6 @@ namespace Road_rangerVS
             this.reportButton.UseVisualStyleBackColor = true;
             this.reportButton.Click += new System.EventHandler(this.ReportButtonClick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(815, 131);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(229, 223);
-            this.pictureBox1.TabIndex = 51;
-            this.pictureBox1.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,6 +487,7 @@ namespace Road_rangerVS
             this.tab.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabReport.ResumeLayout(false);
             this.tabReport.PerformLayout();
             this.tabFindCar.ResumeLayout(false);
@@ -482,7 +495,6 @@ namespace Road_rangerVS
             ((System.ComponentModel.ISupportInitialize)(this.findPictureBox)).EndInit();
             this.tabMyGallery.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.galleryPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -526,6 +538,7 @@ namespace Road_rangerVS
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button3;
     }
 }
 

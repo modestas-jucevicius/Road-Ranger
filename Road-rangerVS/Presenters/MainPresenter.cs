@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Drawing;
 using Road_rangerVS.Models;
-using Road_rangerVS.OutsideAPI;
-using Road_rangerVS.Recognition;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using Road_rangerVS.Views;
 using System.Windows.Forms;
-using System.Drawing.Imaging;
 using System.IO;
-using Road_rangerVS.Users;
-using Road_rangerVS.Data;
-using Road_rangerVS.Score;
-using Road_rangerVS.Validation;
+using RoadRangerBackEnd.Recognition;
+using RoadRangerBackEnd.OutsideAPI;
+using RoadRangerBackEnd.Validation;
+using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Score;
 
 namespace Road_rangerVS.Presenters
 {

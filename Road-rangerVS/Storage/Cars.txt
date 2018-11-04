@@ -3,3 +3,9 @@
 3,0,HBL585,green,renault,opel_astra,sedan-compact,1995-1999,False,NOT_STOLEN
 4,0,KJO293,silver-gray,mazda,mazda_323,sedan-compact,2000-2004,False,NOT_STOLEN
 5,0,KJO293,silver-gray,suzuki,dacia_logan,sedan-compact,2005-2009,False,NOT_STOLEN
+6,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+7,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+8,0,HBL585,green,renault,opel_astra,sedan-compact,1995-1999,False,NOT_STOLEN
+9,0,FTF275,red,skoda,skoda_yeti,suv-crossover,2010-2014,False,NOT_STOLEN
+10,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+11,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN

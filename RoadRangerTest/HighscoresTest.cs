@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Road_rangerVS;
-using Road_rangerVS.Data;
-using Road_rangerVS.Score;
-using Road_rangerVS.Users;
+using RoadRangerBackEnd.Data;
+using RoadRangerBackEnd.Score;
+using RoadRangerBackEnd.Users;
 
 namespace RoadRangerTest
 {

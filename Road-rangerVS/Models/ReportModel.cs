@@ -1,6 +1,6 @@
 ﻿
-using Road_rangerVS.Recognition;
-using Road_rangerVS.Report;
+using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Report;
 
 namespace Road_rangerVS.Models
 {

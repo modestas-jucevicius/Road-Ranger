@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Road_rangerVS.Data;
-using Road_rangerVS.Recognition;
-using Road_rangerVS.Report;
-using Road_rangerVS.Search;
+﻿
+using RoadRangerBackEnd.Data;
+using RoadRangerBackEnd.Search;
 
 namespace Road_rangerVS.Models
 {

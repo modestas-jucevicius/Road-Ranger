@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Road_rangerVS;
-using Road_rangerVS.Recognition;
+using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Recognition;
 using System.Collections.Generic;
 
 namespace RoadRangerTest
