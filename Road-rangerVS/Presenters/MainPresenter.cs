@@ -21,6 +21,9 @@ using Road_rangerVS.Score;
 using Road_rangerVS.Validation;
 using Road_rangerVS.Cars;
 using Road_rangerVS.EPolicija;
+<<<<<<< HEAD
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
+=======
 >>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
 
 namespace Road_rangerVS.Presenters

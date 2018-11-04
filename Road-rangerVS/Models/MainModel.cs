@@ -11,6 +11,9 @@ using RoadRangerBackEnd.Cars;
 =======
 using Road_rangerVS.Users;
 using Road_rangerVS.Cars;
+<<<<<<< HEAD
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
+=======
 >>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
 
 namespace Road_rangerVS.Models

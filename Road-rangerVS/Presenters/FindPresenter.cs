@@ -5,7 +5,11 @@ using Road_rangerVS.Models;
 using Road_rangerVS.Views;
 using System.Windows.Forms;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using RoadRangerBackEnd.Cars;
+=======
+using Road_rangerVS.Cars;
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
 =======
 using Road_rangerVS.Cars;
 >>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d

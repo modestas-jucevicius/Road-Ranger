@@ -1,6 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
 using System.Net.Mail;
-using Road_rangerVS.Cars;
 
 namespace RoadRangerBackEnd.Report
 {

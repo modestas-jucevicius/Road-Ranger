@@ -1,6 +1,6 @@
-﻿using RoadRangerBackEnd.Images;
+﻿using Road_rangerVS.Images;
 
-namespace RoadRangerBackEnd.Cars
+namespace Road_rangerVS.Cars
 {
     public class CapturedCar : Car
     {
