@@ -1,5 +1,6 @@
 ﻿using RoadRangerBackEnd.Cars;
 using System;
+using Road_rangerVS.Cars;
 
 namespace RoadRangerBackEnd.Report
 {

@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Recognition;
 using System.Collections.Generic;
+using Road_rangerVS.Cars;
 
 namespace RoadRangerTest
 {

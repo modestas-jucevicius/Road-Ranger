@@ -1,5 +1,17 @@
+<<<<<<< HEAD:RoadRangerBackEnd/Score/Evaluation.cs
 ﻿using RoadRangerBackEnd.Users;
 using RoadRangerBackEnd.Cars;
+=======
+﻿using Road_rangerVS.Users;
+using Road_rangerVS.Recognition;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Road_rangerVS.OutsideAPI;
+using Road_rangerVS.Cars;
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/Score/Evaluation.cs
 
 namespace RoadRangerBackEnd.Score
 {

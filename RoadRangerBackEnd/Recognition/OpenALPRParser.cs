@@ -1,6 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+<<<<<<< HEAD:RoadRangerBackEnd/Recognition/OpenALPRParser.cs
 using RoadRangerBackEnd.Cars;
+=======
+using Road_rangerVS.Recognition;
+using Road_rangerVS.Cars;
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/Recognition/OpenALPRParser.cs
 
 namespace RoadRangerBackEnd.Recognition
 {

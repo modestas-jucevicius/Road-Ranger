@@ -1,8 +1,13 @@
 ﻿using RoadRangerBackEnd.Cars;
 using System;
 using System.Threading.Tasks;
+using Road_rangerVS.Cars;
 
+<<<<<<< HEAD:RoadRangerBackEnd/EPolicija/EPolicijaAPIRequester.cs
 namespace RoadRangerBackEnd.OutsideAPI
+=======
+namespace Road_rangerVS.EPolicija
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/EPolicija/EPolicijaAPIRequester.cs
 {
     public class EPolicijaAPIRequester : ICarStatusRequester
     {
@@ -23,7 +28,7 @@ namespace RoadRangerBackEnd.OutsideAPI
 
         private EPolicijaAPIRequester() { }
 
-        private EPolicijaAPI ePolicijaAPI = EPolicijaAPI.getInstance(); // pasiema EPolicijosAPI objekta
+        private EPolicijaAPI ePolicijaAPI = EPolicijaAPI.GetInstance(); // pasiema EPolicijosAPI objekta
 
         public async Task<CarStatus> AskCarStatus(string licensePlate)
         {

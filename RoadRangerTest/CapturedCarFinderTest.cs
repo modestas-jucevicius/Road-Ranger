@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+<<<<<<< HEAD
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Images;
 using RoadRangerBackEnd.Search;
+=======
+using Road_rangerVS.Images;
+using Road_rangerVS.Recognition;
+using Road_rangerVS.Search;
+using Road_rangerVS.Cars;
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
 
 namespace RoadRangerTest
 {

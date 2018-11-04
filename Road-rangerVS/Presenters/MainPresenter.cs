@@ -8,11 +8,20 @@ using AForge.Video.DirectShow;
 using Road_rangerVS.Views;
 using System.Windows.Forms;
 using System.IO;
+<<<<<<< HEAD
 using RoadRangerBackEnd.Recognition;
 using RoadRangerBackEnd.OutsideAPI;
 using RoadRangerBackEnd.Validation;
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Score;
+=======
+using Road_rangerVS.Users;
+using Road_rangerVS.Data;
+using Road_rangerVS.Score;
+using Road_rangerVS.Validation;
+using Road_rangerVS.Cars;
+using Road_rangerVS.EPolicija;
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
 
 namespace Road_rangerVS.Presenters
 {
@@ -67,10 +76,12 @@ namespace Road_rangerVS.Presenters
         // Ieško automobilio nuotraukos kompiuterio aplankaluose
         public void Browse(IMainView view)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Image files | *.png; *.jpg"; // failo tipai, kurie bus naudojami
-            dialog.Multiselect = false; // true - galima pridėti daugiau negu viena failą, false - galima pridėti tik 1 failą
-            if (dialog.ShowDialog() == DialogResult.OK) // jei vartotojas paspaudžia OK
+			OpenFileDialog dialog = new OpenFileDialog
+			{
+				Filter = "Image files | *.png; *.jpg", // failo tipai, kurie bus naudojami
+				Multiselect = false // true - galima pridėti daugiau negu viena failą, false - galima pridėti tik 1 failą
+			};
+			if (dialog.ShowDialog() == DialogResult.OK) // jei vartotojas paspaudžia OK
             {
                 String path = dialog.FileName; // gauna failo vardą
                 view.Path = path;           // laukui filePath priskiriama path reikšmė

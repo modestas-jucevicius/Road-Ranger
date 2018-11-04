@@ -1,5 +1,12 @@
 ﻿using RoadRangerBackEnd.Cars;
 using System.Collections.Generic;
+<<<<<<< HEAD:RoadRangerBackEnd/Data/Cars/ICarData.cs
+=======
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Road_rangerVS.Cars;
+>>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d:Road-rangerVS/Data/Car/ICarData.cs
 
 namespace RoadRangerBackEnd.Data
 {
