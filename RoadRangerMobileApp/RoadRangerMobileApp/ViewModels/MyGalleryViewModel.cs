@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XamarinMobileAppExample1.Models;
 
 namespace RoadRangerMobileApp.ViewModels
 {

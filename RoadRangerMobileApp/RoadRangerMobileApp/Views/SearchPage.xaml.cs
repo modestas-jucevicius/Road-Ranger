@@ -3,7 +3,6 @@ using RoadRangerMobileApp.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamarinMobileAppExample1.Models;
 
 namespace RoadRangerMobileApp.Views
 {
