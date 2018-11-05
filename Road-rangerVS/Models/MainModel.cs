@@ -3,18 +3,10 @@ using System.Drawing;
 using AForge.Video.DirectShow;
 using System.Drawing.Imaging;
 using System.IO;
-<<<<<<< HEAD
 using RoadRangerBackEnd.Data;
 using RoadRangerBackEnd.Authorization;
 using RoadRangerBackEnd.Users;
 using RoadRangerBackEnd.Cars;
-=======
-using Road_rangerVS.Users;
-using Road_rangerVS.Cars;
-<<<<<<< HEAD
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
-=======
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
 
 namespace Road_rangerVS.Models
 {
