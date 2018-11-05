@@ -14,22 +14,44 @@ namespace RoadRangerBackEnd.Data.Images
 
         public Image FindById(int id)
         {
-            throw new System.NotImplementedException();
+            foreach(Image image in MemoryRepository.images)
+            {
+                if (image.Id == id) { return image; }
+            }
+            return null;
+        }
+
+        public int NewID()
+        {
+            int Id = MemoryRepository.images[0].Id;
+            foreach(Image image in MemoryRepository.images)
+            {
+                if(image.Id >= Id) { Id = image.Id; }
+            }
+            return ++Id;
         }
 
         public void Put(Image obj)
         {
-            throw new System.NotImplementedException();
+            MemoryRepository.images.Add(obj);
         }
 
         public void PutList(List<Image> obj)
         {
-            throw new System.NotImplementedException();
+            foreach(Image image in obj) { MemoryRepository.images.Add(image); }
         }
 
         public bool Remove(int id)
         {
-            throw new System.NotImplementedException();
+            foreach(Image image in MemoryRepository.images)
+            {
+                if(image.Id == id)
+                {
+                    MemoryRepository.images.Remove(image);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
