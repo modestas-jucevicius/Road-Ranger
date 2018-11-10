@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace RoadRangerMobileApp.Presenters
 {
-    public class MyGalleryPresenter : BaseViewModel
+    public class MyGalleryPresenter : BasePresenter
     {
         private IMyGalleryView view;
         public ObservableCollection<CapturedCar> Items { get; set; }

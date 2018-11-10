@@ -1,7 +1,6 @@
 ﻿using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Search;
 using RoadRangerBackEnd.Validation;
-using RoadRangerMobileApp.ViewModels;
 using RoadRangerMobileApp.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -11,7 +10,7 @@ using Xamarin.Forms;
 
 namespace RoadRangerMobileApp.Presenters
 {
-    public class SearchPresenter : BaseViewModel
+    public class SearchPresenter : BasePresenter
     {
         private ISearchView view;
         public ObservableCollection<CapturedCar> Items { get; set; }

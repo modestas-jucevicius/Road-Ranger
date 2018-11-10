@@ -4,7 +4,7 @@ using RoadRangerBackEnd.Report;
 
 namespace RoadRangerMobileApp.ViewModels
 {
-    public class CapturedCarDetailViewModel : BaseViewModel
+    public class CapturedCarDetailViewModel : BasePresenter
     {
         public CapturedCar Item { get; set; }
         public CapturedCarDetailViewModel(CapturedCar item = null)
