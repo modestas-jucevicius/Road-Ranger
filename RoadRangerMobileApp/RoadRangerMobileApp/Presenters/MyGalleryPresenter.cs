@@ -1,6 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Search;
-using RoadRangerBackEnd.Validation;
 using RoadRangerMobileApp.ViewModels;
 using RoadRangerMobileApp.Views;
 using System;
@@ -11,14 +10,14 @@ using Xamarin.Forms;
 
 namespace RoadRangerMobileApp.Presenters
 {
-    public class SearchPresenter : BaseViewModel
+    public class MyGalleryPresenter : BaseViewModel
     {
-        private ISearchView view;
+        private IMyGalleryView view;
         public ObservableCollection<CapturedCar> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         private ICapturedCarFinder finder = new CapturedCarFinder();
 
-        public SearchPresenter(ISearchView page)
+        public MyGalleryPresenter(IMyGalleryView page)
         {
             this.view = page;
             Items = new ObservableCollection<CapturedCar>();
@@ -28,8 +27,9 @@ namespace RoadRangerMobileApp.Presenters
 
         private void Initialize()
         {
-            this.view.Search += new EventHandler<EventArgs>(ClickSearch);
+            this.view.Add += new EventHandler<EventArgs>(AddItem);
             this.view.OnItem += new EventHandler<SelectedItemChangedEventArgs>(ClickOnItem);
+            this.view.Search += new EventHandler<EventArgs>(Search);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -41,8 +41,7 @@ namespace RoadRangerMobileApp.Presenters
 
             try
             {
-                Items.Clear();
-                FindItems(view.SearchText);
+                FindAll();
             }
             catch (Exception ex)
             {
@@ -54,31 +53,18 @@ namespace RoadRangerMobileApp.Presenters
             }
         }
 
-        public ObservableCollection<CapturedCar> FindItems(String text)
+        private void FindAll()
         {
             Items.Clear();
-            var items = finder.FindByPlate(text);
+            //var items = await DataStore.GetItemsAsync(true);
+            var items = finder.FindAll();
             foreach (var item in items)
             {
                 Items.Add(item);
             }
-            return Items;
         }
 
-        private async void ClickSearch(object sender, EventArgs e)
-        {
-            ITextValidator validator = new LicensePlateValidator();
-            if (validator.IsValid(view.SearchText))
-            {
-                LoadItemsCommand.Execute(null);
-            }
-            else
-            {
-                await view.ShowValidationDialogAlert();
-            }
-        }
-
-        private async void ClickOnItem(object sender, SelectedItemChangedEventArgs args)
+        async void ClickOnItem(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as CapturedCar;
             if (item == null)
@@ -86,8 +72,18 @@ namespace RoadRangerMobileApp.Presenters
 
             await view.NavigateToCapturedCarDetailPage(item);
 
-            //Manually deselect item.
+            // Manually deselect item.
             view.ListView.SelectedItem = null;
+        }
+
+        async void AddItem(object sender, EventArgs e)
+        {
+            await view.NavigateToAddStolenCarPage();
+        }
+
+        async void Search(object sender, EventArgs e)
+        {
+            LoadItemsCommand.Execute(null);
         }
     }
 }
