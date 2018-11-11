@@ -26,6 +26,7 @@ namespace Road_rangerVS.Presenters
         private ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
         private ITextValidator validator = new LicensePlateValidator();
         private delegate void SetTextCallBack(string text);
+        private Evaluation evaluation = new Evaluation();
 
         public MainPresenter(Label scoreLabel)
         {
@@ -146,7 +147,7 @@ namespace Road_rangerVS.Presenters
                 if (validator.IsValid(car.LicensePlate))
                 {
                     car.Status = await requester.AskCarStatus(car.LicensePlate);
-                    this.model.IncreaseUserScore(Evaluation.Evaluate(car));
+                    this.model.IncreaseUserScore(evaluation.Evaluate(car));
                     ShowReportMessage(car);
                     model.SaveData(car, ref isSaved, ref timestamp, ref path, ref source);
                 }

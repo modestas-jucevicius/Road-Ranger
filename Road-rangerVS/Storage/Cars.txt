@@ -9,3 +9,15 @@
 9,0,FTF275,red,skoda,skoda_yeti,suv-crossover,2010-2014,False,NOT_STOLEN
 10,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
 11,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+12,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+13,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+14,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
+15,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+16,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+17,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+18,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+19,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+20,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
+21,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
+22,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
+23,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
