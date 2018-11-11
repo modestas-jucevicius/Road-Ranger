@@ -1,36 +1,55 @@
 ﻿using RoadRangerBackEnd.Cars;
+using RoadRangerMobileApp.Presenters;
 using RoadRangerMobileApp.ViewModels;
 using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace RoadRangerMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MyGalleryPage : ContentPage
-	{
-        private MyGalleryViewModel viewModel;
+	public partial class MyGalleryPage : ContentPage, IMyGalleryView
+    {
+        private MyGalleryPresenter presenter;
+
+        public ListView ListView
+        {
+            get => ItemsListView;
+            set => ItemsListView = value;
+        }
+        public ObservableCollection<CapturedCar> Items
+        {
+            get => Items;
+            set => Items = value;
+        }
 
         public MyGalleryPage ()
 		{
 			InitializeComponent();
-
-            BindingContext = viewModel = new MyGalleryViewModel();
+            BindingContext = presenter = new MyGalleryPresenter(this);
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        void OnItemSelected_Clicked(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as CapturedCar;
-            if (item == null)
-                return;
-
-            await Navigation.PushAsync(new CapturedCarDetailPage(new CapturedCarDetailViewModel(item)));
-
-            // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+            if (this.OnItem != null)
+                this.OnItem(this, args);
         }
 
-        async void AddItem_Clicked(object sender, EventArgs e)
+        void AddItem_Clicked(object sender, EventArgs e)
+        {
+            ItemsListView.SelectedItem = null;
+            if (this.Add != null)
+                this.Add(this, EventArgs.Empty);
+        }
+
+        public async Task NavigateToCapturedCarDetailPage(CapturedCar car)
+        {
+            await Navigation.PushAsync(new CapturedCarDetailPage(new CapturedCarDetailViewModel(car)));
+        }
+
+        public async Task NavigateToAddStolenCarPage()
         {
             await Navigation.PushModalAsync(new NavigationPage(new AddStolenCarPage()));
         }
@@ -39,10 +58,12 @@ namespace RoadRangerMobileApp.Views
         {
             base.OnAppearing();
 
-            //if (viewModel.Items.Count == 0)
-            Console.WriteLine("OnAppearing");
-            viewModel.LoadItemsCommand.Execute(null);
+            if (this.Search != null)
+                this.Search(this, EventArgs.Empty);
         }
 
+        public event EventHandler<EventArgs> Add;
+        public event EventHandler<SelectedItemChangedEventArgs> OnItem;
+        public event EventHandler<EventArgs> Search;
     }
 }
