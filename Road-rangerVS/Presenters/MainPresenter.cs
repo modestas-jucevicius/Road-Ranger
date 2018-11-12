@@ -8,23 +8,12 @@ using AForge.Video.DirectShow;
 using Road_rangerVS.Views;
 using System.Windows.Forms;
 using System.IO;
-<<<<<<< HEAD
+
 using RoadRangerBackEnd.Recognition;
 using RoadRangerBackEnd.OutsideAPI;
 using RoadRangerBackEnd.Validation;
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Score;
-=======
-using Road_rangerVS.Users;
-using Road_rangerVS.Data;
-using Road_rangerVS.Score;
-using Road_rangerVS.Validation;
-using Road_rangerVS.Cars;
-using Road_rangerVS.EPolicija;
-<<<<<<< HEAD
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
-=======
->>>>>>> 14143fd53e9df87f9d61baa2872c61231ac6452d
 
 namespace Road_rangerVS.Presenters
 {

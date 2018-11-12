@@ -9,3 +9,6 @@
 9,0,FTF275,red,skoda,skoda_yeti,suv-crossover,2010-2014,False,NOT_STOLEN
 10,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
 11,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,False,STOLEN
+12,0,EBO666,blue,audi,audi_tt,sedan-sports,2000-2004,False,NOT_STOLEN
+13,0,FBO666,white,audi,audi_tt,sedan-sports,2005-2009,False,NOT_STOLEN
+14,0,EBO666,silver-gray,audi,audi_a4,sedan-standard,2000-2004,False,NOT_STOLEN

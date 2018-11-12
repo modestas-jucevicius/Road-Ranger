@@ -39,7 +39,6 @@ namespace RoadRangerMobileApp.Views
         {
             base.OnAppearing();
 
-            //if (viewModel.Items.Count == 0)
             Console.WriteLine("OnAppearing");
             viewModel.LoadItemsCommand.Execute(null);
         }
