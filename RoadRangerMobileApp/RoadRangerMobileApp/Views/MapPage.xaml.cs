@@ -1,12 +1,8 @@
-﻿using Plugin.Geolocator;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.Maps;
 using RoadRangerBackEnd.Maps;
 using System.Threading.Tasks;
-using System.Threading;
-using Android.Views;
-using System;
 using System.Collections.Generic;
 namespace RoadRangerMobileApp.Views
 {

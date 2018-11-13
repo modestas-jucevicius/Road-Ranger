@@ -19,7 +19,7 @@ namespace RoadRangerMobileApp.Views
             //viewModel = new MyShopViewModel();
         }
 
-        private void Boost30p_Clicked()
+        private void Boost30p_Clicked(object sender, EventArgs args)
         {
             if(this.viewModel == null)
             {
@@ -28,7 +28,7 @@ namespace RoadRangerMobileApp.Views
             this.viewModel.BuyBoost30p();
         }
 
-        private void Boost50p_Clicked()
+        private void Boost50p_Clicked(object sender, EventArgs args)
         {
             if (this.viewModel == null)
             {
@@ -37,7 +37,7 @@ namespace RoadRangerMobileApp.Views
             this.viewModel.BuyBoost50p();
         }
     
-        private void BoostDouble_Clicked()
+        private void BoostDouble_Clicked(object sender, EventArgs args)
         {
             if (this.viewModel == null)
             {

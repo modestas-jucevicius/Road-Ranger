@@ -27,6 +27,7 @@ namespace RoadRangerMobileApp.ViewModels
             }
             catch (NotEnoughScorePointsException e)
             {
+
                 //TODO: Do something when not enough points to buy score
             }
         }

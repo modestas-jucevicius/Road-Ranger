@@ -59,7 +59,7 @@
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>3.1.0.697729</Version>
+      <Version>3.3.0.967583</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
