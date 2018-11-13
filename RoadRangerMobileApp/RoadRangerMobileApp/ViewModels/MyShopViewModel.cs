@@ -7,7 +7,7 @@ using System.Text;
 
 namespace RoadRangerMobileApp.ViewModels
 {
-    public class MyShopViewModel : BaseViewModel
+    public class MyShopViewModel
     {
         //private readonly AuthorizationService authorization;
         private readonly MemoryRepository memoryRepository = MemoryRepository.GetInstance();
