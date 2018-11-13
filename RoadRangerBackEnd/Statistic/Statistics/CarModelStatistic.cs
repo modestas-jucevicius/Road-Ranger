@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RoadRangerBackEnd.Statistic
 {
-    public class CarModelStatistic
+    public class CarModelStatistic : IStatistic
     {
         private IColor color = new HexColor();
         public List<StatisticEntry> Get(List<CapturedCar> cars, CarStatus status)

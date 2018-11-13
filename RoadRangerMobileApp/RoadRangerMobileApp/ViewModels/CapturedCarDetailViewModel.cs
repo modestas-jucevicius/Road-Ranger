@@ -1,4 +1,4 @@
-﻿using Road_rangerVS.Models;
+using Road_rangerVS.Models;
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Report;
 using RoadRangerMobileApp.Presenters;

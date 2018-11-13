@@ -21,7 +21,7 @@ namespace RoadRangerMobileApp.Presenters
         {
             this.view = page;
             Items = new ObservableCollection<CapturedCar>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => ExecuteLoadItemsCommand());
             this.Initialize();
         }
 
