@@ -26,6 +26,7 @@ namespace RoadRangerMobileApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Microcharts.Droid.Resource.String.library_name = global::RoadRangerMobileApp.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::RoadRangerMobileApp.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -4283,12 +4284,14 @@ namespace RoadRangerMobileApp.Droid
 			// aapt resource value: 0x7f090045
 			public const int bottom_sheet_behavior = 2131296325;
 			
-			// aapt resource value: 0x7f090046
-			public const int character_counter_pattern = 2131296326;
-			
 			// aapt resource value: 0x7f090000
 			public const int common_google_play_services_enable_button = 2131296256;
+			// aapt resource value: 0x7f0a003c
+			public const int library_name = 2131361852;
 			
+			// aapt resource value: 0x7f0a0000
+			public const int mr_button_content_description = 2131361792;
+
 			// aapt resource value: 0x7f090001
 			public const int common_google_play_services_enable_text = 2131296257;
 			

@@ -1,12 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
+             xmlns:local="clr-namespace:Microcharts.Samples.Forms" 
+             Title="Statistic"
              x:Class="RoadRangerMobileApp.Views.StatisticPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Hour of car capturing"
+                       HorizontalTextAlignment="Center"/>
+                <microcharts:ChartView x:Name="chartViewDate" HeightRequest="150" />
+                <Label Text="Year of captured car"
+                       HorizontalTextAlignment="Center"/>
+                <microcharts:ChartView x:Name="chartViewYear" HeightRequest="150" />
+                <Label Text="Location of captured car"
+                       HorizontalTextAlignment="Center"/>
+                <microcharts:ChartView x:Name="chartViewLocation" HeightRequest="150" />
+                <Label Text="Model of captured car"
+                       HorizontalTextAlignment="Center"/>
+                <microcharts:ChartView x:Name="chartViewModel" HeightRequest="150" />
+                <Label Text="Status of captured car"
+                       HorizontalTextAlignment="Center"/>
+                <microcharts:ChartView x:Name="chartViewStatus" HeightRequest="150" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

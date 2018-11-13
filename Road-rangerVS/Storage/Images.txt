@@ -4,6 +4,3 @@
 3,9,1540643424,C:\Users\Aurimas\Desktop\RoadRanger\Road-rangerVS\Storage\Images\9.jpg
 4,10,1540643445,C:\Users\Aurimas\Desktop\RoadRanger\Road-rangerVS\Storage\Images\10.jpg
 5,11,1540643609,C:\Users\Aurimas\Desktop\RoadRanger\Road-rangerVS\Storage\Images\11.jpg
-6,12,1541790428,C:\Users\pjach\Documents\Road-Ranger\Road-rangerVS\Storage\Images\12.jpg
-7,13,1541790429,C:\Users\pjach\Documents\Road-Ranger\Road-rangerVS\Storage\Images\13.jpg
-8,14,1541790495,C:\Users\pjach\Documents\Road-Ranger\Road-rangerVS\Storage\Images\14.jpg

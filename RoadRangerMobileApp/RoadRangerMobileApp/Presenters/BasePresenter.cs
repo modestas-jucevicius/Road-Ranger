@@ -1,7 +1,7 @@
 ﻿
-namespace RoadRangerMobileApp.ViewModels
+namespace RoadRangerMobileApp.Presenters
 {
-    public class BaseViewModel
+    public class BasePresenter
     {
         bool isBusy = false;
         public bool IsBusy
