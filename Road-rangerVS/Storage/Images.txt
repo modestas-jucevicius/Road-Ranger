@@ -4,16 +4,3 @@
 3,9,1540643424,C:\Users\Aurimas\Desktop\RoadRanger\Road-rangerVS\Storage\Images\9.jpg
 4,10,1540643445,C:\Users\Aurimas\Desktop\RoadRanger\Road-rangerVS\Storage\Images\10.jpg
 5,11,1540643609,C:\Users\Aurimas\Desktop\RoadRanger\Road-rangerVS\Storage\Images\11.jpg
-6,12,1541766081,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\12.jpg
-7,13,1541766153,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\13.jpg
-8,14,1541766196,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\14.jpg
-9,15,1541766313,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\15.jpg
-10,16,1541766841,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\16.jpg
-11,17,1541766871,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\17.jpg
-12,18,1541767231,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\18.jpg
-13,19,1541767261,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\19.jpg
-14,20,1541767959,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\20.jpg
-15,21,1541767964,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\21.jpg
-16,22,1541767965,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\22.jpg
-17,23,1541767968,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\23.jpg
-18,24,1542097608,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\24.jpg

@@ -9,7 +9,11 @@ namespace RoadRangerBackEnd.Data.Users
 
         public User FindById(int id)
         {
-            throw new System.NotImplementedException();
+            foreach(User user in MemoryRepository.users)
+            {
+                if (user.Id == id) { return user; }
+            }
+            return null;
         }
 
         public List<User> GetAll()
@@ -19,17 +23,37 @@ namespace RoadRangerBackEnd.Data.Users
 
         public void Put(User obj)
         {
-            throw new System.NotImplementedException();
+            MemoryRepository.users.Add(obj);
         }
 
         public void PutList(List<User> obj)
         {
-            throw new System.NotImplementedException();
+            foreach(User user in obj)
+            {
+                MemoryRepository.users.Add(user);
+            }
         }
-
         public bool Update(User obj)
         {
-            throw new System.NotImplementedException();
+            for(int i = 0; i < MemoryRepository.users.Count; i++)
+            {
+                if(MemoryRepository.users[i].Id == obj.Id)
+                {
+                    MemoryRepository.users.RemoveAt(i);
+                    MemoryRepository.users.Insert(i, obj);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public int NewID()
+        {
+            int Id = MemoryRepository.users[0].Id;
+            foreach(User user in MemoryRepository.users)
+            {
+                if(user.Id >= Id) { Id = user.Id; }
+            }
+            return ++Id;
         }
     }
 }

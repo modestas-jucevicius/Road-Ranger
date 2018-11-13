@@ -1,4 +1,4 @@
-﻿using RoadRangerBackEnd.Cars;
+using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Report;
 using RoadRangerBackEnd.Recognition;
 

@@ -4,9 +4,20 @@
              x:Class="RoadRangerMobileApp.Views.ReportPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Subject:"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" />
+            
+            <Entry x:Name="Subject"/>
+
+            <Label Text="Message:"/>
+
+            <Editor x:Name="Body"/>
+
+            <Button Clicked="Send_Button"
+                    Text="Send"
+                 VerticalOptions="End" 
+                HorizontalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
