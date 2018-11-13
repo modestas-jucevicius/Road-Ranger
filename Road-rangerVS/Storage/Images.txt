@@ -16,3 +16,4 @@
 15,21,1541767964,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\21.jpg
 16,22,1541767965,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\22.jpg
 17,23,1541767968,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\23.jpg
+18,24,1542097608,C:\Users\Paulius\Documents\Road-Ranger\Road-rangerVS\Storage\Images\24.jpg

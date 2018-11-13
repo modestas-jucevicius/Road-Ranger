@@ -1,5 +1,6 @@
 ﻿using RoadRangerBackEnd.Authorization;
 using RoadRangerBackEnd.Score;
+using RoadRangerBackEnd.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,61 +9,51 @@ namespace RoadRangerMobileApp.ViewModels
 {
     public class MyShopViewModel : BaseViewModel
     {
-        private readonly AuthorizationService authorization;
+        //private readonly AuthorizationService authorization;
+        private readonly MemoryRepository memoryRepository = MemoryRepository.GetInstance();
+        private readonly BoostShop boostShop = BoostShop.GetInstance();
 
         public MyShopViewModel()
         {
-            this.authorization = AuthorizationService.GetInstance();
+            //this.authorization = AuthorizationService.GetInstance();
         }
 
         public void BuyBoost30p()
         {
-            int operationStatus = BoostShop.BuyBoost30p(authorization.GetCurrentUser());
-            if (operationStatus == 1)
+            //int operationStatus = BoostShop.BuyBoost30p(authorization.GetCurrentUser());
+            try
             {
-                //Boostas jau galioja
+                BoostShop.BuyBoost30p(MemoryRepository.users[0]);
             }
-            if (operationStatus == 2)
+            catch (NotEnoughScorePointsException e)
             {
-                //Nepakanka scoro nusipirkti boostui
-            }
-            else
-            {
-                //Operacija sekminga
+                //TODO: Do something when not enough points to buy score
             }
         }
 
         public void BuyBoost50p()
         {
-            int operationStatus = BoostShop.BuyBoost50p(authorization.GetCurrentUser());
-            if (operationStatus == 1)
+            //int operationStatus = BoostShop.BuyBoost50p(authorization.GetCurrentUser());
+            try
             {
-                //Boostas jau galioja
+                BoostShop.BuyBoost50p(MemoryRepository.users[0]);
             }
-            if (operationStatus == 2)
+            catch (NotEnoughScorePointsException e)
             {
-                //Nepakanka scoro nusipirkti boostui
-            }
-            else
-            {
-                //Operacija sekminga
+                //TODO: Do something when not enough points to buy score
             }
         }
 
         public void BuyBoostDouble()
         {
-            int operationStatus = BoostShop.BuyBoostDouble(authorization.GetCurrentUser());
-            if (operationStatus == 1)
+            //int operationStatus = BoostShop.BuyBoostDouble(authorization.GetCurrentUser());
+            try
             {
-                //Boostas jau galioja
+                BoostShop.BuyBoostDouble(MemoryRepository.users[0]);
             }
-            if (operationStatus == 2)
+            catch(NotEnoughScorePointsException e)
             {
-                //Nepakanka scoro nusipirkti boostui
-            }
-            else
-            {
-                //Operacija sekminga
+                //TODO: Do something when not enough points to buy score
             }
         }
     }

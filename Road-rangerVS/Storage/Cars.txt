@@ -21,3 +21,4 @@
 21,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
 22,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
 23,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
+24,0,EEE111,silver-gray,bmw,bmw_530,sedan-wagon,2005-2009,False,NOT_STOLEN
