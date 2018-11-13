@@ -30,7 +30,7 @@ namespace RoadRangerBackEnd.Authorization
 		}
 
 		public User Login() {
-			 return CurrentUser = new User(0, "username", "password", "name", 0);
+			 return CurrentUser = new User(0, "username", "password", "name", 0, false, false, false);
 		}
 
 		public void SyncCurrentUserToData()
@@ -39,6 +39,7 @@ namespace RoadRangerBackEnd.Authorization
 			if (savedUser != null)
 			{
 				this.CurrentUser.score = savedUser.score;
+                this.CurrentUser.boosts = savedUser.boosts;
 			}
 			else
 			{

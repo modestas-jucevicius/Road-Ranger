@@ -109,7 +109,7 @@ namespace RoadRangerBackEnd.Data
 
         private User GetUserFromStringArray(String[] array)
         {
-            return new User(Int32.Parse(array[0]), array[1], array[2], array[3], Int32.Parse(array[4]));
+            return new User(Int32.Parse(array[0]), array[1], array[2], array[3], Int32.Parse(array[4]), array[5] == "True", array[6] == "True", array[7] == "True");
         }
     }
 }
