@@ -1,6 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
 using RoadRangerMobileApp.Presenters;
-using RoadRangerMobileApp.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -46,7 +45,7 @@ namespace RoadRangerMobileApp.Views
 
         public async Task NavigateToCapturedCarDetailPage(CapturedCar car)
         {
-            await Navigation.PushAsync(new CapturedCarDetailPage(new CapturedCarDetailViewModel(car)));
+            await Navigation.PushAsync(new MyGalleryItemPage(new CarDetailViewModel(car)));
         }
 
         public async Task NavigateToAddStolenCarPage()

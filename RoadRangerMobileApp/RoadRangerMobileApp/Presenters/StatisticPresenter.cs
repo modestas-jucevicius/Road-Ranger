@@ -44,7 +44,7 @@ namespace RoadRangerMobileApp.Presenters
             carStatusChart = new CarStatusChart(converter, status);
         }
 
-        async void ChartView(object sender, EventArgs e)
+        void ChartView(object sender, EventArgs e)
         {
             List<CapturedCar> cars = finder.FindAll();
 
