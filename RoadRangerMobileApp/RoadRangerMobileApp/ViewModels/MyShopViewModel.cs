@@ -4,6 +4,9 @@ using RoadRangerBackEnd.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
+using RoadRangerMobileApp.Views;
+using System.Diagnostics;
 
 namespace RoadRangerMobileApp.ViewModels
 {
@@ -18,16 +21,24 @@ namespace RoadRangerMobileApp.ViewModels
             //this.authorization = AuthorizationService.GetInstance();
         }
 
+        public void messageCatcher()
+        {
+            MessagingCenter.Subscribe<ShopPage>(this, "Boost30p", (sender) => {
+                
+            });
+        }
+
         public void BuyBoost30p()
         {
             //int operationStatus = BoostShop.BuyBoost30p(authorization.GetCurrentUser());
+            System.Console.WriteLine("Trying to buy the boost...");
             try
             {
                 BoostShop.BuyBoost30p(MemoryRepository.users[0]);
             }
             catch (NotEnoughScorePointsException e)
             {
-
+                Debug.WriteLine(e.Message);
                 //TODO: Do something when not enough points to buy score
             }
         }
@@ -41,6 +52,7 @@ namespace RoadRangerMobileApp.ViewModels
             }
             catch (NotEnoughScorePointsException e)
             {
+                Debug.WriteLine(e.Message);
                 //TODO: Do something when not enough points to buy score
             }
         }
@@ -54,6 +66,7 @@ namespace RoadRangerMobileApp.ViewModels
             }
             catch(NotEnoughScorePointsException e)
             {
+                Debug.WriteLine(e.Message);
                 //TODO: Do something when not enough points to buy score
             }
         }

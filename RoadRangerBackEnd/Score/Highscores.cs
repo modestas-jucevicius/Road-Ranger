@@ -15,17 +15,20 @@ namespace RoadRangerBackEnd.Score
         {
             if(instance == null)
             {
-                return instance = new Highscores();
+                System.Console.WriteLine("instance was null");
+                instance = new Highscores();
+                return instance;
             }
             else
             {
+                System.Console.WriteLine("instance was not null");
                 return instance;
             }
         }
 
         public List<User> SortedByScore(List<User> users) //Isrykiuoja User lista pagal scora mazejimo tvarka
         {
-            return users.OrderByDescending(o=>o.score).ToList();
+            return users.OrderByDescending(o=>o.Score).ToList();
         }
 
         public List<User> Top10(List<User> users)

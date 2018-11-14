@@ -34,9 +34,9 @@ namespace RoadRangerBackEnd.Score
             {
                 //Boostas jau galioja
             }
-            if (user.score >= boost30pPrice)
+            if (user.Score >= boost30pPrice)
             {
-                user.score -= boost30pPrice;
+                user.Score -= boost30pPrice;
                 user.boosts.boost30p = true;
             }
             else
@@ -51,9 +51,9 @@ namespace RoadRangerBackEnd.Score
             {
                 //Boostas jau galioja
             }
-            if (user.score >= boost50pPrice)
+            if (user.Score >= boost50pPrice)
             {
-                user.score -= boost50pPrice;
+                user.Score -= boost50pPrice;
                 user.boosts.boost50p = true;
             }
             else
@@ -68,9 +68,9 @@ namespace RoadRangerBackEnd.Score
             {
                 //Boostas jau galioja
             }
-            if (user.score >= boostDoublePrice)
+            if (user.Score >= boostDoublePrice)
             {
-                user.score -= boostDoublePrice;
+                user.Score -= boostDoublePrice;
                 user.boosts.boostDouble = true;
             }
             else

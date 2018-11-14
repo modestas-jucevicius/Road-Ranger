@@ -38,7 +38,7 @@ namespace RoadRangerBackEnd.Authorization
 			User savedUser = UserFileSystem.FindById(this.CurrentUser.Id);
 			if (savedUser != null)
 			{
-				this.CurrentUser.score = savedUser.score;
+				this.CurrentUser.Score = savedUser.Score;
                 this.CurrentUser.boosts = savedUser.boosts;
 			}
 			else
