@@ -8,7 +8,7 @@ namespace RoadRangerMobileApp.Views
     {
         public MainPage()
         {
-            //NavigationPage.SetHasNavigationBar(this, true);
+            NavigationPage.SetHasNavigationBar(this, true);
             InitializeComponent();
         }
 

@@ -1,5 +1,4 @@
 ﻿using RoadRangerBackEnd.Cars;
-using System;
 using System.Net.Mail;
 
 namespace RoadRangerBackEnd.Report
@@ -28,21 +27,14 @@ namespace RoadRangerBackEnd.Report
 
         public void SendMail(string subject, string body)
         {
-            try
+            MailMessage mail = new MailMessage
             {
-                MailMessage mail = new MailMessage
-                {
-                    From = mailAddress    //Mūsų gmail laikinas, iš kurio siunčia
-                };
-                mail.To.Add(defaultRecipient);     //adresas iš textbox
-                mail.Subject = subject;     //Tema
-                mail.Body = body;           //Tekstas
-                smtpServer.Send(mail);      //siunčiam
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+                From = mailAddress    //Mūsų gmail laikinas, iš kurio siunčia
+            };
+            mail.To.Add(defaultRecipient);     //adresas iš textbox
+            mail.Subject = subject;     //Tema
+            mail.Body = body;           //Tekstas
+            smtpServer.Send(mail);      //siunčiam
         }
     }
 }

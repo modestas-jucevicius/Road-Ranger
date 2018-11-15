@@ -1,6 +1,7 @@
 ﻿using Road_rangerVS.Models;
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Search;
+using RoadRangerMobileApp.Models;
 using RoadRangerMobileApp.Views;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,21 @@ namespace RoadRangerMobileApp.Presenters
 {
     public class SearchItemPresenter
     {
-        protected ICapturedCarFinder finder = new CapturedCarFinder();
+        protected readonly ICapturedCarFinder finder = new CapturedCarFinder();
         protected readonly GalleryModel galleryModel = new GalleryModel();
         protected readonly ReportModel reportModel = new ReportModel();
         private IReportItemView view;
-        protected CarDetailViewModel viewModel;
+        protected ICarDetailModel model;
 
-        public SearchItemPresenter(IReportItemView view, CarDetailViewModel viewModel)
+        public SearchItemPresenter(IReportItemView view, ICarDetailModel model)
         {
             this.view = view;
-            this.viewModel = viewModel;
+            this.model = model;
+            this.Initialize();
+        }
+
+        public SearchItemPresenter()
+        {
             this.Initialize();
         }
 
@@ -31,15 +37,15 @@ namespace RoadRangerMobileApp.Presenters
         private void RemoveItem()
         {
             List<CapturedCar> cars = finder.FindAll();
-            galleryModel.RemoveCarById(viewModel.Item.Id);
+            galleryModel.RemoveCarById(model.Item.Id);
 
-            if (cars.Where(x => x.Image.Id == viewModel.Item.Image.Id).Count() == 1)
-                galleryModel.RemoveImageById(viewModel.Item.Image.Id);
+            if (cars.Where(x => x.Image.Id == model.Item.Image.Id).Count() == 1)
+                galleryModel.RemoveImageById(model.Item.Image.Id);
         }
 
         async void Report(object sender, EventArgs e)
         {
-            if (viewModel.Item == null || viewModel.Item.IsReported)
+            if (model.Item == null || model.Item.IsReported)
             {
                 await view.ShowInvalidReportDialogAlert();
                 return;
@@ -47,7 +53,7 @@ namespace RoadRangerMobileApp.Presenters
 
             if (await view.ShowReportDialog())
             {
-                reportModel.SendGeneratedMail(viewModel.Item);
+                reportModel.SendGeneratedMail(model.Item);
             }
         }
     }

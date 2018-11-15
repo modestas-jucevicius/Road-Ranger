@@ -1,4 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
+using RoadRangerMobileApp.Models;
 using RoadRangerMobileApp.Presenters;
 using System;
 using System.Collections.ObjectModel;
@@ -27,6 +28,11 @@ namespace RoadRangerMobileApp.Views
         public MyGalleryPage ()
 		{
 			InitializeComponent();
+            InitializePresenter();
+        }
+
+        private void InitializePresenter()
+        {
             BindingContext = presenter = new MyGalleryPresenter(this);
         }
 
@@ -43,14 +49,14 @@ namespace RoadRangerMobileApp.Views
                 this.Add(this, EventArgs.Empty);
         }
 
-        public async Task NavigateToCapturedCarDetailPage(CapturedCar car)
+        public async Task NavigateToCarDetailPage(CapturedCar car)
         {
-            await Navigation.PushAsync(new MyGalleryItemPage(new CarDetailViewModel(car)));
+            await Navigation.PushAsync(new MyGalleryItemPage(new CarDetailModel(car)));
         }
 
-        public async Task NavigateToAddStolenCarPage()
+        public async Task NavigateToAddCarPage()
         {
-            await Navigation.PushModalAsync(new NavigationPage(new AddStolenCarPage()));
+            //await Navigation.PushModalAsync(new NavigationPage(new AddCarPage()));
         }
 
         protected override void OnAppearing()

@@ -1,4 +1,5 @@
-﻿using RoadRangerMobileApp.Presenters;
+﻿using RoadRangerMobileApp.Models;
+using RoadRangerMobileApp.Presenters;
 using System;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace RoadRangerMobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchItemPage : ContentPage, IReportItemView
     {
-        private CarDetailViewModel viewModel;
+        private ICarDetailModel model;
         private SearchItemPresenter presenter;
 
         public SearchItemPage()
@@ -18,19 +19,20 @@ namespace RoadRangerMobileApp.Views
             InitializeComponent();
         }
 
-        public SearchItemPage(CarDetailViewModel viewModel) : this()
+        public SearchItemPage(ICarDetailModel model) : this()
         {
-            BindingContext = this.viewModel = viewModel;
-            this.presenter = new SearchItemPresenter(this, this.viewModel);
+            BindingContext = this.model = model;
         }
 
-        void RemoveItem_Clicked(object sender, EventArgs e)
+        private void InitializePresenter()
         {
-            if (this.Remove != null)
-                this.Remove(this, EventArgs.Empty);
+            if (this.presenter == null)
+                this.presenter = new SearchItemPresenter(this, this.model);
         }
+
         void ReportItem_Clicked(object sender, SelectedItemChangedEventArgs args)
         {
+            InitializePresenter();
             if (this.Report != null)
                 this.Report(this, EventArgs.Empty);
         }
@@ -61,7 +63,6 @@ namespace RoadRangerMobileApp.Views
             OnAppearing();                      // atnaujina list'a
         }
 
-        public event EventHandler<EventArgs> Remove;
         public event EventHandler<EventArgs> Report;
     }
 }

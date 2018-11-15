@@ -1,4 +1,5 @@
-﻿using RoadRangerMobileApp.Presenters;
+﻿using RoadRangerMobileApp.Models;
+using RoadRangerMobileApp.Presenters;
 using System;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace RoadRangerMobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MyGalleryItemPage : ContentPage, IMyGalleryItemView
     {
-        private CarDetailViewModel viewModel;
+        private ICarDetailModel model;
         private MyGalleryItemPresenter presenter;
 
         public MyGalleryItemPage()
@@ -18,19 +19,25 @@ namespace RoadRangerMobileApp.Views
             InitializeComponent();
         }
 
-        public MyGalleryItemPage(CarDetailViewModel viewModel) : this()
+        public MyGalleryItemPage(ICarDetailModel model) : this()
         {
-            BindingContext = this.viewModel = viewModel;
-            this.presenter = new MyGalleryItemPresenter(this, this.viewModel);
+            BindingContext = this.model = model;
+        }
+
+        private void InitializePresenter()
+        {
+            this.presenter = new MyGalleryItemPresenter(this, this.model);
         }
 
         void RemoveItem_Clicked(object sender, EventArgs e)
         {
+            InitializePresenter();
             if (this.Remove != null)
                 this.Remove(this, EventArgs.Empty);
         }
         void ReportItem_Clicked(object sender, SelectedItemChangedEventArgs args)
         {
+            InitializePresenter();
             if (this.Report != null)
                 this.Report(this, EventArgs.Empty);
         }

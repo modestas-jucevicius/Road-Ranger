@@ -14,6 +14,6 @@ namespace RoadRangerMobileApp.Views
         ListView ListView { get; set; }
         ObservableCollection<CapturedCar> Items { get; set; }
         Task ShowValidationDialogAlert();
-        Task NavigateToCapturedCarDetailPage(CapturedCar car);
+        Task NavigateToCarDetailPage(CapturedCar car);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
+using RoadRangerMobileApp.Models;
 using RoadRangerMobileApp.Views;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace RoadRangerMobileApp.Presenters
     {
         private IMyGalleryItemView view;
         
-        public MyGalleryItemPresenter(IMyGalleryItemView view, CarDetailViewModel viewModel) : base(view, viewModel)
+        public MyGalleryItemPresenter(IMyGalleryItemView view, ICarDetailModel model) : base(view, model)
         {
             this.view = view;
-            base.viewModel = viewModel;
+            base.model = model;
             this.Initialize();
         }
 
@@ -25,7 +26,7 @@ namespace RoadRangerMobileApp.Presenters
 
         async void Remove(object sender, EventArgs e)
         {
-            if (viewModel.Item == null)
+            if (model.Item == null)
             {
                 await view.ShowInvalidRemoveDialogAlert();
                 return;
@@ -41,10 +42,10 @@ namespace RoadRangerMobileApp.Presenters
         private void RemoveItem()
         {
             List<CapturedCar> cars = finder.FindAll();
-            galleryModel.RemoveCarById(viewModel.Item.Id);
+            galleryModel.RemoveCarById(model.Item.Id);
 
-            if (cars.Where(x => x.Image.Id == viewModel.Item.Image.Id).Count() == 1)
-                galleryModel.RemoveImageById(viewModel.Item.Image.Id); 
+            if (cars.Where(x => x.Image.Id == model.Item.Image.Id).Count() == 1)
+                galleryModel.RemoveImageById(model.Item.Image.Id); 
         }
 
     }

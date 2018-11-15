@@ -1,5 +1,4 @@
-﻿
-using RoadRangerBackEnd.Data;
+﻿using RoadRangerBackEnd.Data;
 using RoadRangerBackEnd.Data.Cars;
 using RoadRangerBackEnd.Data.Images;
 using RoadRangerBackEnd.Search;
