@@ -1,10 +1,5 @@
 ﻿using Road_rangerVS.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,11 +14,19 @@ namespace RoadRangerMobileApp.Views
 			InitializeComponent ();
             reportModel = new ReportModel();
 		}
-        private void Send_Button(object sender, EventArgs e)
+
+        private async void Send_Button(object sender, EventArgs e)
         {
             string subject = Subject.Text;
             string body = Body.Text;
-            reportModel.SendMail(subject, body);
+            try
+            {
+                await reportModel.SendMail(subject, body);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Report", "Because of internal issues you can not report. Please try again!", "OK");
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace RoadRangerMobileApp.Presenters
         {
             this.view = page;
             Items = new ObservableCollection<CapturedCar>();
-            LoadItemsCommand = new Command(async () => ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             this.Initialize();
         }
 
@@ -33,23 +33,17 @@ namespace RoadRangerMobileApp.Presenters
 
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            try
+            lock (loadLock)
             {
-                Items.Clear();
-                FindItems(view.SearchText);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
+                try
+                {
+                    Items.Clear();
+                    FindItems(view.SearchText);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
 
@@ -83,7 +77,7 @@ namespace RoadRangerMobileApp.Presenters
             if (item == null)
                 return;
 
-            await view.NavigateToCapturedCarDetailPage(item);
+            await view.NavigateToCarDetailPage(item);
 
             //Manually deselect item.
             view.ListView.SelectedItem = null;

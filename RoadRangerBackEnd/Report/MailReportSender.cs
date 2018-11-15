@@ -27,11 +27,11 @@ namespace RoadRangerBackEnd.Report
 
         public void SendMail(string subject, string body)
         {
-			MailMessage mail = new MailMessage
-			{
-				From = mailAddress    //Mūsų gmail laikinas, iš kurio siunčia
-			};
-			mail.To.Add(defaultRecipient);     //adresas iš textbox
+            MailMessage mail = new MailMessage
+            {
+                From = mailAddress    //Mūsų gmail laikinas, iš kurio siunčia
+            };
+            mail.To.Add(defaultRecipient);     //adresas iš textbox
             mail.Subject = subject;     //Tema
             mail.Body = body;           //Tekstas
             smtpServer.Send(mail);      //siunčiam
