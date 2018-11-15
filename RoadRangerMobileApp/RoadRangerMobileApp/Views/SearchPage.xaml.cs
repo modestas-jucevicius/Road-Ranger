@@ -1,6 +1,6 @@
 ﻿using RoadRangerBackEnd.Cars;
+using RoadRangerMobileApp.Models;
 using RoadRangerMobileApp.Presenters;
-using RoadRangerMobileApp.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -16,8 +16,13 @@ namespace RoadRangerMobileApp.Views
 
         public SearchPage()
         {
-            BindingContext = presenter = new SearchPresenter(this);
             InitializeComponent();
+        }
+
+        private void InitializePresenter()
+        {
+            if (presenter == null)
+                BindingContext = presenter = new SearchPresenter(this);
         }
 
         string ISearchView.SearchText => SearchLabel.Text;
@@ -36,12 +41,14 @@ namespace RoadRangerMobileApp.Views
         
         void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
+            InitializePresenter();
             if (this.OnItem != null)
                 this.OnItem(this, args);
         }
 
         void Search_Clicked(object sender, EventArgs e)
         {
+            InitializePresenter();
             ItemsListView.SelectedItem = null;
             if (this.Search != null)
                 this.Search(this, EventArgs.Empty);
@@ -52,9 +59,9 @@ namespace RoadRangerMobileApp.Views
             await DisplayAlert("License plate", "Car license plate is not valid! License plate should be AAA000 or AA000 format.", "OK");
         }
 
-        public async Task NavigateToCapturedCarDetailPage(CapturedCar car)
+        public async Task NavigateToCarDetailPage(CapturedCar car)
         {
-            await Navigation.PushAsync(new CapturedCarDetailPage(new CapturedCarDetailViewModel(car)));
+            await Navigation.PushAsync(new SearchItemPage(new CarDetailModel(car)));
         }
 
         public event EventHandler<EventArgs> Search;

@@ -14,7 +14,7 @@ namespace RoadRangerMobileApp.Views
         event EventHandler<EventArgs> Search;
         ListView ListView { get; set; }
         ObservableCollection<CapturedCar> Items { get; set; }
-        Task NavigateToCapturedCarDetailPage(CapturedCar car);
-        Task NavigateToAddStolenCarPage();
+        Task NavigateToCarDetailPage(CapturedCar car);
+        Task NavigateToAddCarPage();
     }
 }

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace RoadRangerMobileApp.Presenters
 {
-    public class StatisticPresenter
+    public class StatisticPresenter : BasePresenter
     {
         private StatisticEntryConverter converter = new StatisticEntryConverter();
         private readonly ICapturedCarFinder finder = new CapturedCarFinder();
@@ -44,15 +44,18 @@ namespace RoadRangerMobileApp.Presenters
             carStatusChart = new CarStatusChart(converter, status);
         }
 
-        async void ChartView(object sender, EventArgs e)
+        void ChartView(object sender, EventArgs e)
         {
-            List<CapturedCar> cars = finder.FindAll();
+            lock (loadLock)
+            {
+                List<CapturedCar> cars = finder.FindAll();
 
-            this.view.Chart1 = carDateChart.Get(cars);
-            this.view.Chart2 = carYearChart.Get(cars);
-            //this.view.Chart3 = carLocationChart.Get(cars);
-            this.view.Chart4 = carModelChart.Get(cars);
-            this.view.Chart5 = carStatusChart.Get(cars);
+                this.view.Chart1 = carDateChart.Get(cars);
+                this.view.Chart2 = carYearChart.Get(cars);
+                //this.view.Chart3 = carLocationChart.Get(cars);
+                this.view.Chart4 = carModelChart.Get(cars);
+                this.view.Chart5 = carStatusChart.Get(cars);
+            }
         }
 
     }

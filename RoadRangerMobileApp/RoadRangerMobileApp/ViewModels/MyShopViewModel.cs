@@ -27,8 +27,7 @@ namespace RoadRangerMobileApp.ViewModels
             }
             catch (NotEnoughScorePointsException e)
             {
-
-                //TODO: Do something when not enough points to buy score
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -41,7 +40,7 @@ namespace RoadRangerMobileApp.ViewModels
             }
             catch (NotEnoughScorePointsException e)
             {
-                //TODO: Do something when not enough points to buy score
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -54,7 +53,7 @@ namespace RoadRangerMobileApp.ViewModels
             }
             catch(NotEnoughScorePointsException e)
             {
-                //TODO: Do something when not enough points to buy score
+                Console.WriteLine(e.Message);
             }
         }
     }
