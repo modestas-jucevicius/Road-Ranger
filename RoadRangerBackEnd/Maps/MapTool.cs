@@ -8,12 +8,13 @@ using System.Diagnostics;
 
 namespace RoadRangerBackEnd.Maps
 {
-    public class MapClass
+    public class MapTool : IMapTool
     {
         private Map map;
-        public MapClass(Map passingMap)
+
+        public MapTool(Map map)
         {
-            map = passingMap;
+            this.map = map;
         }
 
         public async Task<Position> GetLocation()
@@ -31,9 +32,16 @@ namespace RoadRangerBackEnd.Maps
                 return new Position(0, 0);
             }
         }
-        public Map GetMap()
+        public void AddPins(List<Pin> pins, Map map)
         {
-            return map;
+            foreach (Pin pin in pins)
+            {
+                if (!map.Pins.Contains(pin)) { map.Pins.Add(pin); }
+            }
+        }
+        public void SetLocation(Position position)
+        {
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(position, new Distance(500)));
         }
     }
 }

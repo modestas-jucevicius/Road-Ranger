@@ -12,7 +12,8 @@
 
             <Label Text="Message:"/>
 
-            <Editor x:Name="Body"/>
+            <Editor x:Name="Body"
+                    AutoSize="TextChanges"/>
 
             <Button Clicked="Send_Button"
                     Text="Send"
