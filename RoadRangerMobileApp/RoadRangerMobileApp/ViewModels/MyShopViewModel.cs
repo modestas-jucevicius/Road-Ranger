@@ -14,7 +14,7 @@ namespace RoadRangerMobileApp.ViewModels
     {
         //private readonly AuthorizationService authorization;
         private readonly MemoryRepository memoryRepository = MemoryRepository.GetInstance();
-        private readonly BoostShop boostShop = BoostShop.GetInstance();
+        private readonly BoostShopService boostShop = BoostShopService.GetInstance();
 
         public MyShopViewModel()
         {
@@ -34,7 +34,7 @@ namespace RoadRangerMobileApp.ViewModels
             System.Console.WriteLine("Trying to buy the boost...");
             try
             {
-                BoostShop.BuyBoost30p(MemoryRepository.users[0]);
+                BoostShopService.BuyBoost30p(MemoryRepository.users[0]);
             }
             catch (NotEnoughScorePointsException e)
             {
@@ -48,7 +48,7 @@ namespace RoadRangerMobileApp.ViewModels
             //int operationStatus = BoostShop.BuyBoost50p(authorization.GetCurrentUser());
             try
             {
-                BoostShop.BuyBoost50p(MemoryRepository.users[0]);
+                BoostShopService.BuyBoost50p(MemoryRepository.users[0]);
             }
             catch (NotEnoughScorePointsException e)
             {
@@ -62,7 +62,7 @@ namespace RoadRangerMobileApp.ViewModels
             //int operationStatus = BoostShop.BuyBoostDouble(authorization.GetCurrentUser());
             try
             {
-                BoostShop.BuyBoostDouble(MemoryRepository.users[0]);
+                BoostShopService.BuyBoostDouble(MemoryRepository.users[0]);
             }
             catch(NotEnoughScorePointsException e)
             {

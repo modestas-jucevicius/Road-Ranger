@@ -17,12 +17,14 @@ namespace RoadRangerMobileApp.Presenters
         private ITopView view;
         public ObservableCollection<User> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        private HighscoresService highscores;
 
         public TopPresenter(ITopView page)
         {
             this.view = page;
             Items = new ObservableCollection<User>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            highscores = HighscoresService.Instance;
             this.Initialize();
         }
 
@@ -62,6 +64,7 @@ namespace RoadRangerMobileApp.Presenters
             Items.Clear();
             MemoryRepository repository = MemoryRepository.GetInstance();
             List<User> users = MemoryRepository.users;
+            users = highscores.Top10(users);
             foreach (var item in users)
             {
                 Items.Add(item);

@@ -5,24 +5,24 @@ using System.Text;
 
 namespace RoadRangerBackEnd.Score
 {
-    public class BoostShop
+    public class BoostShopService
     {
         public static readonly int boost30pPrice = 10000;
         public static readonly int boost50pPrice = 25000;
         public static readonly int boostDoublePrice = 50000;
 
-        private static BoostShop instance;
+        private static BoostShopService instance;
         private static readonly object padlock = new object();
 
-        private BoostShop() { }
+        private BoostShopService() { }
 
-        public static BoostShop GetInstance() // jei jau yra toks objektas ji grazina, jei ne sukuria
+        public static BoostShopService GetInstance() // jei jau yra toks objektas ji grazina, jei ne sukuria
         {
             lock (padlock)
             {
                 if(instance == null)
                 {
-                    instance = new BoostShop();
+                    instance = new BoostShopService();
                 }
                 return instance;
              }
