@@ -37,7 +37,6 @@ namespace RoadRangerWebAPI.Controllers
 		{
 			try
 			{
-				Debug.WriteLine("alioo");
 				User user = userRepository.ReadByUserName(incomingUser.Username);
 				if (user != null)
 				{
