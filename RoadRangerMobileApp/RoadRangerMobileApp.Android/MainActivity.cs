@@ -1,12 +1,8 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Android.OS;
-using System.Threading.Tasks;
 using Android;
 
 namespace RoadRangerMobileApp.Droid
@@ -16,11 +12,12 @@ namespace RoadRangerMobileApp.Droid
     {
         const int RequestLocationId = 0;
         readonly string[] PermissionsGroupLocation =    //Leidimų masyvas - žemėlapiams reikia coarse ir fine location'ų
-            {
-                            Manifest.Permission.AccessCoarseLocation,
-                            Manifest.Permission.AccessFineLocation,
-             };
-        protected async override void OnCreate(Bundle savedInstanceState)
+        {
+            Manifest.Permission.AccessCoarseLocation,
+            Manifest.Permission.AccessFineLocation,
+        };
+
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             RequestPermissions(PermissionsGroupLocation, RequestLocationId);
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -30,21 +27,24 @@ namespace RoadRangerMobileApp.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
-        public override async void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             switch (requestCode)
             {
                 case RequestLocationId:
+                {
+                    if (grantResults[0] == (int)Android.Content.PM.Permission.Granted)
                     {
-                        if (grantResults[0] == (int)Android.Content.PM.Permission.Granted);
-                        else
-                        {
-                            //Leidimas nesuteiktas
-                            Toast.MakeText(this, "Location permission denied", ToastLength.Short).Show();
 
-                        }
                     }
-                    break;
+                    else
+                    {
+                        //Leidimas nesuteiktas
+                        Toast.MakeText(this, "Location permission denied", ToastLength.Short).Show();
+                    }
+                }
+                break;
             }
         }
     }

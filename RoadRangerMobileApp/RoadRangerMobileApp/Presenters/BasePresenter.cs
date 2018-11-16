@@ -1,5 +1,4 @@
-﻿
-namespace RoadRangerMobileApp.Presenters
+﻿namespace RoadRangerMobileApp.Presenters
 {
     public class BasePresenter
     {

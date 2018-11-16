@@ -1,6 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Search;
-using RoadRangerMobileApp.ViewModels;
 using RoadRangerMobileApp.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -28,7 +27,7 @@ namespace RoadRangerMobileApp.Presenters
         private void Initialize()
         {
             this.view.Add += new EventHandler<EventArgs>(AddItem);
-            this.view.OnItem += new EventHandler<SelectedItemChangedEventArgs>(ClickOnItem);
+            this.view.OnItem += new EventHandler<SelectedItemChangedEventArgs>(ItemClicked);
             this.view.Search += new EventHandler<EventArgs>(Search);
         }
 
@@ -58,13 +57,13 @@ namespace RoadRangerMobileApp.Presenters
             }
         }
 
-        async void ClickOnItem(object sender, SelectedItemChangedEventArgs args)
+        async void ItemClicked(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as CapturedCar;
             if (item == null)
                 return;
 
-            await view.NavigateToCapturedCarDetailPage(item);
+            await view.NavigateToCarDetailPage(item);
 
             // Manually deselect item.
             view.ListView.SelectedItem = null;
@@ -72,7 +71,7 @@ namespace RoadRangerMobileApp.Presenters
 
         async void AddItem(object sender, EventArgs e)
         {
-            await view.NavigateToAddStolenCarPage();
+            await view.NavigateToAddCarPage();
         }
 
         async void Search(object sender, EventArgs e)
