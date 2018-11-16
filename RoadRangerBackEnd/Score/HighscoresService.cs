@@ -7,6 +7,7 @@ namespace RoadRangerBackEnd.Score
 {
     public class HighscoresService : ITopFinder
     {
+        const int numberOfTops = 10;
         private static HighscoresService instance = null;
         private static readonly object padlock = new object();
         private HighscoresService() { }                    // padaro, kad nebutu galima sukurti 
@@ -31,12 +32,12 @@ namespace RoadRangerBackEnd.Score
             return users.OrderByDescending(o=>o.Score).ToList();
         }
 
-        public List<User> Top10(List<User> users)
+        public List<User> GetTops(List<User> users)
         {
             List<User> sortedUsers = SortedByScore(users);
-            if(sortedUsers.Count >= 10)
+            if(sortedUsers.Count >= numberOfTops)
             {
-                return sortedUsers.GetRange(0, 10);
+                return sortedUsers.GetRange(0, numberOfTops);
             }
             else
             {

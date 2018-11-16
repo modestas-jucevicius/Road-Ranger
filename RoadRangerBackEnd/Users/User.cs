@@ -10,7 +10,7 @@ namespace RoadRangerBackEnd.Users
         public string Password { get; set; }
         public string Name { get; set; }
         public int Score { get; set; }
-        public Boosts boosts = new Boosts();
+        public Boosts Boosts { get; set; }
 
         public User(string username, string password, string name)
         {
@@ -18,6 +18,7 @@ namespace RoadRangerBackEnd.Users
             this.Password = password;
             this.Name = name;
             this.Score = 0;
+            this.Boosts = new Boosts();
         }
 
         public User(int id, string username, string password, string name, int score) : this(username, password, name)
@@ -28,9 +29,9 @@ namespace RoadRangerBackEnd.Users
 
         public User(int id, string username, string password, string name, int score, Boolean boost30p, Boolean boost50p, Boolean boostDouble) : this(id, username, password, name, score)
         {
-            this.boosts.boost30p = boost30p;
-            this.boosts.boost50p = boost50p;
-            this.boosts.boostDouble = boostDouble;
+            this.Boosts.boost30p = boost30p;
+            this.Boosts.boost50p = boost50p;
+            this.Boosts.boostDouble = boostDouble;
         }
 
         public void IncreaseScore(int evaluation)
@@ -41,7 +42,7 @@ namespace RoadRangerBackEnd.Users
         override public string ToString()
         {
             return this.Id + "," + this.Username + "," + this.Password + "," + this.Name + "," + this.Score + "," 
-                + boosts.boost30p + "," + boosts.boost50p + "," + boosts.boostDouble;
+                + Boosts.boost30p + "," + Boosts.boost50p + "," + Boosts.boostDouble;
         }
 
         public int CompareTo(User other)

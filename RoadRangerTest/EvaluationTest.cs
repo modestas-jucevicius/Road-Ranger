@@ -23,7 +23,8 @@ namespace RoadRangerTest
             Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
             double expectedScore = 2500;
 
-            int score = Evaluation.Evaluate(car);
+            Evaluation evaluation = new Evaluation();
+            int score = evaluation.Evaluate(car);
 
             Assert.IsTrue(expectedScore == score);
         }
@@ -44,7 +45,8 @@ namespace RoadRangerTest
             Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
             double expectedScore = 1500;
 
-            int score = Evaluation.Evaluate(car);
+            Evaluation evaluation = new Evaluation();
+            int score = evaluation.Evaluate(car);
 
             Assert.IsTrue(expectedScore == score);
         }
@@ -65,8 +67,10 @@ namespace RoadRangerTest
             Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
             double expectedScore = 10;
 
-            int score = Evaluation.Evaluate(car);
+            Evaluation evaluation = Evaluation.Instance;
+            int score = evaluation.Evaluate(car);
 
+            System.Console.WriteLine("NotStolen status score: " + score);
             Assert.IsTrue(expectedScore == score);
         }
 
@@ -86,8 +90,10 @@ namespace RoadRangerTest
             Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
             double expectedScore = 0;
 
-            int score = Evaluation.Evaluate(car);
+            Evaluation evaluation = Evaluation.Instance;
+            int score = evaluation.Evaluate(car);
 
+            System.Console.WriteLine("Unknown status score: " + score);
             Assert.IsTrue(expectedScore == score);
         }
     }

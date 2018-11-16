@@ -39,7 +39,7 @@ namespace RoadRangerBackEnd.Authorization
 			if (savedUser != null)
 			{
 				this.CurrentUser.Score = savedUser.Score;
-                this.CurrentUser.boosts = savedUser.boosts;
+                this.CurrentUser.Boosts = savedUser.Boosts;
 			}
 			else
 			{

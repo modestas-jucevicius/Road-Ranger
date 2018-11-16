@@ -34,22 +34,16 @@ namespace RoadRangerMobileApp.Presenters
 
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            try
+            lock (loadLock)
             {
-                FindAll();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
+                try
+                {
+                    FindAll();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
 

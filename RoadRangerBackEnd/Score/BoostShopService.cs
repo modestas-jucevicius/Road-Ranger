@@ -30,14 +30,14 @@ namespace RoadRangerBackEnd.Score
 
         public static void BuyBoost30p(User user)
         {
-            if (user.boosts.boost30p)
+            if (user.Boosts.boost30p)
             {
                 //Boostas jau galioja
             }
             if (user.Score >= boost30pPrice)
             {
                 user.Score -= boost30pPrice;
-                user.boosts.boost30p = true;
+                user.Boosts.boost30p = true;
             }
             else
             {
@@ -47,14 +47,14 @@ namespace RoadRangerBackEnd.Score
 
         public static void BuyBoost50p(User user)
         {
-            if (user.boosts.boost50p)
+            if (user.Boosts.boost50p)
             {
                 //Boostas jau galioja
             }
             if (user.Score >= boost50pPrice)
             {
                 user.Score -= boost50pPrice;
-                user.boosts.boost50p = true;
+                user.Boosts.boost50p = true;
             }
             else
             {
@@ -64,14 +64,14 @@ namespace RoadRangerBackEnd.Score
 
         public static void BuyBoostDouble(User user)
         {
-            if (user.boosts.boostDouble)
+            if (user.Boosts.boostDouble)
             {
                 //Boostas jau galioja
             }
             if (user.Score >= boostDoublePrice)
             {
                 user.Score -= boostDoublePrice;
-                user.boosts.boostDouble = true;
+                user.Boosts.boostDouble = true;
             }
             else
             {

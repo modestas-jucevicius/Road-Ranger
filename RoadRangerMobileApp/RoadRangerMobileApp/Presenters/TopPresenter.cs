@@ -35,25 +35,16 @@ namespace RoadRangerMobileApp.Presenters
 
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsBusy)
+            lock (loadLock)
             {
-                return;
-            }
-                
-
-            IsBusy = true;
-
-            try
-            {
-                FindAll();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
+                try
+                {
+                    FindAll();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
         /*
@@ -64,7 +55,7 @@ namespace RoadRangerMobileApp.Presenters
             Items.Clear();
             MemoryRepository repository = MemoryRepository.GetInstance();
             List<User> users = MemoryRepository.users;
-            users = highscores.Top10(users);
+            users = highscores.GetTops(users);
             foreach (var item in users)
             {
                 Items.Add(item);
