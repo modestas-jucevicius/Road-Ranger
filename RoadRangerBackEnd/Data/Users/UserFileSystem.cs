@@ -104,7 +104,7 @@ namespace RoadRangerBackEnd.Data
 
         private string UserToCSVFormat(User user)
         {
-            return user.Id + "," + user.Username + "," + user.Name + "," + user.score + Environment.NewLine;
+            return user.Id + "," + user.Username + "," + user.Name + "," + user.Score + Environment.NewLine;
         }
 
         private User GetUserFromStringArray(String[] array)

@@ -31,7 +31,7 @@ namespace Road_rangerVS.Models
 		{
 			User currentUser = AuthorizationService.GetCurrentUser();
             AuthorizationService.SyncCurrentUserToData();
-			return currentUser.score;
+			return currentUser.Score;
 			
 		}
 
