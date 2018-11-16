@@ -8,6 +8,9 @@ using RoadRangerMobileApp.Presenters;
 using System;
 using RoadRangerMobileApp.Models;
 using RoadRangerBackEnd.CustomEventArgs;
+using RoadRangerBackEnd.Data.Cars;
+using RoadRangerBackEnd.Cars;
+using System.Diagnostics;
 
 namespace RoadRangerMobileApp.Views
 {
@@ -24,36 +27,23 @@ namespace RoadRangerMobileApp.Views
         public MapPage()
         {
             InitializeComponent();
-            InitializePresenter(googleMap);
-            
-            
-            //mapClass = new MapTool(googleMap);
-            //LoadLocation();
-            //List<Pin> list = new List<Pin>();
-            //new Thread(() => AddPins(list,mapClass.GetMap()));
+            mapClass = new MapTool(googleMap);
+            LoadLocation();
+            InitializePresenter(googleMap,null); //Vietoj null turi ateit listas su pins'ais
 
         }
-        //async void LoadLocation()
-        /* async Task LoadLocation()
+         async Task LoadLocation()
        {
            Position position =  await mapClass.GetLocation();
-           mapClass.GetMap().MoveToRegion(MapSpan.FromCenterAndRadius(position, new Distance(500)));
+            mapClass.SetLocation(position);
            var pin = new Pin();
-           pin.Position = new Position(position.Latitude, position.Longitude);
-           pin.Label = "Current Location";
-           mapClass.GetMap().Pins.Add(pin);
-       }*/
-        protected async Task InitializePresenter(Map map)
+       }
+        protected async Task InitializePresenter(Map map, List<Pin> pins)
         {
             presenter = new MapToolPresenter(this, new MapModel(map));
-            if (SetLocation != null) this.SetLocation(this, EventArgs.Empty);
+            //if (SetLocation != null) this.SetLocation(this, EventArgs.Empty); //Kol kas neveikia
+            if (AddPins != null) this.AddPins(this, new PinsEventArgs() {Map = map, Pins = pins });
         }
-        /*protected async Task InitializePresenter(Map map, List<Pin> pins)
-        {
-            presenter = new MapToolPresenter(this, new MapModel(map));
-            if (SetLocation != null) this.SetLocation(this, EventArgs.Empty);
-            if (AddPins != null) this.AddPins(this, PinsEventArgs);
-        }*/
 
     }
 }

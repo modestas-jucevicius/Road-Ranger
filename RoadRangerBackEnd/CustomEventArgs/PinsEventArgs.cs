@@ -7,7 +7,7 @@ namespace RoadRangerBackEnd.CustomEventArgs
 {
     public class PinsEventArgs : EventArgs
     {
-        public Map map { get; }
-        public List<Pin> pin { get; }
+        public Map Map { get; set; }
+        public List<Pin> Pins { get; set; }
     }
 }

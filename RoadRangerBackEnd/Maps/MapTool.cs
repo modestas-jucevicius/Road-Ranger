@@ -5,6 +5,7 @@ using Xamarin.Forms.Maps;
 using Plugin.Geolocator;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Xamarin.Essentials;
 
 namespace RoadRangerBackEnd.Maps
 {
@@ -21,9 +22,8 @@ namespace RoadRangerBackEnd.Maps
         {
             try
             {
-                var locator = CrossGeolocator.Current;
-                locator.DesiredAccuracy = 30;
-                var position = await locator.GetPositionAsync();
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var position = await Geolocation.GetLocationAsync(request);
                 return new Position(position.Latitude, position.Longitude);
             }
             catch (Exception e)

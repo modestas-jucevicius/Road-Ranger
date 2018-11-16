@@ -14,7 +14,7 @@ namespace RoadRangerMobileApp.Droid
         readonly string[] PermissionsGroupLocation =    //Leidimų masyvas - žemėlapiams reikia coarse ir fine location'ų
         {
             Manifest.Permission.AccessCoarseLocation,
-            Manifest.Permission.AccessFineLocation,
+            Manifest.Permission.AccessFineLocation
         };
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -34,10 +34,7 @@ namespace RoadRangerMobileApp.Droid
             {
                 case RequestLocationId:
                 {
-                    if (grantResults[0] == (int)Android.Content.PM.Permission.Granted)
-                    {
-
-                    }
+                    if (grantResults[0] == (int)Android.Content.PM.Permission.Granted){}
                     else
                     {
                         //Leidimas nesuteiktas

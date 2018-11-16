@@ -25,18 +25,18 @@ namespace RoadRangerMobileApp.Presenters
         private void Initialize()
         {
              view.SetLocation +=  new EventHandler(SetLocation);
-            //view.AddPins += new EventHandler<PinsEventArgs>(AddPins);
+             view.AddPins += new EventHandler<PinsEventArgs>(AddPins);
         }
 
         private async void SetLocation(object sender, EventArgs e)
         {
-             //Position pos = await model.GetLocation();
-            Position pos = new Position(54.687157, 25.279652);
+             Position pos = await model.GetLocation();
+           // Position pos = new Position(54.687157, 25.279652); //Vilnius
             model.SetLocation(pos);
         }
         private void AddPins(object sender, PinsEventArgs args)
         {
-            model.AddPins(args.pin, args.map);
+            model.AddPins(args.Pins, args.Map);
         }
 
     }
