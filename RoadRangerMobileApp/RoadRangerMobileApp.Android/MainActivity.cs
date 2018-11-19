@@ -40,10 +40,7 @@ namespace RoadRangerMobileApp.Droid
             {
                 case RequestLocationId:
                 {
-                    if (grantResults[0] == (int)Android.Content.PM.Permission.Granted)
-                    {
-
-                    }
+                    if (grantResults[0] == (int)Android.Content.PM.Permission.Granted){}
                     else
                     {
                         //Leidimas nesuteiktas

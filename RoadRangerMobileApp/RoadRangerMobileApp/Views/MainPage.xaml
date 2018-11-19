@@ -3,73 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoadRangerMobileApp.Views.MainPage"
              NavigationPage.HasNavigationBar="true">
-    <ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems >
         <ToolbarItem Text="Search" 
                      Icon="search.png"
                      Clicked="SearchButton_Clicked">
+                      
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <Grid RowSpacing="5" ColumnSpacing="5" BackgroundColor="Black">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Button Text="My Gallery" 
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black">
+            <Grid  VerticalOptions="StartAndExpand" ColumnSpacing="50" HorizontalOptions="CenterAndExpand">
+
+                <Button Text="Scores"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BorderRadius="50"
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="Start"
+                        Clicked="TopButton_Clicked"/>
+                <Button Text="Search"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BorderRadius="50"
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="Start"
+                        Clicked="SearchButton_Clicked"/>
+                <Button Text="Shop" 
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BorderRadius="50"
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="Start"
+                        Clicked="ShopButton_Clicked"/>
+            </Grid>
+            
+            <Grid VerticalOptions="EndAndExpand" ColumnSpacing="5" HorizontalOptions="CenterAndExpand">
+                <Button Text="Cam" 
                         Grid.Row="0" 
+                        Grid.Column="2" 
+                        VerticalOptions="End"
+                        HorizontalOptions="CenterAndExpand"
+                        BorderRadius="50"
+                        Clicked="CameraButton_Clicked"/>
+                <Button Text="Gall"
+                        Grid.Row="1" 
                         Grid.Column="0" 
                         HorizontalOptions="FillAndExpand" 
                         VerticalOptions="FillAndExpand"
-                        WidthRequest="100"
-                        HeightRequest="100"
+                        BorderRadius="50"
                         Clicked="MyGalleryButton_Clicked"/>
                 <Button Text="Map" 
-                        Grid.Row="0" 
+                        Grid.Row="1" 
                         Grid.Column="1" 
                         HorizontalOptions="FillAndExpand" 
                         VerticalOptions="FillAndExpand"
+                        BorderRadius="50"
                         Clicked="MapButton_Clicked"/>
-                <Button Text="Search" 
-                        Grid.Row="1" 
-                        Grid.Column="0" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        Clicked="SearchButton_Clicked"/>
-                <Button Text="Camera" 
-                        Grid.Row="1" 
-                        Grid.Column="1" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        Clicked="CameraButton_Clicked"/>
                 <Button Text="Stats"   
-                        Grid.Row="2" 
-                        Grid.Column="0" 
+                        Grid.Row="1" 
+                        Grid.Column="3" 
                         HorizontalOptions="FillAndExpand" 
                         VerticalOptions="FillAndExpand"
+                        BorderRadius="50"
                         Clicked="StatsButton_Clicked"/>
-                <Button Text="Report" 
-                        Grid.Row="2" 
-                        Grid.Column="1" 
+                <Button Text="Rep"
+                        Grid.Row="1" 
+                        Grid.Column="4" 
                         HorizontalOptions="FillAndExpand" 
                         VerticalOptions="FillAndExpand"
+                        BorderRadius="20"
                         Clicked="ReportButton_Clicked"/>
-                <Button Text="Top Scores" 
-                        Grid.Row="3" 
-                        Grid.Column="0" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        Clicked="TopButton_Clicked"/>
-                <Button Text="Shop" 
-                        Grid.Row="3" 
-                        Grid.Column="1" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        Clicked="ShopButton_Clicked"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
