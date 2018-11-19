@@ -21,6 +21,9 @@ namespace RoadRangerMobileApp.Views
 
         private void Boost30p_Clicked(object sender, EventArgs args)
         {
+
+            //MessagingCenter.Send(this, "Boost30p");
+
             if(this.viewModel == null)
             {
                 this.viewModel = new MyShopViewModel();

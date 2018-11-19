@@ -39,8 +39,8 @@ namespace RoadRangerBackEnd.Data
             images.Add(img4);
 
             User usr1 = new User(0, "user1", "pass1", "User1", 500, false, false, false);
-            User usr2 = new User(1, "user1", "pass1", "User1", 500, true, true, true);
-            User usr3 = new User(2, "user1", "pass1", "User1", 500, true, false, true);
+            User usr2 = new User(1, "user2", "pass2", "User2", 2500, true, true, true);
+            User usr3 = new User(2, "user3", "pass3", "User3", 1500, true, false, true);
 
             users.Add(usr1);
             users.Add(usr2);

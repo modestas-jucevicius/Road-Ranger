@@ -12,13 +12,13 @@ namespace RoadRangerTest
         [TestMethod]
         public void TestSortedByScore()
         {
-            Highscores highscores = Highscores.GetInstance();
+            HighscoresService highscores = HighscoresService.Instance;
             UserFileSystem fileSystem = UserFileSystem.GetInstance();
             List<User> topUsers = highscores.SortedByScore(fileSystem.GetAll());
         
             User prevUser = topUsers[0];
             foreach (User user in topUsers){
-                Assert.IsFalse(prevUser.score < user.score);
+                Assert.IsFalse(prevUser.Score < user.Score);
                 prevUser = user;
             }
         }
@@ -26,14 +26,14 @@ namespace RoadRangerTest
         [TestMethod]
         public void TestTop10()
         {
-            Highscores highscores = Highscores.GetInstance();
+            HighscoresService highscores = HighscoresService.Instance;
             UserFileSystem fileSystem = UserFileSystem.GetInstance();
             List<User> topUsers = highscores.SortedByScore(fileSystem.GetAll());
-            List<User> top10 = highscores.Top10(topUsers);
+            List<User> top10 = highscores.GetTops(topUsers);
             User prevUser = top10[0];
             foreach (User user in top10)
             {
-                Assert.IsFalse(prevUser.score < user.score);
+                Assert.IsFalse(prevUser.Score < user.Score);
                 prevUser = user;
             }
             Assert.IsFalse(!(top10.Count == 10));
@@ -42,7 +42,7 @@ namespace RoadRangerTest
         [TestMethod]
         public void TestgetUsersPosition()
         {
-            Highscores highscores = Highscores.GetInstance();
+            HighscoresService highscores = HighscoresService.Instance;
             UserFileSystem fileSystem = UserFileSystem.GetInstance();
             List<User> topUsers = highscores.SortedByScore(fileSystem.GetAll());
             User user = topUsers[4];
