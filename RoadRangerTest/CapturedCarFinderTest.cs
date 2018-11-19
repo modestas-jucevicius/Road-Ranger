@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Images;
-using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Data;
 
 namespace RoadRangerTest
 {
@@ -15,7 +15,7 @@ namespace RoadRangerTest
         {
             //Vietoj override'inimo klasėse, kad compare'intų properties, sukūriau string eilutes su jais
             //ir jas compare'inu
-            CapturedCarFinder carFinder = new CapturedCarFinder();
+            CapturedCarService carFinder = new CapturedCarService();
             List<CapturedCar> testList = new List<CapturedCar>();
             List<CapturedCar> expect = new List<CapturedCar>();
             int check = 0;
@@ -54,7 +54,7 @@ namespace RoadRangerTest
         {
             //Vietoj override'inimo klasėse, kad compare'intų properties, sukūriau string eilutes su jais
             //ir jas compare'inu
-            CapturedCarFinder carFinder = new CapturedCarFinder();
+            CapturedCarService carFinder = new CapturedCarService();
             List<CapturedCar> testList = new List<CapturedCar>();
             List<CapturedCar> expect = new List<CapturedCar>();
             int check = 0;

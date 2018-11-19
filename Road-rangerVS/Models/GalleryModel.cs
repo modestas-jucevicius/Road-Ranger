@@ -1,17 +1,15 @@
-﻿
-using RoadRangerBackEnd.Data;
-using RoadRangerBackEnd.Search;
+﻿using RoadRangerBackEnd.Data;
 
 namespace Road_rangerVS.Models
 {
 	class GalleryModel
 	{
-		private readonly ICapturedCarFinder finder = new CapturedCarFinder();
+		private readonly CapturedCarService service = new CapturedCarService();
         private readonly ICarData carData = new CarFileSystem();
         private readonly IImageData imageData = new ImageFileSystem();
-        public ICapturedCarFinder GetFinder()
+        public CapturedCarService GetCarFinder()
 		{
-			return this.finder;
+			return this.service;
 		}
 
         public bool RemoveCarById(int id)

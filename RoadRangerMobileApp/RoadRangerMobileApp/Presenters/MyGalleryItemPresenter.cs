@@ -41,7 +41,7 @@ namespace RoadRangerMobileApp.Presenters
 
         private void RemoveItem()
         {
-            List<CapturedCar> cars = finder.FindAll();
+            List<CapturedCar> cars = service.FindAll();
             galleryModel.RemoveCarById(model.Item.Id);
 
             if (cars.Where(x => x.Image.Id == model.Item.Image.Id).Count() == 1)
