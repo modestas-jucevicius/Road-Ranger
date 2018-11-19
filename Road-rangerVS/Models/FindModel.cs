@@ -1,13 +1,12 @@
 using RoadRangerBackEnd.Cars;
-using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Data;
 using System.Collections.Generic;
-using RoadRangerBackEnd.Recognition;
 
 namespace Road_rangerVS.Models
 {
-	class FindModel
+	public class FindModel
 	{
-		private readonly ICapturedCarFinder finder = new CapturedCarFinder();
+		private readonly CapturedCarService finder = new CapturedCarService();
 
 		public List<CapturedCar> FindByPlate(string licencePlate)
 		{

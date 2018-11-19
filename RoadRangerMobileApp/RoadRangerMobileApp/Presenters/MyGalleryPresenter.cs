@@ -1,5 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
-using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Data;
 using RoadRangerMobileApp.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -14,7 +14,7 @@ namespace RoadRangerMobileApp.Presenters
         private IMyGalleryView view;
         public ObservableCollection<CapturedCar> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
-        private ICapturedCarFinder finder = new CapturedCarFinder();
+        private CapturedCarService service = new CapturedCarService();
 
         public MyGalleryPresenter(IMyGalleryView page)
         {
@@ -50,7 +50,7 @@ namespace RoadRangerMobileApp.Presenters
         {
             Items.Clear();
             //var items = await DataStore.GetItemsAsync(true);
-            var items = finder.FindAll();
+            var items = service.FindAll();
             foreach (var item in items)
             {
                 Items.Add(item);
