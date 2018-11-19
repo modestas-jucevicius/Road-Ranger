@@ -1,5 +1,8 @@
 ﻿using RoadRangerBackEnd.Cars;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace RoadRangerBackEnd.Data.Cars
 {
@@ -14,21 +17,21 @@ namespace RoadRangerBackEnd.Data.Cars
 
         public Car FindById(int id)
         {
-            foreach(Car car in MemoryRepository.cars)
+           try
             {
-                if(car.Id == id) { return car;}
+               Car foundCar = MemoryRepository.cars.Single(car => car.Id == id);
+                return foundCar;
             }
-            return null;
+            catch(System.InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public int NewID()
         {
-            int Id = MemoryRepository.cars[0].Id;
-            foreach(Car car in MemoryRepository.cars)
-            {
-                if(car.Id >= Id) { Id = car.Id;  }
-            }
-            return ++Id;
+            Car lastCar = MemoryRepository.cars.OrderBy(car => car.Id).Last();
+            return ++lastCar.Id;
         }
 
         public void Put(Car obj)
@@ -38,35 +41,41 @@ namespace RoadRangerBackEnd.Data.Cars
 
         public void PutList(System.Collections.Generic.List<Car> obj)
         {
-            foreach(Car car in obj) { MemoryRepository.cars.Add(car); }
+            MemoryRepository.cars = (from car in obj
+                                     select car).ToList();
         }
 
         public bool Remove(int id)
         {
-            foreach(Car car in MemoryRepository.cars)
+            try
             {
-                if(car.Id == id)
-                {
-                    MemoryRepository.cars.Remove(car);
-                    return true;
-                }
+                MemoryRepository.cars.RemoveAll((car) => car.Id == id);
+                return true;
             }
-            return false;
+            catch (System.InvalidOperationException)
+            {
+                return false;
+            }
 
         }
 
         public bool Update(int id, Car obj)
         {
-            for(int i = 0; i < MemoryRepository.cars.Count; i++)
+            try
             {
-                if(MemoryRepository.cars[i].Id == id)
+                foreach (var item in MemoryRepository.cars.Where(car => car.Id == id))
                 {
-                    MemoryRepository.cars.RemoveAt(i);
-                    MemoryRepository.cars.Insert(i, obj);
-                    return true;
+                    item.IsReported = obj.IsReported;
+                    item.Status = obj.Status;
+                    item.UserId = obj.UserId;
                 }
+                return true;
             }
-            return false;
+            catch (System.InvalidOperationException)
+            {
+                return false;
+            }
+
         }
 
     }

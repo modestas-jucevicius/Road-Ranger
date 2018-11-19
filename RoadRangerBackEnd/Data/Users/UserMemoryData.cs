@@ -1,5 +1,6 @@
 ﻿using RoadRangerBackEnd.Users;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RoadRangerBackEnd.Data.Users
 {
@@ -9,11 +10,15 @@ namespace RoadRangerBackEnd.Data.Users
 
         public User FindById(int id)
         {
-            foreach(User user in MemoryRepository.users)
+            try
             {
-                if (user.Id == id) { return user; }
+                User foundUser = MemoryRepository.users.Single(user => user.Id == id);
+                return foundUser;
             }
-            return null;
+            catch (System.InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public List<User> GetAll()
@@ -28,32 +33,32 @@ namespace RoadRangerBackEnd.Data.Users
 
         public void PutList(List<User> obj)
         {
-            foreach(User user in obj)
-            {
-                MemoryRepository.users.Add(user);
-            }
+            MemoryRepository.users = (from user in obj
+                                     select user).ToList();
         }
         public bool Update(User obj)
         {
-            for(int i = 0; i < MemoryRepository.users.Count; i++)
+            try
             {
-                if(MemoryRepository.users[i].Id == obj.Id)
+                foreach (var item in MemoryRepository.users.Where(user => user.Id == obj.Id))
                 {
-                    MemoryRepository.users.RemoveAt(i);
-                    MemoryRepository.users.Insert(i, obj);
-                    return true;
+                    item.Name = obj.Name;
+                    item.Password = obj.Password;
+                    item.score = obj.score;
+                    item.Username = obj.Username;
+                    item.boosts = obj.boosts;
                 }
+                return true;
             }
-            return false;
+            catch (System.InvalidOperationException)
+            {
+                return false;
+            }
         }
         public int NewID()
         {
-            int Id = MemoryRepository.users[0].Id;
-            foreach(User user in MemoryRepository.users)
-            {
-                if(user.Id >= Id) { Id = user.Id; }
-            }
-            return ++Id;
+            User lastUser = MemoryRepository.users.OrderBy(user => user.Id).Last();
+            return ++lastUser.Id;
         }
     }
 }
