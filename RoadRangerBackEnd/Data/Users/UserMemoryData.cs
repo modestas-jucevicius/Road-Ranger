@@ -44,9 +44,9 @@ namespace RoadRangerBackEnd.Data.Users
                 {
                     item.Name = obj.Name;
                     item.Password = obj.Password;
-                    item.score = obj.score;
+                    item.Score = obj.Score;
                     item.Username = obj.Username;
-                    item.boosts = obj.boosts;
+                    item.Boosts = obj.Boosts;
                 }
                 return true;
             }
