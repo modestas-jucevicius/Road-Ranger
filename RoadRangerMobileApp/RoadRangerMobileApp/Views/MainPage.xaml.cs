@@ -1,16 +1,21 @@
-﻿using Xamarin.Forms;
+﻿using Xamarin.Essentials;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RoadRangerBackEnd.Authorization;
+using System;
 
 namespace RoadRangerMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
+		private readonly AuthorizationService authorization = AuthorizationService.GetInstance();
         public MainPage()
         {
             NavigationPage.SetHasNavigationBar(this, true);
             InitializeComponent();
-        }
+			redirectToLogin();
+		}
 
         private async void MyGalleryButton_Clicked(object sender, System.EventArgs e)
         {
@@ -51,5 +56,26 @@ namespace RoadRangerMobileApp.Views
         {
             await Navigation.PushModalAsync(new NavigationPage(new ShopPage()));
         }
+
+		private async void redirectToLogin()
+		{
+			string token = await SecureStorage.GetAsync("authToken");
+			if (token != null)
+			{
+				try
+				{
+					authorization.SetToken(token);
+					await authorization.GetCurrentUser();
+				}
+				catch (Exception ex)
+				{
+					await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
+				}
+			}
+			else
+			{
+				await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
+			}
+		}
     }
 }

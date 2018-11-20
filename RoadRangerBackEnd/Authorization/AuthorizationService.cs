@@ -1,15 +1,25 @@
 ﻿using RoadRangerBackEnd.Users;
 using RoadRangerBackEnd.Data;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System;
 
 namespace RoadRangerBackEnd.Authorization
 {
 	public class AuthorizationService
 	{
 		private static AuthorizationService instance;
+		private HttpClient HttpClient = new HttpClient()
+		{
+			BaseAddress = new System.Uri("http://localhost:50472/"),
+		};
 		private User CurrentUser { get; set; }
-		private UserFileSystem UserFileSystem { get; set; }
-		private AuthorizationService() {
-			UserFileSystem = UserFileSystem.GetInstance();
+		private AuthorizationService()
+		{
+			HttpClient.DefaultRequestHeaders.Accept.Clear();
+			HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 		}
 
 		public static AuthorizationService GetInstance()
@@ -24,27 +34,49 @@ namespace RoadRangerBackEnd.Authorization
 			}
 		}
 
-		public User GetCurrentUser()
+		public async Task<User> GetCurrentUser()
 		{
-			return this.CurrentUser;
+			HttpResponseMessage response = await HttpClient.GetAsync("api/user");
+			response.EnsureSuccessStatusCode();
+			string jsonString = await response.Content.ReadAsStringAsync();
+			return JsonConvert.DeserializeObject<User>(jsonString);
 		}
 
-		public User Login() {
-			 return CurrentUser = new User(0, "username", "password", "name", 0, false, false, false);
+		public async Task<String> Login(string username, string password)
+		{
+			HttpResponseMessage response = await HttpClient.PostAsJsonAsync("api/user/login", new
+			{
+				Username = username,
+				Password = password
+			});
+			response.EnsureSuccessStatusCode();
+			String token = JsonConvert.DeserializeObject<String>(await response.Content.ReadAsStringAsync());
+			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token);
+			return token;
 		}
 
-		public void SyncCurrentUserToData()
+		public async Task<String> Register(string username, string password)
 		{
-			User savedUser = UserFileSystem.FindById(this.CurrentUser.Id);
-			if (savedUser != null)
+			HttpResponseMessage response = await HttpClient.PostAsJsonAsync("api/user", new
 			{
-				this.CurrentUser.Score = savedUser.Score;
-                this.CurrentUser.Boosts = savedUser.Boosts;
-			}
-			else
-			{
-				UserFileSystem.Put(this.CurrentUser);
-			}
+				Username = username,
+				Password = password
+			});
+			response.EnsureSuccessStatusCode();
+			String token = JsonConvert.DeserializeObject<String>(await response.Content.ReadAsStringAsync());
+			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token);
+			return token;
+		}
+
+		public async void UpdateUser(User user)
+		{
+			HttpResponseMessage response = await HttpClient.PutAsJsonAsync("api/user", user);
+			response.EnsureSuccessStatusCode();
+		}
+
+		public void SetToken(string token)
+		{
+			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token);
 		}
 	}
 }

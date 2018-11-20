@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using RoadRangerBackEnd.Cars;
-using RoadRangerBackEnd.Data.Users;
 using RoadRangerBackEnd.Data.Cars;
 using RoadRangerBackEnd.Data.Images;
 
@@ -10,7 +9,6 @@ namespace RoadRangerBackEnd.Data
 {
     public class CapturedCarService
     {
-        private readonly IUserData userData = new UserMemoryData();
         private ICarData carData = new CarMemoryData();
         private IImageData imageData = new ImageMemoryData();
 

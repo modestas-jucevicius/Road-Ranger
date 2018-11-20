@@ -14,7 +14,8 @@ namespace RoadRangerMobileApp.ViewModels
     {
         //private readonly AuthorizationService authorization;
         private readonly MemoryRepository memoryRepository = MemoryRepository.GetInstance();
-        private readonly BoostShopService boostShop = BoostShopService.GetInstance();
+        private readonly BoostShopService BoostShop = BoostShopService.GetInstance();
+		private readonly AuthorizationService authorization = AuthorizationService.GetInstance();
 
         public MyShopViewModel()
         {
@@ -28,13 +29,13 @@ namespace RoadRangerMobileApp.ViewModels
             });
         }
 
-        public void BuyBoost30p()
+        public async void BuyBoost30p()
         {
             //int operationStatus = BoostShop.BuyBoost30p(authorization.GetCurrentUser());
             System.Console.WriteLine("Trying to buy the boost...");
             try
             {
-                BoostShopService.BuyBoost30p(MemoryRepository.users[0]);
+				BoostShop.BuyBoost30p(await authorization.GetCurrentUser());
             }
             catch (NotEnoughScorePointsException e)
             {
@@ -43,28 +44,28 @@ namespace RoadRangerMobileApp.ViewModels
             }
         }
 
-        public void BuyBoost50p()
+        public async void BuyBoost50p()
         {
             //int operationStatus = BoostShop.BuyBoost50p(authorization.GetCurrentUser());
             try
             {
-                BoostShopService.BuyBoost50p(MemoryRepository.users[0]);
-            }
-            catch (NotEnoughScorePointsException e)
+				BoostShop.BuyBoost50p(await authorization.GetCurrentUser());
+			}
+			catch (NotEnoughScorePointsException e)
             {
                 Debug.WriteLine(e.Message);
                 //TODO: Do something when not enough points to buy score
             }
         }
 
-        public void BuyBoostDouble()
+        public async void BuyBoostDouble()
         {
             //int operationStatus = BoostShop.BuyBoostDouble(authorization.GetCurrentUser());
             try
             {
-                BoostShopService.BuyBoostDouble(MemoryRepository.users[0]);
-            }
-            catch(NotEnoughScorePointsException e)
+				BoostShop.BuyBoostDouble(await authorization.GetCurrentUser());
+			}
+			catch (NotEnoughScorePointsException e)
             {
                 Debug.WriteLine(e.Message);
                 //TODO: Do something when not enough points to buy score

@@ -104,12 +104,17 @@ namespace RoadRangerBackEnd.Data
 
         private string UserToCSVFormat(User user)
         {
-            return user.Id + "," + user.Username + "," + user.Name + "," + user.Score + Environment.NewLine;
+            return user.Id + "," + user.Username + "," + user.Score + Environment.NewLine;
         }
 
         private User GetUserFromStringArray(String[] array)
         {
-            return new User(Int32.Parse(array[0]), array[1], array[2], array[3], Int32.Parse(array[4]), array[5] == "True", array[6] == "True", array[7] == "True");
+			User user = new User(Int32.Parse(array[0]), array[1], array[2]);
+			user.Score = Int32.Parse(array[3]);
+			user.setBoost30p(array[4] == "True");
+			user.setBoost50p(array[5] == "True");
+			user.setBoostDouble(array[6] == "True");
+			return user;
         }
     }
 }

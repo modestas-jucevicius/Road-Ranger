@@ -7,7 +7,6 @@ namespace RoadRangerBackEnd.Data
 {
     public class MemoryRepository
     {
-        public static List<User> users = new List<User>();
         public static List<Car> cars = new List<Car>();
         public static List<Image> images = new List<Image>();
         private static MemoryRepository instance;
@@ -37,14 +36,6 @@ namespace RoadRangerBackEnd.Data
             images.Add(img2);
             images.Add(img3);
             images.Add(img4);
-
-            User usr1 = new User(0, "user1", "pass1", "User1", 500, false, false, false);
-            User usr2 = new User(1, "user2", "pass2", "User2", 2500, true, true, true);
-            User usr3 = new User(2, "user3", "pass3", "User3", 1500, true, false, true);
-
-            users.Add(usr1);
-            users.Add(usr2);
-            users.Add(usr3);
 
             Car car1 = new Car(0, 0, "AAA000", "black", "volvo", "volvo", "sedan", "2010-2014", true, CarStatus.NOT_STOLEN);
             Car car2 = new Car(1, 0, "AAA111", "white", "BMW", "BMW", "sedan", "2010-2014", true, CarStatus.STOLEN);
