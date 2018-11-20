@@ -48,8 +48,22 @@ namespace RoadRangerMobileApp.Droid
             }
             catch (Java.IO.IOException ex)
             {
-                Console.WriteLine(ex.Message);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.SetTitle("Something went wrong!");
+                alertDialog.SetMessage("Couldn't turn on the camera.");
+                alertDialog.SetNeutralButton("OK", delegate {
+                    alertDialog.Dispose();
+                     });
             }
+        }
+
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            if (e.Action == MotionEventActions.Down)
+            {
+                _camera.AutoFocus(this);
+            }
+            return true;
         }
 
         public bool OnSurfaceTextureDestroyed(SurfaceTexture surface)
