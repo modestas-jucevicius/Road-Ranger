@@ -1,6 +1,6 @@
 ﻿using Road_rangerVS.Models;
 using RoadRangerBackEnd.Cars;
-using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Data;
 using RoadRangerMobileApp.Models;
 using RoadRangerMobileApp.Views;
 using System;
@@ -11,7 +11,7 @@ namespace RoadRangerMobileApp.Presenters
 {
     public class SearchItemPresenter
     {
-        protected readonly ICapturedCarFinder finder = new CapturedCarFinder();
+        protected readonly CapturedCarService service = new CapturedCarService();
         protected readonly GalleryModel galleryModel = new GalleryModel();
         protected readonly ReportModel reportModel = new ReportModel();
         private IReportItemView view;
@@ -36,7 +36,7 @@ namespace RoadRangerMobileApp.Presenters
 
         private void RemoveItem()
         {
-            List<CapturedCar> cars = finder.FindAll();
+            List<CapturedCar> cars = service.FindAll();
             galleryModel.RemoveCarById(model.Item.Id);
 
             if (cars.Where(x => x.Image.Id == model.Item.Image.Id).Count() == 1)
@@ -53,7 +53,7 @@ namespace RoadRangerMobileApp.Presenters
 
             if (await view.ShowReportDialog())
             {
-                reportModel.SendGeneratedMail(model.Item);
+                await reportModel.SendGeneratedMail(model.Item);
             }
         }
     }

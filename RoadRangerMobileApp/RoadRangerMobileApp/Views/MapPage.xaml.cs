@@ -4,41 +4,45 @@ using Xamarin.Forms.Maps;
 using RoadRangerBackEnd.Maps;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using RoadRangerMobileApp.Presenters;
+using System;
+using RoadRangerMobileApp.Models;
+using RoadRangerBackEnd.CustomEventArgs;
+using RoadRangerBackEnd.Data.Cars;
+using RoadRangerBackEnd.Cars;
+using System.Diagnostics;
+
 namespace RoadRangerMobileApp.Views
 {
     public delegate Task<string> MyDel(string str);
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MapPage : ContentPage
+	public partial class MapPage : ContentPage, IMapToolView
 	{
-        MapClass mapClass;
-		public MapPage ()
-		{
+        MapTool mapClass;
+        private IMapToolView view;
+        private MapToolPresenter presenter;
+        public event EventHandler<PinsEventArgs> AddPins;
+        public event EventHandler SetLocation;
+        public MapPage()
+        {
             InitializeComponent();
-
-            mapClass = new MapClass(googleMap);
+            mapClass = new MapTool(googleMap);
             LoadLocation();
-            //List<Pin> list = new List<Pin>();
-            //new Thread(() => AddPins(list,mapClass.GetMap()));
+            InitializePresenter(googleMap,null); //Vietoj null turi ateit listas su pins'ais
 
         }
-
-        //async void LoadLocation()
-          async Task LoadLocation()
+         async Task LoadLocation()
+       {
+           Position position =  await mapClass.GetLocation();
+            mapClass.SetLocation(position);
+           var pin = new Pin();
+       }
+        protected async Task InitializePresenter(Map map, List<Pin> pins)
         {
-            Position position =  await mapClass.GetLocation();
-            mapClass.GetMap().MoveToRegion(MapSpan.FromCenterAndRadius(position, new Distance(500)));
-            var pin = new Pin();
-            pin.Position = new Position(position.Latitude, position.Longitude);
-            pin.Label = "Current Location";
-            mapClass.GetMap().Pins.Add(pin);
-        }
-        public void AddPins(List<Pin> pins, Map map)
-        {
-            foreach(Pin pin in pins)
-            {
-                if(!map.Pins.Contains(pin)) { map.Pins.Add(pin); }
-            }
+            presenter = new MapToolPresenter(this, new MapModel(map));
+            //if (SetLocation != null) this.SetLocation(this, EventArgs.Empty); //Kol kas neveikia
+            if (AddPins != null) this.AddPins(this, new PinsEventArgs() {Map = map, Pins = pins });
         }
 
     }

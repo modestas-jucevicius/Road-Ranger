@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using RoadRangerBackEnd.Images;
 
 namespace RoadRangerBackEnd.Data.Images
@@ -14,21 +15,21 @@ namespace RoadRangerBackEnd.Data.Images
 
         public Image FindById(int id)
         {
-            foreach(Image image in MemoryRepository.images)
+            try
             {
-                if (image.Id == id) { return image; }
+                Image foundImage = MemoryRepository.images.Single(image => image.Id == id);
+                return foundImage;
             }
-            return null;
+            catch (System.InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public int NewID()
         {
-            int Id = MemoryRepository.images[0].Id;
-            foreach(Image image in MemoryRepository.images)
-            {
-                if(image.Id >= Id) { Id = image.Id; }
-            }
-            return ++Id;
+            Image lastImage = MemoryRepository.images.OrderBy(image => image.Id).Last();
+            return ++lastImage.Id;
         }
 
         public void Put(Image obj)
@@ -38,20 +39,21 @@ namespace RoadRangerBackEnd.Data.Images
 
         public void PutList(List<Image> obj)
         {
-            foreach(Image image in obj) { MemoryRepository.images.Add(image); }
+            MemoryRepository.images = (from image in obj
+                                     select image).ToList();
         }
 
         public bool Remove(int id)
         {
-            foreach(Image image in MemoryRepository.images)
+            try
             {
-                if(image.Id == id)
-                {
-                    MemoryRepository.images.Remove(image);
-                    return true;
-                }
+                MemoryRepository.images.RemoveAll(image => image.Id == id);
+                return true;
             }
-            return false;
+            catch (System.InvalidOperationException)
+            {
+                return false;
+            }
         }
     }
 }
