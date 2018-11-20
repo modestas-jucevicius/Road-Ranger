@@ -1,17 +1,14 @@
-﻿using RoadRangerMobileApp.ViewModels;
+﻿using RoadRangerMobileApp.Presenters;
 using System;
-using System.ComponentModel;
-using System.IO;
-using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace RoadRangerMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShopPage : ContentPage
+    public partial class ShopPage : ContentPage, IShopView
     {
-        public MyShopViewModel viewModel;// = new MyShopViewModel();
+        public ShopPresenter presenter;// = new MyShopViewModel();
 
         public ShopPage()
         {
@@ -19,34 +16,40 @@ namespace RoadRangerMobileApp.Views
             //viewModel = new MyShopViewModel();
         }
 
+        private void InitializePresenter()
+        {
+            presenter = new ShopPresenter(this);
+        }
+
         private void Boost30p_Clicked(object sender, EventArgs args)
         {
-
-            //MessagingCenter.Send(this, "Boost30p");
-
-            if(this.viewModel == null)
+            if(presenter == null)
             {
-                this.viewModel = new MyShopViewModel();
+                InitializePresenter();
             }
-            this.viewModel.BuyBoost30p();
+            Boost30p(this, EventArgs.Empty);
         }
 
         private void Boost50p_Clicked(object sender, EventArgs args)
         {
-            if (this.viewModel == null)
+            if(presenter == null)
             {
-                this.viewModel = new MyShopViewModel();
+                InitializePresenter();
             }
-            this.viewModel.BuyBoost50p();
+            Boost50p(this, EventArgs.Empty);
         }
     
         private void BoostDouble_Clicked(object sender, EventArgs args)
         {
-            if (this.viewModel == null)
+            if(presenter == null)
             {
-                this.viewModel = new MyShopViewModel();
+                InitializePresenter();
             }
-            this.viewModel.BuyBoostDouble();
+            BoostDouble(this, EventArgs.Empty);
         }
+
+        public event EventHandler<EventArgs> Boost30p;
+        public event EventHandler<EventArgs> Boost50p;
+        public event EventHandler<EventArgs> BoostDouble;
     }
 }

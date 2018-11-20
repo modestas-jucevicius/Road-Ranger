@@ -1,64 +1,70 @@
-﻿using RoadRangerBackEnd.Authorization;
+﻿using RoadRangerBackEnd.Data;
 using RoadRangerBackEnd.Score;
-using RoadRangerBackEnd.Data;
+using RoadRangerMobileApp.Views;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using RoadRangerMobileApp.Views;
 using System.Diagnostics;
+using System.Text;
 
-namespace RoadRangerMobileApp.ViewModels
+namespace RoadRangerMobileApp.Presenters
 {
-    public class MyShopViewModel
+    public class ShopPresenter
     {
-        //private readonly AuthorizationService authorization;
         private readonly MemoryRepository memoryRepository = MemoryRepository.GetInstance();
         private readonly BoostShopService boostShop = BoostShopService.GetInstance();
+        private IShopView view;
 
-        public MyShopViewModel()
+        public ShopPresenter(IShopView view)
         {
-            //this.authorization = AuthorizationService.GetInstance();
+            this.view = view;
+            this.Initialize();
         }
 
-        public void BuyBoost30p()
+        public void Initialize()
+        {
+            this.view.Boost30p += new EventHandler<EventArgs>(BuyBoost30p);
+            this.view.Boost50p += new EventHandler<EventArgs>(BuyBoost50p);
+            this.view.BoostDouble += new EventHandler<EventArgs>(BuyBoostDouble);
+        }
+
+        public void BuyBoost30p(object sender, EventArgs e)
         {
             //int operationStatus = BoostShop.BuyBoost30p(authorization.GetCurrentUser());
             try
             {
                 BoostShopService.BuyBoost30p(MemoryRepository.users[0]);
             }
-            catch (NotEnoughScorePointsException e)
+            catch (NotEnoughScorePointsException exception)
             {
-                Debug.WriteLine(e.Message);
+                Debug.WriteLine(exception.Message);
                 //TODO: Do something when not enough points to buy score (Platform specific)
             }
         }
 
-        public void BuyBoost50p()
+        public void BuyBoost50p(object sender, EventArgs e)
         {
             //int operationStatus = BoostShop.BuyBoost50p(authorization.GetCurrentUser());
             try
             {
                 BoostShopService.BuyBoost50p(MemoryRepository.users[0]);
             }
-            catch (NotEnoughScorePointsException e)
+            catch (NotEnoughScorePointsException exception)
             {
-                Debug.WriteLine(e.Message);
+                Debug.WriteLine(exception.Message);
                 //TODO: Do something when not enough points to buy score (Platform specific)
             }
         }
 
-        public void BuyBoostDouble()
+        public void BuyBoostDouble(object sender, EventArgs e)
         {
             //int operationStatus = BoostShop.BuyBoostDouble(authorization.GetCurrentUser());
             try
             {
                 BoostShopService.BuyBoostDouble(MemoryRepository.users[0]);
             }
-            catch(NotEnoughScorePointsException e)
+            catch (NotEnoughScorePointsException exception)
             {
-                Debug.WriteLine(e.Message);
+                Debug.WriteLine(exception.Message);
                 //TODO: Do something when not enough points to buy score (Platform specific)
             }
         }
