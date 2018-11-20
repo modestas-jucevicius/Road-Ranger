@@ -4,6 +4,8 @@ using Android.Runtime;
 using Android.Widget;
 using Android.OS;
 using Android;
+using RoadRangerMobileApp.Views;
+using Android.Graphics;
 
 namespace RoadRangerMobileApp.Droid
 {
@@ -14,14 +16,18 @@ namespace RoadRangerMobileApp.Droid
         readonly string[] PermissionsGroupLocation =    //Leidimų masyvas - žemėlapiams reikia coarse ir fine location'ų
         {
             Manifest.Permission.AccessCoarseLocation,
-            Manifest.Permission.AccessFineLocation
+            Manifest.Permission.AccessFineLocation,
+            Manifest.Permission.Camera,
         };
+        private SurfaceTexture surface;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             RequestPermissions(PermissionsGroupLocation, RequestLocationId);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            CameraPage.cameraButton.Clicked += (sender, args) => { StartActivity(typeof(CameraActivity)); }; //Prisiregistruojama CameraActivity prie mygtuko Clicked evento
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

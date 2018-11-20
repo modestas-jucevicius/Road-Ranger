@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms.Maps;
-using Android.Locations;
 
 namespace RoadRangerMobileApp.Presenters
 {
