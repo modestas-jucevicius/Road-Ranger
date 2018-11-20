@@ -1,5 +1,6 @@
 ﻿using RoadRangerBackEnd.Cars;
-using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Data;
+using RoadRangerBackEnd.Data;
 using RoadRangerBackEnd.Statistic;
 using RoadRangerBackEnd.Statistic.Charts;
 using RoadRangerMobileApp.Views;
@@ -11,7 +12,7 @@ namespace RoadRangerMobileApp.Presenters
     public class StatisticPresenter : BasePresenter
     {
         private StatisticEntryConverter converter = new StatisticEntryConverter();
-        private readonly ICapturedCarFinder finder = new CapturedCarFinder();
+        private readonly CapturedCarService service = new CapturedCarService();
 
         private CarStatus status = CarStatus.NOT_STOLEN | CarStatus.STOLEN | CarStatus.STOLEN_PLATE | CarStatus.UNKNOWN;
 
@@ -48,7 +49,7 @@ namespace RoadRangerMobileApp.Presenters
         {
             lock (loadLock)
             {
-                List<CapturedCar> cars = finder.FindAll();
+                List<CapturedCar> cars = service.FindAll();
 
                 this.view.Chart1 = carDateChart.Get(cars);
                 this.view.Chart2 = carYearChart.Get(cars);

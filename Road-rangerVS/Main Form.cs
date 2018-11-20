@@ -7,7 +7,7 @@ using AForge.Video;
 using Road_rangerVS.Views;
 using System.Collections.Generic;
 using RoadRangerBackEnd.Validation;
-using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Data;
 using RoadRangerBackEnd.Cars;
 using RoadRangerBackEnd.Statistic;
 
@@ -311,8 +311,8 @@ namespace Road_rangerVS
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ICapturedCarFinder finder = new CapturedCarFinder();
-            List<CapturedCar> cars = finder.FindAll();
+            CapturedCarService service = new CapturedCarService();
+            List<CapturedCar> cars = service.FindAll();
 
             CarDateStatistic statistic = new CarDateStatistic();
             var list = statistic.Get(cars, CarStatus.STOLEN);

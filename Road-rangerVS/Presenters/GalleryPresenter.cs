@@ -22,7 +22,7 @@ namespace Road_rangerVS.Presenters
 
         public List<CapturedCar> GetCarByUserId()
         {
-			return this.galleryModel.GetFinder().FindByUserId(userId);
+			return this.galleryModel.GetCarFinder().FindByUserId(userId);
 		}
 
         public void ShowGallery(IGalleryView view)

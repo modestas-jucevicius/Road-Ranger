@@ -1,5 +1,5 @@
 ﻿using RoadRangerBackEnd.Cars;
-using RoadRangerBackEnd.Search;
+using RoadRangerBackEnd.Data;
 using RoadRangerBackEnd.Validation;
 using RoadRangerMobileApp.Views;
 using System;
@@ -15,7 +15,7 @@ namespace RoadRangerMobileApp.Presenters
         private ISearchView view;
         public ObservableCollection<CapturedCar> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
-        private ICapturedCarFinder finder = new CapturedCarFinder();
+        private CapturedCarService finder = new CapturedCarService();
 
         public SearchPresenter(ISearchView page)
         {
