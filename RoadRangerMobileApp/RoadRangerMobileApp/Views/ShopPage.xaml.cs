@@ -1,9 +1,5 @@
 ﻿using RoadRangerMobileApp.Presenters;
-using RoadRangerMobileApp.ViewModels;
 using System;
-using System.ComponentModel;
-using System.IO;
-using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
