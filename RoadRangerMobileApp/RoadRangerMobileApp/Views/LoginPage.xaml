@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoadRangerMobileApp.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Road Ranger, please login!"
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="Username"/>
+            <Entry x:Name="Password" IsPassword="True"/>
+            <Button Text="Login" 
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        Clicked="Login_Clicked"/>
+            <Button Text="Register"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        Clicked="Register_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

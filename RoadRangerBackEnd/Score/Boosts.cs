@@ -6,9 +6,9 @@ namespace RoadRangerBackEnd.Score
 {
     public class Boosts
     {
-        public Boolean boost30p = false;
-        public Boolean boost50p = false;
-        public Boolean boostDouble = false;
+        public Boolean boost30p { get; set; } = false;
+		public Boolean boost50p { get; set; } = false;
+		public Boolean boostDouble { get; set; } = false;
 
         public int ScoreBoost(int score)
         {

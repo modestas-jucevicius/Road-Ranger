@@ -32,24 +32,24 @@ namespace RoadRangerBackEnd.Score
 
         public int Evaluate(Car car)                     // Įvertinti automobilį taškais
         {
-            if (car.Status.Equals(CarStatus.NOT_STOLEN))
+			User user = authorizationService.GetCurrentUser().Result;
+			if (car.Status.Equals(CarStatus.NOT_STOLEN))
             {
-                return authorizationService.GetCurrentUser().Boosts.ScoreBoost(notStolenScore);
+				return user.Boosts.ScoreBoost(notStolenScore);
             }
 
             if (car.Status.Equals(CarStatus.STOLEN))
             {
-                return authorizationService.GetCurrentUser().Boosts.ScoreBoost(stolenScore);
-            }
+				return user.Boosts.ScoreBoost(stolenScore);            }
 
             if (car.Status.Equals(CarStatus.STOLEN_PLATE))
             {
-                return authorizationService.GetCurrentUser().Boosts.ScoreBoost(stolenPlateScore);
+				return user.Boosts.ScoreBoost(stolenPlateScore);
             }
 
             if (car.Status.Equals(CarStatus.UNKNOWN))
             {
-                return authorizationService.GetCurrentUser().Boosts.ScoreBoost(unknownScore);
+				return user.Boosts.ScoreBoost(unknownScore);
             }
             return 0;
         }

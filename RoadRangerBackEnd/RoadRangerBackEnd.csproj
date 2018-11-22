@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="GeoCoordinate.NetStandard1" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.6" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />

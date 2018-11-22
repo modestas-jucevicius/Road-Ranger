@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.Widget;
 using Android.OS;
 using Android;
+using Xamarin.Essentials;
 using RoadRangerMobileApp.Views;
 using Android.Graphics;
 
@@ -30,13 +31,16 @@ namespace RoadRangerMobileApp.Droid
             CameraPage.cameraButton.Clicked += (sender, args) => { StartActivity(typeof(CameraActivity)); }; //Prisiregistruojama CameraActivity prie mygtuko Clicked evento
 
             base.OnCreate(savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            switch (requestCode)
+			Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+			switch (requestCode)
             {
                 case RequestLocationId:
                 {

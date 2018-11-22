@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using RoadRangerBackEnd.Authorization;
 
 namespace RoadRangerMobileApp.Presenters
 {
@@ -18,6 +19,7 @@ namespace RoadRangerMobileApp.Presenters
         public ObservableCollection<User> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         private HighscoresService highscores;
+		private AuthorizationService authorization = AuthorizationService.GetInstance();
 
         public TopPresenter(ITopView page)
         {
@@ -50,12 +52,14 @@ namespace RoadRangerMobileApp.Presenters
         /*
          * Pakeisti, kai atsiras duombaze! (FindAll())
          */
-        private void FindAll()
+        private async void FindAll()
         {
             Items.Clear();
             MemoryRepository repository = MemoryRepository.GetInstance();
-            List<User> users = MemoryRepository.users;
-            users = highscores.GetTops(users);
+			//List<User> users = MemoryRepository.users; temporal disable of function due to user moving to api
+			List<User> users = new List<User>();
+			users.Add(await authorization.GetCurrentUser());
+			users = highscores.GetTops(users);
             foreach (var item in users)
             {
                 Items.Add(item);

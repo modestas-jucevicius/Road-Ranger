@@ -28,7 +28,7 @@ namespace RoadRangerBackEnd.Score
              }
         }
 
-        public static void BuyBoost30p(User user)
+        public void BuyBoost30p(User user)
         {
             if (user.Boosts.boost30p)
             {
@@ -45,7 +45,7 @@ namespace RoadRangerBackEnd.Score
             }
         }
 
-        public static void BuyBoost50p(User user)
+        public void BuyBoost50p(User user)
         {
             if (user.Boosts.boost50p)
             {
@@ -62,7 +62,7 @@ namespace RoadRangerBackEnd.Score
             }
         }
 
-        public static void BuyBoostDouble(User user)
+        public void BuyBoostDouble(User user)
         {
             if (user.Boosts.boostDouble)
             {
