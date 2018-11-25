@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.ShopPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to your shop!"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand" />
+            <Button Text="30% Boost" 
+                    Grid.Row="1" 
+                    Grid.Column="1" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Clicked="Boost30p_Clicked"/>
+            <Button Text="50% Boost" 
+                    Grid.Row="2" 
+                    Grid.Column="2" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Clicked="Boost50p_Clicked"/>
+            <Button Text="Double Boost" 
+                    Grid.Row="3" 
+                    Grid.Column="3" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    Clicked="BoostDouble_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

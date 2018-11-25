@@ -1,8 +1,0 @@
-0,0,EBO666,silver-gray,audi,audi_a4,sedan-standard,2000-2004,False,NOT_STOLEN
-1,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,True,STOLEN
-2,0,EBO666,silver-gray,audi,audi_a4,sedan-standard,2000-2004,False,NOT_STOLEN
-3,0,AAA495,black,mazda,jaguar_f-type,sedan-sports,2015-2019,True,STOLEN
-4,1,GHM497,blue,suzuki,suzuki_jimny,sedan-compact,2005-2009,False,NOT_STOLEN
-5,0,KJO293,silver-gray,mazda,mazda_323,sedan-compact,2000-2004,False,NOT_STOLEN
-6,0,KJO293,silver-gray,suzuki,dacia_logan,sedan-compact,2005-2009,False,NOT_STOLEN
-7,1,GHM497,blue,suzuki,suzuki_jimny,sedan-compact,2005-2009,False,NOT_STOLEN

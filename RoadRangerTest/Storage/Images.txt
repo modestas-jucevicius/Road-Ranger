@@ -1,4 +1,0 @@
-0,0,1540384526,C:\Users\pjach\Documents\Road-Ranger\Road-rangerVS\Storage\Images\0.jpg
-1,4,1540384597,C:\Users\pjach\Documents\Road-Ranger\Road-rangerVS\Storage\Images\1.jpg
-2,2,1540384625,C:\Users\pjach\Documents\Road-Ranger\Road-rangerVS\Storage\Images\2.jpg
-3,7,1540385152,C:\Users\pjach\Documents\Road-Ranger\Road-rangerVS\Storage\Images\3.jpg
