@@ -48,5 +48,5 @@ namespace Models.Users
 			this.Boosts.boostDouble = boostDouble;
 		}
 
-	}
+    }
 }

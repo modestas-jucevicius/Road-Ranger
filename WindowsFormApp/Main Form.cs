@@ -11,6 +11,7 @@ using Services.Validation;
 using Models.Cars;
 using Services.Statistic.Statistics;
 using Services.Statistic;
+using Models.Images;
 
 namespace WindowsFormApp
 {
@@ -45,7 +46,7 @@ namespace WindowsFormApp
             }
         }
 
-        public Image Frame
+        public System.Drawing.Image Frame
         {
             get
             {
@@ -304,6 +305,5 @@ namespace WindowsFormApp
             this.galleryListView.Items.Clear();
             this.galleryPresenter.ShowGallery(this);
         }
-
     }
 }

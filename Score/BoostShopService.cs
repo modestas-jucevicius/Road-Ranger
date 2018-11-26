@@ -1,6 +1,7 @@
 ﻿using Models.Users;
+using Services.Score;
 
-namespace Services.Score
+namespace Score
 {
     public class BoostShopService
     {

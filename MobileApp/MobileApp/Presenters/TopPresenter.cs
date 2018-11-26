@@ -1,12 +1,12 @@
 ﻿using MobileApp.Manager;
 using MobileApp.Views;
 using Models.Users;
-using Services.Authorization;
 using Services.Score;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using WebService.Authorization;
 using Xamarin.Forms;
 
 namespace MobileApp.Presenters

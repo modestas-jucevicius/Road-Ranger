@@ -53,7 +53,15 @@ namespace Services.Recognition
             JObject modelObj = (JObject)models[0];
             string model = (string)modelObj["name"];
 
-            return new Car(plate, colorName, makeName, model, bodyType, year);
+            return new Car
+            {
+                LicensePlate = plate,
+                ColorName = colorName,
+                MakeName = makeName,
+                Model = model,
+                BodyType = bodyType,
+                Year = year
+            };
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using MobileApp.Models;
 using MobileApp.Presenters;
 using MobileApp.Views;
-using Services.Authorization;
 using System;
 using System.Threading.Tasks;
+using WebService.Authorization;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

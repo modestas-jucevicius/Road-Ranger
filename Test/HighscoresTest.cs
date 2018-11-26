@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Users;
+using Score;
 using Services.Score;
 using Storage.Data.Users;
 

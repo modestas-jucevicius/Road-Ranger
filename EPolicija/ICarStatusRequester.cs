@@ -1,7 +1,7 @@
 ﻿using Models.Cars;
 using System.Threading.Tasks;
 
-namespace Services.EPolicija
+namespace EPolicija
 {
     public interface ICarStatusRequester
     {

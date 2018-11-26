@@ -3,20 +3,16 @@ using MobileApp.Models;
 using System;
 using Xamarin.Forms;
 using MobileApp.Manager;
-using System.Collections.Generic;
-using Models.Cars;
-using Storage.Data;
-using System.Linq;
+using WebService.WebService;
 
 namespace MobileApp.Presenters
 {
     public class MyGalleryItemPresenter : BasePresenter
     {
         private IMyGalleryItemView view;
-        private Page page;
+        private readonly Page page;
         private ICarDetailModel model;
         private ReportModel report = new ReportModel();
-        private GalleryModel gallery = new GalleryModel();
         private CapturedCarService service = new CapturedCarService();
 
         public MyGalleryItemPresenter(MyGalleryItemPage page, ICarDetailModel model)
@@ -62,13 +58,9 @@ namespace MobileApp.Presenters
             }
         }
 
-        private void RemoveItem()
+        private async void RemoveItem()
         {
-            List<CapturedCar> cars = service.FindAll();
-            gallery.RemoveCarById(model.Item.Id);
-
-            if (cars.Where(x => x.Image.Id == model.Item.Image.Id).Count() == 1)
-                gallery.RemoveImageById(model.Item.Image.Id); 
+            await service.Remove(model.Item.Id);
         }
     }
 }

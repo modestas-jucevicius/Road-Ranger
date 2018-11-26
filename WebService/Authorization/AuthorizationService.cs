@@ -5,20 +5,15 @@ using System.Threading.Tasks;
 using System;
 using Models.Users;
 
-namespace Services.Authorization
+namespace WebService.Authorization
 {
-	public class AuthorizationService
+	public class AuthorizationService : BaseService
 	{
 		private static AuthorizationService instance;
-		private HttpClient HttpClient = new HttpClient()
-		{
-			BaseAddress = new System.Uri("http://localhost:50472/"),
-		};
+		
 		private User CurrentUser { get; set; }
-		private AuthorizationService()
+		private AuthorizationService() : base()
 		{
-			HttpClient.DefaultRequestHeaders.Accept.Clear();
-			HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 		}
 
 		public static AuthorizationService GetInstance()

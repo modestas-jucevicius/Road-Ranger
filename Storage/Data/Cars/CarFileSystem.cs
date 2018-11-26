@@ -121,9 +121,9 @@ namespace Storage.Data.Cars
 
         private Car GetCarFromStringArray(string[] array)
         {
-            return new Car(Int32.Parse(array[0]), Int32.Parse(array[1]), array[2],
+            return CarFactory.GetInstance().CreateCar(Int32.Parse(array[0]), Int32.Parse(array[1]), array[2],
                 array[3], array[4], array[5],
-                array[6], array[7], Convert.ToBoolean(array[8]), (CarStatus)Enum.Parse(typeof(CarStatus), array[9]));
+                array[6], array[7], (CarStatus)Enum.Parse(typeof(CarStatus), array[9]), Convert.ToBoolean(array[8]));
         } 
     }
 }

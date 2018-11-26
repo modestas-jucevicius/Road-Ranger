@@ -237,6 +237,10 @@
       <Project>{a4e72518-498f-440f-ae3b-0f89a974464f}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Score\Score.csproj">
+      <Project>{c44c82cc-3ed2-42f9-a43e-fae8b9c28c05}</Project>
+      <Name>Score</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{741db22b-4dfe-4519-96d1-8fa642d253bd}</Project>
       <Name>Services</Name>

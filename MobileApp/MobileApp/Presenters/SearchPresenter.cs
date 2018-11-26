@@ -3,11 +3,11 @@ using MobileApp.Models;
 using MobileApp.Views;
 using Models.Cars;
 using Services.Validation;
-using Storage.Data;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using WebService.WebService;
 using Xamarin.Forms;
 
 namespace MobileApp.Presenters
@@ -37,24 +37,21 @@ namespace MobileApp.Presenters
 
         async Task ExecuteLoadItemsCommand()
         {
-            lock (loadLock)
+            try
             {
-                try
-                {
-                    Items.Clear();
-                    FindItems(view.SearchText);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
+                Items.Clear();
+                await GetItems(view.SearchText);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
             }
         }
 
-        public ObservableCollection<CapturedCar> FindItems(String text)
+        public async Task<ObservableCollection<CapturedCar>> GetItems(String text)
         {
             Items.Clear();
-            var items = service.FindByPlate(text);
+            var items = await service.GetByLicensePlateAsync(text);
             foreach (var item in items)
             {
                 Items.Add(item);

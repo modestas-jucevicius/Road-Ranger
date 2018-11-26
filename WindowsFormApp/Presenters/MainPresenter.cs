@@ -6,11 +6,8 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using System.Windows.Forms;
 using System.IO;
-//using WindowsFormApp.Models;
 using Services.Recognition;
-using Services.EPolicija;
 using Services.Validation;
-using Services.Score;
 using WindowsFormApp.Views;
 using Models.Cars;
 
@@ -23,10 +20,10 @@ namespace WindowsFormApp.Presenters
         private OpenALPRRecognizer recognizer = new OpenALPRRecognizer();
         public Label scoreLabel;
         private ICarParser parser = new OpenALPRParser();
-        private readonly ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+        //private readonly ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
         private readonly ITextValidator validator = new LicensePlateValidator();
         private delegate void SetTextCallBack(string text);
-        private readonly Evaluation evaluation = new Evaluation();
+        //private readonly Evaluation evaluation = new Evaluation();
 
         public MainPresenter(Label scoreLabel)
         {

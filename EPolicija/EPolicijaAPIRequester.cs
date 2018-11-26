@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Services.EPolicija
+namespace EPolicija
 {
     public class EPolicijaAPIRequester : ICarStatusRequester
     {

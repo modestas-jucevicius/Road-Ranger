@@ -1,8 +1,9 @@
 ﻿using MobileApp.Manager;
 using MobileApp.Views;
-using Services.Authorization;
+using Score;
 using Services.Score;
 using System;
+using WebService.Authorization;
 using Xamarin.Forms;
 
 namespace MobileApp.Presenters

@@ -2,11 +2,11 @@
 using MobileApp.Models;
 using MobileApp.Views;
 using Models.Cars;
-using Storage.Data;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using WebService.WebService;
 using Xamarin.Forms;
 
 namespace MobileApp.Presenters
@@ -18,20 +18,20 @@ namespace MobileApp.Presenters
         public ObservableCollection<CapturedCar> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         private CapturedCarService service = new CapturedCarService();
- 
+
         public MyGalleryPresenter(MyGalleryPage page)
         {
             this.page = page;
-            this.view = page;
+            view = page;
             Items = new ObservableCollection<CapturedCar>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            this.Initialize();
+            Initialize();
         }
 
         private void Initialize()
         {
-            this.view.OnItem += new EventHandler<SelectedItemChangedEventArgs>(ItemClicked);
-            this.view.Search += new EventHandler<EventArgs>(Search);
+            view.OnItem += new EventHandler<SelectedItemChangedEventArgs>(ItemClicked);
+            view.Search += new EventHandler<EventArgs>(Search);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -40,7 +40,7 @@ namespace MobileApp.Presenters
             {
                 try
                 {
-                    FindAll();
+                    GetAll();
                 }
                 catch (Exception ex)
                 {
@@ -49,10 +49,10 @@ namespace MobileApp.Presenters
             }
         }
 
-        private void FindAll()
+        private async void GetAll()
         {
             Items.Clear();
-            var items = service.FindAll();
+            var items = await service.GetAll();
             foreach (var item in items)
             {
                 Items.Add(item);

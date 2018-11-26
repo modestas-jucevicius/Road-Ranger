@@ -2,9 +2,9 @@
 using Models.Cars;
 using Services.Statistic;
 using Services.Statistic.Charts;
-using Storage.Data;
 using System;
 using System.Collections.Generic;
+using WebService.WebService;
 
 namespace MobileApp.Presenters
 {
@@ -43,18 +43,15 @@ namespace MobileApp.Presenters
             carStatusChart = new CarStatusChart(converter, status);
         }
 
-        void ChartView(object sender, EventArgs e)
+        private async void ChartView(object sender, EventArgs e)
         {
-            lock (loadLock)
-            {
-                List<CapturedCar> cars = service.FindAll();
+            List<CapturedCar> cars = await service.GetAll();
 
-                view.Chart1 = carDateChart.Get(cars);
-                view.Chart2 = carYearChart.Get(cars);
-                //view.Chart3 = carLocationChart.Get(cars);
-                view.Chart4 = carModelChart.Get(cars);
-                view.Chart5 = carStatusChart.Get(cars);
-            }
+            view.Chart1 = carDateChart.Get(cars);
+            view.Chart2 = carYearChart.Get(cars);
+            //view.Chart3 = carLocationChart.Get(cars);
+            view.Chart4 = carModelChart.Get(cars);
+            view.Chart5 = carStatusChart.Get(cars);
         }
 
     }

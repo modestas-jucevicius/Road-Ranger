@@ -1,8 +1,8 @@
 ﻿using Models.Cars;
 using Models.Users;
-using Services.Authorization;
+using WebService.Authorization;
 
-namespace Services.Score
+namespace Score
 {
     public class Evaluation
     {
@@ -30,33 +30,34 @@ namespace Services.Score
         }
 
 
-        public int Evaluate(Car car)                     // Įvertinti automobilį taškais
+        public int Evaluate(User user, CarStatus status)                   
         {
-			User user = authorizationService.GetCurrentUser().Result;
-			if (car.Status.Equals(CarStatus.NOT_STOLEN))
+			if (status.Equals(CarStatus.NOT_STOLEN))
             {
 				return user.Boosts.ScoreBoost(notStolenScore);
             }
 
-            if (car.Status.Equals(CarStatus.STOLEN))
+            if (status.Equals(CarStatus.STOLEN))
             {
-				return user.Boosts.ScoreBoost(stolenScore);            }
+				return user.Boosts.ScoreBoost(stolenScore);
+            }
 
-            if (car.Status.Equals(CarStatus.STOLEN_PLATE))
+            if (status.Equals(CarStatus.STOLEN_PLATE))
             {
 				return user.Boosts.ScoreBoost(stolenPlateScore);
             }
 
-            if (car.Status.Equals(CarStatus.UNKNOWN))
+            if (status.Equals(CarStatus.UNKNOWN))
             {
 				return user.Boosts.ScoreBoost(unknownScore);
             }
             return 0;
         }
 
-        public int IncreaseScore(User user, Car car)     //Padidina vartotojo bendrą įvertinimą
+        public int IncreaseScore(CarStatus status)    
         {
-            user.IncreaseScore(this.Evaluate(car));
+            User user = authorizationService.GetCurrentUser().Result;
+            user.IncreaseScore(this.Evaluate(user, status));
             return 1;
         }
     }

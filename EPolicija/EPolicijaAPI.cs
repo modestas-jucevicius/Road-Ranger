@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Models.Cars;
 
-namespace Services.EPolicija
+namespace EPolicija
 {
     public class EPolicijaAPI : ICarStatusRequester
     {

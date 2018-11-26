@@ -1,5 +1,4 @@
 ﻿using MobileApp.Manager;
-using MobileApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

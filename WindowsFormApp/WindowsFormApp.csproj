@@ -270,6 +270,10 @@
       <Project>{741db22b-4dfe-4519-96d1-8fa642d253bd}</Project>
       <Name>Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebService\WebService.csproj">
+      <Project>{940f950c-be27-4cac-92a1-2994ae115aa6}</Project>
+      <Name>WebService</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
