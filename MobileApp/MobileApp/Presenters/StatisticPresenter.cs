@@ -1,32 +1,26 @@
-﻿using MobileApp.Views;
-using Models.Cars;
-using Services.Statistic;
-using Services.Statistic.Charts;
+﻿using Microcharts;
+using MobileApp.Manager;
+using MobileApp.Views;
+using Services.WebAPI.Statistic;
 using System;
-using System.Collections.Generic;
-using WebService.WebService;
+using Xamarin.Forms;
 
 namespace MobileApp.Presenters
 {
     public class StatisticPresenter : BasePresenter
     {
-        private StatisticEntryConverter converter = new StatisticEntryConverter();
-        private readonly CapturedCarService service = new CapturedCarService();
-
-        private IChart carDateChart;
-        private IChart carYearChart;
-        //private IChart carLocationChart = new CarLocationChart();
-        private IChart carModelChart;
-        private IChart carStatusChart = new CarStatusChart();
-
         private IStatisticView view;
-        private CarStatus status = CarStatus.NOT_STOLEN | CarStatus.STOLEN | CarStatus.STOLEN_PLATE | CarStatus.UNKNOWN;
+        private Page page;
+        private StatisticService service;
+        private StatisticEntryConverter converter;
 
-        public StatisticPresenter(IStatisticView view)
+        public StatisticPresenter(StatisticPage page)
         {
-            this.view = view;
+            view = page;
+            this.page = page;
+            service = StatisticService.GetInstance();
+            converter = new StatisticEntryConverter();
             Initialize();
-            InitializeCharts();
         }
 
         private void Initialize()
@@ -34,25 +28,19 @@ namespace MobileApp.Presenters
             view.ChartView += new EventHandler<EventArgs>(ChartView);
         }
 
-        private void InitializeCharts()
-        {
-            carDateChart = new CarDateChart(converter, status);
-            carYearChart = new CarYearChart(converter, status);
-            //carLocationChart = new CarLocationChart(converter, status);
-            carModelChart = new CarModelChart(converter, status);
-            carStatusChart = new CarStatusChart(converter, status);
-        }
-
         private async void ChartView(object sender, EventArgs e)
         {
-            List<CapturedCar> cars = await service.GetAll();
-
-            view.Chart1 = carDateChart.Get(cars);
-            view.Chart2 = carYearChart.Get(cars);
-            //view.Chart3 = carLocationChart.Get(cars);
-            view.Chart4 = carModelChart.Get(cars);
-            view.Chart5 = carStatusChart.Get(cars);
+            try
+            {
+                view.Chart1 = new RadarChart { Entries = converter.ToMicrochartEntries(await service.GetEntries(0)) };
+                view.Chart2 = new RadarChart { Entries = converter.ToMicrochartEntries(await service.GetEntries(1)) };
+                view.Chart3 = new RadarChart { Entries = converter.ToMicrochartEntries(await service.GetEntries(2)) };
+                view.Chart4 = new RadarChart { Entries = converter.ToMicrochartEntries(await service.GetEntries(3)) };
+            }
+            catch (Exception ex)
+            {
+                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+            }
         }
-
     }
 }

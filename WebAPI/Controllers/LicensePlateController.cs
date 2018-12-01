@@ -1,8 +1,8 @@
-﻿using EPolicija;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Models.Cars;
-using Score;
 using System.Threading.Tasks;
+using WebAPIService.EPolicija;
+using WebAPIService.Score;
 
 namespace WebAPI.Controllers
 {

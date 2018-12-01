@@ -3,9 +3,9 @@ using MobileApp.Presenters;
 using MobileApp.Views;
 using System;
 using System.Threading.Tasks;
-using WebService.Authorization;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Services.WebAPI.Authorization;
 
 namespace MobileApp.Manager
 {

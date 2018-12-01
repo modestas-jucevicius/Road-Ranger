@@ -10,7 +10,7 @@ using Android.Graphics;
 
 namespace MobileApp.Droid
 {
-    [Activity(Label = "RoadRangerMobileApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "MobileApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         const int RequestLocationId = 0;
@@ -20,7 +20,7 @@ namespace MobileApp.Droid
             Manifest.Permission.AccessFineLocation,
             Manifest.Permission.Camera,
         };
-        private SurfaceTexture surface;
+        private readonly SurfaceTexture surface;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

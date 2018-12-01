@@ -1,6 +1,7 @@
 ﻿using MobileApp.Manager;
 using MobileApp.Models;
 using MobileApp.Views;
+using Models.Messages;
 using System;
 using Xamarin.Forms;
 
@@ -40,11 +41,13 @@ namespace MobileApp.Presenters
 
         public async void Report(object sender, EventArgs e)
         {
-            string subject = view.Subject;
-            string body = view.Body;
             try
             {
-                await report.SendMail(subject, body);
+                await report.SendMail(new Message
+                {
+                    Subject = view.Subject,
+                    Body = view.Body
+                });
             }
             catch (Exception ex)
             {

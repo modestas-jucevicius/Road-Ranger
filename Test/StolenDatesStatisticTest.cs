@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Cars;
 using Models.Images;
-using Services.Statistic.Statistics;
 using System.Collections.Generic;
+using WebAPIServices.Statistic.Statistics;
 
 namespace Test
 {
@@ -22,7 +22,7 @@ namespace Test
             cars.Add(CarFactory.GetInstance().CreateCapturedCar(car1, image1));
             cars.Add(CarFactory.GetInstance().CreateCapturedCar(car2, image2));
 
-            list.Get(cars, CarStatus.NOT_STOLEN);
+            list.Get(cars);
         }
     }
 }

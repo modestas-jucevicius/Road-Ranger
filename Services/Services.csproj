@@ -195,36 +195,25 @@
     <Compile Include="Maps\IMapTool.cs" />
     <Compile Include="Maps\MapTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Report\IReportSender.cs" />
-    <Compile Include="Report\MailReportMessageGenerator.cs" />
-    <Compile Include="Report\MailReportSender.cs" />
-    <Compile Include="Statistic\Charts\CarDateChart.cs" />
-    <Compile Include="Statistic\Charts\CarLocationChart.cs" />
-    <Compile Include="Statistic\Charts\CarModelChart.cs" />
-    <Compile Include="Statistic\Charts\CarStatusChart.cs" />
-    <Compile Include="Statistic\Charts\CarYearChart.cs" />
-    <Compile Include="Statistic\Charts\IChart.cs" />
-    <Compile Include="Statistic\Color\HexColor.cs" />
-    <Compile Include="Statistic\Color\IColor.cs" />
-    <Compile Include="Statistic\StatisticEntry.cs" />
-    <Compile Include="Statistic\StatisticEntryConverter.cs" />
-    <Compile Include="Statistic\Statistics\CarDateStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarLocationStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarModelStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarStatusStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarYearsStatistic.cs" />
-    <Compile Include="Statistic\Statistics\IStatistic.cs" />
+    <Compile Include="Report\IReporter.cs" />
+    <Compile Include="Report\MailMessageGenerator.cs" />
+    <Compile Include="Report\MailReporter.cs" />
     <Compile Include="Validation\ITextValidator.cs" />
     <Compile Include="Validation\LicensePlateValidator.cs" />
+    <Compile Include="WebAPI\Authorization\AuthorizationService.cs" />
+    <Compile Include="WebAPI\BaseService.cs" />
+    <Compile Include="WebAPI\Cars\CapturedCarParser.cs" />
+    <Compile Include="WebAPI\Cars\CapturedCarService.cs" />
+    <Compile Include="WebAPI\LicensePlate\LicensePlateService.cs" />
+    <Compile Include="WebAPI\Report\ReportService.cs" />
+    <Compile Include="WebAPI\Score\ScoreService.cs" />
+    <Compile Include="WebAPI\Statistic\StatisticEntryConverter.cs" />
+    <Compile Include="WebAPI\Statistic\StatisticService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{a4e72518-498f-440f-ae3b-0f89a974464f}</Project>
       <Name>Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebService\WebService.csproj">
-      <Project>{940f950c-be27-4cac-92a1-2994ae115aa6}</Project>
-      <Name>WebService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

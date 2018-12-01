@@ -108,11 +108,20 @@ namespace Storage.Data.Users
 
         private User GetUserFromStringArray(String[] array)
         {
-			User user = new User(Int32.Parse(array[0]), array[1], array[2]);
-			user.Score = Int32.Parse(array[3]);
-			user.setBoost30p(array[4] == "True");
-			user.setBoost50p(array[5] == "True");
-			user.setBoostDouble(array[6] == "True");
+			User user = new User
+            {
+                Id = Int32.Parse(array[0]),
+                Username = array[1],
+                Password = array[2],
+                Score = Int32.Parse(array[3]),
+                Boosts = new Boosts
+                {
+                    boost30p = array[4] == "True",
+                    boost50p = array[4] == "True",
+                    boostDouble = array[4] == "True"
+                }
+            };
+            
 			return user;
         }
     }

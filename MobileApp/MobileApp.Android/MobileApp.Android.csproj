@@ -95,6 +95,14 @@
     <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\Models.csproj">
+      <Project>{65bef2b8-1394-4e28-bf6f-0db318bab2e5}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.csproj">
+      <Project>{741db22b-4dfe-4519-96d1-8fa642d253bd}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MobileApp\MobileApp.csproj">
       <Project>{1791EB24-5BA1-413A-B4F4-A37F1C8D4FDF}</Project>
       <Name>MobileApp</Name>

@@ -33,7 +33,7 @@ namespace Models.Cars
                 Year = car.Year,
                 Status = car.Status,
                 IsReported = car.IsReported,
-                Image = ImageFactory.GetInstance().CreateImage(image)
+                Image = image
             };
         }
 

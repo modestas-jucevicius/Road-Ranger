@@ -2,11 +2,11 @@
 using MobileApp.Models;
 using MobileApp.Views;
 using Models.Cars;
+using Services.WebAPI.Cars;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using WebService.WebService;
 using Xamarin.Forms;
 
 namespace MobileApp.Presenters
@@ -17,12 +17,13 @@ namespace MobileApp.Presenters
         private Page page;
         public ObservableCollection<CapturedCar> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
-        private CapturedCarService service = new CapturedCarService();
+        private CapturedCarService service;
 
         public MyGalleryPresenter(MyGalleryPage page)
         {
             this.page = page;
             view = page;
+            service = new CapturedCarService();
             Items = new ObservableCollection<CapturedCar>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             Initialize();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Cars;
 using Models.Users;
-using Score;
+using WebAPIService.Score;
 
 namespace Test
 {
@@ -25,7 +25,12 @@ namespace Test
             double expectedScore = 2500;
 
             Evaluation evaluation = new Evaluation();
-            User user = new User(0, "test", "test");
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
             int score = evaluation.Evaluate(user, status);
 
             Assert.IsTrue(expectedScore == score);
@@ -48,7 +53,12 @@ namespace Test
             double expectedScore = 1500;
 
             Evaluation evaluation = new Evaluation();
-            User user = new User(0, "test", "test");
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
             int score = evaluation.Evaluate(user, status);
 
             Assert.IsTrue(expectedScore == score);
@@ -71,7 +81,12 @@ namespace Test
             double expectedScore = 10;
 
             Evaluation evaluation = Evaluation.Instance;
-            User user = new User( 0, "test", "test");
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
             int score = evaluation.Evaluate(user, status);
 
             System.Console.WriteLine("NotStolen status score: " + score);
@@ -95,7 +110,12 @@ namespace Test
             double expectedScore = 0;
 
             Evaluation evaluation = Evaluation.Instance;
-            User user = new User(0, "test", "test");
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
             int score = evaluation.Evaluate(user, status);
 
             System.Console.WriteLine("Unknown status score: " + score);
