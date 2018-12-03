@@ -44,9 +44,8 @@ namespace WebAPI.Controllers
 				string token = await authorizationService.Authenticate(incomingUser.Username, incomingUser.Password);
 				return Ok(token);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-                Console.Out.WriteLine(e.Message);
                 return BadRequest("Could not create object");
 			}
 		}
