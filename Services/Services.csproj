@@ -185,47 +185,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authorization\AuthorizationService.cs" />
-    <Compile Include="CustomEventArgs\PinsEventArgs.cs" />
-    <Compile Include="EPolicija\EPolicijaAPI.cs" />
-    <Compile Include="EPolicija\EPolicijaAPIRequester.cs" />
-    <Compile Include="EPolicija\ICarStatusRequester.cs" />
-    <Compile Include="Maps\IMapTool.cs" />
-    <Compile Include="Maps\MapTool.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recognition\FrameRecognition.cs" />
     <Compile Include="Recognition\ICarParser.cs" />
     <Compile Include="Recognition\ICarRecognizer.cs" />
     <Compile Include="Recognition\OpenALPRParser.cs" />
     <Compile Include="Recognition\OpenALPRRecognizer.cs" />
     <Compile Include="Recognition\ParseException.cs" />
-    <Compile Include="Report\IReportSender.cs" />
-    <Compile Include="Report\MailReportMessageGenerator.cs" />
-    <Compile Include="Report\MailReportSender.cs" />
-    <Compile Include="Score\BoostShopService.cs" />
-    <Compile Include="Score\Evaluation.cs" />
-    <Compile Include="Score\Highscores.cs" />
-    <Compile Include="Score\HighscoresService.cs" />
-    <Compile Include="Score\ITopFinder.cs" />
-    <Compile Include="Score\NotEnoughScorePointsException.cs" />
-    <Compile Include="Statistic\Charts\CarDateChart.cs" />
-    <Compile Include="Statistic\Charts\CarLocationChart.cs" />
-    <Compile Include="Statistic\Charts\CarModelChart.cs" />
-    <Compile Include="Statistic\Charts\CarStatusChart.cs" />
-    <Compile Include="Statistic\Charts\CarYearChart.cs" />
-    <Compile Include="Statistic\Charts\IChart.cs" />
-    <Compile Include="Statistic\Color\HexColor.cs" />
-    <Compile Include="Statistic\Color\IColor.cs" />
-    <Compile Include="Statistic\StatisticEntry.cs" />
-    <Compile Include="Statistic\StatisticEntryConverter.cs" />
-    <Compile Include="Statistic\Statistics\CarDateStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarLocationStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarModelStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarStatusStatistic.cs" />
-    <Compile Include="Statistic\Statistics\CarYearsStatistic.cs" />
-    <Compile Include="Statistic\Statistics\IStatistic.cs" />
+    <Compile Include="CustomEventArgs\PinsEventArgs.cs" />
+    <Compile Include="Maps\IMapTool.cs" />
+    <Compile Include="Maps\MapTool.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\IReporter.cs" />
+    <Compile Include="Report\MailMessageGenerator.cs" />
+    <Compile Include="Report\MailReporter.cs" />
     <Compile Include="Validation\ITextValidator.cs" />
     <Compile Include="Validation\LicensePlateValidator.cs" />
+    <Compile Include="WebAPI\Authorization\AuthorizationService.cs" />
+    <Compile Include="WebAPI\BaseService.cs" />
+    <Compile Include="WebAPI\Cars\CapturedCarParser.cs" />
+    <Compile Include="WebAPI\Cars\CapturedCarService.cs" />
+    <Compile Include="WebAPI\LicensePlate\LicensePlateService.cs" />
+    <Compile Include="WebAPI\Report\ReportService.cs" />
+    <Compile Include="WebAPI\Score\ScoreService.cs" />
+    <Compile Include="WebAPI\Statistic\StatisticEntryConverter.cs" />
+    <Compile Include="WebAPI\Statistic\StatisticService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

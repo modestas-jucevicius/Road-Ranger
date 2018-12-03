@@ -96,7 +96,7 @@ namespace Storage.Data
 
         private Image GetImageFromStringArray(String[] array)
         {
-            return new Image(Int32.Parse(array[0]), Int32.Parse(array[1]),
+            return ImageFactory.GetInstance().CreateImage(Int32.Parse(array[0]), Int32.Parse(array[1]),
                         long.Parse(array[2]), array[3]);
         }
     }

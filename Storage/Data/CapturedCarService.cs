@@ -22,7 +22,7 @@ namespace Storage.Data
                            join image in images on car.Id equals image.CarId
                            where car.LicensePlate.Equals(licensePlate)
                            orderby image.Timestamp descending
-                           select new CapturedCar(car, image);
+                           select CarFactory.GetInstance().CreateCapturedCar(car, image);
             
             return capturedCars.ToList();
         }
@@ -36,7 +36,7 @@ namespace Storage.Data
                                                     join image in images on car.Id equals image.CarId
                                                     where car.UserId == id
                                                     orderby image.Timestamp descending
-                                                    select new CapturedCar(car, image);
+                                                    select CarFactory.GetInstance().CreateCapturedCar(car, image);
 
             return capturedCars.ToList();
         }
@@ -48,7 +48,7 @@ namespace Storage.Data
 
             IEnumerable<CapturedCar> capturedCars = from car in cars
                                                     join image in images on car.Id equals image.CarId
-                                                    select new CapturedCar(car, image);
+                                                    select CarFactory.GetInstance().CreateCapturedCar(car, image);
             return capturedCars.ToList();
         }
 
@@ -61,16 +61,19 @@ namespace Storage.Data
         public void RemoveByCarId(int id)
         {
             Car car = carData.FindById(id);
-            List<Image> images = imageData.FindAll();
-
-            IEnumerable<Image> imgs = from image in images
-                                      where car.Id == image.CarId
-                                      select image;
-
-            carData.Remove(car.Id);
-            foreach (var img in imgs)
+            if (car != null)
             {
-                imageData.Remove(img.Id);
+                List<Image> images = imageData.FindAll();
+
+                IEnumerable<Image> imgs = from image in images
+                                          where car.Id == image.CarId
+                                          select image;
+
+                carData.Remove(car.Id);
+                foreach (var img in imgs.ToList())
+                {
+                    imageData.Remove(img.Id);
+                }
             }
         }
     }

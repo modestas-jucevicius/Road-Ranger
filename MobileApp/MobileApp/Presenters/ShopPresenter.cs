@@ -1,7 +1,8 @@
 ﻿using MobileApp.Manager;
 using MobileApp.Views;
-using Services.Authorization;
-using Services.Score;
+using Models.Users;
+using Services.WebAPI.Authorization;
+using Services.WebAPI.Score;
 using System;
 using Xamarin.Forms;
 
@@ -9,9 +10,8 @@ namespace MobileApp.Presenters
 {
     public class ShopPresenter
     {
-        //private readonly MemoryRepository memoryRepository = MemoryRepository.GetInstance();
-        private readonly BoostShopService boostShop = BoostShopService.GetInstance();
-		private readonly AuthorizationService authorization = AuthorizationService.GetInstance();
+        private readonly ScoreService score;
+        private readonly AuthorizationService authorization;
         private readonly IShopView view;
         private readonly Page page;
 
@@ -19,6 +19,8 @@ namespace MobileApp.Presenters
         {
             this.page = page;
             view = page;
+            score = ScoreService.GetInstance();
+            authorization = AuthorizationService.GetInstance();
             Initialize();
         }
 
@@ -31,49 +33,52 @@ namespace MobileApp.Presenters
 
         public async void BuyBoost30pAsync(object sender, EventArgs e)
         {
-            try
+            User user = await authorization.GetCurrentUser();
+            switch (await score.Boost30p(user))
             {
-                boostShop.BuyBoost30p(await authorization.GetCurrentUser());
-            }
-            catch (NotEnoughScorePointsException ex)
-            {
-                await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
-            }
-            catch (Exception ex)
-            {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                case 0:
+                    authorization.UpdateUser(user);
+                    return;
+                case 1:
+                    await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
+                    return;
+                case 2:
+                    await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                    return;
             }
         }
 
         public async void BuyBoost50p(object sender, EventArgs e)
         {
-            try
+            User user = await authorization.GetCurrentUser();
+            switch (await score.Boost50p(user))
             {
-                boostShop.BuyBoost50p(await authorization.GetCurrentUser());
-            }
-            catch (NotEnoughScorePointsException ex)
-            {
-                await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
-            }
-            catch (Exception ex)
-            {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                case 0:
+                    authorization.UpdateUser(user);
+                    return;
+                case 1:
+                    await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
+                    return;
+                case 2:
+                    await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                    return;
             }
         }
 
         public async void BuyBoostDouble(object sender, EventArgs e)
         {
-            try
+            User user = await authorization.GetCurrentUser();
+            switch (await score.BoostDouble(user))
             {
-                boostShop.BuyBoostDouble(await authorization.GetCurrentUser());
-            }
-            catch (NotEnoughScorePointsException ex)
-            {
-                await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
-            }
-            catch (Exception ex)
-            {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                case 0:
+                    authorization.UpdateUser(user);
+                    return;
+                case 1:
+                    await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
+                    return;
+                case 2:
+                    await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                    return;
             }
         }
     }

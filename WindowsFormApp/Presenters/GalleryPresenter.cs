@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System;
 using System.Linq;
-//using WindowsFormApp.Models;
 using Models.Cars;
 using WindowsFormApp.Views;
 

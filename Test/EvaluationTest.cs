@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models.Cars;
-using Services.Score;
+using Models.Users;
+using WebAPIService.Score;
 
 namespace Test
 {
@@ -20,11 +21,17 @@ namespace Test
             string year = "2018";
             CarStatus status = CarStatus.STOLEN;
             bool isReported = true;
-            Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
+            Car car = CarFactory.GetInstance().CreateCar(id, userId, licensePlate, colorName, makeName, model, bodyType, year, status, isReported);
             double expectedScore = 2500;
 
             Evaluation evaluation = new Evaluation();
-            int score = evaluation.Evaluate(car);
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
+            int score = evaluation.Evaluate(user, status);
 
             Assert.IsTrue(expectedScore == score);
         }
@@ -42,11 +49,17 @@ namespace Test
             string year = "2018";
             CarStatus status = CarStatus.STOLEN_PLATE;
             bool isReported = true;
-            Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
+            Car car = CarFactory.GetInstance().CreateCar(id, userId, licensePlate, colorName, makeName, model, bodyType, year, status, isReported);
             double expectedScore = 1500;
 
             Evaluation evaluation = new Evaluation();
-            int score = evaluation.Evaluate(car);
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
+            int score = evaluation.Evaluate(user, status);
 
             Assert.IsTrue(expectedScore == score);
         }
@@ -64,11 +77,17 @@ namespace Test
             string year = "2018";
             CarStatus status = CarStatus.NOT_STOLEN;
             bool isReported = true;
-            Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
+            Car car = CarFactory.GetInstance().CreateCar(id, userId, licensePlate, colorName, makeName, model, bodyType, year, status, isReported);
             double expectedScore = 10;
 
             Evaluation evaluation = Evaluation.Instance;
-            int score = evaluation.Evaluate(car);
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
+            int score = evaluation.Evaluate(user, status);
 
             System.Console.WriteLine("NotStolen status score: " + score);
             Assert.IsTrue(expectedScore == score);
@@ -87,11 +106,17 @@ namespace Test
             string year = "2018";
             CarStatus status = CarStatus.UNKNOWN;
             bool isReported = true;
-            Car car = new Car(id, userId, licensePlate, colorName, makeName, model, bodyType, year, isReported, status);
+            Car car = CarFactory.GetInstance().CreateCar(id, userId, licensePlate, colorName, makeName, model, bodyType, year, status, isReported);
             double expectedScore = 0;
 
             Evaluation evaluation = Evaluation.Instance;
-            int score = evaluation.Evaluate(car);
+            User user = new User
+            {
+                Id = 0,
+                Username = "test",
+                Password = "test"
+            };
+            int score = evaluation.Evaluate(user, status);
 
             System.Console.WriteLine("Unknown status score: " + score);
             Assert.IsTrue(expectedScore == score);

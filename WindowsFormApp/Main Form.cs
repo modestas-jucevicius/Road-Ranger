@@ -3,14 +3,9 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using AForge.Video;
-using System.Collections.Generic;
 using WindowsFormApp.Views;
 using WindowsFormApp.Presenters;
 using Services.Validation;
-//using Storage.Data;
-using Models.Cars;
-using Services.Statistic.Statistics;
-using Services.Statistic;
 
 namespace WindowsFormApp
 {
@@ -45,7 +40,7 @@ namespace WindowsFormApp
             }
         }
 
-        public Image Frame
+        public System.Drawing.Image Frame
         {
             get
             {
@@ -304,6 +299,5 @@ namespace WindowsFormApp
             this.galleryListView.Items.Clear();
             this.galleryPresenter.ShowGallery(this);
         }
-
     }
 }

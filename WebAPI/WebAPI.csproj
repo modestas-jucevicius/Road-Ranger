@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.2.0-preview3-27014-02" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" />
@@ -19,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Storage\Storage.csproj" />
+    <ProjectReference Include="..\WebAPIServices\WebAPIServices.csproj" />
   </ItemGroup>
 
 </Project>

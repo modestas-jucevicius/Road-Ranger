@@ -41,6 +41,7 @@ namespace WindowsFormApp
             this.cameraTopText = new System.Windows.Forms.Label();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.scoreLabel = new System.Windows.Forms.Label();
@@ -185,6 +186,7 @@ namespace WindowsFormApp
             // 
             // tabMain
             // 
+            this.tabMain.Controls.Add(this.button4);
             this.tabMain.Controls.Add(this.button3);
             this.tabMain.Controls.Add(this.pictureBox1);
             this.tabMain.Controls.Add(this.scoreLabel);
@@ -203,6 +205,12 @@ namespace WindowsFormApp
             this.tabMain.TabIndex = 0;
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 0;
             // 
             // pictureBox1
             // 
@@ -527,6 +535,7 @@ namespace WindowsFormApp
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

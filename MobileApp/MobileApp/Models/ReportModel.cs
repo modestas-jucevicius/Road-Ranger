@@ -1,4 +1,5 @@
 ﻿using Models.Cars;
+using Models.Messages;
 using Services.Report;
 using System.Threading.Tasks;
 
@@ -6,10 +7,10 @@ namespace MobileApp.Models
 {
 	public class ReportModel
 	{
-        private IReportSender sender = new MailReportSender();
-		public async Task SendMail(string subject, string body)
+        private IReporter sender = new MailReporter();
+		public async Task SendMail(Message message)
 		{
-            this.sender.SendMail(subject, body);
+            this.sender.SendMail(message);
         }
         public async Task SendGeneratedMail(Car car)
         {

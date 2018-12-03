@@ -1,8 +1,8 @@
 ﻿using MobileApp.Manager;
 using MobileApp.Views;
 using Models.Users;
-using Services.Authorization;
-using Services.Score;
+using Services.WebAPI.Authorization;
+using Services.WebAPI.Score;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,16 +17,17 @@ namespace MobileApp.Presenters
         private readonly ITopView view;
         public ObservableCollection<User> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
-        private HighscoresService highscores;
-		private AuthorizationService authorization = AuthorizationService.GetInstance();
+        private ScoreService service;
+        private AuthorizationService authorization;
 
         public TopPresenter(TopPage page)
         {
             this.page = page;
             view = page;
+            authorization = AuthorizationService.GetInstance();
+            service = ScoreService.GetInstance();
             Items = new ObservableCollection<User>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            highscores = HighscoresService.Instance;
             Initialize();
         }
 
@@ -58,10 +59,7 @@ namespace MobileApp.Presenters
         private async void FindAll()
         {
             Items.Clear();
-            List<User> users = new List<User>();
-            users.Add(await authorization.GetCurrentUser());
-
-            users = highscores.GetTops(users);
+            List<User> users = await service.GetTop();
             foreach (var item in users)
             {
                 Items.Add(item);
