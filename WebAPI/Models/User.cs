@@ -18,10 +18,5 @@ namespace WebAPI.Models
 
 		[Required]
 		public int Score { get; set; }
-
-		public User ShallowCopy()
-		{
-			return (User)this.MemberwiseClone();
-		}
 	}
 }

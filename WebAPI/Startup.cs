@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Interfaces;
-using WebAPI.Repositories;
 using WebAPI.Services;
 using WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +51,6 @@ namespace WebAPI
 				};
 			});
 
-            services.AddSingleton<IUserRepository, UserRepository>();
 			services.AddSingleton<IAuthorizationService, AuthorizationService>();
 		}
 
