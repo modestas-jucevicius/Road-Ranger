@@ -6,26 +6,29 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
+using WebAPI.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Services
 {
 	public class AuthorizationService : IAuthorizationService
 	{
-		private readonly IUserRepository userRepository;
+		private readonly UserContext _userContext;
 		private readonly byte[] secret = Encoding.ASCII.GetBytes("6686639a69fa018ce8419e97f1235eb6");
 
-		public AuthorizationService(IUserRepository userRepository)
+		public AuthorizationService(UserContext context)
 		{
-			this.userRepository = userRepository;
+			this._userContext = context;
 		}
 
-		public string Authenticate(string username, string password)
+		public async Task<string> Authenticate(string username, string password)
 		{
 
-            Models.User user = userRepository.ReadByUserName(username);
+            User user = await _userContext.Users.FirstOrDefaultAsync(o => o.Username == username);
 
-			// return null if user not found
-			if (user == null)
+            // return null if user not found
+            if (user == null)
 			{
 				return null;
 			}

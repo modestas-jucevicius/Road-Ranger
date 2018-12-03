@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using MobileApp.Manager;
 using MobileApp.Views;
 using Services.Authorization;
@@ -35,11 +36,15 @@ namespace MobileApp.Presenters
                 await SecureStorage.SetAsync("authToken", token);
                 await NavigationManager.GetInstance().NavigateBack(page);
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
             }
-		}
+            catch (HttpRequestException)
+            {
+                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+            }
+        }
 
 		private async void Login(object sender, LoginEventArgs args)
 		{
@@ -49,10 +54,14 @@ namespace MobileApp.Presenters
                 await SecureStorage.SetAsync("authToken", token);
                 await NavigationManager.GetInstance().NavigateBack(page);
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
             }
-		}
+            catch (HttpRequestException)
+            {
+                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+            }
+        }
 	}
 }

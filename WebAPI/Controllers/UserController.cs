@@ -6,6 +6,8 @@ using WebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using WebAPI.DTO;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Controllers
 {
@@ -14,52 +16,54 @@ namespace WebAPI.Controllers
 	[Route("api/user")]
 	public class UserController : ControllerBase
     {
-		private readonly IUserRepository userRepository;
 		private readonly Interfaces.IAuthorizationService authorizationService;
+        private readonly UserContext _userContext;
 
-		public UserController(IUserRepository userRepository, Interfaces.IAuthorizationService authorizationService)
+		public UserController(Interfaces.IAuthorizationService authorizationService, UserContext context)
 		{
-			this.userRepository = userRepository;
 			this.authorizationService = authorizationService;
+            this._userContext = context;
 		}
 
 		// POST: User aka Register (Create)
 		[AllowAnonymous]
 		[HttpPost]
-		public IActionResult Register([FromBody] UserDTO incomingUser)
+		public async Task<IActionResult> Register([FromBody] UserDTO incomingUser)
 		{
 			try
 			{
-				User user = userRepository.ReadByUserName(incomingUser.Username);
+                User user = await _userContext.Users.FirstOrDefaultAsync(o => o.Username == incomingUser.Username);
 				if (user != null)
 				{
 					return BadRequest("User already registered");
 				}
 
 				user = authorizationService.Register(incomingUser.Username, incomingUser.Password);
-				userRepository.Create(user);
-				string token = authorizationService.Authenticate(incomingUser.Username, incomingUser.Password);
+                _userContext.Add(user);
+                await _userContext.SaveChangesAsync();
+				string token = await authorizationService.Authenticate(incomingUser.Username, incomingUser.Password);
 				return Ok(token);
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
-				return BadRequest("Could not create object");
+                Console.Out.WriteLine(e.Message);
+                return BadRequest("Could not create object");
 			}
 		}
 
 		// GET: User
 		[HttpGet]
-		public IActionResult Read()
+		public async Task<IActionResult> Read()
 		{
 			var identity = HttpContext.User.Identity as ClaimsIdentity; //Gets Information from Token
 			string ID = identity.FindFirst(ClaimTypes.Name).Value; //Takes Token field "Name" value
-			User user = (User)userRepository.Read(ID);
-			return Ok(StripUserRead(user));
+            User user = await _userContext.FindAsync<User>(ID);
+            return Ok(StripUserRead(user));
 		}
 
 		// PUT: User
 		[HttpPut]
-		public IActionResult Update([FromBody] User user)
+		public async Task<IActionResult> Update([FromBody] User user)
 		{
 			try
 			{
@@ -70,7 +74,7 @@ namespace WebAPI.Controllers
 
 				var identity = HttpContext.User.Identity as ClaimsIdentity; //Gets Information from Token
 				user.ID = identity.FindFirst(ClaimTypes.Name).Value; //Takes Token field "Name" value and fills it into request user so you couldn't modify other users
-				User existingUser = (User) userRepository.Read(user.ID);
+				User existingUser = await _userContext.FindAsync<User>(user.ID);
 				if (existingUser == null)
 				{
 					return NotFound("User not found");
@@ -81,8 +85,8 @@ namespace WebAPI.Controllers
 				{
 					return BadRequest("Object is not Valid");
 				}
-				
-				userRepository.Update(user);
+
+                _userContext.Update(user);
 			}
 			catch (Exception)
 			{
@@ -92,18 +96,19 @@ namespace WebAPI.Controllers
 		}
 
 		[HttpDelete]
-		public IActionResult Delete()
+		public async Task<IActionResult> Delete()
 		{
 			try
 			{
 				var identity = HttpContext.User.Identity as ClaimsIdentity; //Gets Information from Token
 				string id = identity.FindFirst(ClaimTypes.Name).Value; //Takes Token field "Name" value
-				var item = userRepository.Read(id);
+				var item = await _userContext.FindAsync<User>(id);
 				if (item == null)
 				{
 					return NotFound("User not found");
 				}
-				userRepository.Delete(id);
+                _userContext.Users.Remove(item);
+                await _userContext.SaveChangesAsync();
 			}
 			catch (Exception)
 			{
@@ -114,12 +119,12 @@ namespace WebAPI.Controllers
 
 		[AllowAnonymous]
 		[HttpPost("login")]
-		public IActionResult Login([FromBody] UserDTO incomingUser)
+		public async Task<IActionResult> Login([FromBody] UserDTO incomingUser)
 		{
-			string token = authorizationService.Authenticate(incomingUser.Username, incomingUser.Password);
+			string token = await authorizationService.Authenticate(incomingUser.Username, incomingUser.Password);
 			if (token == null)
 			{
-				return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new { message = "Username or password is incorrect" });
 			}
 
 			return Ok(token);
