@@ -7,8 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Interfaces;
-using WebAPI.Repositories;
 using WebAPI.Services;
+using WebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI
 {
@@ -26,6 +27,10 @@ namespace WebAPI
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+            services.AddEntityFrameworkNpgsql();
+            services.AddDbContext<UserContext>();
+            services.BuildServiceProvider();
+
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 			services.AddAuthentication(x =>
@@ -46,7 +51,6 @@ namespace WebAPI
 				};
 			});
 
-			services.AddSingleton<IUserRepository, UserRepository>();
 			services.AddSingleton<IAuthorizationService, AuthorizationService>();
 		}
 
