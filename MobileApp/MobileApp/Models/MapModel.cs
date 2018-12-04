@@ -8,22 +8,18 @@ namespace MobileApp.Models
     public class MapModel : IMapModel
     {
         private readonly IMapTool mapTool;
+        private readonly CarsToPinsConverter converter;
         public MapModel(Map map)
         {
             this.mapTool = new MapTool(map);
+            converter = new CarsToPinsConverter();
         }
-        public async Task<Position> GetLocation()
+
+        public void AddPins(Map map)
         {
-            Position position = await mapTool.GetLocation();
-            return  mapTool.GetLocation().Result;
-        }
-        public void AddPins(List<Pin> pins, Map map)
-        {
+            List<Pin> pins = new List<Pin>();
+            converter.ConvertToPins(pins);
             mapTool.AddPins(pins, map);
-        }
-        public void SetLocation(Position position)
-        {
-            mapTool.SetLocation(position);
         }
     }
 }

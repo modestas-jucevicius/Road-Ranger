@@ -6,37 +6,27 @@ using System;
 using Services.Maps;
 using Services.CustomEventArgs;
 using System.Collections.Generic;
+using Plugin.Geolocator;
 
 namespace MobileApp.Views
 {
-    //public delegate Task<string> MyDel(string str);
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MapPage : ContentPage, IMapToolView
 	{
-        /*
-        MapTool mapClass;
-        private MapToolPresenter presenter;
-        public event EventHandler<PinsEventArgs> AddPins;
-        public event EventHandler SetLocation;
-        */
-
         public MapPage()
         {
             InitializeComponent();
-            //mapClass = new MapTool(googleMap);
-            //LoadLocation();
-            //InitializePresenter(googleMap,null); //Vietoj null turi ateit listas su pins'ais
-        }
-
-        /*
+            LoadLocation();
+        } 
         async Task LoadLocation()
         {
-            Position position =  await mapClass.GetLocation();
-            mapClass.SetLocation(position);
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+            var position = await locator.GetPositionAsync();
+            Position pos = new Position(position.Latitude, position.Longitude);
+            googleMap.MoveToRegion(MapSpan.FromCenterAndRadius(pos, new Distance(500)));
             var pin = new Pin();
         }
-        */
 
         public Map GoogleMap
         {
@@ -48,21 +38,6 @@ namespace MobileApp.Views
             {
                 googleMap = value;
             }
-        }
-
-        /*
-        protected async Task InitializePresenter(Map map, List<Pin> pins)
-        {
-            //presenter = new MapToolPresenter(this, new MapModel(map));    // NavigationManager naudoja
-            //if(SetLocation != null) 
-            //    this.SetLocation(this, EventArgs.Empty); //Kol kas neveikia
-            if (AddPins != null)
-                this.AddPins(this, new PinsEventArgs() { Map = map, Pins = pins });
-        }
-        */
-
-        public event EventHandler<PinsEventArgs> AddPins;
-        public event EventHandler SetLocation;
-        
+        }  
     }
 }
