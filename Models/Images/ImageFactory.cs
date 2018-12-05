@@ -1,4 +1,6 @@
-﻿namespace Models.Images
+﻿using Xamarin.Forms.Maps;
+
+namespace Models.Images
 {
     public class ImageFactory
     {
@@ -17,14 +19,15 @@
         {
         }
 
-        public Image CreateImage(int id, int carId, long timestamp, string path)
+        public Image CreateImage(int id, int carId, long timestamp, string path, Position pos)
         {
             return new Image
             {
                 Id = id,
                 CarId = carId,
                 Timestamp = timestamp,
-                Path = path
+                Path = path,
+                position = pos
             };
         }
     }

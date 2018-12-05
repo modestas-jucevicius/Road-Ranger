@@ -222,6 +222,10 @@
       <Project>{a4e72518-498f-440f-ae3b-0f89a974464f}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Storage\Storage.csproj">
+      <Project>{5425CAB4-120C-45D5-90F7-A59CBEF67D04}</Project>
+      <Name>Storage</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
