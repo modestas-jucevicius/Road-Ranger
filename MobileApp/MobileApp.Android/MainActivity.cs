@@ -30,8 +30,6 @@ namespace MobileApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            //CameraPage.cameraButton.Clicked += (sender, args) => { StartActivity(typeof(CameraActivity)); }; //Prisiregistruojama CameraActivity prie mygtuko Clicked evento
-
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
