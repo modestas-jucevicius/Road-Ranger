@@ -9,7 +9,6 @@ using MobileApp.Views;
 using Android.Graphics;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-//com.companyname.MobileApp
 namespace MobileApp.Droid
 {
     [Activity(Label = "MobileApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
