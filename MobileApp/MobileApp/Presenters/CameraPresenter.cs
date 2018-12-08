@@ -75,7 +75,7 @@ namespace MobileApp.Presenters
                 ProcessFoundCars(cars);
                 if(cars.Count > 0)
                 {
-                    await licensePlateService.CheckCar(cars[0].LicensePlate);
+                    //await licensePlateService.CheckCar(cars[0].LicensePlate);
                     return cars[0].LicensePlate + " " + cars[0].Status;
                 }
                     
