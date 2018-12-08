@@ -23,7 +23,6 @@ namespace MobileApp.Presenters
         private readonly ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
         private AuthorizationService authorization = AuthorizationService.GetInstance();
         private LicensePlateService licensePlateService = LicensePlateService.GetInstance();
-        //private Evaluation evaluation = new Evaluation();
 
         public CameraPresenter(CameraPage page)
         {
