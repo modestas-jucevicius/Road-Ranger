@@ -45,8 +45,6 @@ namespace MobileApp.Presenters
                 Byte[] imageBytes = ReadFully(photo.GetStream());
                 string plateNumber = await GetPlate(imageBytes);
                 CameraPage.plateLabel.Text = plateNumber;
-
-                System.Console.WriteLine(plateNumber);
             }
         }
 
