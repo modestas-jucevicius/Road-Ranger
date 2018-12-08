@@ -7,7 +7,8 @@ using Android;
 using Xamarin.Essentials;
 using MobileApp.Views;
 using Android.Graphics;
-
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 namespace MobileApp.Droid
 {
     [Activity(Label = "MobileApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -19,6 +20,7 @@ namespace MobileApp.Droid
             Manifest.Permission.AccessCoarseLocation,
             Manifest.Permission.AccessFineLocation,
             Manifest.Permission.Camera,
+            Manifest.Permission.WriteExternalStorage
         };
         private readonly SurfaceTexture surface;
 
@@ -28,8 +30,6 @@ namespace MobileApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            CameraPage.cameraButton.Clicked += (sender, args) => { StartActivity(typeof(CameraActivity)); }; //Prisiregistruojama CameraActivity prie mygtuko Clicked evento
-
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -38,6 +38,7 @@ namespace MobileApp.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             switch (requestCode)

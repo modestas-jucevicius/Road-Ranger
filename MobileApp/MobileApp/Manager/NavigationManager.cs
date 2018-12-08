@@ -81,7 +81,9 @@ namespace MobileApp.Manager
 
         public async Task NavigateToCamera(Page page)
         {
-            await page.Navigation.PushModalAsync(new NavigationPage(new CameraPage()));
+            CameraPage cameraPage = new CameraPage();
+            CameraPresenter presenter = new CameraPresenter(cameraPage);
+            await page.Navigation.PushModalAsync(new NavigationPage(cameraPage));
         }
 
         public async Task NavigateToLogin(Page page)
