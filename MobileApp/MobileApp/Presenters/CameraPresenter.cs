@@ -18,11 +18,11 @@ namespace MobileApp.Presenters
     {
         private CameraPage page;
         private StoreCameraMediaOptions cameraOptions;
-        private ICarParser parser = new OpenALPRParser();
+        private readonly ICarParser parser = new OpenALPRParser();
         private readonly ITextValidator validator = new LicensePlateValidator();
         private readonly ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
-        private AuthorizationService authorization = AuthorizationService.GetInstance();
-        private LicensePlateService licensePlateService = LicensePlateService.GetInstance();
+        private readonly AuthorizationService authorization = AuthorizationService.GetInstance();
+        private readonly LicensePlateService licensePlateService = LicensePlateService.GetInstance();
 
         public CameraPresenter(CameraPage page)
         {
