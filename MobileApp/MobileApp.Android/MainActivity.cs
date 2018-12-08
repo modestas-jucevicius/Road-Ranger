@@ -49,7 +49,7 @@ namespace MobileApp.Droid
                         else
                         {
                             //Leidimas nesuteiktas
-                            Toast.MakeText(this, "Location permission deniededed", ToastLength.Short).Show();
+                            Toast.MakeText(this, "Location permission denied", ToastLength.Short).Show();
                         }
                     }
                     break;
