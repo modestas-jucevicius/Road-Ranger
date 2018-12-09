@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using WebAPI.Repository.Models;
+using WebAPI.Models;
 
-namespace WebAPI.Repository.Migrations
+namespace WebAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20181203143758_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20181209135622_CreateCapturedCars")]
+    partial class CreateCapturedCars
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,7 +65,7 @@ namespace WebAPI.Repository.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("WebAPI.Repository.Models.User", b =>
+            modelBuilder.Entity("WebAPI.Models.User", b =>
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
