@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\Car\20181209130600_CreateCars.cs" />
+    <Compile Remove="Migrations\Image\20181209130630_CreateImages.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\Car\" />
+    <Folder Include="Migrations\Image\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
