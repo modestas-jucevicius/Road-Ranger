@@ -155,6 +155,9 @@
       <Version>4.5.0.6</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Xamarin.Forms.InputKit">
+      <Version>2.3.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>3.4.0.1008975</Version>
     </PackageReference>
