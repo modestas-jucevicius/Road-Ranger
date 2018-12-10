@@ -18,14 +18,11 @@ namespace MobileApp.Views
             InitializeComponent();
             LoadLocation();
         } 
-        async Task LoadLocation()
+        private async void LoadLocation()
         {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 50;
-            var position = await locator.GetPositionAsync();
-            Position pos = new Position(position.Latitude, position.Longitude);
-            googleMap.MoveToRegion(MapSpan.FromCenterAndRadius(pos, new Distance(500)));
-            var pin = new Pin();
+            MapTool tool = new MapTool(googleMap);
+            Position pos = await tool.GetLocation();
+            tool.SetLocation(pos);
         }
 
         public Map GoogleMap

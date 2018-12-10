@@ -1,6 +1,5 @@
 ﻿using MobileApp.Views;
 using MobileApp.Models;
-using Services.CustomEventArgs;
 using System;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
@@ -19,10 +18,6 @@ namespace MobileApp.Presenters
             this.page = page;
             view = page;
             this.model = model;
-            AddPins();
-        }
-        private void AddPins()
-        {
             model.AddPins(view.GoogleMap);
         }
     }

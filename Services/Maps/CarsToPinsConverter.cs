@@ -12,11 +12,9 @@ namespace Services.Maps
 {
     public class CarsToPinsConverter
     {   
-        public static async void ConvertToPins(List<Pin> pins)
+        public static async void ConvertToPins(List<Pin> pins, List<CapturedCar> cars)
         {
-            CapturedCarService service = new CapturedCarService();
-             var cars = await service.GetAll();
-             foreach (var car in cars)
+             foreach (CapturedCar car in cars)
              {
                  if (car.Status == Models.Cars.CarStatus.STOLEN || car.Status == Models.Cars.CarStatus.STOLEN_PLATE)
                  {

@@ -1,4 +1,6 @@
-﻿using Services.Maps;
+﻿using Models.Cars;
+using Services.Maps;
+using Services.WebAPI.Cars;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms.Maps;
@@ -8,15 +10,18 @@ namespace MobileApp.Models
     public class MapModel : IMapModel
     {
         private readonly IMapTool mapTool;
+        private CapturedCarService service;
         public MapModel(Map map)
         {
-            this.mapTool = new MapTool(map);
+            mapTool = new MapTool(map);
+            service = new CapturedCarService();
         }
 
-        public void AddPins(Map map)
+        public async void AddPins(Map map)
         {
             List<Pin> pins = new List<Pin>();
-            CarsToPinsConverter.ConvertToPins(pins);
+            List<CapturedCar> cars = await service.GetAll();
+            CarsToPinsConverter.ConvertToPins(pins, cars);
             mapTool.AddPins(pins, map);
         }
     }
