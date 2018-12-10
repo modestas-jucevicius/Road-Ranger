@@ -4,7 +4,6 @@
     <AndroidDesignerPreferredTheme>Theme.DeviceDefault.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
     <SelectedDevice>emuxl</SelectedDevice>
     <DefaultDevice>emuxl</DefaultDevice>
-    <SelectedDevice>Samsung SM-G950F</SelectedDevice>
     <DefaultDevice>Android_Accelerated_x86_Oreo</DefaultDevice>
   </PropertyGroup>
 </Project>
