@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xamarin.Forms.Maps;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Plugin.Geolocator;
 
 namespace Services.Maps
 {
@@ -19,10 +20,10 @@ namespace Services.Maps
         {
             try
             {
-                //var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                //var position = await Geolocation.GetLocationAsync(request);
-                //return new Position(position.Latitude, position.Longitude);
-                return new Position(0, 0);
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 50;
+                var position = await locator.GetPositionAsync();
+                return new Position(position.Latitude, position.Longitude);
             }
             catch (Exception e)
             {
@@ -32,9 +33,12 @@ namespace Services.Maps
         }
         public void AddPins(List<Pin> pins, Map map)
         {
-            foreach (Pin pin in pins)
+            if (pins.Count != 0)
             {
-                if (!map.Pins.Contains(pin)) { map.Pins.Add(pin); }
+                foreach (Pin pin in pins)
+                {
+                    if (!map.Pins.Contains(pin)) { map.Pins.Add(pin); }
+                }
             }
         }
         public void SetLocation(Position position)

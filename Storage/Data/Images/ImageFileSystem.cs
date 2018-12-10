@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Xamarin.Forms.Maps;
 
 namespace Storage.Data
 {
@@ -91,13 +92,13 @@ namespace Storage.Data
         private string ImageToCSVFormat(Image image)
         {
             return image.Id + "," + image.CarId + "," + image.Timestamp +
-                "," + image.Path + Environment.NewLine;
+                "," + image.Path + "," + image.position.Latitude + "," + image.position.Longitude + Environment.NewLine;
         }
 
         private Image GetImageFromStringArray(String[] array)
         {
             return ImageFactory.GetInstance().CreateImage(Int32.Parse(array[0]), Int32.Parse(array[1]),
-                        long.Parse(array[2]), array[3]);
+                        long.Parse(array[2]), array[3],new Position(long.Parse(array[4]),long.Parse(array[5])));
         }
     }
 }
