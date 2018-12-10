@@ -2,79 +2,172 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileApp"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
              x:Class="MobileApp.Views.MainPage"
-             NavigationPage.HasNavigationBar="true">
-    <ContentPage.ToolbarItems >
-        <ToolbarItem Text="Search" 
-                     Icon="search.png"
-                     Clicked="SearchButton_Clicked">
-
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
+             BackgroundImage="main_bg2.png"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black">
-            <Grid  VerticalOptions="StartAndExpand" ColumnSpacing="50" HorizontalOptions="CenterAndExpand">
-
-                <Button Text="Scores"
+        <StackLayout HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="FillAndExpand" >
+            <Grid  VerticalOptions="StartAndExpand" 
+                   ColumnSpacing="50" 
+                   HorizontalOptions="CenterAndExpand"
+                   Padding="5, 5, 5, 5">
+                <flex:FlexButton
                         Grid.Row="0"
                         Grid.Column="0"
-                        BorderRadius="50"
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="Start"
-                        Clicked="TopButton_Clicked"/>
-                <Button Text="Search"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        BorderRadius="50"
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="Start"
-                        Clicked="SearchButton_Clicked"/>
-                <Button Text="Shop" 
+                        x:Name="Share"
+                        HorizontalOptions="Center"
+                        IconOrientation="Left"
+                        WidthRequest="69"
+                        HeightRequest="69"
+                        Padding="0"
+                        IconPadding="0"
+                        CornerRadius="38"
+                        Icon="share.png"
+                        BorderColor="#a02828"
+                        HighlightBorderColor="#932828"
+                        ForegroundColor="#ffffff"
+                        HighlightForegroundColor="#FFEBEE"
+                        BackgroundColor="#C62828"
+                        HighlightBackgroundColor="#b52828"
+                        BorderThickness="3"
+                        Clicked="ShareButton_Clicked"/>
+                <Frame OutlineColor="#a02828"
+                       BorderColor="#a02828"
+                       BackgroundColor="#C62828"
+                       HeightRequest="30"
+                       CornerRadius="10"
+                       Grid.Row="0"
+                       Grid.Column="1">
+                    <Grid   VerticalOptions="StartAndExpand" 
+                            HorizontalOptions="CenterAndExpand">
+                        <Label 
+                            x:Name="Score"
+                            TextColor="#FFFFFF"
+                            Text="0"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Start"
+                            FontSize="24"
+                            FontFamily="MarkerFelt-Thin"/>
+                    </Grid>
+                </Frame>
+                <flex:FlexButton
                         Grid.Row="0"
                         Grid.Column="2"
-                        BorderRadius="50"
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="Start"
-                        Clicked="ShopButton_Clicked"/>
+                        x:Name="Search"
+                        HorizontalOptions="Center"
+                        IconOrientation="Left"
+                        WidthRequest="69"
+                        HeightRequest="69"
+                        Padding="0"
+                        IconPadding="0"
+                        CornerRadius="38"
+                        Icon="search.png"
+                        BorderColor="#a02828"
+                        HighlightBorderColor="#932828"
+                        ForegroundColor="#ffffff"
+                        HighlightForegroundColor="#FFEBEE"
+                        BackgroundColor="#C62828"
+                        HighlightBackgroundColor="#b52828"
+                        BorderThickness="3"
+                        Clicked="SearchButton_Clicked"/>
             </Grid>
 
-            <Grid VerticalOptions="EndAndExpand" ColumnSpacing="5" HorizontalOptions="CenterAndExpand">
-                <Button Text="Cam" 
-                        Grid.Row="0" 
-                        Grid.Column="2" 
-                        VerticalOptions="End"
-                        HorizontalOptions="CenterAndExpand"
-                        BorderRadius="50"
-                        Clicked="CameraButton_Clicked"/>
-                <Button Text="Gall"
-                        Grid.Row="1" 
-                        Grid.Column="0" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        BorderRadius="50"
-                        Clicked="MyGalleryButton_Clicked"/>
-                <Button Text="Map" 
-                        Grid.Row="1" 
-                        Grid.Column="1" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        BorderRadius="50"
-                        Clicked="MapButton_Clicked"/>
-                <Button Text="Stats"   
-                        Grid.Row="1" 
-                        Grid.Column="3" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        BorderRadius="50"
-                        Clicked="StatsButton_Clicked"/>
-                <Button Text="Rep"
-                        Grid.Row="1" 
-                        Grid.Column="4" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand"
-                        BorderRadius="20"
-                        Clicked="ReportButton_Clicked"/>
+            <Grid VerticalOptions="Center" 
+                  HorizontalOptions="CenterAndExpand">
+                <flex:FlexButton
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    x:Name="Start"
+                    IconOrientation="Right"
+                    HorizontalOptions="Center"
+                    WidthRequest="160"
+                    HeightRequest="60"
+                    HasShadow="false"
+                    CornerRadius="22"
+                    Text="Start"
+                    FontSize="35"
+                    FontFamily="MarkerFelt-Thin"
+                    BorderThickness="0,0,0,4"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    Clicked="CameraButton_Clicked"/>
+                <flex:FlexButton
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    x:Name="Shop"
+                    IconOrientation="Right"
+                    HorizontalOptions="Center"
+                    WidthRequest="120"
+                    HeightRequest="40"
+                    HasShadow="false"
+                    CornerRadius="22"
+                    Text="Shop"
+                    FontSize="25"
+                    FontFamily="MarkerFelt-Thin"
+                    BorderThickness="0,0,0,4"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    Clicked="ShopButton_Clicked"/>
+                <flex:FlexButton
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    x:Name="LeaderBord"
+                    IconOrientation="Right"
+                    HorizontalOptions="Center"
+                    WidthRequest="300"
+                    HeightRequest="40"
+                    HasShadow="false"
+                    CornerRadius="22"
+                    Text="Leader Board"
+                    FontSize="25"
+                    FontFamily="MarkerFelt-Thin"
+                    BorderThickness="0,0,0,4"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    Clicked="TopButton_Clicked"/>
             </Grid>
+
+            <Grid  VerticalOptions="EndAndExpand" 
+                   HorizontalOptions="EndAndExpand"
+                   Padding="5, 5, 5, 5">
+                <flex:FlexButton
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        x:Name="More"
+                        HorizontalOptions="Center"
+                        IconOrientation="Left"
+                        WidthRequest="69"
+                        HeightRequest="69"
+                        Padding="0"
+                        IconPadding="0"
+                        CornerRadius="38"
+                        Icon="more.png"
+                        BorderColor="#a02828"
+                        HighlightBorderColor="#932828"
+                        ForegroundColor="#ffffff"
+                        HighlightForegroundColor="#FFEBEE"
+                        BackgroundColor="#C62828"
+                        HighlightBackgroundColor="#b52828"
+                        BorderThickness="3"
+                        Clicked="MoreButton_Clicked"/>
+            </Grid>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

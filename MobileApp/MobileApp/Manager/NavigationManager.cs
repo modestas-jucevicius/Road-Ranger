@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Services.WebAPI.Authorization;
+using MobileApp.Pages;
 
 namespace MobileApp.Manager
 {
@@ -32,7 +33,7 @@ namespace MobileApp.Manager
         {
             MainPage mainPage = new MainPage();
             app.Main = mainPage;
-            RedirectToLogin(mainPage);
+            //RedirectToLogin(mainPage);
         }
 
         private async void RedirectToLogin(Page page)
@@ -135,6 +136,12 @@ namespace MobileApp.Manager
             TopPresenter presenter = new TopPresenter(topPage);
             topPage.BindingContext = presenter;
             await page.Navigation.PushModalAsync(new NavigationPage(topPage));
+        }
+
+        public async Task NavigateToMore(Page page)
+        {
+            MorePage morePage = new MorePage();
+            await page.Navigation.PushModalAsync(new NavigationPage(morePage));
         }
 
         public async Task NavigateBack(Page page)

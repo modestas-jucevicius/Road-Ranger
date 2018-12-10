@@ -1,48 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BackgroundImage="casual_page.png"
-             x:Class="MobileApp.Views.ShopPage"
+             x:Class="MobileApp.Pages.MorePage"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             BackgroundImage="casual_page.png"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame     
-                OutlineColor="#a02828"
-                BorderColor="#a02828"
-                BackgroundColor="#C62828"
-                HeightRequest="30"
-                CornerRadius="10"
-                WidthRequest="20"
-                Grid.Row="0"
-                Grid.Column="0"
-                Padding="10, 0, 0, 10">
-                <Label 
-                    x:Name="Score"
-                    TextColor="#FFFFFF"
-                    Text="0"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Start"
-                    FontSize="24"
-                    FontFamily="MarkerFelt-Thin"/>
-            </Frame>
-            <Grid   
-                VerticalOptions="CenterAndExpand" 
+        <StackLayout 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+            <Grid  
+                VerticalOptions="StartAndExpand" 
                 ColumnSpacing="50" 
                 HorizontalOptions="CenterAndExpand"
                 Padding="5, 5, 5, 5">
                 <flex:FlexButton
                     Grid.Row="0"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    IconOrientation="Left"
+                    WidthRequest="69"
+                    HeightRequest="69"
+                    Padding="0"
+                    IconPadding="0"
+                    CornerRadius="38"
+                    Icon="report.png"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    BorderThickness="3"
+                    Clicked="ReportButton_Clicked"/>
+            </Grid>
+            <Grid 
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                Padding="0, 0, 0, 0">
+                <flex:FlexButton
+                    Grid.Row="0"
                     Grid.Column="0"
+                    x:Name="MyGallery"
                     IconOrientation="Right"
                     HorizontalOptions="Center"
                     WidthRequest="300"
-                    HeightRequest="70"
+                    HeightRequest="60"
                     HasShadow="false"
                     CornerRadius="22"
-                    Text="+ 30% points / car"
+                    Text="My Gallery"
                     FontSize="25"
                     FontFamily="MarkerFelt-Thin"
                     BorderThickness="0,0,0,4"
@@ -52,17 +58,18 @@
                     HighlightForegroundColor="#FFEBEE"
                     BackgroundColor="#C62828"
                     HighlightBackgroundColor="#b52828"
-                    Clicked="Boost30p_Clicked"/>
+                    Clicked="MyGalleryButton_Clicked"/>
                 <flex:FlexButton
                     Grid.Row="1"
                     Grid.Column="0"
+                    x:Name="Statistic"
                     IconOrientation="Right"
                     HorizontalOptions="Center"
                     WidthRequest="300"
-                    HeightRequest="70"
+                    HeightRequest="60"
                     HasShadow="false"
                     CornerRadius="22"
-                    Text="+ 50% points / car"
+                    Text="Statistic"
                     FontSize="25"
                     FontFamily="MarkerFelt-Thin"
                     BorderThickness="0,0,0,4"
@@ -72,17 +79,18 @@
                     HighlightForegroundColor="#FFEBEE"
                     BackgroundColor="#C62828"
                     HighlightBackgroundColor="#b52828"
-                    Clicked="Boost50p_Clicked"/>
+                    Clicked="StatsButton_Clicked"/>
                 <flex:FlexButton
                     Grid.Row="2"
                     Grid.Column="0"
+                    x:Name="Map"
                     IconOrientation="Right"
                     HorizontalOptions="Center"
-                    WidthRequest="320"
-                    HeightRequest="80"
+                    WidthRequest="300"
+                    HeightRequest="60"
                     HasShadow="false"
                     CornerRadius="22"
-                    Text="+ 2x points / car"
+                    Text="Map"
                     FontSize="25"
                     FontFamily="MarkerFelt-Thin"
                     BorderThickness="0,0,0,4"
@@ -92,7 +100,7 @@
                     HighlightForegroundColor="#FFEBEE"
                     BackgroundColor="#C62828"
                     HighlightBackgroundColor="#b52828"
-                    Clicked="BoostDouble_Clicked"/>
+                    Clicked="MapButton_Clicked"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

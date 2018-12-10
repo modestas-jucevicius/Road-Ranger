@@ -1,21 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileApp.Views.LoginPage">
+             BackgroundImage="casual_page.png"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="MobileApp.Views.LoginPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Road Ranger, please login!"
-                HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="Username"/>
-            <Entry x:Name="Password" IsPassword="True"/>
-            <Button Text="Login" 
-                        WidthRequest="100"
-                        HeightRequest="100"
-                        Clicked="Login_Clicked"/>
-            <Button Text="Register"
-                        WidthRequest="100"
-                        HeightRequest="100"
-                        Clicked="Register_Clicked"/>
+            <Grid   
+                VerticalOptions="CenterAndExpand" 
+                ColumnSpacing="50" 
+                HorizontalOptions="CenterAndExpand"
+                Padding="5, 5, 5, 5">
+                <input:AdvancedEntry 
+                    Text=""
+                    x:Name="Username"
+                    IsRequired="False"
+                    Annotation="NameSurname"
+                    Placeholder="Username"
+                    AnnotationColor="Accent"
+                    MinLength="0"
+                    MaxLength="7"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+                <input:AdvancedEntry 
+                    Text=""
+                    x:Name="Password"
+                    IsRequired="False"
+                    Annotation="NameSurname"
+                    Placeholder="********"
+                    AnnotationColor="Accent"
+                    MinLength="0"
+                    MaxLength="7"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+                <!--<Entry x:Name=""/>
+            <Entry x:Name="" IsPassword="True"/>-->
+                <flex:FlexButton
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    x:Name="Login"
+                    IconOrientation="Right"
+                    HorizontalOptions="Center"
+                    WidthRequest="340"
+                    HeightRequest="30"
+                    HasShadow="false"
+                    CornerRadius="22"
+                    Text="Login"
+                    FontSize="25"
+                    FontFamily="MarkerFelt-Thin"
+                    BorderThickness="0,0,0,4"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    Clicked="Login_Clicked"/>
+                <flex:FlexButton
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    x:Name="Register"
+                    IconOrientation="Right"
+                    HorizontalOptions="Center"
+                    WidthRequest="340"
+                    HeightRequest="30"
+                    HasShadow="false"
+                    CornerRadius="22"
+                    Text="Register"
+                    FontSize="25"
+                    FontFamily="MarkerFelt-Thin"
+                    BorderThickness="0,0,0,4"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    Clicked="Register_Clicked"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
