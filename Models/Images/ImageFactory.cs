@@ -27,7 +27,7 @@ namespace Models.Images
                 CarId = carId,
                 Timestamp = timestamp,
                 Path = path,
-                position = pos
+                Position = pos
             };
         }
     }

@@ -20,7 +20,7 @@ namespace Services.Maps
                  {
                      Pin pin = new Pin();
                      pin.Label = car.LicensePlate;
-                     pin.Position = car.Image.position;
+                     pin.Position = car.Image.Position;
                      pins.Add(pin);
                  }
              }
