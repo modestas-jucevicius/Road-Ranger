@@ -314,11 +314,6 @@
             Gets or sets the speed in meters per second.
             </summary>
         </member>
-        <member name="P:Plugin.Geolocator.Abstractions.Position.IsFromMockProvider">
-            <summary>
-            Gets or sets if from mock provider
-            </summary>
-        </member>
         <member name="T:Plugin.Geolocator.Abstractions.PositionEventArgs">
             <summary>
             Position args

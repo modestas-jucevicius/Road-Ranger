@@ -2,6 +2,7 @@
 using Models.Images;
 using Models.Users;
 using System.Collections.Generic;
+using Xamarin.Forms.Maps;
 
 namespace Storage.Data
 {
@@ -28,10 +29,10 @@ namespace Storage.Data
 
         private static void Initialize()
         {
-            Image img1 = ImageFactory.GetInstance().CreateImage(0, 0, 1541321310, "");
-            Image img2 = ImageFactory.GetInstance().CreateImage(1, 1, 1541321310, null);
-            Image img3 = ImageFactory.GetInstance().CreateImage(2, 2, 1541321310, null);
-            Image img4 = ImageFactory.GetInstance().CreateImage(3, 3, 1541321310, null);
+            Image img1 = ImageFactory.GetInstance().CreateImage(0, 0, 1541321310, "", new Position(54.72911, 25.26275));
+            Image img2 = ImageFactory.GetInstance().CreateImage(1, 1, 1541321310, null,new Position(54.73148, 25.2583));
+            Image img3 = ImageFactory.GetInstance().CreateImage(2, 2, 1541321310, null, new Position(54.73412, 25.260056));
+            Image img4 = ImageFactory.GetInstance().CreateImage(3, 3, 1541321310, null,new Position(54.732342, 25.260571));
 
             images.Add(img1);
             images.Add(img2);

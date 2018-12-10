@@ -314,11 +314,6 @@
             Gets or sets the speed in meters per second.
             </summary>
         </member>
-        <member name="P:Plugin.Geolocator.Abstractions.Position.IsFromMockProvider">
-            <summary>
-            Gets or sets if from mock provider
-            </summary>
-        </member>
         <member name="T:Plugin.Geolocator.Abstractions.PositionEventArgs">
             <summary>
             Position args
@@ -401,45 +396,44 @@
         </member>
         <member name="T:Plugin.Geolocator.GeolocatorImplementation">
             <summary>
-            Implementation for Feature
+            Implementation for Geolocator
             </summary>
         </member>
         <member name="M:Plugin.Geolocator.GeolocatorImplementation.#ctor">
             <summary>
-            Default constructor
-            </summary>
-        </member>
-        <member name="P:Plugin.Geolocator.GeolocatorImplementation.ProvidersToUse">
-            <summary>
-            Gets or sets the location manager providers to ignore when getting postition
-            </summary>
-        </member>
-        <member name="P:Plugin.Geolocator.GeolocatorImplementation.ProvidersToUseWhileListening">
-            <summary>
-            Gets or sets the location manager providers to ignore when doing
-            continuous listening
+            Constructor for implementation
             </summary>
         </member>
         <member name="E:Plugin.Geolocator.GeolocatorImplementation.PositionError">
-            <inheritdoc/>
+            <summary>
+            Position error event handler
+            </summary>
         </member>
         <member name="E:Plugin.Geolocator.GeolocatorImplementation.PositionChanged">
-            <inheritdoc/>
-        </member>
-        <member name="P:Plugin.Geolocator.GeolocatorImplementation.IsListening">
-            <inheritdoc/>
+            <summary>
+            Position changed event handler
+            </summary>
         </member>
         <member name="P:Plugin.Geolocator.GeolocatorImplementation.DesiredAccuracy">
-            <inheritdoc/>
+            <summary>
+            Desired accuracy in meters
+            </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:Plugin.Geolocator.GeolocatorImplementation.IsListening" -->
         <member name="P:Plugin.Geolocator.GeolocatorImplementation.SupportsHeading">
-            <inheritdoc/>
+            <summary>
+            Gets if device supports heading
+            </summary>
         </member>
         <member name="P:Plugin.Geolocator.GeolocatorImplementation.IsGeolocationAvailable">
-            <inheritdoc/>
+            <summary>
+            Gets if geolocation is available on device
+            </summary>
         </member>
         <member name="P:Plugin.Geolocator.GeolocatorImplementation.IsGeolocationEnabled">
-            <inheritdoc/>
+            <summary>
+            Gets if geolocation is enabled on device
+            </summary>
         </member>
         <member name="M:Plugin.Geolocator.GeolocatorImplementation.GetLastKnownLocationAsync">
             <summary>
@@ -457,13 +451,6 @@
             <param name="includeHeading">If you would like to include heading</param>
             <returns>Position</returns>
         </member>
-        <member name="M:Plugin.Geolocator.GeolocatorImplementation.GetAddressesForPositionAsync(Plugin.Geolocator.Abstractions.Position,System.String)">
-            <summary>
-            Retrieve addresses for position.
-            </summary>
-            <param name="position">Desired position (latitude and longitude)</param>
-            <returns>Addresses of the desired position</returns>
-        </member>
         <member name="M:Plugin.Geolocator.GeolocatorImplementation.GetPositionsForAddressAsync(System.String,System.String)">
             <summary>
             Retrieve positions for address.
@@ -471,6 +458,13 @@
             <param name="address">Desired address</param>
             <param name="mapKey">Map Key required only on UWP</param>
             <returns>Positions of the desired address</returns>
+        </member>
+        <member name="M:Plugin.Geolocator.GeolocatorImplementation.GetAddressesForPositionAsync(Plugin.Geolocator.Abstractions.Position,System.String)">
+            <summary>
+            Retrieve addresses for position.
+            </summary>
+            <param name="position">Desired position (latitude and longitude)</param>
+            <returns>Addresses of the desired position</returns>
         </member>
         <member name="M:Plugin.Geolocator.GeolocatorImplementation.StartListeningAsync(System.TimeSpan,System.Double,System.Boolean,Plugin.Geolocator.Abstractions.ListenerSettings)">
             <summary>
@@ -482,13 +476,9 @@
             <param name="listenerSettings">Optional settings (iOS only)</param>
         </member>
         <member name="M:Plugin.Geolocator.GeolocatorImplementation.StopListeningAsync">
-            <inheritdoc/>
-        </member>
-        <member name="M:Plugin.Geolocator.GeolocatorImplementation.OnListenerPositionChanged(System.Object,Plugin.Geolocator.Abstractions.PositionEventArgs)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Plugin.Geolocator.GeolocatorImplementation.OnListenerPositionError(System.Object,Plugin.Geolocator.Abstractions.PositionErrorEventArgs)">
-            <inheritdoc/>
+            <summary>
+            Stop listening
+            </summary>
         </member>
     </members>
 </doc>

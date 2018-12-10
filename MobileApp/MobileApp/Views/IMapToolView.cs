@@ -7,7 +7,5 @@ namespace MobileApp.Views
     public interface IMapToolView
     {
         Map GoogleMap { get; set; }
-        event EventHandler<PinsEventArgs> AddPins;
-        event EventHandler SetLocation;
     }
 }

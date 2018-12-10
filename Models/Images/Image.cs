@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Xamarin.Forms.Maps;
 
 namespace Models.Images
 {
@@ -10,5 +11,6 @@ namespace Models.Images
         public int CarId { get; set; }
         public long Timestamp { get; set; }
         public string Path { get; set; }
+        public Position position { get; set; }
     }
 }
