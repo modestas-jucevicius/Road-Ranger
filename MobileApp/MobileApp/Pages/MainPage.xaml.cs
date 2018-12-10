@@ -3,22 +3,19 @@ using Xamarin.Forms;
 
 namespace MobileApp.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, IMainView
     {
+        
         public MainPage()
         {
             NavigationPage.SetHasNavigationBar(this, true);
             InitializeComponent();
         }
 
-        private async void MyGalleryButton_Clicked(object sender, System.EventArgs e)
+        string IMainView.Score
         {
-            await NavigationManager.GetInstance().NavigateToMyGallery(this);
-        }
-
-        private async void MapButton_Clicked(object sender, System.EventArgs e)
-        {
-            await NavigationManager.GetInstance().NavigateToMap(this);
+            get => Score.Text;
+            set => Score.Text = value;
         }
 
         private async void SearchButton_Clicked(object sender, System.EventArgs e)
@@ -26,19 +23,19 @@ namespace MobileApp.Views
             await NavigationManager.GetInstance().NavigateToSearch(this);
         }
 
+        private async void ShareButton_Clicked(object sender, System.EventArgs e)
+        {
+            await DialogAlertManager.GetInstance().ShowInternalDialogAlert(this);
+        }
+
         private async void CameraButton_Clicked(object sender, System.EventArgs e)
         {
             await NavigationManager.GetInstance().NavigateToCamera(this);
         }
 
-        private async void StatsButton_Clicked(object sender, System.EventArgs e)
+        private async void MoreButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToStatistic(this);
-        }
-
-        private async void ReportButton_Clicked(object sender, System.EventArgs e)
-        {
-            await NavigationManager.GetInstance().NavigateToReport(this);
+            await NavigationManager.GetInstance().NavigateToMore(this);
         }
 
         private async void TopButton_Clicked(object sender, System.EventArgs e)

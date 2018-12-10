@@ -2,26 +2,107 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
-             xmlns:local="clr-namespace:Microcharts.Samples.Forms" 
              Title="Statistic"
-             x:Class="MobileApp.Views.StatisticPage">
+             BackgroundImage="casual_page.png"
+             x:Class="MobileApp.Views.StatisticPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="Hour of car capturing"
-                       HorizontalTextAlignment="Center"/>
+                <Frame     
+                    OutlineColor="#a02828"
+                    BorderColor="#a02828"
+                    BackgroundColor="#C62828"
+                    HeightRequest="30"
+                    CornerRadius="10"
+                    WidthRequest="20"
+                    Padding="10, 0, 0, 10">
+                    <Label 
+                        TextColor="#FFFFFF"
+                        Text="Hour of car capturing"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        FontSize="24"
+                        FontFamily="MarkerFelt-Thin"/>
+                </Frame>
                 <microcharts:ChartView x:Name="chartViewDate" HeightRequest="150" />
-                <Label Text="Year of captured car"
-                       HorizontalTextAlignment="Center"/>
+                <Frame     
+                    OutlineColor="#a02828"
+                    BorderColor="#a02828"
+                    BackgroundColor="#C62828"
+                    HeightRequest="30"
+                    CornerRadius="10"
+                    WidthRequest="20"
+                    Padding="10, 0, 0, 10">
+                    <Label 
+                        TextColor="#FFFFFF"
+                        Text="Year of captured car"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        FontSize="24"
+                        FontFamily="MarkerFelt-Thin"/>
+                </Frame>
                 <microcharts:ChartView x:Name="chartViewYear" HeightRequest="150" />
-                <Label Text="Location of captured car"
-                       HorizontalTextAlignment="Center"/>
+                <Frame     
+                    OutlineColor="#a02828"
+                    BorderColor="#a02828"
+                    BackgroundColor="#C62828"
+                    HeightRequest="30"
+                    CornerRadius="10"
+                    WidthRequest="20"
+                    Padding="10, 0, 0, 10">
+                    <Label 
+                        TextColor="#FFFFFF"
+                        Text="Location of captured car"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        FontSize="24"
+                        FontFamily="MarkerFelt-Thin"/>
+                </Frame>
                 <microcharts:ChartView x:Name="chartViewLocation" HeightRequest="150" />
-                <Label Text="Model of captured car"
-                       HorizontalTextAlignment="Center"/>
+                <Frame     
+                    OutlineColor="#a02828"
+                    BorderColor="#a02828"
+                    BackgroundColor="#C62828"
+                    HeightRequest="30"
+                    CornerRadius="10"
+                    WidthRequest="20"
+                    Padding="10, 0, 0, 10">
+                    <Label 
+                        TextColor="#FFFFFF"
+                        Text="Model of captured car"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        FontSize="24"
+                        FontFamily="MarkerFelt-Thin"/>
+                </Frame>
                 <microcharts:ChartView x:Name="chartViewModel" HeightRequest="150" />
-                <Label Text="Status of captured car"
-                       HorizontalTextAlignment="Center"/>
+                <Frame     
+                    OutlineColor="#a02828"
+                    BorderColor="#a02828"
+                    BackgroundColor="#C62828"
+                    HeightRequest="30"
+                    CornerRadius="10"
+                    WidthRequest="20"
+                    Padding="10, 0, 0, 10">
+                    <Label 
+                        TextColor="#FFFFFF"
+                        Text="Status of captured car"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        FontSize="24"
+                        FontFamily="MarkerFelt-Thin"/>
+                </Frame>
                 <microcharts:ChartView x:Name="chartViewStatus" HeightRequest="150" />
             </StackLayout>
         </ScrollView>

@@ -12,6 +12,12 @@ namespace MobileApp.Views
             InitializeComponent();
         }
 
+        string IShopView.Score
+        {
+            get => Score.Text;
+            set => Score.Text = value;
+        }
+
         private void Boost30p_Clicked(object sender, EventArgs args)
         {
             Boost30p(this, EventArgs.Empty);

@@ -1,24 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileApp.Views.ReportPage">
+             x:Class="MobileApp.Views.ReportPage"
+             BackgroundImage="casual_page.png"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Subject:"
-                VerticalOptions="Start" 
-                HorizontalOptions="Start" />
-            
-            <Entry x:Name="Subject"/>
-
-            <Label Text="Message:"/>
-
-            <Editor x:Name="Body"
-                    AutoSize="TextChanges"/>
-
-            <Button Clicked="Send_Button"
+        <StackLayout Padding="0, 120, 0, 0">
+            <Grid>
+                <input:AdvancedEntry 
+                    Text=""
+                    x:Name="Subject"
+                    IsRequired="False"
+                    Annotation="NameSurname"
+                    Title="Report illegal activity. Thanks!"
+                    Placeholder="Title"
+                    AnnotationColor="Accent"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+                <input:AdvancedEntry 
+                    Text=""
+                    x:Name="Body"
+                    IsRequired="False"
+                    Annotation="NameSurname"
+                    Placeholder="Message"
+                    AnnotationColor="Accent"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+                <flex:FlexButton
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    x:Name="Send"
+                    IconOrientation="Right"
+                    HorizontalOptions="Center"
+                    WidthRequest="300"
+                    HeightRequest="20"
+                    HasShadow="false"
+                    CornerRadius="22"
                     Text="Send"
-                 VerticalOptions="End" 
-                HorizontalOptions="Center" />
+                    FontSize="30"
+                    FontFamily="MarkerFelt-Thin"
+                    BorderThickness="0,0,0,4"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    Clicked="Send_Button"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

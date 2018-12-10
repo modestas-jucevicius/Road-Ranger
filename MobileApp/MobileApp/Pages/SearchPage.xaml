@@ -2,14 +2,53 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Search"
-             x:Class="MobileApp.Views.SearchPage">
+             BackgroundImage="casual_page.png"
+             x:Class="MobileApp.Views.SearchPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Editor Text=""
-                    x:Name="SearchLabel"/>
-            <Button Text="Search"
+            <Grid   
+                VerticalOptions="CenterAndExpand" 
+                ColumnSpacing="50" 
+                HorizontalOptions="CenterAndExpand"
+                Padding="5, 120, 5, 5">
+                <input:AdvancedEntry 
+                    Text=""
+                    x:Name="SearchLabel"
+                    IsRequired="False"
+                    Annotation="NameSurname"
+                    Placeholder="Example: AAA000"
+                    AnnotationColor="Accent"
+                    MinLength="0"
+                    MaxLength="7"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+                <flex:FlexButton
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="SearchB"
+                    IconOrientation="Right"
+                    HorizontalOptions="Center"
+                    WidthRequest="340"
+                    HeightRequest="100"
+                    HasShadow="false"
+                    CornerRadius="22"
+                    Text="Search"
+                    FontSize="25"
+                    FontFamily="MarkerFelt-Thin"
+                    BorderThickness="0,0,0,4"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
                     Clicked="Search_Clicked"/>
-            <ListView x:Name="ItemsListView" 
+            </Grid>
+            <ListView 
+                x:Name="ItemsListView" 
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -56,7 +95,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
