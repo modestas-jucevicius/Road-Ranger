@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using WebAPI.Models;
+using WebAPI.Repository.Models;
 
-namespace WebAPI.Migrations
+namespace WebAPI.Repository.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20181209135622_CreateCapturedCars")]
-    partial class CreateCapturedCars
+    [Migration("20181210210732_AddedLocation")]
+    partial class AddedLocation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,10 @@ namespace WebAPI.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CarId");
+
+                    b.Property<double>("Latitude");
+
+                    b.Property<double>("Longitude");
 
                     b.Property<string>("Path");
 

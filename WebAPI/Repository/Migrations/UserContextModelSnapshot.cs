@@ -72,6 +72,8 @@ namespace WebAPI.Repository.Migrations
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("BoostType");
+
                     b.Property<string>("Password")
                         .IsRequired();
 

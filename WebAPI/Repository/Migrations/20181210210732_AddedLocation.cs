@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebAPI.Migrations
+namespace WebAPI.Repository.Migrations
 {
     public partial class AddedLocation : Migration
     {

@@ -27,14 +27,14 @@ namespace WebAPI.Services.Score
 
         public void BuyBoost30p(User user)
         {
-            if (user.Boosts.boost30p)
+            if (user.BoostType == 1)
             {
                 //Boostas jau galioja
             }
             if (user.Score >= boost30pPrice)
             {
                 user.Score -= boost30pPrice;
-                user.Boosts.boost30p = true;
+                user.BoostType = 1;
             }
             else
             {
@@ -44,14 +44,14 @@ namespace WebAPI.Services.Score
 
         public void BuyBoost50p(User user)
         {
-            if (user.Boosts.boost50p)
+            if (user.BoostType == 2)
             {
                 //Boostas jau galioja
             }
             if (user.Score >= boost50pPrice)
             {
                 user.Score -= boost50pPrice;
-                user.Boosts.boost50p = true;
+                user.BoostType = 2;
             }
             else
             {
@@ -61,14 +61,14 @@ namespace WebAPI.Services.Score
 
         public void BuyBoostDouble(User user)
         {
-            if (user.Boosts.boostDouble)
+            if (user.BoostType == 3)
             {
                 //Boostas jau galioja
             }
             if (user.Score >= boostDoublePrice)
             {
                 user.Score -= boostDoublePrice;
-                user.Boosts.boostDouble = true;
+                user.BoostType = 3;
             }
             else
             {
