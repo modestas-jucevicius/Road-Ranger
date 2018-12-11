@@ -10,6 +10,14 @@ using Xamarin.Forms;
 using MobileApp.Services.WebAPI.Authorization;
 using MobileApp.Services.WebAPI.LicensePlate;
 using MobileApp.Manager;
+using System.Threading.Tasks;
+using Models.Users;
+using System.Diagnostics;
+using MobileApp.Services.Maps;
+using Xamarin.Forms.Maps;
+using Models.Images;
+using Image = Models.Images.Image;
+using MobileApp.Services.WebAPI.Cars;
 
 namespace MobileApp.Presenters
 {
@@ -19,14 +27,22 @@ namespace MobileApp.Presenters
         private StoreCameraMediaOptions cameraOptions;
         private readonly ICarParser parser = new OpenALPRParser();
         private readonly ITextValidator validator = new LicensePlateValidator();
-        private readonly LicensePlateService service = LicensePlateService.GetInstance();
         private readonly AuthorizationService authorization = AuthorizationService.GetInstance();
         private readonly LicensePlateService licensePlateService = LicensePlateService.GetInstance();
+        private readonly Random rand = new Random();
+        private readonly ImageFactory imageFactory = ImageFactory.GetInstance();
+        private readonly CarFactory carFactory = CarFactory.GetInstance();
+        private readonly MapTool mapTool = new MapTool(null);
+        private readonly CapturedCarService capturedCarService = CapturedCarService.GetInstance();
 
         public CameraPresenter(CameraPage page)
         {
             this.page = page;
             this.cameraOptions = new StoreCameraMediaOptions();
+
+            var filename = Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).ToString(), "RoadRanger");
+            Directory.CreateDirectory(filename);
+
             Initialize();
         }
         
@@ -40,14 +56,44 @@ namespace MobileApp.Presenters
             var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions());
             if (photo != null)
             {
+                CameraPage.activityIndicator.IsRunning = true;
                 CameraPage.cameraImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
                 Byte[] imageBytes = ReadFully(photo.GetStream());
-                string plateNumber = await GetPlate(imageBytes);
-                CameraPage.plateLabel.Text = plateNumber;
+                List<Car> cars = await GetPlateStatus(imageBytes);
+                //string plateNumber = await GetPlate(imageBytes);
+                if (cars[0] != null)
+                {
+                    CameraPage.plateLabel.Text = cars[0].LicensePlate + "  " + cars[0].Status;
+                    String path = await SaveImageAsync(imageBytes, cars[0]);                                  //Issaugo nuotrauka
+                    Image image = await ProcessImageAsync(path, cars[0]);
+                    CapturedCar capturedCar = carFactory.CreateCapturedCar(cars[0], image);
+                    try
+                    {
+                        await capturedCarService.Add(capturedCar);
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+
+                    //Padidina userio scora
+                    User user = authorization.GetCurrentUser().Result;
+                    //user.Score += evaluation.Evaluate(user, cars[0].Status);
+                    //!!!!!!!!!!!!!!!!!UPDATE USER
+
+
+                    CameraPage.activityIndicator.IsRunning = false;
+                }
+                else
+                {
+                    CameraPage.plateLabel.Text = "Car not found...";
+                    CameraPage.activityIndicator.IsRunning = false;
+                }
+
             }
         }
 
-        public static byte[] ReadFully(Stream input)
+        public static byte[] ReadFully(Stream input)                        //Konvertuoja memory stream i byte array
         {
             byte[] buffer = new byte[16 * 1024];
             using (MemoryStream ms = new MemoryStream())
@@ -61,26 +107,25 @@ namespace MobileApp.Presenters
             }
         }
 
-        private async System.Threading.Tasks.Task<string> GetPlate(Byte[] imageBytes)
+        private async Task<List<Car>> GetPlateStatus(Byte[] imageBytes)
         {
-            string status = "Car not found!";
             string result = await FrameRecognition.Recognition(imageBytes);
             try
             {
-                List<Car> cars = parser.Parse(result);
-                ProcessFoundCars(cars);
-                if(cars.Count > 0)
+                List<Car> cars = parser.Parse(result);          //Neuzdeda ID ir Status atributams reiksmiu
+                if (cars.Count > 0)
                 {
-                    //await licensePlateService.CheckCar(cars[0].LicensePlate);
-                    return cars[0].LicensePlate + " " + cars[0].Status;
+                    cars[0].Status = await licensePlateService.CheckCar(cars[0].LicensePlate);
+                    cars[0].Id = rand.Next(1, 999999);
+                    return cars;
                 }
-                    
+
             }
-            catch (ParseException)
+            catch (ParseException e)
             {
-                System.Console.WriteLine("ParseException occured!");
+                Debug.WriteLine(e.Message);
             }
-            return status;
+            return null;
         }
 
         private async void ProcessFoundCars(List<Car> cars)
@@ -91,7 +136,7 @@ namespace MobileApp.Presenters
                 {
                     try
                     {
-                        car.Status = await service.CheckCar(car.LicensePlate);
+                        car.Status = await licensePlateService.CheckCar(car.LicensePlate);
                     }
                     catch (Exception)
                     {
@@ -104,5 +149,23 @@ namespace MobileApp.Presenters
                 }
             }
         }
+
+        private async Task<String> SaveImageAsync(Byte[] image, Car car)
+        {
+            var filename = Path.Combine(Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).ToString(), "RoadRanger"), car.Id + ".jpg");
+            using (var fileOutputStream = new Java.IO.FileOutputStream(filename))
+            {
+                await fileOutputStream.WriteAsync(image);
+            }
+            return filename;
+        }
+
+        private async Task<Image> ProcessImageAsync(String path, Car car)
+        {
+            Position pos = await mapTool.GetLocation();
+            return imageFactory.CreateImage(rand.Next(1, 999999), car.Id, DateTime.Now.Ticks, path, pos);
+        }
+
+
     }
 }

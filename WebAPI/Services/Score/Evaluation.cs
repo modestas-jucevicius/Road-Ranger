@@ -1,5 +1,5 @@
 ﻿using Models.Cars;
-using Models.Users;
+using WebAPI.Repository.Models;
 
 namespace WebAPI.Services.Score
 {

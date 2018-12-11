@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidDesignerPreferredTheme>Theme.DeviceDefault.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
-    <SelectedDevice>HUAWEI COL-L29</SelectedDevice>
+    <SelectedDevice>Motorola Moto G %285%29</SelectedDevice>
     <DefaultDevice>emuxl</DefaultDevice>
     <DefaultDevice>Android_Accelerated_x86_Oreo</DefaultDevice>
   </PropertyGroup>

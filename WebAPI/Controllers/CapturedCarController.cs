@@ -5,6 +5,7 @@ using Models.Cars;
 using WebAPI.Repository.Models;
 using System.Linq;
 using Models.Images;
+using WebAPI.Services.Score;
 
 namespace WebAPI.Controllers
 {
@@ -62,6 +63,10 @@ namespace WebAPI.Controllers
         {
             _userContext.Cars.Add(car);
             _userContext.Images.Add(car.Image);
+            _userContext.SaveChanges();
+            Evaluation evaluation = Evaluation.Instance;
+            User user = _userContext.Users.FirstOrDefault(o => o.ID == car.UserId.ToString());
+            user.Score = evaluation.Evaluate(user, car.Status);
             _userContext.SaveChanges();
         }
 
