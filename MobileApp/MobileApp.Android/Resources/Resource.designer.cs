@@ -6745,9 +6745,9 @@ namespace MobileApp.Droid
 			
 			// aapt resource value: 0x7f0e016e
 			public const int Animation_Design_BottomSheetDialog = 2131624302;
-
-			// aapt resource value: 0x7f0d0192
-			public const int AppCompatDialogStyle = 2131558802;
+			
+			// aapt resource value: 0x7f0e0192
+			public const int AppCompatDialogStyle = 2131624338;
 			
 			// aapt resource value: 0x7f0e00a9
 			public const int Base_AlertDialog_AppCompat = 2131624105;
@@ -7250,14 +7250,14 @@ namespace MobileApp.Droid
 			// aapt resource value: 0x7f0e000e
 			public const int CardView_Light = 2131623950;
 			
-			// aapt resource value: 0x7f0d0190
-			public const int MainTheme = 2131558800;
+			// aapt resource value: 0x7f0e0190
+			public const int MainTheme = 2131624336;
 			
-			// aapt resource value: 0x7f0d0191
-			public const int MainTheme_Base = 2131558801;
+			// aapt resource value: 0x7f0e0191
+			public const int MainTheme_Base = 2131624337;
 			
-			// aapt resource value: 0x7f0d018f
-			public const int MyPopupMenu = 2131558799;
+			// aapt resource value: 0x7f0e018f
+			public const int MyPopupMenu = 2131624335;
 			
 			// aapt resource value: 0x7f0e002d
 			public const int Platform_AppCompat = 2131623981;

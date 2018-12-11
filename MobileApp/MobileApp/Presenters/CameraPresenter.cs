@@ -1,16 +1,15 @@
 ﻿using MobileApp.Views;
 using Models.Cars;
 using Plugin.Media.Abstractions;
-using Services.Recognition;
-using Services.Validation;
+using MobileApp.Services.Recognition;
+using MobileApp.Services.Validation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Xamarin.Forms;
-using Services.WebAPI.Authorization;
-using Services.WebAPI.LicensePlate;
-using Models.Users;
-using WebAPIService.EPolicija;
+using MobileApp.Services.WebAPI.Authorization;
+using MobileApp.Services.WebAPI.LicensePlate;
+using MobileApp.Manager;
 
 namespace MobileApp.Presenters
 {
@@ -20,7 +19,7 @@ namespace MobileApp.Presenters
         private StoreCameraMediaOptions cameraOptions;
         private readonly ICarParser parser = new OpenALPRParser();
         private readonly ITextValidator validator = new LicensePlateValidator();
-        private readonly ICarStatusRequester requester = EPolicijaAPIRequester.GetInstance();
+        private readonly LicensePlateService service = LicensePlateService.GetInstance();
         private readonly AuthorizationService authorization = AuthorizationService.GetInstance();
         private readonly LicensePlateService licensePlateService = LicensePlateService.GetInstance();
 
@@ -90,8 +89,14 @@ namespace MobileApp.Presenters
             {
                 if (validator.IsValid(car.LicensePlate))
                 {
-                    car.Status = await requester.AskCarStatus(car.LicensePlate);
-                    //TO DO Give user points for cars
+                    try
+                    {
+                        car.Status = await service.CheckCar(car.LicensePlate);
+                    }
+                    catch (Exception)
+                    {
+                        await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                    }
                 }
                 else
                 {

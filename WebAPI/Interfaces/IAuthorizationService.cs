@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using WebAPI.Models;
+using WebAPI.Repository.Models;
 
 namespace WebAPI.Interfaces
 {

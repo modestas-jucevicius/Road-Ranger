@@ -1,4 +1,4 @@
-﻿namespace WebAPI.DTO
+﻿namespace WebAPI.Repository.DTO
 {
 	public class UserDTO
 	{

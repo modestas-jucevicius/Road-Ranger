@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Models.Cars;
 using Models.Statistics;
-using Storage.Data;
 using System.Collections.Generic;
-using WebAPIServices.Statistic.Statistics;
+using WebAPI.Services.Statistic.Statistics;
+using System.Linq;
+using WebAPI.Repository.Models;
 
 namespace WebAPI.Controllers
 {
@@ -10,12 +12,11 @@ namespace WebAPI.Controllers
     [ApiController]
     public class StatisticController : ControllerBase
     {
-        private readonly CapturedCarService service;
+        private readonly UserContext _userContext;
 
-        public StatisticController()
+        public StatisticController(UserContext context)
         {
-            MemoryRepository.GetInstance();
-            service = new CapturedCarService();
+            this._userContext = context;
         }
 
         // GET: api/statistic/entries?type={type}
@@ -28,7 +29,11 @@ namespace WebAPI.Controllers
         [HttpGet("entries")]
         public IEnumerable<StatisticEntry> GetEntries([FromQuery] int type)
         {
-            return StatisticFactory.GetStatistic(type).Get(service.FindAll()); ;
+            IEnumerable<CapturedCar> cars = from car in _userContext.Cars
+                                                    join image in _userContext.Images on car.Id equals image.CarId
+                                                    select CarFactory.GetInstance().CreateCapturedCar(car, image);
+
+            return StatisticFactory.GetStatistic(type).Get(cars.ToList()); ;
         }
     }
 }

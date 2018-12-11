@@ -2,7 +2,7 @@
 using Models.Cars;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Services.Recognition;
+using MobileApp.Services.Recognition;
 using System.Collections.Generic;
 
 namespace Test

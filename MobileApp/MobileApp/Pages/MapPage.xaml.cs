@@ -1,12 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.Maps;
-using System.Threading.Tasks;
-using System;
-using Services.Maps;
-using Services.CustomEventArgs;
-using System.Collections.Generic;
-using Plugin.Geolocator;
+using MobileApp.Services.Maps;
 
 namespace MobileApp.Views
 {

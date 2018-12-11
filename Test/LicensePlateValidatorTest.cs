@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Services.Validation;
+using MobileApp.Services.Validation;
 
 namespace Test
 {

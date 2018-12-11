@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models.Cars;
 using System.Threading.Tasks;
-using WebAPIService.EPolicija;
-using WebAPIService.Score;
+using WebAPI.Services.EPolicija;
+using WebAPI.Services.Score;
 
 namespace WebAPI.Controllers
 {
@@ -22,7 +22,6 @@ namespace WebAPI.Controllers
         public async Task<CarStatus> Check([FromQuery] string licensePlate)
         {
             CarStatus status = await reguester.AskCarStatus(licensePlate);
-            Evaluation.Instance.IncreaseScore(status);
             return status;
         }
     }

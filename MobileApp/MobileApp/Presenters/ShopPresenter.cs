@@ -1,8 +1,8 @@
 ﻿using MobileApp.Manager;
 using MobileApp.Views;
 using Models.Users;
-using Services.WebAPI.Authorization;
-using Services.WebAPI.Score;
+using MobileApp.Services.WebAPI.Authorization;
+using MobileApp.Services.WebAPI.Score;
 using System;
 using Xamarin.Forms;
 

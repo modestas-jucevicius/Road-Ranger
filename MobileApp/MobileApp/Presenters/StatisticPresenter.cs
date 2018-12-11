@@ -1,7 +1,7 @@
 ﻿using Microcharts;
 using MobileApp.Manager;
 using MobileApp.Views;
-using Services.WebAPI.Statistic;
+using MobileApp.Services.WebAPI.Statistic;
 using System;
 using Xamarin.Forms;
 

@@ -8,8 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Interfaces;
 using WebAPI.Services;
-using WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Repository.Models;
 
 namespace WebAPI
 {

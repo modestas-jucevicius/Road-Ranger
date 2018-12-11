@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using MobileApp.Manager;
 using MobileApp.Views;
-using Services.WebAPI.Authorization;
+using MobileApp.Services.WebAPI.Authorization;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

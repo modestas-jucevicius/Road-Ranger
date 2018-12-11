@@ -5,8 +5,8 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Services.WebAPI.Authorization;
 using MobileApp.Pages;
+using MobileApp.Services.WebAPI.Authorization;
 
 namespace MobileApp.Manager
 {

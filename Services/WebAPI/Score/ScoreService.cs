@@ -38,11 +38,11 @@ namespace Services.WebAPI.Score
         {
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync("api/score/boost30p", new
             {
-                Id = user.Id,
+                Id = user.ID,
                 Username = user.Username,
                 Password = user.Password,
                 Score = user.Score,
-                Boosts = user.Boosts
+                BoostType = user.BoostType
             });
             response.EnsureSuccessStatusCode();
             string jsonString = await response.Content.ReadAsStringAsync();
@@ -53,11 +53,11 @@ namespace Services.WebAPI.Score
         {
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync("api/score/boost50p", new
             {
-                Id = user.Id,
+                Id = user.ID,
                 Username = user.Username,
                 Password = user.Password,
                 Score = user.Score,
-                Boosts = user.Boosts
+                BoostType = user.BoostType
             });
             response.EnsureSuccessStatusCode();
             string jsonString = await response.Content.ReadAsStringAsync();
@@ -68,11 +68,11 @@ namespace Services.WebAPI.Score
         {
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync("api/score/boostdouble", new
             {
-                Id = user.Id,
+                Id = user.ID,
                 Username = user.Username,
                 Password = user.Password,
                 Score = user.Score,
-                Boosts = user.Boosts
+                BoostType = user.BoostType
             });
             response.EnsureSuccessStatusCode();
             string jsonString = await response.Content.ReadAsStringAsync();

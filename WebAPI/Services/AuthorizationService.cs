@@ -6,9 +6,9 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
-using WebAPI.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Repository.Models;
 
 namespace WebAPI.Services
 {
@@ -53,9 +53,9 @@ namespace WebAPI.Services
 			return tokenHandler.WriteToken(token);
 		}
 
-        public Models.User Register(string username, string password)
+        public User Register(string username, string password)
 		{
-            Models.User user = new Models.User()
+            User user = new User()
 			{
 				ID = Guid.NewGuid().ToString(),
 				Username = username,

@@ -1,13 +1,12 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Interfaces;
-using WebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using WebAPI.DTO;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Repository.Models;
+using WebAPI.Repository.DTO;
 
 namespace WebAPI.Controllers
 {

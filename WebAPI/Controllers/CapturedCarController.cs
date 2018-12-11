@@ -2,10 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Cars;
-using Storage.Data;
 using System.Linq;
 using Models.Images;
-using WebAPI.Models;
+using WebAPI.Repository.Models;
 
 namespace WebAPI.Controllers
 {
@@ -13,7 +12,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CapturedCarController : ControllerBase
     {
-        private CapturedCarService service = new CapturedCarService();
         private UserContext _userContext;
 
         public CapturedCarController(UserContext userContext)
@@ -25,10 +23,10 @@ namespace WebAPI.Controllers
         [HttpGet("all")]
         public IEnumerable<CapturedCar> GetAll()
         {
-
             IEnumerable<CapturedCar> capturedCars = from car in _userContext.Cars
                                                     join image in _userContext.Images on car.Id equals image.CarId
                                                     select CarFactory.GetInstance().CreateCapturedCar(car, image);
+
             return capturedCars.ToList();
         }
 

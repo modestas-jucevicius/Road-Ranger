@@ -2,8 +2,8 @@
 using MobileApp.Models;
 using MobileApp.Views;
 using Models.Cars;
-using Services.Validation;
-using Services.WebAPI.Cars;
+using MobileApp.Services.Validation;
+using MobileApp.Services.WebAPI.Cars;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

@@ -1,8 +1,7 @@
 ﻿using Models.Cars;
-using Services.Maps;
-using Services.WebAPI.Cars;
+using MobileApp.Services.Maps;
+using MobileApp.Services.WebAPI.Cars;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xamarin.Forms.Maps;
 
 namespace MobileApp.Models

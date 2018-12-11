@@ -13,6 +13,7 @@
     <PackageReference Include="Forms.Controls.FlexButton" Version="0.9.0" />
     <PackageReference Include="Microcharts" Version="0.8.3-pre" />
     <PackageReference Include="Microcharts.Forms" Version="0.8.3-pre" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
@@ -23,14 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Models\Models.csproj" />
-    <ProjectReference Include="..\..\Services\Services.csproj" />
-    <ProjectReference Include="..\..\WebAPIServices\WebAPIServices.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Mono.Android">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models.Users;
-using Storage.Data;
 using System;
 using System.Collections.Generic;
-using WebAPIService.Score;
+using System.Linq;
+using WebAPI.Repository.Models;
+using WebAPI.Services.Score;
 
 namespace WebAPI.Controllers
 {
@@ -14,21 +14,35 @@ namespace WebAPI.Controllers
     {
         private HighscoresService highscores;
         private BoostShopService shop;
+        private UserContext _userContext;
+
+        public ScoreController(UserContext userContext)
+        {
+            _userContext = userContext;
+        }
 
         public ScoreController()
         {
             highscores = HighscoresService.Instance;
             shop = BoostShopService.GetInstance();
-            MemoryRepository.GetInstance();
         }
 
         // GET: api/score/top
         [AllowAnonymous]
         [HttpGet("top")]
-        public IEnumerable<User> GetTop()
+        public IEnumerable<Models.Users.User> GetTop()
         {
-            List<User> users = HighscoresService.Instance.GetTops(MemoryRepository.users);
-            return users.ConvertAll<User>(x => new User
+            IQueryable<User> query = from temp in _userContext.Users select temp;
+
+            List<Models.Users.User> list = query.ToList().ConvertAll<Models.Users.User>(x => new Models.Users.User
+            {
+                Username = x.Username,
+                Score = x.Score,
+                BoostType = x.BoostType
+            });
+
+            List<Models.Users.User> users = HighscoresService.Instance.GetTops(list);
+            return users.ConvertAll<Models.Users.User>(x => new Models.Users.User
             {
                 Username = x.Username,
                 Score = x.Score
@@ -38,7 +52,7 @@ namespace WebAPI.Controllers
         // POST: api/score/boost30p
         [AllowAnonymous]
         [HttpPost("boost30p")]
-        public int Boost30p([FromBody]User user)
+        public int Boost30p([FromBody]Models.Users.User user)
         {
             try
             {
@@ -58,7 +72,7 @@ namespace WebAPI.Controllers
         // POST: api/score/boost50p
         [AllowAnonymous]
         [HttpPost("boost50p")]
-        public int Boost50p([FromBody]User user)
+        public int Boost50p([FromBody]Models.Users.User user)
         {
             try
             {
@@ -78,7 +92,7 @@ namespace WebAPI.Controllers
         // POST: api/score/boost30p
         [AllowAnonymous]
         [HttpPost("boostdouble")]
-        public int BoostDouble([FromBody]User user)
+        public int BoostDouble([FromBody]Models.Users.User user)
         {
             try
             {
