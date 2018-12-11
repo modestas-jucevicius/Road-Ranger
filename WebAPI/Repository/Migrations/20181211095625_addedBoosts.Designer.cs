@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using WebAPI.Models;
+using WebAPI.Repository.Models;
 
-namespace WebAPI.Migrations
+namespace WebAPI.Repository.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20181210210732_AddedLocation")]
-    partial class AddedLocation
+    [Migration("20181211095625_addedBoosts")]
+    partial class addedBoosts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,10 +69,12 @@ namespace WebAPI.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.User", b =>
+            modelBuilder.Entity("WebAPI.Repository.Models.User", b =>
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BoostType");
 
                     b.Property<string>("Password")
                         .IsRequired();

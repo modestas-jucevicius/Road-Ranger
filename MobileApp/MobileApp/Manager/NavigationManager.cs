@@ -33,7 +33,7 @@ namespace MobileApp.Manager
         {
             MainPage mainPage = new MainPage();
             app.Main = mainPage;
-            //RedirectToLogin(mainPage);
+            RedirectToLogin(mainPage);
         }
 
         private async void RedirectToLogin(Page page)
