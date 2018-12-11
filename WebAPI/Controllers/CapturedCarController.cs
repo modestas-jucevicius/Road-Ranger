@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Cars;
+using WebAPI.Repository.Models;
 using System.Linq;
 using Models.Images;
-using WebAPI.Repository.Models;
 
 namespace WebAPI.Controllers
 {
@@ -26,7 +26,6 @@ namespace WebAPI.Controllers
             IEnumerable<CapturedCar> capturedCars = from car in _userContext.Cars
                                                     join image in _userContext.Images on car.Id equals image.CarId
                                                     select CarFactory.GetInstance().CreateCapturedCar(car, image);
-
             return capturedCars.ToList();
         }
 

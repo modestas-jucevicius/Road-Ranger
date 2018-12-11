@@ -20,6 +20,51 @@ namespace WebAPI.Repository.Migrations
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("Models.Cars.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BodyType");
+
+                    b.Property<string>("ColorName");
+
+                    b.Property<bool>("IsReported");
+
+                    b.Property<string>("LicensePlate")
+                        .IsRequired();
+
+                    b.Property<string>("MakeName");
+
+                    b.Property<string>("Model");
+
+                    b.Property<int>("Status");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("Year");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("Models.Images.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CarId");
+
+                    b.Property<string>("Path");
+
+                    b.Property<long>("Timestamp");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("WebAPI.Repository.Models.User", b =>
                 {
                     b.Property<string>("ID")
