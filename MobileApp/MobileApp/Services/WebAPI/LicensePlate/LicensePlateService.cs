@@ -27,7 +27,8 @@ namespace MobileApp.Services.WebAPI.LicensePlate
 
         public async Task<CarStatus> CheckCar(string licensePlate)
         {
-            HttpResponseMessage response = await HttpClient.GetAsync("api/numbers");
+            string uri = "api/numbers/check?licensePlate=" + licensePlate;
+            HttpResponseMessage response = await HttpClient.PostAsync(uri, null);
             response.EnsureSuccessStatusCode();
             string jsonString = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<CarStatus>(jsonString);
