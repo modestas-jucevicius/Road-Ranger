@@ -1,24 +1,22 @@
 ﻿using MobileApp.Views;
 using MobileApp.Models;
 using System;
-using Xamarin.Forms;
 using MobileApp.Manager;
 using MobileApp.Services.WebAPI.Cars;
+using MobileApp.Services.Report;
 
 namespace MobileApp.Presenters
 {
     public class SearchItemPresenter
     {
         protected readonly CapturedCarService service = new CapturedCarService();
-        protected readonly ReportModel report = new ReportModel();
+        private IReporter reporter = new MailReporter();
         private IReportItemView view;
-        private readonly Page page;
         private ICarDetailModel model;
 
-        public SearchItemPresenter(SearchItemPage page, ICarDetailModel model)
+        public SearchItemPresenter(IReportItemView view, ICarDetailModel model)
         {
-            this.page = page;
-            view = page;
+            this.view = view;
             this.model = model;
             Initialize();
         }
@@ -37,13 +35,14 @@ namespace MobileApp.Presenters
         {
             if (model.Item == null || model.Item.IsReported)
             {
-                await DialogAlertManager.ShowInvalidReportDialogAlert(page);
+                await DialogAlertManager.ShowInvalidReportDialogAlert(view.Page);
                 return;
             }
 
-            if (await DialogAlertManager.ShowReportDialog(page))
+            if (await DialogAlertManager.ShowReportDialog(view.Page))
             {
-                await report.SendGeneratedMail(model.Item);
+                reporter.SendGeneretedMail(model.Item);
+                await DialogAlertManager.ShowReportWasSentAlert(view.Page);
             }
         }
        

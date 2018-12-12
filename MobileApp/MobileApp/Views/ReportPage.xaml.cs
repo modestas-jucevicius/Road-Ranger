@@ -14,13 +14,19 @@ namespace MobileApp.Views
 
         private void Send_Button(object sender, EventArgs args)
         {
-            if (this.Report != null)
-                Report(this, args);
+            Report(this, args);
         }
 
         string IReportView.Subject => Subject.Text;
 
         string IReportView.Body => Body.Text;
+
+        public bool IsPressable
+        {
+            set => this.IsEnabled = value;
+        }
+
+        public Page Page => this;
 
         public event EventHandler<EventArgs> Report;
     }

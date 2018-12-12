@@ -14,16 +14,21 @@ namespace MobileApp.Views
             InitializeComponent();
         }
 
+        public bool IsPressable
+        {
+            set => this.IsEnabled = value;
+        }
+
+        public Page Page => this;
+
         void RemoveItem_Clicked(object sender, EventArgs e)
         {
-            if (this.Remove != null)
-                Remove(this, EventArgs.Empty);
+            Remove(this, EventArgs.Empty);
         }
 
         void ReportItem_Clicked(object sender, SelectedItemChangedEventArgs args)
         {
-            if (this.Report != null)
-                Report(this, EventArgs.Empty);
+            Report(this, EventArgs.Empty);
         }
 
         public async Task ClosePage()

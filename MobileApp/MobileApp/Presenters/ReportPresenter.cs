@@ -1,58 +1,50 @@
 ﻿using MobileApp.Manager;
-using MobileApp.Models;
+using MobileApp.Services.Report;
 using MobileApp.Views;
 using Models.Messages;
 using System;
-using Xamarin.Forms;
 
 namespace MobileApp.Presenters
 {
     public class ReportPresenter
     {
         private readonly IReportView view;
-        private Page page;
-        private static ReportPresenter presenter = null;
-        private ReportModel report = new ReportModel();
+        private IReporter reporter;
 
-        public static ReportPresenter GetInstance(ReportPage page)
+        public ReportPresenter(IReportView view)
         {
-            if (presenter == null)
-            {
-                presenter = new ReportPresenter(page);
-            }
-            return presenter;
-        }
-
-        private ReportPresenter()
-        {
-        }
-
-        private ReportPresenter(ReportPage page)
-        {
-            this.page = page;
-            this.view = page;
-            this.Initialize();
+            this.view = view;
+            reporter = new MailReporter();
+            Initialize();
         }
 
         public void Initialize()
         {
-            this.view.Report += new EventHandler<EventArgs>(Report);
+            view.Report += new EventHandler<EventArgs>(Report);
         }
 
         public async void Report(object sender, EventArgs e)
         {
-            try
+            view.IsPressable = false;
+            if (!string.IsNullOrWhiteSpace(view.Subject) && !string.IsNullOrWhiteSpace(view.Body))
             {
-                await report.SendMail(new Message
+                try
                 {
-                    Subject = view.Subject,
-                    Body = view.Body
-                });
+                    reporter.SendMail(new Message
+                    {
+                        Subject = view.Subject,
+                        Body = view.Body
+                    });
+                    await DialogAlertManager.ShowReportWasSentAlert(view.Page);
+                }
+                catch (Exception)
+                {
+                    await DialogAlertManager.ShowReportSendAlert(view.Page);
+                }
             }
-            catch (Exception ex)
-            {
-                await DialogAlertManager.ShowReportSendAlert(page);
-            }
+            else
+                await DialogAlertManager.ShowReportValidation(view.Page);
+            view.IsPressable = true;
         }
     }
 }

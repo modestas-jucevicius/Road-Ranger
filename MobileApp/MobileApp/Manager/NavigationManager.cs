@@ -61,7 +61,7 @@ namespace MobileApp.Manager
         public static async Task NavigateToMap(Page page)
         {
             MapPage mapPage = new MapPage();
-            new MapToolPresenter(mapPage, new MapModel(mapPage.GoogleMap));
+            new MapToolPresenter(mapPage);
             await page.Navigation.PushModalAsync(new NavigationPage(mapPage));
         }
 
@@ -98,7 +98,9 @@ namespace MobileApp.Manager
 
         public static async Task NavigateToReport(Page page)
         {
-            await page.Navigation.PushModalAsync(new NavigationPage(new ReportPage()));
+            ReportPage reportPage = new ReportPage();
+            ReportPresenter presenter = new ReportPresenter(reportPage);
+            await page.Navigation.PushModalAsync(new NavigationPage(reportPage));
         }
 
         public static async Task NavigateToSearchItem(Page page, CarDetailModel car)
@@ -134,6 +136,7 @@ namespace MobileApp.Manager
         public static async Task NavigateToMore(Page page)
         {
             MorePage morePage = new MorePage();
+            MorePresenter presenter = new MorePresenter(morePage);
             await page.Navigation.PushModalAsync(new NavigationPage(morePage));
         }
 

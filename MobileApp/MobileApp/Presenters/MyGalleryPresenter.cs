@@ -5,7 +5,6 @@ using Models.Cars;
 using MobileApp.Services.WebAPI.Cars;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -14,15 +13,13 @@ namespace MobileApp.Presenters
     public class MyGalleryPresenter : BasePresenter
     {
         private IMyGalleryView view;
-        private Page page;
         public ObservableCollection<CapturedCar> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         private CapturedCarService service;
 
-        public MyGalleryPresenter(MyGalleryPage page)
+        public MyGalleryPresenter(IMyGalleryView view)
         {
-            this.page = page;
-            view = page;
+            this.view = view;
             service = new CapturedCarService();
             Items = new ObservableCollection<CapturedCar>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -36,21 +33,10 @@ namespace MobileApp.Presenters
         }
 
         async Task ExecuteLoadItemsCommand()
-        {
-            lock (loadLock)
-            {
-                try
-                {
-                    GetAll();
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
-            }
+        { 
         }
 
-        private async void GetAll()
+        private async Task GetAll()
         {
             Items.Clear();
             var items = await service.GetAll();
@@ -66,15 +52,26 @@ namespace MobileApp.Presenters
             if (item == null)
                 return;
 
-            await NavigationManager.NavigateToMyGalleryItem(page, new CarDetailModel(item));
+            await NavigationManager.NavigateToMyGalleryItem(view.Page, new CarDetailModel(item));
 
             // Manually deselect item.
             view.ListView.SelectedItem = null;
         }
 
-        void Search(object sender, EventArgs e)
+        async void Search(object sender, EventArgs e)
         {
+            view.IsPressable = false;
+            try
+            {
+                await GetAll();
+            }
+            catch
+            {
+                await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                await NavigationManager.NavigateBack(view.Page);
+            }
             LoadItemsCommand.Execute(null);
+            view.IsPressable = true;
         }
     }
 }

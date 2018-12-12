@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MobileApp.Views
 {
-    public interface IMyGalleryView
+    public interface IMyGalleryView : IBaseView
     {
         event EventHandler<EventArgs> Add;
         event EventHandler<SelectedItemChangedEventArgs> OnItem;

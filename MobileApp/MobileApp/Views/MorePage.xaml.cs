@@ -1,36 +1,48 @@
-﻿using MobileApp.Manager;
+﻿using System;
+using MobileApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MobileApp.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MorePage : ContentPage
-	{
-		public MorePage ()
+	public partial class MorePage : ContentPage, IMoreView
+    {
+        public MorePage ()
 		{
 			InitializeComponent ();
 		}
 
-        private async void MyGalleryButton_Clicked(object sender, System.EventArgs e)
+        public bool IsPressable
         {
-            await NavigationManager.NavigateToMyGallery(this);
+            set => this.IsEnabled = value;
         }
 
-        private async void MapButton_Clicked(object sender, System.EventArgs e)
+        public Page Page => this;
+
+        private void MyGalleryButton_Clicked(object sender, EventArgs args)
         {
-            await NavigationManager.NavigateToMap(this);
+            MyGalleryClick(this, args);
         }
 
-        private async void StatsButton_Clicked(object sender, System.EventArgs e)
+        private void MapButton_Clicked(object sender, EventArgs args)
         {
-            await NavigationManager.NavigateToStatistic(this);
+            MapClick(this, args);
         }
 
-        private async void ReportButton_Clicked(object sender, System.EventArgs e)
+        private void StatsButton_Clicked(object sender, EventArgs args)
         {
-            await NavigationManager.NavigateToReport(this);
+            StatsClick(this, args);
         }
 
+        private void ReportButton_Clicked(object sender, EventArgs args)
+        {
+            ReportClick(this, args);
+        }
+
+        public event EventHandler<EventArgs> MyGalleryClick;
+        public event EventHandler<EventArgs> MapClick;
+        public event EventHandler<EventArgs> StatsClick;
+        public event EventHandler<EventArgs> ReportClick;
     }
 }

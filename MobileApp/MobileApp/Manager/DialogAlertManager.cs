@@ -30,6 +30,16 @@ namespace MobileApp.Manager
             await page.DisplayAlert("Report", "Because of internal issues you can not report. Please try again!", "OK");
         }
 
+        public static async Task ShowReportWasSentAlert(Page page)
+        {
+            await page.DisplayAlert("Report", "Your report was successfully sent!", "OK");
+        }
+
+        public static async Task ShowReportValidation(Page page)
+        {
+            await page.DisplayAlert("Report", "Subject and message should not be empty!", "OK");
+        }
+
         public static async Task ShowValidationDialogAlert(Page page)
         {
             await page.DisplayAlert("License plate", "Car license plate is not valid! License plate should be AAA000 or AA000 format.", "OK");
@@ -52,7 +62,7 @@ namespace MobileApp.Manager
 
         public static async Task ShowInternalDialogAlert(Page page)
         {
-            await page.DisplayAlert("Server", "Internal server issue. Please try again.", "OK");
+            await page.DisplayAlert("Server", "We say sorry, our web service is shut down. Please try later.", "OK");
         }
 
         public static async Task ShowAuthentificationInputValidation(Page page)
@@ -78,6 +88,11 @@ namespace MobileApp.Manager
         public static async Task ShowNotAvailableUsername(Page page)
         {
             await page.DisplayAlert("Authentification", "This username is not available!", "OK");
+        }
+
+        public static async Task ShowMapInternalDialogAlert(Page page)
+        {
+            await page.DisplayAlert("Server", "We say sorry, our web service is shut down. Cars weren't add.", "OK");
         }
     }
 }

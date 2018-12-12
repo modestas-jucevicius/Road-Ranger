@@ -30,6 +30,8 @@ namespace MobileApp.Views
             {
                 googleMap = value;
             }
-        }  
+        }
+
+        public Page Page => this;
     }
 }
