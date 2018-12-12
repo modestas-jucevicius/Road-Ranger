@@ -14,7 +14,7 @@ namespace MobileApp.Services.Maps
              //   {
                     Pin pin = new Pin();
                     pin.Label = car.LicensePlate;
-                    pin.Position = car.Image.Position;
+                    pin.Position = new Position(car.Image.Latitude, car.Image.Longitude);
                     pins.Add(pin);
                // }
             }
