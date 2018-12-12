@@ -17,10 +17,18 @@ namespace MobileApp.Manager
         public static async void NavigateToMain(Page page)
         {
             MainPage mainPage = new MainPage();
+            MainPresenter presenter = new MainPresenter(mainPage);
             await page.Navigation.PushModalAsync(new NavigationPage(mainPage));
         }
 
-        private static async void RedirectToLogin(IApp app)
+        public static void NavigateToMain(IApp app)
+        {
+            MainPage mainPage = new MainPage();
+            MainPresenter presenter = new MainPresenter(mainPage);
+            app.Main = mainPage;
+        }
+
+        public static async void NavigateToMainScreen(IApp app)
         {
             string token = await SecureStorage.GetAsync("authToken");
             if (token != null)
@@ -29,15 +37,16 @@ namespace MobileApp.Manager
                 {
                     authorization.SetToken(token);
                     await authorization.GetCurrentUser();
+                    NavigateToMain(app);
                 }
                 catch (Exception)
                 {
-                    await NavigateToLogin(app);
+                    NavigateToLogin(app);
                 }
             }
             else
             {
-                await NavigateToLogin(app);
+                NavigateToLogin(app);
             }
         }
 
@@ -71,13 +80,12 @@ namespace MobileApp.Manager
             await page.Navigation.PushModalAsync(new NavigationPage(cameraPage));
         }
 
-        public static async Task NavigateToLogin(IApp app)
+        public static void NavigateToLogin(IApp app)
         {
             LoginPage loginPage = new LoginPage();
             LoginPresenter presenter = new LoginPresenter(loginPage);
             loginPage.BindingContext = presenter;
             app.Main = loginPage;
-            //await page.Navigation.PushModalAsync(new NavigationPage(loginPage));
         }
 
         public static async Task NavigateToMyGalleryItem(Page page, CarDetailModel car)

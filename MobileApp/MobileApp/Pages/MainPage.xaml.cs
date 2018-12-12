@@ -1,4 +1,4 @@
-﻿using MobileApp.Manager;
+﻿using System;
 using Xamarin.Forms;
 
 namespace MobileApp.Views
@@ -17,30 +17,42 @@ namespace MobileApp.Views
             get => Score.Text;
             set => Score.Text = value;
         }
-
-        private async void SearchButton_Clicked(object sender, System.EventArgs e)
+        public bool IsPressable
         {
-            await NavigationManager.NavigateToSearch(this);
+            set => this.IsEnabled = value;
         }
 
-        private async void CameraButton_Clicked(object sender, System.EventArgs e)
+        public Page Page => this;
+
+        private void SearchButton_Clicked(object sender, EventArgs args)
         {
-            await NavigationManager.NavigateToCamera(this);
+            SearchClick(this, args);
         }
 
-        private async void MoreButton_Clicked(object sender, System.EventArgs e)
+        private void CameraButton_Clicked(object sender, EventArgs args)
         {
-            await NavigationManager.NavigateToMore(this);
+            StartClick(this, args);
         }
 
-        private async void TopButton_Clicked(object sender, System.EventArgs e)
+        private void MoreButton_Clicked(object sender, EventArgs args)
         {
-            await NavigationManager.NavigateToTop(this);
+            MoreClick(this, args);
         }
 
-        private async void ShopButton_Clicked(object sender, System.EventArgs e)
+        private void TopButton_Clicked(object sender, EventArgs args)
         {
-            await NavigationManager.NavigateToShop(this);
+            TopClick(this, args);
         }
+
+        private void ShopButton_Clicked(object sender, EventArgs args)
+        {
+            ShopClick(this, args);
+        }
+
+        public event EventHandler<EventArgs> SearchClick;
+        public event EventHandler<EventArgs> StartClick;
+        public event EventHandler<EventArgs> MoreClick;
+        public event EventHandler<EventArgs> TopClick;
+        public event EventHandler<EventArgs> ShopClick;
     }
 }

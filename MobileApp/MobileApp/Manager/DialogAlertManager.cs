@@ -35,6 +35,16 @@ namespace MobileApp.Manager
             await page.DisplayAlert("License plate", "Car license plate is not valid! License plate should be AAA000 or AA000 format.", "OK");
         }
 
+        public static async Task ShowNoCarRecord(Page page)
+        {
+            await page.DisplayAlert("License plate", "There is no matching car record!", "OK");
+        }
+
+        public static async Task ShowNoInternetConnection(Page page)
+        {
+            await page.DisplayAlert("Internet unavailable", "Internet connection is required. Please enable it!", "OK");
+        }
+
         public static async Task ShowNotEnoughScoreDialogAlert(Page page)
         {
             await page.DisplayAlert("Shop", "You have not enough score points.", "OK");
@@ -68,11 +78,6 @@ namespace MobileApp.Manager
         public static async Task ShowNotAvailableUsername(Page page)
         {
             await page.DisplayAlert("Authentification", "This username is not available!", "OK");
-        }
-
-        public static async Task ShowNoInternetConnection(Page page)
-        {
-            await page.DisplayAlert("Internet unavailable", "Internet connection is required. Please enable it!", "OK");
         }
     }
 }
