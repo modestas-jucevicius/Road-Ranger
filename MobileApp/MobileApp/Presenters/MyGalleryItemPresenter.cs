@@ -1,23 +1,23 @@
 ﻿using MobileApp.Views;
-using MobileApp.Models;
 using System;
 using MobileApp.Manager;
 using MobileApp.Services.WebAPI.Cars;
 using MobileApp.Services.Report;
+using Models.Cars;
 
 namespace MobileApp.Presenters
 {
     public class MyGalleryItemPresenter : BasePresenter
     {
         private IMyGalleryItemView view;
-        private ICarDetailModel model;
+        public CapturedCar Item { get; set; }
         private IReporter reporter = new MailReporter();
         private CapturedCarService service = new CapturedCarService();
 
-        public MyGalleryItemPresenter(IMyGalleryItemView view, ICarDetailModel model)
+        public MyGalleryItemPresenter(IMyGalleryItemView view, CapturedCar car)
         {
             this.view = view;
-            this.model = model;
+            Item = car;
             Initialize();
         }
 
@@ -29,7 +29,7 @@ namespace MobileApp.Presenters
 
         async void Remove(object sender, EventArgs e)
         {
-            if (model.Item == null)
+            if (Item == null)
             {
                 await DialogAlertManager.ShowInvalidRemoveDialogAlert(view.Page);
                 return;
@@ -45,7 +45,7 @@ namespace MobileApp.Presenters
         async void Report(object sender, EventArgs e)
         {
             view.IsPressable = false;
-            if (model.Item == null || model.Item.IsReported)
+            if (Item == null || Item.IsReported)
             {
                 await DialogAlertManager.ShowInvalidReportDialogAlert(view.Page);
                 return;
@@ -53,7 +53,7 @@ namespace MobileApp.Presenters
 
             if (await DialogAlertManager.ShowReportDialog(view.Page))
             {
-                reporter.SendGeneretedMail(model.Item);
+                reporter.SendGeneretedMail(Item);
             }
             view.IsPressable = true;
         }
@@ -61,7 +61,7 @@ namespace MobileApp.Presenters
         private async void RemoveItem()
         {
             view.IsPressable = false;
-            await service.Remove(model.Item.Id);
+            await service.Remove(Item.Id);
             await DialogAlertManager.ShowReportWasSentAlert(view.Page);
             view.IsPressable = true;
         }

@@ -1,5 +1,4 @@
-﻿using MobileApp.Models;
-using MobileApp.Presenters;
+﻿using MobileApp.Presenters;
 using MobileApp.Views;
 using System;
 using System.Threading.Tasks;
@@ -7,6 +6,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using MobileApp.Pages;
 using MobileApp.Services.WebAPI.Authorization;
+using Models.Cars;
 
 namespace MobileApp.Manager
 {
@@ -46,7 +46,7 @@ namespace MobileApp.Manager
             }
             else
             {
-                NavigateToMain(app);
+                NavigateToLogin(app);
             }
         }
 
@@ -88,7 +88,7 @@ namespace MobileApp.Manager
             app.Main = loginPage;
         }
 
-        public static async Task NavigateToMyGalleryItem(Page page, CarDetailModel car)
+        public static async Task NavigateToMyGalleryItem(Page page, CapturedCar car)
         {
             MyGalleryItemPage itemPage = new MyGalleryItemPage();
             MyGalleryItemPresenter presenter = new MyGalleryItemPresenter(itemPage, car);
@@ -103,7 +103,7 @@ namespace MobileApp.Manager
             await page.Navigation.PushModalAsync(new NavigationPage(reportPage));
         }
 
-        public static async Task NavigateToSearchItem(Page page, CarDetailModel car)
+        public static async Task NavigateToSearchItem(Page page, CapturedCar car)
         {
             SearchItemPage itemPage = new SearchItemPage();
             new SearchItemPresenter(itemPage, car);

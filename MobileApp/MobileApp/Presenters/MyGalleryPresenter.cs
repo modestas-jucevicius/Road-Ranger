@@ -1,5 +1,4 @@
 ﻿using MobileApp.Manager;
-using MobileApp.Models;
 using MobileApp.Views;
 using Models.Cars;
 using MobileApp.Services.WebAPI.Cars;
@@ -52,7 +51,7 @@ namespace MobileApp.Presenters
             if (item == null)
                 return;
 
-            await NavigationManager.NavigateToMyGalleryItem(view.Page, new CarDetailModel(item));
+            await NavigationManager.NavigateToMyGalleryItem(view.Page, item);
 
             // Manually deselect item.
             view.ListView.SelectedItem = null;

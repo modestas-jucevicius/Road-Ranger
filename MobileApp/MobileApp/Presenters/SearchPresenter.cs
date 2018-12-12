@@ -1,5 +1,4 @@
 ﻿using MobileApp.Manager;
-using MobileApp.Models;
 using MobileApp.Views;
 using Models.Cars;
 using MobileApp.Services.Validation;
@@ -83,7 +82,7 @@ namespace MobileApp.Presenters
             if (item == null)
                 return;
 
-            await NavigationManager.NavigateToSearchItem(view.Page, new CarDetailModel(item));
+            await NavigationManager.NavigateToSearchItem(view.Page, item);
 
             //Manually deselect item.
             view.ListView.SelectedItem = null;

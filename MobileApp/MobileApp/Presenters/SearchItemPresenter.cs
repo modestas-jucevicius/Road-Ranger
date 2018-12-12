@@ -1,9 +1,9 @@
 ﻿using MobileApp.Views;
-using MobileApp.Models;
 using System;
 using MobileApp.Manager;
 using MobileApp.Services.WebAPI.Cars;
 using MobileApp.Services.Report;
+using Models.Cars;
 
 namespace MobileApp.Presenters
 {
@@ -12,12 +12,12 @@ namespace MobileApp.Presenters
         protected readonly CapturedCarService service = new CapturedCarService();
         private IReporter reporter = new MailReporter();
         private IReportItemView view;
-        private ICarDetailModel model;
+        public CapturedCar Item { get; set; }
 
-        public SearchItemPresenter(IReportItemView view, ICarDetailModel model)
+        public SearchItemPresenter(IReportItemView view, CapturedCar car)
         {
             this.view = view;
-            this.model = model;
+            Item = car;
             Initialize();
         }
 
@@ -28,12 +28,12 @@ namespace MobileApp.Presenters
 
         private async void RemoveItem()
         {
-            await service.Remove(model.Item.Id);
+            await service.Remove(Item.Id);
         }
 
         async void Report(object sender, EventArgs e)
         {
-            if (model.Item == null || model.Item.IsReported)
+            if (Item == null || Item.IsReported)
             {
                 await DialogAlertManager.ShowInvalidReportDialogAlert(view.Page);
                 return;
@@ -41,10 +41,9 @@ namespace MobileApp.Presenters
 
             if (await DialogAlertManager.ShowReportDialog(view.Page))
             {
-                reporter.SendGeneretedMail(model.Item);
+                reporter.SendGeneretedMail(Item);
                 await DialogAlertManager.ShowReportWasSentAlert(view.Page);
             }
         }
-       
     }
 }
