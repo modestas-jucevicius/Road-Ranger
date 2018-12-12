@@ -40,10 +40,10 @@ namespace MobileApp.Presenters
                     authorization.UpdateUser(user);
                     return;
                 case 1:
-                    await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
+                    await DialogAlertManager.ShowNotEnoughScoreDialogAlert(page);
                     return;
                 case 2:
-                    await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                    await DialogAlertManager.ShowInternalDialogAlert(page);
                     return;
             }
         }
@@ -57,10 +57,10 @@ namespace MobileApp.Presenters
                     authorization.UpdateUser(user);
                     return;
                 case 1:
-                    await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
+                    await DialogAlertManager.ShowNotEnoughScoreDialogAlert(page);
                     return;
                 case 2:
-                    await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                    await DialogAlertManager.ShowInternalDialogAlert(page);
                     return;
             }
         }
@@ -74,10 +74,10 @@ namespace MobileApp.Presenters
                     authorization.UpdateUser(user);
                     return;
                 case 1:
-                    await DialogAlertManager.GetInstance().ShowNotEnoughScoreDialogAlert(page);
+                    await DialogAlertManager.ShowNotEnoughScoreDialogAlert(page);
                     return;
                 case 2:
-                    await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                    await DialogAlertManager.ShowInternalDialogAlert(page);
                     return;
             }
         }

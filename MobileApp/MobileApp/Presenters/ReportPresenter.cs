@@ -51,7 +51,7 @@ namespace MobileApp.Presenters
             }
             catch (Exception ex)
             {
-                await DialogAlertManager.GetInstance().ShowReportSendAlert(page);
+                await DialogAlertManager.ShowReportSendAlert(page);
             }
         }
     }

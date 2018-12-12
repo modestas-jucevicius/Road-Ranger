@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="My Gallery"
-             BackgroundImage="casual_page.png"
-             x:Class="MobileApp.Views.MyGalleryPage"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="My Gallery"
+    x:Class="MobileApp.Views.MyGalleryPage"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="ItemsListView" 
+            <ListView 
+                x:Name="ItemsListView" 
                 ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -21,42 +22,46 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="80" />
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition 
+                                        Width="80" />
+                                    <ColumnDefinition 
+                                        Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                <Image Source="" 
-                                       BackgroundColor="White"
-                                       WidthRequest="80"
-                                       HeightRequest="80"
-                                       Grid.Row="0" 
-                                       Grid.Column="0"/>
-                                <StackLayout Padding="10"
-                                        Grid.Row="0" 
-                                        Grid.Column="1" >
-                                    <Label  Text="{Binding LicensePlate, StringFormat='License plate: {0}'}" 
+                                <Image 
+                                    Source="" 
+                                    BackgroundColor="White"
+                                    WidthRequest="80"
+                                    HeightRequest="80"
+                                    Grid.Row="0" 
+                                    Grid.Column="0"/>
+                                <StackLayout 
+                                    Padding="10"
+                                    Grid.Row="0" 
+                                    Grid.Column="1" >
+                                    <Label  
+                                        Text="{Binding LicensePlate, StringFormat='License plate: {0}'}" 
                                         LineBreakMode="NoWrap" 
                                         Style="{DynamicResource ListItemTextStyle}" 
                                         FontSize="13" />
-                                    <Label  Text="{Binding Status, StringFormat='Status: {0}'}" 
+                                    <Label  
+                                        Text="{Binding Status, StringFormat='Status: {0}'}" 
                                         LineBreakMode="NoWrap"
                                         Style="{DynamicResource ListItemDetailTextStyle}"
                                         FontSize="10" />
-                                    <Label  Text="{Binding Date, StringFormat='Date: {0}'}" 
+                                    <Label  
+                                        Text="{Binding Date, StringFormat='Date: {0}'}" 
                                         LineBreakMode="NoWrap"
                                         Style="{DynamicResource ListItemDetailTextStyle}"
                                         FontSize="10" />
                                 </StackLayout>
-      
                             </Grid>
-  
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

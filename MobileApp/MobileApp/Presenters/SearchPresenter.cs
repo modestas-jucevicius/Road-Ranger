@@ -44,7 +44,7 @@ namespace MobileApp.Presenters
             }
             catch (Exception ex)
             {
-                DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                DialogAlertManager.ShowInternalDialogAlert(page);
             }
         }
 
@@ -68,7 +68,7 @@ namespace MobileApp.Presenters
             }
             else
             {
-                await DialogAlertManager.GetInstance().ShowValidationDialogAlert(page);
+                await DialogAlertManager.ShowValidationDialogAlert(page);
             }
         }
 
@@ -78,7 +78,7 @@ namespace MobileApp.Presenters
             if (item == null)
                 return;
 
-            await NavigationManager.GetInstance().NavigateToSearchItem(page, new CarDetailModel(item));
+            await NavigationManager.NavigateToSearchItem(page, new CarDetailModel(item));
 
             //Manually deselect item.
             view.ListView.SelectedItem = null;

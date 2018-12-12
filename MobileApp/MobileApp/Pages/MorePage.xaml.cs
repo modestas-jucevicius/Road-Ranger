@@ -14,22 +14,22 @@ namespace MobileApp.Pages
 
         private async void MyGalleryButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToMyGallery(this);
+            await NavigationManager.NavigateToMyGallery(this);
         }
 
         private async void MapButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToMap(this);
+            await NavigationManager.NavigateToMap(this);
         }
 
         private async void StatsButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToStatistic(this);
+            await NavigationManager.NavigateToStatistic(this);
         }
 
         private async void ReportButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToReport(this);
+            await NavigationManager.NavigateToReport(this);
         }
 
     }

@@ -37,11 +37,11 @@ namespace MobileApp.Presenters
         {
             if (model.Item == null || model.Item.IsReported)
             {
-                await DialogAlertManager.GetInstance().ShowInvalidReportDialogAlert(page);
+                await DialogAlertManager.ShowInvalidReportDialogAlert(page);
                 return;
             }
 
-            if (await DialogAlertManager.GetInstance().ShowReportDialog(page))
+            if (await DialogAlertManager.ShowReportDialog(page))
             {
                 await report.SendGeneratedMail(model.Item);
             }

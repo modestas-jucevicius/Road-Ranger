@@ -1,47 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MobileApp"
-             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             x:Class="MobileApp.Views.MainPage"
-             BackgroundImage="main_bg2.png"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MobileApp"
+    xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+    x:Class="MobileApp.Views.MainPage"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" 
-                     VerticalOptions="FillAndExpand" >
-            <Grid  VerticalOptions="StartAndExpand" 
-                   ColumnSpacing="50" 
-                   HorizontalOptions="CenterAndExpand"
-                   Padding="5, 5, 5, 5">
-                <flex:FlexButton
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        x:Name="Share"
-                        HorizontalOptions="Center"
-                        IconOrientation="Left"
-                        WidthRequest="69"
-                        HeightRequest="69"
-                        Padding="0"
-                        IconPadding="0"
-                        CornerRadius="38"
-                        Icon="share.png"
-                        BorderColor="#a02828"
-                        HighlightBorderColor="#932828"
-                        ForegroundColor="#ffffff"
-                        HighlightForegroundColor="#FFEBEE"
-                        BackgroundColor="#C62828"
-                        HighlightBackgroundColor="#b52828"
-                        BorderThickness="3"
-                        Clicked="ShareButton_Clicked"/>
-                <Frame OutlineColor="#a02828"
-                       BorderColor="#a02828"
-                       BackgroundColor="#C62828"
-                       HeightRequest="30"
-                       CornerRadius="10"
-                       Grid.Row="0"
-                       Grid.Column="1">
-                    <Grid   VerticalOptions="StartAndExpand" 
-                            HorizontalOptions="CenterAndExpand">
+        <StackLayout 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand" >
+            <Grid  
+                VerticalOptions="StartAndExpand" 
+                ColumnSpacing="50" 
+                HorizontalOptions="CenterAndExpand"
+                Padding="5, 5, 5, 5">
+                <Frame 
+                    OutlineColor="#a02828"
+                    BorderColor="#a02828"
+                    BackgroundColor="#C62828"
+                    HeightRequest="30"
+                    CornerRadius="10"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <Grid   
+                        VerticalOptions="StartAndExpand" 
+                        HorizontalOptions="CenterAndExpand">
                         <Label 
                             x:Name="Score"
                             TextColor="#FFFFFF"
@@ -55,29 +39,29 @@
                     </Grid>
                 </Frame>
                 <flex:FlexButton
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        x:Name="Search"
-                        HorizontalOptions="Center"
-                        IconOrientation="Left"
-                        WidthRequest="69"
-                        HeightRequest="69"
-                        Padding="0"
-                        IconPadding="0"
-                        CornerRadius="38"
-                        Icon="search.png"
-                        BorderColor="#a02828"
-                        HighlightBorderColor="#932828"
-                        ForegroundColor="#ffffff"
-                        HighlightForegroundColor="#FFEBEE"
-                        BackgroundColor="#C62828"
-                        HighlightBackgroundColor="#b52828"
-                        BorderThickness="3"
-                        Clicked="SearchButton_Clicked"/>
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    x:Name="Search"
+                    HorizontalOptions="Center"
+                    IconOrientation="Left"
+                    WidthRequest="69"
+                    HeightRequest="69"
+                    Padding="0"
+                    IconPadding="0"
+                    CornerRadius="38"
+                    Icon="search.png"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    BorderThickness="3"
+                    Clicked="SearchButton_Clicked"/>
             </Grid>
-
-            <Grid VerticalOptions="Center" 
-                  HorizontalOptions="CenterAndExpand">
+            <Grid 
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand">
                 <flex:FlexButton
                     Grid.Row="3"
                     Grid.Column="0"
@@ -142,32 +126,31 @@
                     HighlightBackgroundColor="#b52828"
                     Clicked="TopButton_Clicked"/>
             </Grid>
-
-            <Grid  VerticalOptions="EndAndExpand" 
-                   HorizontalOptions="EndAndExpand"
-                   Padding="5, 5, 5, 5">
+            <Grid  
+                VerticalOptions="EndAndExpand" 
+                HorizontalOptions="EndAndExpand"
+                Padding="5, 5, 5, 5">
                 <flex:FlexButton
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        x:Name="More"
-                        HorizontalOptions="Center"
-                        IconOrientation="Left"
-                        WidthRequest="69"
-                        HeightRequest="69"
-                        Padding="0"
-                        IconPadding="0"
-                        CornerRadius="38"
-                        Icon="more.png"
-                        BorderColor="#a02828"
-                        HighlightBorderColor="#932828"
-                        ForegroundColor="#ffffff"
-                        HighlightForegroundColor="#FFEBEE"
-                        BackgroundColor="#C62828"
-                        HighlightBackgroundColor="#b52828"
-                        BorderThickness="3"
-                        Clicked="MoreButton_Clicked"/>
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    x:Name="More"
+                    HorizontalOptions="Center"
+                    IconOrientation="Left"
+                    WidthRequest="69"
+                    HeightRequest="69"
+                    Padding="0"
+                    IconPadding="0"
+                    CornerRadius="38"
+                    Icon="more.png"
+                    BorderColor="#a02828"
+                    HighlightBorderColor="#932828"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#FFEBEE"
+                    BackgroundColor="#C62828"
+                    HighlightBackgroundColor="#b52828"
+                    BorderThickness="3"
+                    Clicked="MoreButton_Clicked"/>
             </Grid>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

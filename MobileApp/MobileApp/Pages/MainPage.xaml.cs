@@ -20,32 +20,27 @@ namespace MobileApp.Views
 
         private async void SearchButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToSearch(this);
-        }
-
-        private async void ShareButton_Clicked(object sender, System.EventArgs e)
-        {
-            await DialogAlertManager.GetInstance().ShowInternalDialogAlert(this);
+            await NavigationManager.NavigateToSearch(this);
         }
 
         private async void CameraButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToCamera(this);
+            await NavigationManager.NavigateToCamera(this);
         }
 
         private async void MoreButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToMore(this);
+            await NavigationManager.NavigateToMore(this);
         }
 
         private async void TopButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToTop(this);
+            await NavigationManager.NavigateToTop(this);
         }
 
         private async void ShopButton_Clicked(object sender, System.EventArgs e)
         {
-            await NavigationManager.GetInstance().NavigateToShop(this);
+            await NavigationManager.NavigateToShop(this);
         }
     }
 }

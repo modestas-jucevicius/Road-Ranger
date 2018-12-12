@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Title="Search"
-             BackgroundImage="casual_page.png"
-             x:Class="MobileApp.Views.SearchPage"
-             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Search"
+    x:Class="MobileApp.Views.SearchPage"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
             <Grid   
@@ -62,11 +62,14 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="80" />
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition 
+                                        Width="80" />
+                                    <ColumnDefinition 
+                                        Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition 
+                                        Height="*" />
                                 </Grid.RowDefinitions>
                                 <Image Source="" 
                                        BackgroundColor="White"

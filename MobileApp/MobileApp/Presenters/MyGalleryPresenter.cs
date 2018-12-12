@@ -66,7 +66,7 @@ namespace MobileApp.Presenters
             if (item == null)
                 return;
 
-            await NavigationManager.GetInstance().NavigateToMyGalleryItem(page, new CarDetailModel(item));
+            await NavigationManager.NavigateToMyGalleryItem(page, new CarDetailModel(item));
 
             // Manually deselect item.
             view.ListView.SelectedItem = null;

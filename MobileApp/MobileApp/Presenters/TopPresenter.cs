@@ -53,7 +53,7 @@ namespace MobileApp.Presenters
 
         private async void ShowInternalDialogAlert()
         {
-            await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+            await DialogAlertManager.ShowInternalDialogAlert(page);
         }
 
         private async void FindAll()

@@ -10,7 +10,7 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
-            NavigationManager.GetInstance().NavigateToMain(this);
+            NavigationManager.NavigateToLogin(this);
         }
 
         protected override void OnStart()

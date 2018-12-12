@@ -33,11 +33,11 @@ namespace MobileApp.Presenters
         {
             if (model.Item == null)
             {
-                await DialogAlertManager.GetInstance().ShowInvalidRemoveDialogAlert(page);
+                await DialogAlertManager.ShowInvalidRemoveDialogAlert(page);
                 return;
             }
 
-            if (await DialogAlertManager.GetInstance().ShowRemoveDialog(page))
+            if (await DialogAlertManager.ShowRemoveDialog(page))
             {
                 RemoveItem(); 
                 await view.ClosePage();        
@@ -48,11 +48,11 @@ namespace MobileApp.Presenters
         {
             if (model.Item == null || model.Item.IsReported)
             {
-                await DialogAlertManager.GetInstance().ShowInvalidReportDialogAlert(page);
+                await DialogAlertManager.ShowInvalidReportDialogAlert(page);
                 return;
             }
 
-            if (await DialogAlertManager.GetInstance().ShowReportDialog(page))
+            if (await DialogAlertManager.ShowReportDialog(page))
             {
                 await report.SendGeneratedMail(model.Item);
             }
