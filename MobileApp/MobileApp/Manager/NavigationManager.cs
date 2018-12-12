@@ -46,7 +46,7 @@ namespace MobileApp.Manager
             }
             else
             {
-                NavigateToLogin(app);
+                NavigateToMain(app);
             }
         }
 

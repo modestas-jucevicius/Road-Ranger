@@ -2,7 +2,6 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundImage="casual_page.png"
     x:Class="MobileApp.Views.TopPage"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>

@@ -23,7 +23,7 @@ namespace MobileApp.Views
             set => this.IsEnabled = value;
         }
 
-        public Page page => this;
+        public Page Page => this;
 
         void Register_Clicked(object sender, RegisterEventArgs args)
 		{

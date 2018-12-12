@@ -4,12 +4,10 @@ using Xamarin.Forms;
 
 namespace MobileApp.Views
 {
-    public interface ILoginView
+    public interface ILoginView : IBaseView
     {
 		string Username { get; }
 		string Password { get; }
-        bool IsPressable { set; }
-        Page page { get; }
 		event EventHandler<RegisterEventArgs> OnRegister;
 		event EventHandler<LoginEventArgs> OnLogin;
     }

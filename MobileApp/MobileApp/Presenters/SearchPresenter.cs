@@ -40,22 +40,11 @@ namespace MobileApp.Presenters
 
         private async Task ExecuteSearch()
         {
-            try
-            {
-                Items.Clear();
-                await GetItems(view.SearchText);
+            Items.Clear();
+            await GetItems(view.SearchText);
 
-                if (Items.Count == 0)
-                    await DialogAlertManager.ShowNoCarRecord(view.Page);
-            }
-            catch (HttpRequestException)
-            {
+            if (Items.Count == 0)
                 await DialogAlertManager.ShowNoCarRecord(view.Page);
-            }
-            catch (Exception)
-            {
-                await DialogAlertManager.ShowInternalDialogAlert(view.Page);
-            }
         }
 
         public async Task<ObservableCollection<CapturedCar>> GetItems(String text)
@@ -75,19 +64,34 @@ namespace MobileApp.Presenters
             ITextValidator validator = new LicensePlateValidator();
             if (validator.IsValid(view.SearchText))
             {
-                await ExecuteSearch();
-                LoadItemsCommand.Execute(null);
+                try
+                {
+                    await ExecuteSearch();
+                    LoadItemsCommand.Execute(null);
+                }
+                catch (HttpRequestException)
+                {
+                    await DialogAlertManager.ShowNoCarRecord(view.Page);
+                }
+                catch (Exception)
+                {
+                    await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                }
             }
             else
-            {
                 await DialogAlertManager.ShowValidationDialogAlert(view.Page);
-            }
             view.IsPressable = true;
         }
 
         private async void ClickOnItem(object sender, SelectedItemChangedEventArgs args)
         {
             view.IsPressable = false;
+            await TakeItem(args);
+            view.IsPressable = true;
+        }
+
+        private async Task TakeItem(SelectedItemChangedEventArgs args)
+        {
             CapturedCar item = args.SelectedItem as CapturedCar;
             if (item == null)
                 return;
@@ -96,7 +100,6 @@ namespace MobileApp.Presenters
 
             //Manually deselect item.
             view.ListView.SelectedItem = null;
-            view.IsPressable = true;
         }
     }
 }

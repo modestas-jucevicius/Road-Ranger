@@ -37,15 +37,15 @@ namespace MobileApp.Presenters
                 }
                 catch (HttpRequestException)
                 {
-                    await DialogAlertManager.ShowBadLoginOrPassword(view.page);
+                    await DialogAlertManager.ShowBadLoginOrPassword(view.Page);
                 }
                 catch (Exception)
                 {
-                    await DialogAlertManager.ShowInternalDialogAlert(view.page);
+                    await DialogAlertManager.ShowInternalDialogAlert(view.Page);
                 }
             }
             else
-                await DialogAlertManager.ShowAuthentificationInputValidation(view.page);
+                await DialogAlertManager.ShowAuthentificationInputValidation(view.Page);
             view.IsPressable = true;
         }
 
@@ -60,15 +60,15 @@ namespace MobileApp.Presenters
                 }
                 catch (HttpRequestException)
                 {
-                    await DialogAlertManager.ShowNotAvailableUsername(view.page);
+                    await DialogAlertManager.ShowNotAvailableUsername(view.Page);
                 }
                 catch (Exception)
                 {
-                    await DialogAlertManager.ShowInternalDialogAlert(view.page);
+                    await DialogAlertManager.ShowInternalDialogAlert(view.Page);
                 }
             }
             else
-                await DialogAlertManager.ShowAuthentificationInputValidation(view.page);
+                await DialogAlertManager.ShowAuthentificationInputValidation(view.Page);
             view.IsPressable = true;
         }
 
@@ -76,16 +76,16 @@ namespace MobileApp.Presenters
         {
             string token = await authorization.Register(view.Username, view.Password);
             await SecureStorage.SetAsync("authToken", token);
-            await DialogAlertManager.ShowRegistered(view.page);
-            NavigationManager.NavigateToMain(view.page);
+            await DialogAlertManager.ShowRegistered(view.Page);
+            NavigationManager.NavigateToMain(view.Page);
         }
 
         private async void SignIn()
         {
             string token = await authorization.Login(view.Username, view.Password);
             await SecureStorage.SetAsync("authToken", token);
-            await DialogAlertManager.ShowLoggedIn(view.page);
-            NavigationManager.NavigateToMain(view.page);
+            await DialogAlertManager.ShowLoggedIn(view.Page);
+            NavigationManager.NavigateToMain(view.Page);
         }
     }
 }

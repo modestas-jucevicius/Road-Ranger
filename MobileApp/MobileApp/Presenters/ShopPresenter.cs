@@ -4,7 +4,7 @@ using Models.Users;
 using MobileApp.Services.WebAPI.Authorization;
 using MobileApp.Services.WebAPI.Score;
 using System;
-using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace MobileApp.Presenters
 {
@@ -13,12 +13,10 @@ namespace MobileApp.Presenters
         private readonly ScoreService score;
         private readonly AuthorizationService authorization;
         private readonly IShopView view;
-        private readonly Page page;
 
-        public ShopPresenter(ShopPage page)
+        public ShopPresenter(IShopView view)
         {
-            this.page = page;
-            view = page;
+            this.view = view;
             score = ScoreService.GetInstance();
             authorization = AuthorizationService.GetInstance();
             Initialize();
@@ -33,53 +31,80 @@ namespace MobileApp.Presenters
 
         public async void BuyBoost30pAsync(object sender, EventArgs e)
         {
-            User user = await authorization.GetCurrentUser();
-            switch (await score.Boost30p(user))
+            view.IsPressable = false;
+            try
             {
-                case 0:
-                    authorization.UpdateUser(user);
-                    return;
-                case 1:
-                    await DialogAlertManager.ShowNotEnoughScoreDialogAlert(page);
-                    return;
-                case 2:
-                    await DialogAlertManager.ShowInternalDialogAlert(page);
-                    return;
+                User user = await authorization.GetCurrentUser();
+                switch (await score.Boost30p(user))
+                {
+                    case 0:
+                        authorization.UpdateUser(user);
+                        break;
+                    case 1:
+                        await DialogAlertManager.ShowNotEnoughScoreDialogAlert(view.Page);
+                        break;
+                    default:
+                        await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                        break;
+                }
             }
+            catch
+            {
+                await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+            }
+            view.IsPressable = true;
         }
 
         public async void BuyBoost50p(object sender, EventArgs e)
         {
-            User user = await authorization.GetCurrentUser();
-            switch (await score.Boost50p(user))
+            view.IsPressable = false;
+            try
             {
-                case 0:
-                    authorization.UpdateUser(user);
-                    return;
-                case 1:
-                    await DialogAlertManager.ShowNotEnoughScoreDialogAlert(page);
-                    return;
-                case 2:
-                    await DialogAlertManager.ShowInternalDialogAlert(page);
-                    return;
+                User user = await authorization.GetCurrentUser();
+                switch (await score.Boost50p(user))
+                {
+                    case 0:
+                        authorization.UpdateUser(user);
+                        break;
+                    case 1:
+                        await DialogAlertManager.ShowNotEnoughScoreDialogAlert(view.Page);
+                        break;
+                    default:
+                        await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                        break;
+                }
             }
+            catch
+            {
+                await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+            }
+            view.IsPressable = true;
         }
 
         public async void BuyBoostDouble(object sender, EventArgs e)
         {
-            User user = await authorization.GetCurrentUser();
-            switch (await score.BoostDouble(user))
+            view.IsPressable = false;
+            try
             {
-                case 0:
-                    authorization.UpdateUser(user);
-                    return;
-                case 1:
-                    await DialogAlertManager.ShowNotEnoughScoreDialogAlert(page);
-                    return;
-                case 2:
-                    await DialogAlertManager.ShowInternalDialogAlert(page);
-                    return;
+                User user = await authorization.GetCurrentUser();
+                switch (await score.BoostDouble(user))
+                {
+                    case 0:
+                        authorization.UpdateUser(user);
+                        break;
+                    case 1:
+                        await DialogAlertManager.ShowNotEnoughScoreDialogAlert(view.Page);
+                        break;
+                    default:
+                        await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                        break;
+                }
             }
+            catch
+            {
+                await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+            }
+            view.IsPressable = true;
         }
     }
 }

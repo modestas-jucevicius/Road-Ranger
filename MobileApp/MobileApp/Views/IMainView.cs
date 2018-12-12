@@ -4,11 +4,9 @@ using Xamarin.Forms;
 
 namespace MobileApp.Views
 {
-    public interface IMainView
+    public interface IMainView : IBaseView
     {
         string Score { get; set; }
-        bool IsPressable { set; }
-        Page Page { get; }
         event EventHandler<EventArgs> SearchClick;
         event EventHandler<EventArgs> StartClick;
         event EventHandler<EventArgs> MoreClick;
