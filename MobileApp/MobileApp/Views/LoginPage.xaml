@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BackgroundImage="casual_page.png"
-             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             x:Class="MobileApp.Views.LoginPage"
-             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+    x:Class="MobileApp.Views.LoginPage"
+    xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
             <Grid   
@@ -16,27 +16,25 @@
                 <input:AdvancedEntry 
                     Text=""
                     x:Name="Username"
-                    IsRequired="False"
+                    IsRequired="True"
                     Annotation="NameSurname"
                     Placeholder="Username"
                     AnnotationColor="Accent"
-                    MinLength="0"
-                    MaxLength="7"
+                    MinLength="7"
+                    MaxLength="24"
                     Grid.Row="0"
                     Grid.Column="0"/>
                 <input:AdvancedEntry 
                     Text=""
                     x:Name="Password"
-                    IsRequired="False"
+                    IsRequired="True"
                     Annotation="NameSurname"
                     Placeholder="********"
                     AnnotationColor="Accent"
-                    MinLength="0"
-                    MaxLength="7"
+                    MinLength="7"
+                    MaxLength="24"
                     Grid.Row="1"
                     Grid.Column="0"/>
-                <!--<Entry x:Name=""/>
-            <Entry x:Name="" IsPassword="True"/>-->
                 <flex:FlexButton
                     Grid.Row="2"
                     Grid.Column="0"

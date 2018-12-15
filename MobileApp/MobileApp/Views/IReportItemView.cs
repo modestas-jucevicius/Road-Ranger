@@ -2,7 +2,7 @@
 
 namespace MobileApp.Views
 {
-    public interface IReportItemView
+    public interface IReportItemView : IBaseView
     {
         event EventHandler<EventArgs> Report;
     }

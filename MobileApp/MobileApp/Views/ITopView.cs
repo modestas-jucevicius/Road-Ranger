@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MobileApp.Views
 {
-    public interface ITopView
+    public interface ITopView : IBaseView
     {
         ListView ListView { get; set; }
         ObservableCollection<User> Items { get; set; }

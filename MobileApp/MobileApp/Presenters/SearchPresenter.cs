@@ -1,5 +1,4 @@
 ﻿using MobileApp.Manager;
-using MobileApp.Models;
 using MobileApp.Views;
 using Models.Cars;
 using MobileApp.Services.Validation;
@@ -8,21 +7,20 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Net.Http;
 
 namespace MobileApp.Presenters
 {
     public class SearchPresenter : BasePresenter
     {
         private ISearchView view;
-        private readonly Page page;
         public ObservableCollection<CapturedCar> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         private CapturedCarService service;
 
-        public SearchPresenter(SearchPage page)
+        public SearchPresenter(ISearchView view)
         {
-            this.page = page;
-            view = page;
+            this.view = view;
             service = new CapturedCarService();
             Items = new ObservableCollection<CapturedCar>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -37,51 +35,58 @@ namespace MobileApp.Presenters
 
         async Task ExecuteLoadItemsCommand()
         {
-            try
-            {
-                Items.Clear();
-                await GetItems(view.SearchText);
-            }
-            catch (Exception ex)
-            {
-                DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
-            }
         }
 
-        public async Task<ObservableCollection<CapturedCar>> GetItems(String text)
+        private async Task ExecuteSearch()
         {
             Items.Clear();
-            var items = await service.GetByLicensePlateAsync(text);
+            var items = await service.GetByLicensePlateAsync(view.SearchText);
             foreach (var item in items)
             {
                 Items.Add(item);
             }
-            return Items;
+
+            if (Items.Count == 0)
+                await DialogAlertManager.ShowNoCarRecord(view.Page);
         }
 
         private async void ClickSearch(object sender, EventArgs e)
         {
+            view.IsPressable = false;
             ITextValidator validator = new LicensePlateValidator();
             if (validator.IsValid(view.SearchText))
             {
-                LoadItemsCommand.Execute(null);
+                try
+                {
+                    await ExecuteSearch();
+                    LoadItemsCommand.Execute(null);
+                }
+                catch (HttpRequestException)
+                {
+                    await DialogAlertManager.ShowNoCarRecord(view.Page);
+                }
+                catch (Exception)
+                {
+                    await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                }
             }
             else
-            {
-                await DialogAlertManager.GetInstance().ShowValidationDialogAlert(page);
-            }
+                await DialogAlertManager.ShowValidationDialogAlert(view.Page);
+            view.IsPressable = true;
         }
 
         private async void ClickOnItem(object sender, SelectedItemChangedEventArgs args)
         {
+            view.IsPressable = false;
             CapturedCar item = args.SelectedItem as CapturedCar;
             if (item == null)
                 return;
 
-            await NavigationManager.GetInstance().NavigateToSearchItem(page, new CarDetailModel(item));
+            await NavigationManager.NavigateToSearchItem(view.Page, item);
 
             //Manually deselect item.
             view.ListView.SelectedItem = null;
+            view.IsPressable = true;
         }
     }
 }

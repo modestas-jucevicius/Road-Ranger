@@ -20,6 +20,13 @@ namespace MobileApp.Views
                 Report(this, EventArgs.Empty);
         }
 
+        public bool IsPressable
+        {
+            set => IsEnabled = value;
+        }
+
+        public Page Page => this;
+
         public async Task ClosePage()
         {
             await Navigation.PopAsync();        // uždaro šitą page

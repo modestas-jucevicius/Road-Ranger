@@ -19,6 +19,13 @@ namespace MobileApp.Views
             get => Items;
             set => Items = value;
         }
+        public bool IsPressable
+        {
+            set => this.IsEnabled = value;
+        }
+
+        public Page Page => this;
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

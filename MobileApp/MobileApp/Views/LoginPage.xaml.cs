@@ -8,7 +8,9 @@ namespace MobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginPage : ContentPage, ILoginView
 	{
-		public LoginPage()
+        protected readonly object loadLock = new object();
+
+        public LoginPage()
 		{
 			InitializeComponent();
 		}
@@ -16,23 +18,30 @@ namespace MobileApp.Views
 		string ILoginView.Username => Username.Text;
 		string ILoginView.Password => Password.Text;
 
-		void Register_Clicked(object sender, RegisterEventArgs args)
+        public bool IsPressable
+        {
+            set => this.IsEnabled = value;
+        }
+
+        public Page Page => this;
+
+        void Register_Clicked(object sender, RegisterEventArgs args)
 		{
-			if (this.OnRegister != null)
+            if (this.OnRegister != null)
 				OnRegister(this, args);
-		}
+        }
 
 		void Login_Clicked(object sender, LoginEventArgs args)
 		{
-			if (this.OnLogin != null)
-				OnLogin(this, args);
-		}
+            if (this.OnLogin != null)
+                OnLogin(this, args);
+        }
 
         public event EventHandler<RegisterEventArgs> OnRegister;
 		public event EventHandler<LoginEventArgs> OnLogin;
-	}
+	} 
 
-	public class RegisterEventArgs : EventArgs
+    public class RegisterEventArgs : EventArgs
 	{
 	}
 

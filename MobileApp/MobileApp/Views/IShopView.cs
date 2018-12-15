@@ -2,7 +2,7 @@
 
 namespace MobileApp.Views
 {
-    public interface IShopView
+    public interface IShopView : IBaseView
     {
         string Score { get; set; }
         event EventHandler<EventArgs> Boost30p;

@@ -1,25 +1,23 @@
 ﻿using MobileApp.Views;
-using MobileApp.Models;
 using System;
-using Xamarin.Forms;
 using MobileApp.Manager;
 using MobileApp.Services.WebAPI.Cars;
+using MobileApp.Services.Report;
+using Models.Cars;
 
 namespace MobileApp.Presenters
 {
     public class SearchItemPresenter
     {
         protected readonly CapturedCarService service = new CapturedCarService();
-        protected readonly ReportModel report = new ReportModel();
+        private IReporter reporter = new MailReporter();
         private IReportItemView view;
-        private readonly Page page;
-        private ICarDetailModel model;
+        public CapturedCar Item { get; set; }
 
-        public SearchItemPresenter(SearchItemPage page, ICarDetailModel model)
+        public SearchItemPresenter(IReportItemView view, CapturedCar car)
         {
-            this.page = page;
-            view = page;
-            this.model = model;
+            this.view = view;
+            Item = car;
             Initialize();
         }
 
@@ -30,22 +28,22 @@ namespace MobileApp.Presenters
 
         private async void RemoveItem()
         {
-            await service.Remove(model.Item.Id);
+            await service.Remove(Item.Id);
         }
 
         async void Report(object sender, EventArgs e)
         {
-            if (model.Item == null || model.Item.IsReported)
+            if (Item == null || Item.IsReported)
             {
-                await DialogAlertManager.GetInstance().ShowInvalidReportDialogAlert(page);
+                await DialogAlertManager.ShowInvalidReportDialogAlert(view.Page);
                 return;
             }
 
-            if (await DialogAlertManager.GetInstance().ShowReportDialog(page))
+            if (await DialogAlertManager.ShowReportDialog(view.Page))
             {
-                await report.SendGeneratedMail(model.Item);
+                reporter.SendGeneretedMail(Item);
+                await DialogAlertManager.ShowReportWasSentAlert(view.Page);
             }
         }
-       
     }
 }

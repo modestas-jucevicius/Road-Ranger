@@ -140,7 +140,7 @@ namespace MobileApp.Presenters
                     }
                     catch (Exception)
                     {
-                        await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                        await DialogAlertManager.ShowInternalDialogAlert(page);
                     }
                 }
                 else

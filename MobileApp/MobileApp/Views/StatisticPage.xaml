@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
-             Title="Statistic"
-             BackgroundImage="casual_page.png"
-             x:Class="MobileApp.Views.StatisticPage"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
+    Title="Statistic"
+    x:Class="MobileApp.Views.StatisticPage"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -27,7 +27,9 @@
                         FontSize="24"
                         FontFamily="MarkerFelt-Thin"/>
                 </Frame>
-                <microcharts:ChartView x:Name="chartViewDate" HeightRequest="150" />
+                <microcharts:ChartView 
+                    x:Name="chartViewDate" 
+                    HeightRequest="150" />
                 <Frame     
                     OutlineColor="#a02828"
                     BorderColor="#a02828"
@@ -46,7 +48,9 @@
                         FontSize="24"
                         FontFamily="MarkerFelt-Thin"/>
                 </Frame>
-                <microcharts:ChartView x:Name="chartViewYear" HeightRequest="150" />
+                <microcharts:ChartView 
+                    x:Name="chartViewYear" 
+                    HeightRequest="150" />
                 <Frame     
                     OutlineColor="#a02828"
                     BorderColor="#a02828"
@@ -65,7 +69,9 @@
                         FontSize="24"
                         FontFamily="MarkerFelt-Thin"/>
                 </Frame>
-                <microcharts:ChartView x:Name="chartViewLocation" HeightRequest="150" />
+                <microcharts:ChartView 
+                    x:Name="chartViewLocation" 
+                    HeightRequest="150" />
                 <Frame     
                     OutlineColor="#a02828"
                     BorderColor="#a02828"
@@ -84,7 +90,9 @@
                         FontSize="24"
                         FontFamily="MarkerFelt-Thin"/>
                 </Frame>
-                <microcharts:ChartView x:Name="chartViewModel" HeightRequest="150" />
+                <microcharts:ChartView 
+                    x:Name="chartViewModel" 
+                    HeightRequest="150" />
                 <Frame     
                     OutlineColor="#a02828"
                     BorderColor="#a02828"
@@ -103,7 +111,9 @@
                         FontSize="24"
                         FontFamily="MarkerFelt-Thin"/>
                 </Frame>
-                <microcharts:ChartView x:Name="chartViewStatus" HeightRequest="150" />
+                <microcharts:ChartView 
+                    x:Name="chartViewStatus" 
+                    HeightRequest="150" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -13,17 +13,15 @@ namespace MobileApp.Presenters
 {
     public class TopPresenter : BasePresenter
     {
-        private readonly Page page;
         private readonly ITopView view;
         public ObservableCollection<User> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         private ScoreService service;
         private AuthorizationService authorization;
 
-        public TopPresenter(TopPage page)
+        public TopPresenter(ITopView view)
         {
-            this.page = page;
-            view = page;
+            this.view = view;
             authorization = AuthorizationService.GetInstance();
             service = ScoreService.GetInstance();
             Items = new ObservableCollection<User>();
@@ -38,25 +36,9 @@ namespace MobileApp.Presenters
 
         async Task ExecuteLoadItemsCommand()
         {
-            lock (loadLock)
-            {
-                try
-                {
-                    FindAll();
-                }
-                catch (Exception ex)
-                {
-                    ShowInternalDialogAlert();
-                }
-            }
         }
 
-        private async void ShowInternalDialogAlert()
-        {
-            await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
-        }
-
-        private async void FindAll()
+        private async Task FindAll()
         {
             Items.Clear();
             List<User> users = await service.GetTop();
@@ -66,9 +48,20 @@ namespace MobileApp.Presenters
             }
         }
 
-        void Search(object sender, EventArgs e)
+        async void Search(object sender, EventArgs e)
         {
+            view.IsPressable = false;
+            try
+            {
+                await FindAll();
+            }
+            catch (Exception)
+            {
+                await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                await NavigationManager.NavigateBack(view.Page);
+            }
             LoadItemsCommand.Execute(null);
+            view.IsPressable = true;
         }
     }
 }

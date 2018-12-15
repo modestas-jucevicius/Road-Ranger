@@ -17,6 +17,12 @@ namespace MobileApp.Views
             get => Score.Text;
             set => Score.Text = value;
         }
+        public bool IsPressable
+        {
+            set => this.IsEnabled = value;
+        }
+
+        public Page Page => this;
 
         private void Boost30p_Clicked(object sender, EventArgs args)
         {
