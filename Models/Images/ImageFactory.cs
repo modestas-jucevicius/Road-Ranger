@@ -19,7 +19,7 @@ namespace Models.Images
         {
         }
 
-        public Image CreateImage(int id, int carId, long timestamp, string path, Position pos)
+        public Image CreateImage(string id, string carId, long timestamp, string path, Position pos)
         {
             return new Image
             {

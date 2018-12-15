@@ -45,7 +45,7 @@ namespace MobileApp.Services.WebAPI.Authorization
 			});
 			response.EnsureSuccessStatusCode();
 			String token = JsonConvert.DeserializeObject<String>(await response.Content.ReadAsStringAsync());
-			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token);
+			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 			return token;
 		}
 
@@ -58,7 +58,7 @@ namespace MobileApp.Services.WebAPI.Authorization
 			});
 			response.EnsureSuccessStatusCode();
 			String token = JsonConvert.DeserializeObject<String>(await response.Content.ReadAsStringAsync());
-			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token);
+			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 			return token;
 		}
 
@@ -70,7 +70,7 @@ namespace MobileApp.Services.WebAPI.Authorization
 
 		public void SetToken(string token)
 		{
-			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token);
+			HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 		}
 	}
 }

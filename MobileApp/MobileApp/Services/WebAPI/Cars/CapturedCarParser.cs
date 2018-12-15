@@ -25,16 +25,16 @@ namespace MobileApp.Services.WebAPI.Cars
 
             Image img = new Image
             {
-                Id = (int)image["id"],
-                CarId = (int)image["carId"],
+                Id = (string)image["id"],
+                CarId = (string)image["carId"],
                 Timestamp = (long)image["timestamp"],
                 Path = (string)image["path"]
             };
 
             return new CapturedCar
             {
-                Id = (int)result["id"],
-                UserId = (int)result["userId"],
+                Id = (string)result["id"],
+                UserId = (string)result["userId"],
                 LicensePlate = (string)result["licensePlate"],
                 ColorName = (string)result["colorName"],
                 MakeName = (string)result["makeName"],

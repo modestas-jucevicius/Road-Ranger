@@ -7,9 +7,9 @@ namespace Models.Images
     public class Image
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
-        public int CarId { get; set; }
+        public string CarId { get; set; }
         public long Timestamp { get; set; }
         public string Path { get; set; }
         public double Longitude { get; set; }
