@@ -28,7 +28,9 @@ namespace MobileApp.Services.WebAPI.Cars
                 Id = (int)image["id"],
                 CarId = (int)image["carId"],
                 Timestamp = (long)image["timestamp"],
-                Path = (string)image["path"]
+                Path = (string)image["path"],
+                Latitude = (double)image["latitude"],
+                Longitude = (double)image["longitude"]
             };
 
             return new CapturedCar

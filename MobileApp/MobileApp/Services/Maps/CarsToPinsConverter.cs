@@ -10,13 +10,13 @@ namespace MobileApp.Services.Maps
         {
             foreach (CapturedCar car in cars)
             {
-                if (car.Status == CarStatus.STOLEN || car.Status == CarStatus.STOLEN_PLATE)
-                {
+             //   if (car.Status == CarStatus.STOLEN || car.Status == CarStatus.STOLEN_PLATE)
+             //   {
                     Pin pin = new Pin();
                     pin.Label = car.LicensePlate;
-                    pin.Position = car.Image.Position;
+                    pin.Position = new Position(car.Image.Latitude, car.Image.Longitude);
                     pins.Add(pin);
-                }
+               // }
             }
         }
     }

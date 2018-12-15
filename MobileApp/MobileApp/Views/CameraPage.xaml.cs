@@ -15,6 +15,12 @@ namespace MobileApp.Views
             HorizontalOptions = LayoutOptions.Center
         };
 
+        public static ActivityIndicator activityIndicator = new ActivityIndicator
+        {
+            IsRunning = false,
+            Scale = 0.5
+        };
+
         public static Label plateLabel = new Label
         {
             Text = "Camera page",
@@ -34,6 +40,7 @@ namespace MobileApp.Views
             var layout = new StackLayout();
 
             layout.Children.Add(plateLabel);
+            layout.Children.Add(activityIndicator);
             layout.Children.Add(cameraImage);
             layout.Children.Add(cameraButton);
             layout.Spacing = 10;
