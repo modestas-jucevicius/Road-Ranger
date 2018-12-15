@@ -1,9 +1,6 @@
-﻿using MobileApp.Manager;
-using MobileApp.Models;
-using Models.Cars;
+﻿using Models.Cars;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -30,7 +27,13 @@ namespace MobileApp.Views
             get => Items;
             set => Items = value;
         }
-        
+        public bool IsPressable
+        {
+            set => this.IsEnabled = value;
+        }
+
+        public Page Page => this;
+
         void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (this.OnItem != null)

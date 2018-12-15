@@ -3,7 +3,7 @@ using System;
 
 namespace MobileApp.Views
 {
-    public interface IStatisticView
+    public interface IStatisticView : IBaseView
     {
         Chart Chart1 { set; }
         Chart Chart2 { set; }

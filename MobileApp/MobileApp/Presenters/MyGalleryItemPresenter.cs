@@ -1,25 +1,23 @@
 ﻿using MobileApp.Views;
-using MobileApp.Models;
 using System;
-using Xamarin.Forms;
 using MobileApp.Manager;
 using MobileApp.Services.WebAPI.Cars;
+using MobileApp.Services.Report;
+using Models.Cars;
 
 namespace MobileApp.Presenters
 {
     public class MyGalleryItemPresenter : BasePresenter
     {
         private IMyGalleryItemView view;
-        private readonly Page page;
-        private ICarDetailModel model;
-        private ReportModel report = new ReportModel();
+        public CapturedCar Item { get; set; }
+        private IReporter reporter = new MailReporter();
         private CapturedCarService service = new CapturedCarService();
 
-        public MyGalleryItemPresenter(MyGalleryItemPage page, ICarDetailModel model)
+        public MyGalleryItemPresenter(IMyGalleryItemView view, CapturedCar car)
         {
-            this.page = page;
-            view = page;
-            this.model = model;
+            this.view = view;
+            Item = car;
             Initialize();
         }
 
@@ -31,13 +29,13 @@ namespace MobileApp.Presenters
 
         async void Remove(object sender, EventArgs e)
         {
-            if (model.Item == null)
+            if (Item == null)
             {
-                await DialogAlertManager.GetInstance().ShowInvalidRemoveDialogAlert(page);
+                await DialogAlertManager.ShowInvalidRemoveDialogAlert(view.Page);
                 return;
             }
 
-            if (await DialogAlertManager.GetInstance().ShowRemoveDialog(page))
+            if (await DialogAlertManager.ShowRemoveDialog(view.Page))
             {
                 RemoveItem(); 
                 await view.ClosePage();        
@@ -46,21 +44,26 @@ namespace MobileApp.Presenters
 
         async void Report(object sender, EventArgs e)
         {
-            if (model.Item == null || model.Item.IsReported)
+            view.IsPressable = false;
+            if (Item == null || Item.IsReported)
             {
-                await DialogAlertManager.GetInstance().ShowInvalidReportDialogAlert(page);
+                await DialogAlertManager.ShowInvalidReportDialogAlert(view.Page);
                 return;
             }
 
-            if (await DialogAlertManager.GetInstance().ShowReportDialog(page))
+            if (await DialogAlertManager.ShowReportDialog(view.Page))
             {
-                await report.SendGeneratedMail(model.Item);
+                reporter.SendGeneretedMail(Item);
             }
+            view.IsPressable = true;
         }
 
         private async void RemoveItem()
         {
-            await service.Remove(model.Item.Id);
+            view.IsPressable = false;
+            await service.Remove(Item.Id);
+            await DialogAlertManager.ShowReportWasSentAlert(view.Page);
+            view.IsPressable = true;
         }
     }
 }

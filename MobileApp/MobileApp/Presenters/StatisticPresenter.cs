@@ -3,21 +3,18 @@ using MobileApp.Manager;
 using MobileApp.Views;
 using MobileApp.Services.WebAPI.Statistic;
 using System;
-using Xamarin.Forms;
 
 namespace MobileApp.Presenters
 {
     public class StatisticPresenter : BasePresenter
     {
         private IStatisticView view;
-        private Page page;
         private StatisticService service;
         private StatisticEntryConverter converter;
 
-        public StatisticPresenter(StatisticPage page)
+        public StatisticPresenter(IStatisticView view)
         {
-            view = page;
-            this.page = page;
+            this.view = view;
             service = StatisticService.GetInstance();
             converter = new StatisticEntryConverter();
             Initialize();
@@ -37,9 +34,10 @@ namespace MobileApp.Presenters
                 view.Chart3 = new RadarChart { Entries = converter.ToMicrochartEntries(await service.GetEntries(2)) };
                 view.Chart4 = new RadarChart { Entries = converter.ToMicrochartEntries(await service.GetEntries(3)) };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
+                await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                await NavigationManager.NavigateBack(view.Page);
             }
         }
     }

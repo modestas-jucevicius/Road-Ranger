@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MobileApp.Views
 {
-    public interface ILoginView
+    public interface ILoginView : IBaseView
     {
 		string Username { get; }
 		string Password { get; }

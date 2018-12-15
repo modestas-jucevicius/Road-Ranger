@@ -2,7 +2,7 @@
 
 namespace MobileApp.Views
 {
-    public interface IReportView
+    public interface IReportView : IBaseView
     {
         string Subject { get; }
         string Body { get; }

@@ -1,5 +1,4 @@
 ﻿using Microcharts;
-using MobileApp.Presenters;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,6 +13,13 @@ namespace MobileApp.Views
 			InitializeComponent ();
         }
 
+        public bool IsPressable
+        {
+            set => this.IsEnabled = value;
+        }
+
+        public Page Page => this;
+
         public Chart Chart1 { set => chartViewDate.Chart = value; }
         public Chart Chart2 { set => chartViewYear.Chart = value; }
         public Chart Chart3 { set => chartViewLocation.Chart = value; }
@@ -23,9 +29,7 @@ namespace MobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (this.ChartView != null)
-                ChartView(this, EventArgs.Empty);
+            ChartView(this, EventArgs.Empty);
         }
 
         public event EventHandler<EventArgs> ChartView;

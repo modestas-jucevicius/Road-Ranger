@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
 using MobileApp.Manager;
 using MobileApp.Views;
 using MobileApp.Services.WebAPI.Authorization;
 using Xamarin.Essentials;
-using Xamarin.Forms;
+using MobileApp.Services.Validation;
 
 namespace MobileApp.Presenters
 {
     class LoginPresenter : BasePresenter
     {
 		private ILoginView view;
-        private Page page;
 		private AuthorizationService authorization = AuthorizationService.GetInstance();
+        private readonly UserValidator validator = new UserValidator();
 
-        public LoginPresenter(LoginPage page)
+        public LoginPresenter(ILoginView view)
 		{
-            this.page = page;
-            view = page;
+            this.view = view;
             Initialize();
 		}
 
@@ -30,38 +28,64 @@ namespace MobileApp.Presenters
 
 		private async void Register(object sender, RegisterEventArgs args)
 		{
-            try
+            view.IsPressable = false;
+            if (validator.IsValid(view.Username, view.Password))
             {
-                string token = await authorization.Register(view.Username, view.Password);
-                await SecureStorage.SetAsync("authToken", token);
-                await NavigationManager.GetInstance().NavigateBack(page);
+                try
+                {
+                    SignUp();
+                }
+                catch (HttpRequestException)
+                {
+                    await DialogAlertManager.ShowBadLoginOrPassword(view.Page);
+                }
+                catch (Exception)
+                {
+                    await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                }
             }
-            catch (WebException)
-            {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
-            }
-            catch (HttpRequestException)
-            {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
-            }
+            else
+                await DialogAlertManager.ShowAuthentificationInputValidation(view.Page);
+            view.IsPressable = true;
         }
 
 		private async void Login(object sender, LoginEventArgs args)
 		{
-            try
+            view.IsPressable = false;
+            if (validator.IsValid(view.Username, view.Password))
             {
-                string token = await authorization.Login(view.Username, view.Password);
-                await SecureStorage.SetAsync("authToken", token);
-                await NavigationManager.GetInstance().NavigateBack(page);
+                try
+                {
+                    SignIn();
+                }
+                catch (HttpRequestException)
+                {
+                    await DialogAlertManager.ShowNotAvailableUsername(view.Page);
+                }
+                catch (Exception)
+                {
+                    await DialogAlertManager.ShowInternalDialogAlert(view.Page);
+                }
             }
-            catch (WebException)
-            {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
-            }
-            catch (HttpRequestException)
-            {
-                await DialogAlertManager.GetInstance().ShowInternalDialogAlert(page);
-            }
+            else
+                await DialogAlertManager.ShowAuthentificationInputValidation(view.Page);
+            view.IsPressable = true;
         }
-	}
+
+        private async void SignUp()
+        {
+            string token = await authorization.Register(view.Username, view.Password);
+            await SecureStorage.SetAsync("authToken", token);
+            await DialogAlertManager.ShowRegistered(view.Page);
+            NavigationManager.NavigateToMain(view.Page);
+        }
+
+        private async void SignIn()
+        {
+            string token = await authorization.Login(view.Username, view.Password);
+            await SecureStorage.SetAsync("authToken", token);
+            await DialogAlertManager.ShowLoggedIn(view.Page);
+            NavigationManager.NavigateToMain(view.Page);
+        }
+    }
 }
