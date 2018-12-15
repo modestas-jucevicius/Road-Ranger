@@ -60,7 +60,7 @@ namespace MobileApp.Presenters
                 CameraPage.cameraImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
                 Byte[] imageBytes = ReadFully(photo.GetStream());
                 List<Car> cars = await GetPlateStatus(imageBytes);
-                //string plateNumber = await GetPlate(imageBytes);
+
                 if (cars[0] != null)
                 {
                     CameraPage.plateLabel.Text = cars[0].LicensePlate + "  " + cars[0].Status;
@@ -78,9 +78,6 @@ namespace MobileApp.Presenters
 
                     //Padidina userio scora
                     User user = authorization.GetCurrentUser().Result;
-                    //user.Score += evaluation.Evaluate(user, cars[0].Status);
-                    //!!!!!!!!!!!!!!!!!UPDATE USER
-
 
                     CameraPage.activityIndicator.IsRunning = false;
                 }
