@@ -1,12 +1,16 @@
 ﻿using MobileApp.Manager;
+using MobileApp.Services.WebAPI.Authorization;
 using MobileApp.Views;
+using Models.Users;
 using System;
+using Xamarin.Forms;
 
 namespace MobileApp.Presenters
 {
     public class MainPresenter : BasePresenter
     {
         private IMainView view;
+        private AuthorizationService authorizationService = AuthorizationService.GetInstance();
 
         public MainPresenter(IMainView view)
         {
@@ -21,6 +25,13 @@ namespace MobileApp.Presenters
             view.MoreClick += new EventHandler<EventArgs>(More);
             view.TopClick += new EventHandler<EventArgs>(Top);
             view.ShopClick += new EventHandler<EventArgs>(Shop);
+            view.Appear += new EventHandler<EventArgs>(OnAppear);
+        }
+
+        private async void OnAppear(object sender, EventArgs args)
+        {
+            User user = await authorizationService.GetCurrentUser();
+            view.Score = user.Score.ToString();
         }
 
         private async void Search(object sender, EventArgs args)
