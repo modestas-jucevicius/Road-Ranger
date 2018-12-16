@@ -12,5 +12,6 @@ namespace MobileApp.Views
         event EventHandler<EventArgs> MoreClick;
         event EventHandler<EventArgs> TopClick;
         event EventHandler<EventArgs> ShopClick;
+        event EventHandler<EventArgs> Appear;
     }
 }

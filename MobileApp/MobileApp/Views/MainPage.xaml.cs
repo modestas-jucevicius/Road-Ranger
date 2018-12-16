@@ -24,6 +24,11 @@ namespace MobileApp.Views
 
         public Page Page => this;
 
+        protected override void OnAppearing()
+        {
+            Appear(this, null);
+        }
+
         private void SearchButton_Clicked(object sender, EventArgs args)
         {
             SearchClick(this, args);
@@ -54,5 +59,6 @@ namespace MobileApp.Views
         public event EventHandler<EventArgs> MoreClick;
         public event EventHandler<EventArgs> TopClick;
         public event EventHandler<EventArgs> ShopClick;
+        public event EventHandler<EventArgs> Appear;
     }
 }

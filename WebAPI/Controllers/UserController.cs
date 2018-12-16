@@ -53,10 +53,11 @@ namespace WebAPI.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Read()
 		{
-			var identity = HttpContext.User.Identity as ClaimsIdentity; //Gets Information from Token
-			string ID = identity.FindFirst(ClaimTypes.Name).Value; //Takes Token field "Name" value
-            User user = await _userContext.FindAsync<User>(ID);
-            return Ok(StripUserRead(user));
+            var identity = HttpContext.User.Identity as ClaimsIdentity; //Gets Information from Token
+            string ID = identity.FindFirst(ClaimTypes.Name).Value; //Takes Token field "Name" value
+            User user = await _userContext.Users.FirstOrDefaultAsync(o => o.ID == ID);
+            user = StripUserRead(user);
+            return Ok(user);
 		}
 
 		// PUT: User
@@ -72,19 +73,19 @@ namespace WebAPI.Controllers
 
 				var identity = HttpContext.User.Identity as ClaimsIdentity; //Gets Information from Token
 				user.ID = identity.FindFirst(ClaimTypes.Name).Value; //Takes Token field "Name" value and fills it into request user so you couldn't modify other users
-				User existingUser = await _userContext.FindAsync<User>(user.ID);
+                User existingUser = await _userContext.Users.FirstOrDefaultAsync(o => o.ID == user.ID);
 				if (existingUser == null)
 				{
 					return NotFound("User not found");
 				}
 
-				user = StripUserUpdate(user, existingUser);
-				if (TryValidateModel(user))
+				StripUserUpdate(existingUser, user);
+				if (TryValidateModel(existingUser))
 				{
 					return BadRequest("Object is not Valid");
 				}
 
-                _userContext.Update(user);
+                _userContext.SaveChanges();
 			}
 			catch (Exception)
 			{
@@ -135,11 +136,11 @@ namespace WebAPI.Controllers
 			return user;
 		}
 
-		private User StripUserUpdate(User modifiedUser, User currentUser) //function to make sure some fields aren't touched by client
+		private void StripUserUpdate(User currentUser, User modifiedUser) //function to make sure some fields aren't touched by client
 		{
-			modifiedUser.Password = currentUser.Password;
-			modifiedUser.Salt = currentUser.Salt;
-			return modifiedUser;
+            currentUser.Username = modifiedUser.Username;
+            currentUser.Score = modifiedUser.Score;
+            currentUser.BoostType = modifiedUser.BoostType;
 		}
 	}
 }
