@@ -37,7 +37,7 @@ namespace Models.Cars
             };
         }
 
-        public Car CreateCar(int id, int userId, string licensePlate, string colorName,
+        public Car CreateCar(string id, string userId, string licensePlate, string colorName,
                             string makeName, string model, string bodyType, string year,
                             CarStatus status, bool isReported)
         {

@@ -5,9 +5,9 @@ namespace Models.Cars
     public class Car
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [Required]
         public string LicensePlate { get; set; }    
         public string ColorName { get; set; }    

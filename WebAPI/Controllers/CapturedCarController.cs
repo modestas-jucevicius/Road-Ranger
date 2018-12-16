@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
 
         // GET: api/cars/get?licenseplate={licensePlate}
         [HttpGet("get")]
-        public IEnumerable<CapturedCar> Get([FromQuery] string LicensePlate)
+        public IEnumerable<CapturedCar> GetByLicensePlate([FromQuery] string LicensePlate)
         {
             IEnumerable<CapturedCar> capturedCars = from car in _userContext.Cars
                            join image in _userContext.Images on car.Id equals image.CarId
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
 
         // GET: api/cars/byuser?id={id}
         [HttpGet("byuser")]
-        public IEnumerable<CapturedCar> Get([FromQuery] int id)
+        public IEnumerable<CapturedCar> Get([FromQuery] string id)
         {
             IEnumerable<CapturedCar> capturedCars = from car in _userContext.Cars
                                                     join image in _userContext.Images on car.Id equals image.CarId
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
 
         // DELETE: api/cars/remove?id={id}
         [HttpDelete("remove")]
-        public void Remove([FromQuery] int id)
+        public void Remove([FromQuery] string id)
         {
             Car car = _userContext.Cars.FirstOrDefault(o => o.Id == id);
             if (car != null)

@@ -71,7 +71,7 @@ namespace MobileApp.Services.WebAPI.Cars
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> Remove(int id)
+        public async Task<bool> Remove(string id)
         {
             HttpResponseMessage response = await HttpClient.DeleteAsync(String.Format("api/cars/remove?id={0}", id));
             response.EnsureSuccessStatusCode();
