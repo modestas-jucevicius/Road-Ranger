@@ -4,6 +4,6 @@
     <AndroidDesignerPreferredTheme>Theme.DeviceDefault.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
     <SelectedDevice>Motorola Moto G %285%29</SelectedDevice>
     <DefaultDevice>emuxl</DefaultDevice>
-    <DefaultDevice>my_device</DefaultDevice>
+    <DefaultDevice>Android_Accelerated_x86_Oreo</DefaultDevice>
   </PropertyGroup>
 </Project>

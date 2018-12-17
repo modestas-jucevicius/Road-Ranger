@@ -31,7 +31,7 @@
                                     Grid.Row="0" 
                                     Grid.Column="1" >
                                     <Label  
-                                        Text="{Binding Name, StringFormat='Name: {0}'}" 
+                                        Text="{Binding Username, StringFormat='Username: {0}'}" 
                                         LineBreakMode="NoWrap" 
                                         Style="{DynamicResource ListItemTextStyle}" 
                                         FontSize="13" />
