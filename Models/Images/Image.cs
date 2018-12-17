@@ -10,7 +10,7 @@ namespace Models.Images
         public string Id { get; set; }
         [Required]
         public string CarId { get; set; }
-        public long Timestamp { get; set; }
+        public double Timestamp { get; set; }
         public string Path { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
