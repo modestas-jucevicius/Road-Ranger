@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repository\Migrations\20181217161000_TimestampLongToDouble.cs" />
     <Compile Remove="Repository\Migrations\Car\20181209130600_CreateCars.cs" />
     <Compile Remove="Repository\Migrations\Image\20181209130630_CreateImages.cs" />
   </ItemGroup>
