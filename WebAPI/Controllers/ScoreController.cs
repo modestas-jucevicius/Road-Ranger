@@ -23,12 +23,6 @@ namespace WebAPI.Controllers
             shop = BoostShopService.GetInstance();
         }
 
-        /*public ScoreController()
-        {
-            highscores = HighscoresService.Instance;
-            shop = BoostShopService.GetInstance();
-        }*/
-
         // GET: api/score/top
         [AllowAnonymous]
         [HttpGet("top")]
