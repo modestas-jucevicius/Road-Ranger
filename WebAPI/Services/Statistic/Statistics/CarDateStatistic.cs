@@ -10,7 +10,7 @@ namespace WebAPI.Services.Statistic.Statistics
     {
         public List<StatisticEntry> Get(List<CapturedCar> cars)
         {
-            return cars.GroupBy(x => (new DateTime(1970, 1, 1) + TimeSpan.FromMilliseconds(x.Image.Timestamp * 1000)).Hour)
+            return cars.GroupBy(x => (new DateTime(x.Image.Timestamp)))
                 .Select(y => new StatisticEntry()
                 {
                     Label = y.Key.ToString(),

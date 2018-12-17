@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
             _userContext.SaveChanges();
             Evaluation evaluation = Evaluation.Instance;
             User user = _userContext.Users.FirstOrDefault(o => o.ID == car.UserId.ToString());
-            user.Score = evaluation.Evaluate(user, car.Status);
+            user.Score += evaluation.Evaluate(user, car.Status);
             _userContext.SaveChanges();
         }
 
