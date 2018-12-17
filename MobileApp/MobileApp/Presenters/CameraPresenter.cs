@@ -76,9 +76,6 @@ namespace MobileApp.Presenters
                         Debug.WriteLine(ex.Message);
                     }
 
-                    //Padidina userio scora
-                    User user = authorization.GetCurrentUser().Result;
-
                     CameraPage.activityIndicator.IsRunning = false;
                 }
                 else
@@ -113,8 +110,11 @@ namespace MobileApp.Presenters
                 if (cars.Count > 0)
                 {
                     cars[0].Status = await licensePlateService.CheckCar(cars[0].LicensePlate);
-                    cars[0].Id = rand.Next(1, 999999);
-                    return cars;
+                    cars[0].Id = rand.Next(1, 999999).ToString();
+					User user = await authorization.GetCurrentUser();
+					cars[0].UserId = user.ID;
+
+					return cars;
                 }
 
             }
@@ -160,7 +160,7 @@ namespace MobileApp.Presenters
         private async Task<Image> ProcessImageAsync(String path, Car car)
         {
             Position pos = await mapTool.GetLocation();
-            return imageFactory.CreateImage(rand.Next(1, 999999), car.Id, DateTime.Now.Ticks, path, pos);
+            return imageFactory.CreateImage(rand.Next(1, 999999).ToString(), car.Id, DateTime.Now.Ticks, path, pos);
         }
 
 
