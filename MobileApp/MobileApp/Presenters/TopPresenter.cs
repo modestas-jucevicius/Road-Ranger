@@ -41,7 +41,7 @@ namespace MobileApp.Presenters
         private async Task FindAll()
         {
             Items.Clear();
-            List<User> users = await service.GetTop();
+            var users = await service.GetTop();
             foreach (var item in users)
             {
                 Items.Add(item);

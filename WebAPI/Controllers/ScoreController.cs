@@ -19,13 +19,15 @@ namespace WebAPI.Controllers
         public ScoreController(UserContext userContext)
         {
             _userContext = userContext;
-        }
-
-        public ScoreController()
-        {
             highscores = HighscoresService.Instance;
             shop = BoostShopService.GetInstance();
         }
+
+        /*public ScoreController()
+        {
+            highscores = HighscoresService.Instance;
+            shop = BoostShopService.GetInstance();
+        }*/
 
         // GET: api/score/top
         [AllowAnonymous]

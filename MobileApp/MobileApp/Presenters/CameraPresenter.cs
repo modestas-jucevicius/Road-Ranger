@@ -109,11 +109,11 @@ namespace MobileApp.Presenters
             string result = await FrameRecognition.Recognition(imageBytes);
             try
             {
-                List<Car> cars = parser.Parse(result);          //Neuzdeda ID ir Status atributams reiksmiu
+                List<Car> cars = parser.Parse(result);
                 if (cars.Count > 0)
                 {
                     cars[0].Status = await licensePlateService.CheckCar(cars[0].LicensePlate);
-                    cars[0].Id = rand.Next(1, 999999);
+                    cars[0].Id = rand.Next(1, 999999).ToString();
                     return cars;
                 }
 
@@ -150,17 +150,16 @@ namespace MobileApp.Presenters
         private async Task<String> SaveImageAsync(Byte[] image, Car car)
         {
             var filename = Path.Combine(Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).ToString(), "RoadRanger"), car.Id + ".jpg");
-            using (var fileOutputStream = new Java.IO.FileOutputStream(filename))
-            {
-                await fileOutputStream.WriteAsync(image);
-            }
+            var fileOutputStream = new Java.IO.FileOutputStream(filename);
+            await fileOutputStream.WriteAsync(image);
+            
             return filename;
         }
 
         private async Task<Image> ProcessImageAsync(String path, Car car)
         {
             Position pos = await mapTool.GetLocation();
-            return imageFactory.CreateImage(rand.Next(1, 999999), car.Id, DateTime.Now.Ticks, path, pos);
+            return imageFactory.CreateImage(rand.Next(1, 999999).ToString(), car.Id, DateTime.Now.Ticks, path, pos);
         }
 
 
