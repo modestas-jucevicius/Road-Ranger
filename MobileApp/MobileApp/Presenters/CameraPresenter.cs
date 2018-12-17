@@ -76,9 +76,6 @@ namespace MobileApp.Presenters
                         Debug.WriteLine(ex.Message);
                     }
 
-                    //Padidina userio scora
-                    User user = authorization.GetCurrentUser().Result;
-
                     CameraPage.activityIndicator.IsRunning = false;
                 }
                 else
@@ -114,7 +111,9 @@ namespace MobileApp.Presenters
                 {
                     cars[0].Status = await licensePlateService.CheckCar(cars[0].LicensePlate);
                     cars[0].Id = rand.Next(1, 999999).ToString();
-                    return cars;
+					          User user = await authorization.GetCurrentUser();
+					          cars[0].UserId = user.ID;
+					          return cars;
                 }
 
             }
