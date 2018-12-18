@@ -4,6 +4,6 @@
     <AndroidDesignerPreferredTheme>Theme.DeviceDefault.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
     <SelectedDevice>my_device</SelectedDevice>
     <DefaultDevice>emuxl</DefaultDevice>
-    <DefaultDevice>my_device</DefaultDevice>
+    <DefaultDevice>Android_Accelerated_x86_Oreo</DefaultDevice>
   </PropertyGroup>
 </Project>

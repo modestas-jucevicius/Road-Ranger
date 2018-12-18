@@ -26,6 +26,11 @@ namespace MobileApp.Views
 
         public Page Page => this;
 
+        public TopPage()
+        {
+            InitializeComponent();
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

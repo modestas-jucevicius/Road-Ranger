@@ -53,19 +53,27 @@ namespace MobileApp.Services.WebAPI.Cars
 
         public async Task<bool> Add(CapturedCar car)
         {
-            HttpResponseMessage response = await HttpClient.PostAsJsonAsync("api/cars/add", new
-            {
-                Id = car.Id,
-                UserId = car.UserId,
-                LicensePlate = car.LicensePlate,
-                ColorName = car.ColorName,
-                MakeName = car.MakeName,
-                Model = car.Model,
-                BodyType = car.BodyType,
-                Year = car.Year,
-                IsReported = car.IsReported,
-                Status = car.Status,
-                Image = car.Image
+			HttpResponseMessage response = await HttpClient.PostAsJsonAsync("api/cars/add", new
+			{
+				Id = car.Id,
+				UserId = car.UserId,
+				LicensePlate = car.LicensePlate,
+				ColorName = car.ColorName,
+				MakeName = car.MakeName,
+				Model = car.Model,
+				BodyType = car.BodyType,
+				Year = car.Year,
+				IsReported = car.IsReported,
+				Status = car.Status,
+				Image = new
+				{
+					Id = car.Image.CarId,
+					CarId = car.Id,
+					Timestamp = car.Image.Timestamp,
+					Path = car.Image.Path,
+					Longitude = car.Image.Longitude,
+					Latitude = car.Image.Latitude
+				}
             });
             response.EnsureSuccessStatusCode();
             return response.IsSuccessStatusCode;
