@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -27,8 +27,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Java.Interop">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\Java.Interop.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v2.3\Mono.Android.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v2.3\Mono.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v2.3\Mono.Android.Export.dll</HintPath>
     </Reference>
   </ItemGroup>
 

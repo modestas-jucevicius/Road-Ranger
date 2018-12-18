@@ -5,6 +5,7 @@ using MobileApp.Views;
 using MobileApp.Services.WebAPI.Authorization;
 using Xamarin.Essentials;
 using MobileApp.Services.Validation;
+using System.Threading.Tasks;
 
 namespace MobileApp.Presenters
 {
@@ -33,7 +34,7 @@ namespace MobileApp.Presenters
             {
                 try
                 {
-                    SignUp();
+                    await SignUp();
                 }
                 catch (HttpRequestException)
                 {
@@ -56,7 +57,7 @@ namespace MobileApp.Presenters
             {
                 try
                 {
-                    SignIn();
+                    await SignIn();
                 }
                 catch (HttpRequestException)
                 {
@@ -72,7 +73,7 @@ namespace MobileApp.Presenters
             view.IsPressable = true;
         }
 
-        private async void SignUp()
+        private async Task SignUp()
         {
             string token = await authorization.Register(view.Username, view.Password);
             await SecureStorage.SetAsync("authToken", token);
@@ -80,7 +81,7 @@ namespace MobileApp.Presenters
             NavigationManager.NavigateToMain(view.Page);
         }
 
-        private async void SignIn()
+        private async Task SignIn()
         {
             string token = await authorization.Login(view.Username, view.Password);
             await SecureStorage.SetAsync("authToken", token);

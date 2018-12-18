@@ -1,4 +1,5 @@
 ﻿using MobileApp.Manager;
+using MobileApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
-            NavigationManager.NavigateToMainScreen(this);
+            NavigationManager.NavigateToMain(this);
         }
 
         protected override void OnStart()

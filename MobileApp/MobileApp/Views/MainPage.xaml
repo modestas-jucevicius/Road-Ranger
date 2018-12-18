@@ -19,7 +19,7 @@
                     OutlineColor="#a02828"
                     BorderColor="#a02828"
                     BackgroundColor="#C62828"
-                    HeightRequest="30"
+                    HeightRequest="20"
                     CornerRadius="10"
                     Grid.Row="0"
                     Grid.Column="1">
@@ -34,7 +34,7 @@
                             Grid.Column="0"
                             HorizontalOptions="Center"
                             VerticalOptions="Start"
-                            FontSize="24"
+                            FontSize="14"
                             FontFamily="MarkerFelt-Thin"/>
                     </Grid>
                 </Frame>

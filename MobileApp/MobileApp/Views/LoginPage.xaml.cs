@@ -37,6 +37,12 @@ namespace MobileApp.Views
                 OnLogin(this, args);
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            return true;
+        }
+
         public event EventHandler<RegisterEventArgs> OnRegister;
 		public event EventHandler<LoginEventArgs> OnLogin;
 	} 

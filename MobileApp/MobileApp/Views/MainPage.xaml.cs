@@ -8,7 +8,6 @@ namespace MobileApp.Views
         
         public MainPage()
         {
-            NavigationPage.SetHasNavigationBar(this, true);
             InitializeComponent();
         }
 
@@ -26,7 +25,8 @@ namespace MobileApp.Views
 
         protected override void OnAppearing()
         {
-            Appear(this, null);
+            if (this.Appear != null)
+                Appear(this, null);
         }
 
         private void SearchButton_Clicked(object sender, EventArgs args)

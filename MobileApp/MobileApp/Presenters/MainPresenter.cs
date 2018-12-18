@@ -3,7 +3,6 @@ using MobileApp.Services.WebAPI.Authorization;
 using MobileApp.Views;
 using Models.Users;
 using System;
-using Xamarin.Forms;
 
 namespace MobileApp.Presenters
 {
@@ -30,8 +29,14 @@ namespace MobileApp.Presenters
 
         private async void OnAppear(object sender, EventArgs args)
         {
-            User user = await authorizationService.GetCurrentUser();
-            view.Score = user.Score.ToString();
+            try
+            {
+                User user = await authorizationService.GetCurrentUser();
+                view.Score = user.Score.ToString();
+            }
+            catch
+            {
+            }
         }
 
         private async void Search(object sender, EventArgs args)
