@@ -38,6 +38,8 @@ namespace MobileApp.Presenters
                 switch (await score.Boost30p(user))
                 {
                     case 0:
+                        user.BoostType = 1;
+                        user.Score = user.Score - 10000;
                         authorization.UpdateUser(user);
                         break;
                     case 1:
@@ -64,6 +66,8 @@ namespace MobileApp.Presenters
                 switch (await score.Boost50p(user))
                 {
                     case 0:
+                        user.BoostType = 2;
+                        user.Score = user.Score - 25000;
                         authorization.UpdateUser(user);
                         break;
                     case 1:
@@ -90,6 +94,8 @@ namespace MobileApp.Presenters
                 switch (await score.BoostDouble(user))
                 {
                     case 0:
+                        user.BoostType = 3;
+                        user.Score = user.Score - 50000;
                         authorization.UpdateUser(user);
                         break;
                     case 1:
