@@ -25,7 +25,7 @@ namespace MobileApp.Manager
         {
             MainPage mainPage = new MainPage();
             app.Main = mainPage;
-            //await RedirectToLogin(mainPage);
+            await RedirectToLogin(mainPage);
             MainPresenter presenter = new MainPresenter(mainPage);
         }
 
