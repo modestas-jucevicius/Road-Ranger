@@ -73,11 +73,6 @@ namespace MobileApp.Presenters
                     CameraPage.cameraImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
                     Byte[] imageBytes = ReadFully(photo.GetStream());
                     List<Car> cars = await GetPlateStatus(imageBytes);
-/*
-                    if(cars == null)
-                    {
-                        cars = await GetPlateStatus(imageBytes);
-                    }*/
 
                     if (cars != null && cars[0] != null)
                     {
