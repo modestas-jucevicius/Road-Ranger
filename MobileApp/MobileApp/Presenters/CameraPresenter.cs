@@ -18,6 +18,7 @@ using Xamarin.Forms.Maps;
 using Models.Images;
 using Image = Models.Images.Image;
 using MobileApp.Services.WebAPI.Cars;
+using System.Threading;
 
 namespace MobileApp.Presenters
 {
@@ -34,12 +35,12 @@ namespace MobileApp.Presenters
         private readonly CarFactory carFactory = CarFactory.GetInstance();
         private readonly MapTool mapTool = new MapTool(null);
         private readonly CapturedCarService capturedCarService = CapturedCarService.GetInstance();
+        private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
 
         public CameraPresenter(CameraPage page)
         {
             this.page = page;
             this.cameraOptions = new StoreCameraMediaOptions();
-
             var filename = Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).ToString(), "RoadRanger");
             Directory.CreateDirectory(filename);
 
@@ -53,37 +54,56 @@ namespace MobileApp.Presenters
 
         private async void CameraButton_Clicked(object sender, EventArgs e)
         {
-            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions());
-            if (photo != null)
+            
+            if (Plugin.Media.CrossMedia.Current.IsCameraAvailable)
             {
-                CameraPage.activityIndicator.IsRunning = true;
-                CameraPage.cameraImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
-                Byte[] imageBytes = ReadFully(photo.GetStream());
-                List<Car> cars = await GetPlateStatus(imageBytes);
-
-                if (cars[0] != null)
+                await _semaphoreSlim.WaitAsync();
+                MediaFile photo = null;
+                try
                 {
-                    CameraPage.plateLabel.Text = cars[0].LicensePlate + "  " + cars[0].Status;
-                    String path = await SaveImageAsync(imageBytes, cars[0]);                                  //Issaugo nuotrauka
-                    Image image = await ProcessImageAsync(path, cars[0]);
-                    CapturedCar capturedCar = carFactory.CreateCapturedCar(cars[0], image);
-                    try
-                    {
-                        await capturedCarService.Add(capturedCar);
-                    }
-                    catch(Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                    }
-
-                    CameraPage.activityIndicator.IsRunning = false;
+                    photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions());
                 }
-                else
+                catch (Exception ex)
                 {
-                    CameraPage.plateLabel.Text = "Car not found...";
-                    CameraPage.activityIndicator.IsRunning = false;
+                    Debug.WriteLine(ex.Message);
                 }
+                if (photo != null)
+                {
+                    CameraPage.activityIndicator.IsRunning = true;
+                    CameraPage.cameraImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+                    Byte[] imageBytes = ReadFully(photo.GetStream());
+                    List<Car> cars = await GetPlateStatus(imageBytes);
+/*
+                    if(cars == null)
+                    {
+                        cars = await GetPlateStatus(imageBytes);
+                    }*/
 
+                    if (cars != null && cars[0] != null)
+                    {
+                        CameraPage.plateLabel.Text = cars[0].LicensePlate + "  " + cars[0].Status;
+                        String path = await SaveImageAsync(imageBytes, cars[0]);                                  //Issaugo nuotrauka
+                        Image image = await ProcessImageAsync(path, cars[0]);
+                        CapturedCar capturedCar = carFactory.CreateCapturedCar(cars[0], image);
+                        try
+                        {
+                            await capturedCarService.Add(capturedCar);
+                        }
+                        catch(Exception ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        }
+                        _semaphoreSlim.Release();
+                        CameraPage.activityIndicator.IsRunning = false;
+                    }
+                    else
+                    {
+                        CameraPage.plateLabel.Text = "Car not found...";
+                        _semaphoreSlim.Release();
+                        CameraPage.activityIndicator.IsRunning = false;
+                    }
+
+                }
             }
         }
 
