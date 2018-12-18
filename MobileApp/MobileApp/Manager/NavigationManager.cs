@@ -21,14 +21,15 @@ namespace MobileApp.Manager
             await page.Navigation.PushModalAsync(new NavigationPage(mainPage));
         }
 
-        public static void NavigateToMain(IApp app)
+        public static async void NavigateToMain(IApp app)
         {
             MainPage mainPage = new MainPage();
-            MainPresenter presenter = new MainPresenter(mainPage);
             app.Main = mainPage;
+            //await RedirectToLogin(mainPage);
+            MainPresenter presenter = new MainPresenter(mainPage);
         }
 
-        public static async void NavigateToMainScreen(IApp app)
+        public static async Task<bool> RedirectToLogin(Page page)
         {
             string token = await SecureStorage.GetAsync("authToken");
             if (token != null)
@@ -37,17 +38,18 @@ namespace MobileApp.Manager
                 {
                     authorization.SetToken(token);
                     await authorization.GetCurrentUser();
-                    NavigateToMain(app);
+                    return false;
                 }
                 catch (Exception)
                 {
-                    NavigateToLogin(app);
+                    NavigateToLogin(page);
                 }
             }
             else
             {
-                NavigateToLogin(app);
+                NavigateToLogin(page);
             }
+            return true;
         }
 
         public static async Task NavigateToMyGallery(Page page)
@@ -80,12 +82,12 @@ namespace MobileApp.Manager
             await page.Navigation.PushModalAsync(new NavigationPage(cameraPage));
         }
 
-        public static void NavigateToLogin(IApp app)
+        public async static void NavigateToLogin(Page page)
         {
             LoginPage loginPage = new LoginPage();
             LoginPresenter presenter = new LoginPresenter(loginPage);
             loginPage.BindingContext = presenter;
-            app.Main = loginPage;
+            await page.Navigation.PushModalAsync(new NavigationPage(loginPage));
         }
 
         public static async Task NavigateToMyGalleryItem(Page page, CapturedCar car)

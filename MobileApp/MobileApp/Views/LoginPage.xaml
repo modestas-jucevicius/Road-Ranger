@@ -13,6 +13,22 @@
                 ColumnSpacing="50" 
                 HorizontalOptions="CenterAndExpand"
                 Padding="5, 5, 5, 5">
+                <Entry
+                    Text=""
+                    x:Name="Username"
+                    Placeholder="Username"
+                    MaxLength="24"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+                <Entry
+                    Text=""
+                    x:Name="Password"
+                    Placeholder="********"
+                    IsPassword="True"
+                    MaxLength="24"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+                <!--
                 <input:AdvancedEntry 
                     Text=""
                     x:Name="Username"
@@ -34,7 +50,8 @@
                     MinLength="7"
                     MaxLength="24"
                     Grid.Row="1"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    IsPassword="True"/>-->
                 <flex:FlexButton
                     Grid.Row="2"
                     Grid.Column="0"
